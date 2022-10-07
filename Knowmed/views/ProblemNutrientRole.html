@@ -1,0 +1,84 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Problem Nutrient Role</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Disease</div>
+                                    <div class="col-md-10">
+                                        <select select2 class="form-control" ng-model="ddlDisease" ng-init="ddlDisease=0" required="" ng-change="GetProblemNutrientRoleList(ddlDisease)">
+                                            <option value="0">--Select Disease--</option>
+                                            <option ng-repeat="list in diseaseList" value="{{list.problemID}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Problem Nutrient Role List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableProblemNutrientRole" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Effect</th>
+                                            <th>Enhancer</th>
+                                            <th>Inhibitor</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in problemNutrientRoleList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.enhancer}}</td>
+                                            <td>{{list.inhibitor}}</td>
+                                            <td><a ui-sref="nutrientInteraction({id:{{list.nutrientID}}})" title="Assign"><!--<i class="fa fa-pencil"></i>-->Assign</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>

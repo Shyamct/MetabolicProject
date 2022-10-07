@@ -1,0 +1,166 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Food Intake Limit</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Food Intake Limit
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Food</div>
+                                    <div class="col-md-9">
+                                        <select select2 class="form-control" ng-model="ddlFoodFamilyID" ng-init="ddlFoodFamilyID=0" required="" ng-change="GetFoodIntakeLimitList()">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in foodFamilyMaster" value="{{list.foodID}}">
+                                                {{list.foodFamily}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Min Quantity</div>
+                                    <div class="col-md-2"><input type="text" class="form-control" placeholder="Min Quantity" ng-model="txtQuantityMin" onkeypress="isNumeric(true)" /></div>
+                                    <div class="col-md-2">Max Quantity</div>
+                                    <div class="col-md-2"><input type="text" class="form-control" placeholder="Max Quantity" ng-model="txtQuantityMax" onkeypress="isNumeric(true)" /></div>
+                                    <div class="col-md-1">Unit</div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" id="ddlUnit" ng-model="ddlUnit" ng-init="ddlUnit=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in unitMaster" value="{{list.unitID}}">
+                                                {{list.unitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Min Age</div>
+                                    <div class="col-md-2"><input type="text" class="form-control" placeholder="Min Age" ng-model="txtAgeMin" onkeypress="isNumeric(true)" /></div>
+                                    <div class="col-md-2">Max Age</div>
+                                    <div class="col-md-2"><input type="text" class="form-control" placeholder="Max Age" ng-model="txtAgeMax" onkeypress="isNumeric(true)" /></div>
+                                    <div class="col-md-1">Age Unit</div>
+                                    <div class="col-md-2">
+                                        <select class="form-control" id="ddlAgeUnit" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in ageUnitList" value="{{list.ageUnitID}}">
+                                                {{list.ageUnit}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Activity</div>
+                                    <div class="col-md-9">
+                                         <select select2 class="form-control" id="ddlActivity" ng-model="ddlActivity" ng-init="ddlActivity=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in activityCategory" value="{{list.activityID}}">
+                                                {{list.activityName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Remark</div>
+                                    <div class="col-md-9"><textarea class="form-control" placeholder="Remark" ng-model="txtRemark" rows="3" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Reference</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Reference" ng-model="txtReference" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">URL</div>
+                                    <div class="col-md-9"><textarea class="form-control" placeholder="Url" ng-model="txtUrl" rows="3"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveFoodIntakeLimit();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Food Intake Limit List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableFoodIntakeLimit" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Food</th>
+                                            <th>Min Quantity</th>
+                                            <th>Max Quantity</th>
+                                            <th>Unit</th>
+                                            <th>Min Age</th>
+                                            <th>Max Age</th>
+                                            <th>Age Unit</th>
+                                            <th>Activity</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in foodIntakeLimitList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="DeleteFoodIntakeLimit(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.foodFamily}}</td>
+                                            <td>{{list.quantityMin}}</td>
+                                            <td>{{list.quantityMax}}</td>
+                                            <td>{{list.unitName}}</td>
+                                            <td>{{list.ageFrom}}</td>
+                                            <td>{{list.ageTo}}</td>
+                                            <td>{{list.ageUnit}}</td>
+                                            <td>{{list.activityName}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

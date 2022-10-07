@@ -1,0 +1,190 @@
+﻿
+<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Differential Diagnosis Report New</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading" style="padding-right:2px;height: 40px;">
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-link" ng-click="exportData()">
+                                <span class="glyphicon glyphicon-share"></span>
+                                export to excel
+                            </button>
+                            <input type="button" class="btn btn-success" value="print" style="margin-top:5px;padding-right: 10px;padding-top: 5px;" ng-click="printDiv('divPrint');" />
+                            <div class="form-group col-md-12">
+                                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh" id="divPrint">
+                                    <table id="tableDifferentialDiagnosisReprt" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="6" style="text-align:center; font-weight:bold; width:50%;">Diagnosis</th>
+                                                
+                                                <th colspan="6" style="text-align:center; font-weight:bold; width:50%;">Differential Diagnosis</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><b>Action</b></td>
+                                                <td><b>Diagnosis</b></td>
+                                                <td><b>Sign</b></td>
+                                                <td><b>Symptom</b></td>
+                                                <td><b>Investigation</b></td>
+                                                <td><b>Diagnosis</b></td>
+                                                <td><b>Sign</b></td>
+                                                <td><b>Symptom</b></td>
+                                                <td><b>Investigation</b></td>
+                                                <td><b>DDType</b></td>
+                                                <td><b>Reference</b></td>
+                                            </tr>
+                                            <tr ng-repeat="list in differentialDiagnosisReportNewList | filter : search track by $index" ng-class-odd="'striped'">
+                                                <td><a href="" ng-click="delete1(list.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                <td>{{list.diagnosis}}</td>
+                                                <td>
+                                                    <table rules="rows" class="Sign" style="width:100%;border:1px solid #000;" ng-if="list.diagnosisSign.length > 0">
+                                                        <thead class="theadCustom">
+                                                            <tr>
+                                                                <td class="col-md-2 labelHeadStyle">Problem Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Value</td>
+                                                                <td class="col-md-2 labelHeadStyle">Action</td>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyCustomList">
+                                                            <tr ng-repeat="process in list.diagnosisSign">
+                                                                <td class="col-md-2">{{process.problemName}}</td>
+                                                                <td class="col-md-2">{{process.attributeName}}</td>
+                                                                <td class="col-md-2">{{process.attributeValue}}</td>
+                                                                <td><a href="" ng-click="deleteDiagnosisSign(process.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <!--<td>{{list.diagnosis}}</td>-->
+                                                <td>
+                                                    <table rules="rows" class="Symptom" style="width:100%;border:1px solid #000;" ng-if="list.diagnosisSymptom.length > 0">
+                                                        <thead class="theadCustom">
+                                                            <tr>
+                                                                <td class="col-md-2 labelHeadStyle">Problem Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Value</td>
+                                                                <td class="col-md-2 labelHeadStyle">Action</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyCustomList">
+                                                            <tr ng-repeat="process in list.diagnosisSymptom">
+                                                                <td class="col-md-2">{{process.problemName}}</td>
+                                                                <td class="col-md-2">{{process.attributeName}}</td>
+                                                                <td class="col-md-2">{{process.attributeValue}}</td>
+                                                                <td><a href="" ng-click="deleteDiagnosisSymptom(process.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table rules="rows" class="Investigation" style="width:100%;border:1px solid #000;" ng-if="list.diagnosisInvestigation.length > 0">
+                                                        <thead class="theadCustom">
+                                                            <tr>
+                                                                <td class="col-md-2 labelHeadStyle">Sub Test</td>
+                                                                <td class="col-md-2 labelHeadStyle">Property Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Property Value</td>
+                                                                <td class="col-md-2 labelHeadStyle">Action</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyCustomList">
+                                                            <tr ng-repeat="process in list.diagnosisInvestigation">
+                                                                <td class="col-md-2">{{process.subTest}}</td>
+                                                                <td class="col-md-2">{{process.propertyName}}</td>
+                                                                <td class="col-md-2">{{process.propertyValue}}</td>
+                                                                <td><a href="" ng-click="deleteDiagnosisInvestigation(process.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>{{list.differentialDiagnosis}}</td>
+                                                <td>
+                                                    <table rules="rows" class="DiagnosisSign" style="width:100%;border:1px solid #000;" ng-if="list.diffDiagnosisSign.length > 0">
+                                                        <thead class="theadCustom">
+                                                            <tr>
+                                                                <td class="col-md-2 labelHeadStyle">Problem Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Value</td>
+                                                                <td class="col-md-2 labelHeadStyle">Action</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyCustomList">
+                                                            <tr ng-repeat="process in list.diffDiagnosisSign">
+                                                                <td class="col-md-2">{{process.problemName}}</td>
+                                                                <td class="col-md-2">{{process.attributeName}}</td>
+                                                                <td class="col-md-2">{{process.attributeValue}}</td>
+                                                                <td><a href="" ng-click="deleteDiagnosisSign(process.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table rules="rows" class="DiagnosisSymptom" style="width:100%;border:1px solid #000;" ng-if="list.diffDiagnosisSymptom.length > 0">
+                                                        <thead class="theadCustom">
+                                                            <tr>
+                                                                <td class="col-md-2 labelHeadStyle">Problem Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Attribute Value</td>
+                                                                <td class="col-md-2 labelHeadStyle">Action</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyCustomList">
+                                                            <tr ng-repeat="process in list.diffDiagnosisSymptom">
+                                                                <td class="col-md-2">{{process.problemName}}</td>
+                                                                <td class="col-md-2">{{process.attributeName}}</td>
+                                                                <td class="col-md-2">{{process.attributeValue}}</td>
+                                                                <td><a href="" ng-click="deleteDiagnosisSymptom(process.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table rules="rows" class="DiagnosisInvestigation" style="width:100%;border:1px solid #000;" ng-if="list.diffDiagnosisInvestigation.length > 0">
+                                                        <thead class="theadCustom">
+                                                            <tr>
+                                                                <td class="col-md-2 labelHeadStyle">Sub Test</td>
+                                                                <td class="col-md-2 labelHeadStyle">Property Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Property Value</td>
+                                                                <td class="col-md-2 labelHeadStyle">Action</td>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyCustomList">
+                                                            <tr ng-repeat="process in list.diffDiagnosisInvestigation">
+                                                                <td class="col-md-2">{{process.subTest}}</td>
+                                                                <td class="col-md-2">{{process.propertyName}}</td>
+                                                                <td class="col-md-2">{{process.propertyValue}}</td>
+                                                                <td><a href="" ng-click="deleteDiagnosisInvestigation(process.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>{{list.ddType}}</td>
+                                                <td>{{list.reference}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Crawler</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Crawler
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlDisease" ng-model="ddlDisease" ng-init="ddlDisease=-1" required="">
+                                            <option value="-1">--Select Disease--</option>
+                                            <option ng-repeat="list in diseaseList" value="{{list.diseaseName}}">
+                                                {{list.diseaseName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="KeyWords" ng-model="ddlKeyword" />
+                                        
+                                    </div>
+                                    <!--<div class="col-md-1">
+        <label for="myFileField">Select a file: </label>
+    </div>
+    <div class="col-md-3">
+        <input type="file" demo-file-model="myFile" class="form-control" id="myFileField" />
+    </div>-->
+                                    <div class="col-md-1">
+                                        <label for="myFileField">Select a file: </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlFile" ng-model="ddlFile" ng-init="ddlFile=-1" required="">
+                                            <option value="-1">--Select File--</option>
+                                            <option ng-repeat="list in pdfFileList" value="{{list.id}}">
+                                            {{list.pdfName}}
+                                            </option>
+                                            <!--<option value="Bailey & Love's Short Practice of Surgery 27th Edition.pdf">
+                                                Bailey & Love's Short Practice of Surgery 27th Edition.pdf
+                                            </option>
+                                            <option value="Davidson's.pdf">
+                                                Davidson's.pdf
+                                            </option>
+                                            <option value="DC Dutta’s OBSTETRICS.pdf">
+                                                DC Dutta’s OBSTETRICS.pdf
+                                            </option>
+                                            <option value="Dhingra  ENT.pdf">
+                                                Dhingra  ENT.pdf
+                                            </option>
+                                            <option value="Ganong's Physiology 25th ed.pdf">
+                                                Ganong's Physiology 25th ed.pdf
+                                            </option>
+                                            <option value="HARRISON Principles of Internal Medicine 20th Edition.pdf">
+                                                HARRISON Principles of Internal Medicine 20th Edition.pdf
+                                            </option>
+                                            <option value="Harrison-19.pdf">
+                                                Harrison-19.pdf
+                                            </option>
+                                            <option value="katzung.pdf">
+                                                katzung.pdf
+                                            </option>
+                                            <option value="LMR Book 2018.pdf">
+                                                LMR Book 2018.pdf
+                                            </option>
+                                            <option value="Makhanlal Surgery, 2nd Edition.pdf">
+                                                Makhanlal Surgery, 2nd Edition.pdf
+                                            </option>
+                                            <option value="Pediatrics Narang) (2011).pdf">
+                                                Pediatrics Narang) (2011).pdf
+                                            </option>
+                                            <option value="Williams Obstetrics, 24th Edition.pdf">
+                                                Williams Obstetrics, 24th Edition.pdf
+                                            </option>-->
+
+
+
+
+
+
+
+
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Search" ng-click="Search();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Crawling Result
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sentence</th>
+
+                                        </tr>
+                                        <tr ng-if="SearchList.length > 0">
+                                           
+                                            <th>{{SearchList.length}} Records Found</th>
+                                               
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in SearchList | filter : search" ng-class-odd="'striped'">
+                                            <td ng-bind-html="list.sentence|trustAsHtml"><textarea rows="5" style="width:100%">{{list.sentence}}</textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

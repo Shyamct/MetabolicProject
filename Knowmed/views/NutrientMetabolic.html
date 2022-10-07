@@ -1,0 +1,252 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Cascade</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Cascade
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="col-md-2 nopadding">Nutrient Category</div>
+                                <div class="col-md-4 nopadding">
+                                    <select select2 class="form-control" ng-model="ddlNutrientCat" ng-init="ddlNutrientCat=-1" ng-change="GetNutrientMasterList()">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="nutrient in nutrientCatList" value="{{nutrient.id}}">
+                                            {{nutrient.nutrientCategory}}
+                                        </option>
+                                        <option value="0">All</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 nopadding">Short Name</div>
+                                <div class="col-md-4 nopadding">
+                                    <input type="text" class="form-control" ng-model="txtLowerName" placeholder="Short Name" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-2 nopadding">Cascade Name</div>
+                                <div class="col-md-4 nopadding">
+                                    <input type="text" class="form-control" ng-model="txtNutrientName" nutrient-auto-complete placeholder="Cascade Name" />
+                                </div>
+                                <div class="col-md-2">Unit</div>
+                                <div class="col-md-4">
+                                    <select select2 class="form-control" ng-model="ddlUnit" ng-init="ddlUnit=0" required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="nutrient in unitList" value="{{nutrient.id}}">
+                                            {{nutrient.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-2">Nutrient Type</div>
+                                <div class="col-md-4">
+                                    <select class="form-control" ng-model="ddlNutrientType" ng-init="ddlNutrientType=0" required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="nutrient in nutrientTypeList" value="{{nutrient.id}}">
+                                            {{nutrient.nutrientType}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 nopadding">Molecular Weight</div>
+                                <div class="col-md-2 nopadding">
+                                    <input type="text" class="form-control" placeholder="Weight" onkeypress="isNumeric(false);" ng-model="txtMolecularWeight">
+                                </div>
+                                <div class="col-md-2 nopadding">
+                                    <select select2 class="form-control" ng-model="ddlMolecularWeightUnit" ng-init="ddlMolecularWeightUnit=0">
+                                        <option value="0">--Unit--</option>
+                                        <option ng-repeat="list in unitList" value="{{list.id}}">
+                                            {{list.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-2 nopadding">Meaning/Function</div>
+                                <div class="col-md-10 nopadding">
+                                    <textarea class="form-control" rows="5" ng-model="txtDescription"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-2 nopadding">Synonym</div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" ng-model="txtSynonym" placeholder="Synonym"></textarea>
+                                    <div class="row" ng-if="addedSynonymList.length > 0" style="margin-top:1rem">
+                                        <div class="col-md-12">
+                                            <table id="tableCalculators" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.No</th>
+                                                        <th>Synonym</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in addedSynonymList" ng-class-odd="'striped'">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{list.synonym}}</td>
+                                                        <td><a href="" ng-click="deleteAddedSynonymList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-xs btn-info" ng-click="AddSynonym()" ng-disabled="btnAdd">
+                                        <span class="glyphicon glyphicon-plus"></span>Add
+                                    </button>
+                                </div>
+                            </div>
+
+                            <fieldset style="padding:10px; margin-top: 1.5rem;">
+                                <legend>Blood Brain Barrier</legend>
+
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">IS Cross:</div>
+                                        <div class="col-md-2">
+                                            <input type="radio" ng-model="isCross" value="Yes" />Yes &nbsp;&nbsp;
+                                            <input type="radio" ng-model="isCross" value="No" />No &nbsp;&nbsp;
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="radio" ng-model="isIn" value="1" />IN &nbsp;&nbsp;
+                                            <input type="radio" ng-model="isIn" value="0" />OUT &nbsp;&nbsp;
+                                        </div>
+                                        <div class="col-md-2">Transporter</div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" id="ddlTransporter" ng-model="ddlTransporter" ng-init="ddlTransporter=0">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in transporterList" value="{{list.id}}">
+                                                    {{list.transporterName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">Remark</div>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" placeholder="Remark" ng-model="txtBloodBarrierRemark" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">URL</div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" placeholder="URL" ng-model="txtBloodBarrierUrl" />
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-xs btn-info" ng-click="addBloodBarrier()">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="row" ng-if="selectedBloodBarrierList.length>0">
+                                        <div class="col-md-12">
+                                            <table id="tableStudyTreatmentDetailList" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>IsCross</th>
+                                                        <th>In/Out</th>
+                                                        <th>Transporter</th>
+                                                        <th>Remark</th>
+                                                        <th>URL</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in selectedBloodBarrierList" ng-class-odd="'striped'">
+                                                        <td>{{list.isCross}}</td>
+                                                        <td>{{list.inOutText}}</td>
+                                                        <td>{{list.transporter}}</td>
+                                                        <td>{{list.remark}}</td>
+                                                        <td>{{list.url}}</td>
+                                                        <td><a href="" ng-click="deleteBloodBarrier($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="form-group col-md-12 marginTop1rem">
+                                <div class="col-md-3 nopadding">
+                                    <input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientMaster()" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Metabolic List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchText">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Cascade Name</th>
+                                            <th>Unit</th>
+                                            <th>Molecular Weight</th>
+                                            <th>Category</th>
+                                            <th>Short Name</th>
+                                            <th>Description</th>
+                                            <th>Synonyms</th>
+                                            <th>Blood Brain Barrier Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="nutrinet in nutrientMasterList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit($index,nutrinet.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(nutrinet.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td class="sm">{{nutrinet.nutrientName}}</td>
+                                            <td>{{nutrinet.unit}}</td>
+                                            <td>{{nutrinet.molecularWeight}} {{nutrinet.molecularWeightUnit}}</td>
+                                            <td>{{nutrinet.nutrientCategory}}</td>
+                                            <td>{{nutrinet.lowerName}}</td>
+                                            <td>{{nutrinet.description}}</td>
+                                            <td ng-bind-html="nutrinet.synonymList|trustAsHtml">{{nutrinet.synonymList}}</td>
+                                            <td ng-bind-html="nutrinet.transporterDetails|trustAsHtml">{{list.transporterDetails}}</td>
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

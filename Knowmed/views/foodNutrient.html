@@ -1,0 +1,163 @@
+﻿<div class="container-fluid">
+    <style>
+        thead th {
+            white-space: nowrap;
+        }
+    </style>
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Food Nutrient</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add food Nutrient
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Nutrient/Active Compound</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlnutrient" ng-init="ddlnutrient=-1" required="" ng-change="GetFoodNutrientList()">
+                                            <option value="-1">--Select Nutrient--</option>
+                                            <option ng-repeat="nutrient in nutrientList" value="{{nutrient.id}}">
+                                                {{nutrient.nutrientName}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Food Product</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlFood" ng-init="ddlFood=0" required="" ng-change="GetFoodNutrientList()">
+                                            <option value="0">--Select Food--</option>
+                                            <option ng-repeat="food in foodList" value="{{food.id}}">
+                                                {{food.foodName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Nutrient Comp (Per 100 GM)</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlNutrientComponent" ng-init="ddlNutrientComponent=0">
+                                            <option value="0">--Select Nutrient Component--</option>
+                                            <option ng-repeat="list in nutrientComponentList" value="{{list.componentNutrientID}}" ng-selected="{{list.componentNutrientID == ddlNutrientComponent}}">
+                                                {{list.componentNutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Nutrient Quantity (Per 100 GM)</div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-8 noPadding">
+                                            <!--<input type="text" class="form-control" placeholder="Quantity" aria-describedby="basic-addon2" ng-model="txtNutrientQty">-->
+                                            <!--<span class="input-group-addon" id="basic-addon2">{{nutrientUnit}}</span>-->
+                                            <input type="text" class="form-control" placeholder="Quantity" ng-model="txtNutrientQty">
+                                        </div>
+                                        <div class="col-md-4 noPadding">
+                                            <select class="form-control" ng-model="ddlNutrientUnit">
+                                                <option ng-repeat="list in selectedUnitList" value="{{list.id}}" ng-selected="{{list.id == ddlNutrientUnit}}">
+                                                    {{list.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Reference</div>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" ng-model="txtReference" placeholder="Reference" required></textarea>
+                                    </div>
+
+                                    <div class="col-md-2">URL</div>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" ng-model="txtURL" placeholder="URL" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Data Source</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlDataSource" required="" >
+                                            <option ng-repeat="list in dataSourceList" value="{{list.id}}" ng-selected="{{list.id==3}}">
+                                                {{list.dataSource}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="savefoodNutrient()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Food Nutrient List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>SNo.</th>
+                                            <th>Nutrient/Act. Comp</th>
+                                            <th>Food Product</th>
+                                            <th>Qty/100 GM</th>
+                                            <th>Selected Unit</th>
+                                            <th>Component Nutrient</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                            <th>Data Source</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in foodNutrientList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="editFoodNutrient($index,list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteFoodNutrient(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{$index+1}}</td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.foodName}}</td>
+                                            <td>{{list.nutrientValue}}</td>
+                                            <td>{{list.selectedUnitName}}</td>
+                                            <td>{{list.componentNutrientName}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                            <td>{{list.dataSource}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

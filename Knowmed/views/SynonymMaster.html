@@ -1,0 +1,115 @@
+﻿
+<div class="container-fluid">
+    <h2>Synonym Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Synonym
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" id="ddlSynonymType" ng-model="ddlSynonymType" ng-init="ddlSynonymType=-1" required="" ng-change="mtWiseList(); unitListFn();">
+                                            <option value="-1">--Select Synonym Type--</option>
+                                            <option ng-repeat="list in SynonymTypeMasterList" value="{{list.id}}">
+                                                {{list.synonymType}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" id="ddlWord" ng-model="ddlWord" ng-init="ddlWord=-1" required="">
+                                            <option value="-1">--Select Word--</option>
+                                            <option ng-repeat="list in MultipleTableWiseList" value="{{list.id}}"  ng-selected="{{list.id == ddlWord}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" ng-hide="hideDiv">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Default Qty" ng-model="txtDefaultQty" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select  class="form-control" id="ddlUnit" ng-model="ddlUnit" ng-init="ddlUnit=0" required="">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="list in unitList" value="{{list.id}}">
+                                                {{list.unitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea class="form-control" ng-model="txtSynonym" rows="4" placeholder="Synonym"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveSynonymMaster();" /></div>
+                                    </div>
+                                </div>
+                            </div>
+</form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Synonym Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Synonym Type</th>
+                                            <th>Word</th>
+                                            <th>Default Qty</th>
+                                            <th>Unit</th>
+                                            <th>Synonym</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in SynonymMasterList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.synonymType}}</td>
+                                            <td>{{list.synonymWord}}</td>
+                                            <td>{{list.defaultQty}}</td>
+                                            <td>{{list.unitName}}</td>
+                                            <td><textarea class="ng-scope striped" id="txt" style="border:none;height:auto;padding:10px;width:300px" disabled="disabled">{{list.synonym}}</textarea></td>
+                                            <!--<td>{{list.synonym}}</td>-->
+                                            <td><a href="" ng-click="edit(list.id,list.synonymType)" title="Edit"><i class="fa fa-edit"></i></a>   <a href="" ng-click="DeleteSynonymMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

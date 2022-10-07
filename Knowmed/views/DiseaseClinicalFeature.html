@@ -1,0 +1,279 @@
+﻿<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Disease Clinical Feature</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Disease Clinical Feature
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12">
+
+                                <div class="row">
+                                    <div class="col-md-2">Problem Refernce</div>
+                                    <div class="col-md-10">
+                                        <select select2 class="form-control" ng-model="ddlDisease" ng-init="ddlDisease=-1" required="" ng-change="GetDiseaseClinicalFeatureList()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="disease in diseaseList" value="{{disease.id}}">
+                                                {{disease.disease}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                        <!--<input disease-Department-auto-complete type="text" class="form-control" ng-model="ddlDisease" placeholder="Problem Reference " ng-blur="GetDiseaseClinicalFeatureList();" />-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:30vh">
+                                <table id="tbl1" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th></th>
+                                            <th>Problem</th>
+                                            <th>Sign/Symptoms</th>
+                                            <th>Occurrence</th>
+                                            <th>Attribute</th>
+                                            <th>Value</th>
+                                            <th>Add</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="problem in problemMasterList | filter : search1" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td><input type="checkbox" name="{{problem.problemName}}" value="{{problem.problemID}}" ng-model="problem.selected" ng-change="AttValueList(problem.problemID)"></td>
+                                            <td>{{problem.problemName}}</td>
+                                            <td ng-if="problem.check == 1">
+                                                <select select2 ng-model="problem.ddlInputType" ng-options="x.inputType for x in InputTypeList" style="width: 150px;">
+                                                    <option value="">--Select Input Type--</option>
+
+                                                </select>
+
+                                            </td>
+                                            <td ng-if="problem.check == 0  || problem.check == undefined"></td>
+                                            <td ng-if="problem.check == 0 || problem.check == undefined"></td>
+                                            <td ng-if="problem.check == 0 || problem.check == undefined"></td>
+                                            <td ng-if="problem.check == 0 || problem.check == undefined"></td>
+                                            <td ng-if="problem.check == 0 || problem.check == undefined"></td>
+                                            <td ng-if="problem.check == 1">
+
+                                                <select select2 ng-model="problem.ddlOccurrence" ng-options="x.occurrenceName for x in occurrenceList" style="width: 150px;">
+                                                    <option value="">--Select --</option>
+
+                                                </select>
+
+
+                                            </td>
+                                            <td ng-if="problem.check == 1">
+
+                                                <select select2 ng-model="problem.ddlAttributeName" ng-options="x.attributeName for x in AttributeValueList" style="width: 150px;" ng-change="loadAttValue(problem.ddlAttributeName.attributeID);">
+                                                    <option value="">--Select --</option>
+
+                                                </select>
+
+                                            </td>
+                                            <td ng-if="problem.check == 1">
+
+                                                <select select2 ng-model="problem.ddlAttributeValue" ng-options="c.attributeValue for c in AttributeValue" style="width: 150px;">
+                                                    <option value="">--Select --</option>
+
+                                                </select>
+                                                <!--<select class="form-control" ng-model="problem.ddlAttributeValue" ng-init="problem.ddlAttributeValue=0">
+                                                    <option value="0">--Select Attribute Value--</option>
+                                                    <option ng-repeat="c in AttributeValue | filter:{attributeID:problem.ddlAttributeName.attributeID}">
+                                                        {{c.attributeValue}}
+                                                    </option>
+                                                </select>-->
+                                            </td>
+
+
+
+                                            <td ng-if="problem.check == 1">
+                                                <button class="btn btn-xs btn-info" ng-click="addAttribute()">
+                                                    <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!--<div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12"><input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseClinicalFeature()" /></div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row" ng-if="attributeNameList.length>0" >
+                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh;max-width:45rem">
+                    <table id="tableDiseaseMaster" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Input Type</th>
+                                <th>Problem</th>
+                                <th>Attribute</th>
+                                <th>Attribute Value</th>
+                                <th>Occurence</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="list in attributeNameList track by $index " ng-class-odd="'striped'">
+                                <td>{{$index + 1}}</td>
+                                <td>{{list.inputTypeName}}</td>
+                                <td>{{list.problemName}}</td>
+                                <td>{{list.attributeName}}</td>
+                                <td>{{list.attributeValueName}}</td>
+                                <td>{{list.occurenceName}}</td>
+                                <td><a href="" ng-click="deleteAttribute($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!---
+        vital-->
+    <h2>Vital variation</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Vital Variations
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+
+                          
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search2">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh">
+                                <table id="tbl1" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th></th>
+                                            <th>Vital</th>
+                                            <th>Result</th>
+                                            <th>Remark</th>
+                                            <th>Add To List</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="vital in vitalList | filter : search2" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td><input type="checkbox" name="{{vital.vitalName}}" value="{{vital.vitalID}}" ng-model="vital.selected" ng-change="vitalCheck(vital.vitalID)"></td>
+                                            <td>{{vital.vitalName}}</td>
+
+
+                                            <td ng-if="vital.check == 0  || vital.check == undefined"></td>
+                                            <td ng-if="vital.check == 0 || vital.check == undefined"></td>
+                                            <td ng-if="vital.check == 0 || vital.check == undefined"></td>
+
+                                            <td ng-if="vital.check == 1">
+                                                <select select2 ng-model="vital.ddlResult" ng-options="x.statusFor for x in ResultList" style="width: 150px;">
+                                                    <option value="">--Select Result--</option>
+
+                                                </select>
+
+                                            </td>
+
+
+                                            <td ng-if="vital.check == 1">
+                                                <input type="text" class="form-control" ng-model="vital.txtRemark">
+
+
+
+                                            </td>
+                                            <td ng-if="vital.check == 1">
+                                                <button class="btn btn-xs btn-info" ng-click="addVitalList()">
+                                                    <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12"><input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseClinicalFeature()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row" ng-if="vitalResultNameList.length>0">
+                <div class="col-md-12">
+                    <table id="tableDiseaseMaster" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Vital</th>
+                                <th>Result</th>
+                                <th>Remark</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="list in vitalResultNameList track by $index" ng-class-odd="'striped'">
+                                <td>{{$index + 1}}</td>
+                                <td>{{list.vitalName}}</td>
+                                <td>{{list.resultName}}</td>
+                                <td>{{list.remark}}</td>
+                                <td><a href="" ng-click="deleteVitalResultList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!---vital ENd -->
+
+</div>

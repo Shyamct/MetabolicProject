@@ -1,0 +1,2044 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A0AA1BB8-DDD3-4DF6-9549-94128E583B65}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Knowmed</RootNamespace>
+    <AssemblyName>Knowmed</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DDLActivitiesApproval, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DDLActivitiesApproval.dll</HintPath>
+    </Reference>
+    <Reference Include="DDLDiseaseNutrientCascade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DDLDiseaseNutrientCascade.dll</HintPath>
+    </Reference>
+    <Reference Include="DDLPatientInvestigationReport, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DDLPatientInvestigationReport.dll</HintPath>
+    </Reference>
+    <Reference Include="DDLSignalingCascade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DDLSignalingCascade.dll</HintPath>
+    </Reference>
+    <Reference Include="DDLSignalingCascade1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DDLSignalingCascade1.dll</HintPath>
+    </Reference>
+    <Reference Include="DDLUserRegistration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DDLUserRegistration.dll</HintPath>
+    </Reference>
+    <Reference Include="diseaseNutrientCascadeReport, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\diseaseNutrientCascadeReport.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLCascade, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLCascade.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLFlowchart, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLFlowchart.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLFlowDiagram, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLFlowDiagram.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLHeadMaster, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLHeadMaster.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLLogin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLLogin.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLMainPathway, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLMainPathway.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLMainPathway1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLMainPathway1.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLPageDescription, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLPageDescription.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLSVGLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLSVGLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="DLLWriteUpMaster, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLLWriteUpMaster.dll</HintPath>
+    </Reference>
+    <Reference Include="DLL_markerDietActivator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DLL_markerDietActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="KnowmedAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\KnowmedAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\fontAwesome.css" />
+    <Content Include="assets\css\jquery-ui.css" />
+    <Content Include="assets\css\main.css" />
+    <Content Include="assets\css\ng-tags-input.css" />
+    <Content Include="assets\css\toaster.css" />
+    <Content Include="assets\datepicker\css\datepicker.css" />
+    <Content Include="assets\datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\images\eraLogo.png" />
+    <Content Include="assets\images\loginBg.png" />
+    <Content Include="assets\js\angular-ui-router.js" />
+    <Content Include="assets\js\angular.min.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\exportData.js" />
+    <Content Include="assets\js\exporting.js" />
+    <Content Include="assets\js\highcharts.js" />
+    <Content Include="assets\js\jquery-ui.js" />
+    <Content Include="assets\js\jquery.min.js" />
+    <Content Include="assets\js\ng-tags-input.js" />
+    <Content Include="assets\js\toaster.js" />
+    <Content Include="assets\js\ui-bootstrap-tpls-0.12.0.js" />
+    <Content Include="assets\js\ui-bootstrap-tpls.min.js" />
+    <Content Include="bin\DDLActivitiesApproval.dll" />
+    <Content Include="bin\DDLActivitiesApproval.pdb" />
+    <Content Include="bin\DDLDiseaseNutrientCascade.dll" />
+    <Content Include="bin\DDLDiseaseNutrientCascade.pdb" />
+    <Content Include="bin\DDLPatientInvestigationReport.dll" />
+    <Content Include="bin\DDLPatientInvestigationReport.pdb" />
+    <Content Include="bin\DDLSignalingCascade.dll" />
+    <Content Include="bin\DDLSignalingCascade.pdb" />
+    <Content Include="bin\DDLSignalingCascade1.dll" />
+    <Content Include="bin\DDLSignalingCascade1.pdb" />
+    <Content Include="bin\DDLUserRegistration.dll" />
+    <Content Include="bin\DDLUserRegistration.pdb" />
+    <Content Include="bin\diseaseNutrientCascadeReport.dll" />
+    <Content Include="bin\diseaseNutrientCascadeReport.pdb" />
+    <Content Include="bin\DLLCascade.dll" />
+    <Content Include="bin\DLLCascade.pdb" />
+    <Content Include="bin\DLLFlowchart.dll" />
+    <Content Include="bin\DLLFlowchart.pdb" />
+    <Content Include="bin\DLLFlowDiagram.dll" />
+    <Content Include="bin\DLLFlowDiagram.pdb" />
+    <Content Include="bin\DLLHeadMaster.dll" />
+    <Content Include="bin\DLLHeadMaster.pdb" />
+    <Content Include="bin\DLLLogin.dll" />
+    <Content Include="bin\DLLLogin.pdb" />
+    <Content Include="bin\DLLMainPathway.dll" />
+    <Content Include="bin\DLLMainPathway.pdb" />
+    <Content Include="bin\DLLMainPathway1.dll" />
+    <Content Include="bin\DLLMainPathway1.pdb" />
+    <Content Include="bin\DLLPageDescription.dll" />
+    <Content Include="bin\DLLPageDescription.pdb" />
+    <Content Include="bin\DLLSVGLibrary.dll" />
+    <Content Include="bin\DLLSVGLibrary.pdb" />
+    <Content Include="bin\DLLUtility.dll" />
+    <Content Include="bin\DLLUtility.pdb" />
+    <Content Include="bin\DLLWriteUpMaster.dll" />
+    <Content Include="bin\DLLWriteUpMaster.pdb" />
+    <Content Include="bin\DLL_markerDietActivator.dll" />
+    <Content Include="bin\DLL_markerDietActivator.pdb" />
+    <Content Include="bin\Knowmed.dll" />
+    <Content Include="bin\Knowmed.pdb" />
+    <Content Include="bin\KnowmedAPI.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\mscorlib.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="controllers\AddfoodCoockingMethod.js" />
+    <Content Include="controllers\AddQuestionMaster.js" />
+    <Content Include="controllers\AddToxinsInhibitor.js" />
+    <Content Include="controllers\AgentFactorEffect.js" />
+    <Content Include="controllers\AgentFactorMaster.js" />
+    <Content Include="controllers\AlterDiseaseDepartment.js" />
+    <Content Include="controllers\AssignCalculatorToDepartment.js" />
+    <Content Include="controllers\AssignCalculatorToDisease.js" />
+    <Content Include="controllers\AssignDietSubCategory.js" />
+    <Content Include="controllers\AssignDiseaseDepartment.js" />
+    <Content Include="controllers\AssignExamTypeQuestion.js" />
+    <Content Include="controllers\AssignMedicineToDisease.js" />
+    <Content Include="controllers\AssignMenuMaster.js" />
+    <Content Include="controllers\AssignSubCategoryToCategory.js" />
+    <Content Include="controllers\AssignSubTest.js" />
+    <Content Include="controllers\AssignSubTestMethod.js" />
+    <Content Include="controllers\AssignSubTestResultType.js" />
+    <Content Include="controllers\AssignTopicSubject.js" />
+    <Content Include="controllers\AssignVideoTopic.js" />
+    <Content Include="controllers\BacteriaRelation.js" />
+    <Content Include="controllers\BacteriaReport.js" />
+    <Content Include="controllers\BodyOrganMaster.js" />
+    <Content Include="controllers\BodyRegionLocation.js" />
+    <Content Include="controllers\BrandMedicineAssign.js" />
+    <Content Include="controllers\Calculator.js" />
+    <Content Include="controllers\CalculatorControlMaster.js" />
+    <Content Include="controllers\CalculatorFormula.js" />
+    <Content Include="controllers\CalculatorFormulaControl.js" />
+    <Content Include="controllers\CalculatorParameterMaster.js" />
+    <Content Include="controllers\calculatorResult.js" />
+    <Content Include="controllers\calculatorScore.js" />
+    <Content Include="controllers\CategoryMaster.js" />
+    <Content Include="controllers\ChangePassword.js" />
+    <Content Include="controllers\ClinicalCalendar.js" />
+    <Content Include="controllers\ClinicalNews.js" />
+    <Content Include="controllers\clinicalNotification.js" />
+    <Content Include="controllers\CollegeMaster.js" />
+    <Content Include="controllers\CookingTemperature.js" />
+    <Content Include="controllers\CookingTemperatureEffect.js" />
+    <Content Include="controllers\CuaseAndEffectReport.js" />
+    <Content Include="controllers\dashboard.js" />
+    <Content Include="controllers\dataPublish.js" />
+    <Content Include="controllers\Department.js" />
+    <Content Include="controllers\DietSubCategory.js" />
+    <Content Include="controllers\differentialDiagnosis.js" />
+    <Content Include="controllers\DifferentialDiagnosisNew.js" />
+    <Content Include="controllers\differentialDiagnosisReport.js" />
+    <Content Include="controllers\DifferentialDiagnosisReportNew.js" />
+    <Content Include="controllers\disease.js" />
+    <Content Include="controllers\DiseaseAgentFactor.js" />
+    <Content Include="controllers\DiseaseClinicalFeature.js" />
+    <Content Include="controllers\DiseaseCommunicabilityDetail.js" />
+    <Content Include="controllers\DiseaseCommunicabilityDetails.js" />
+    <Content Include="controllers\diseaseComplications.js" />
+    <Content Include="controllers\DiseaseCrawler.js" />
+    <Content Include="controllers\DiseaseDepartment.js" />
+    <Content Include="controllers\DiseaseDepartmentNew.js" />
+    <Content Include="controllers\DiseaseEnvironmentFactor.js" />
+    <Content Include="controllers\DiseaseFindings.js" />
+    <Content Include="controllers\DiseaseGeoLocation.js" />
+    <Content Include="controllers\DiseaseHostFactor.js" />
+    <Content Include="controllers\DiseaseImagesUpload.js" />
+    <Content Include="controllers\DiseaseInput.js" />
+    <Content Include="controllers\DiseasePrevention.js" />
+    <Content Include="controllers\DiseaseReport.js" />
+    <Content Include="controllers\DiseaseSignalingCascade.js" />
+    <Content Include="controllers\DiseaseSpeciality.js" />
+    <Content Include="controllers\DiseaseSpecialityAssign.js" />
+    <Content Include="controllers\DiseaseStage.js" />
+    <Content Include="controllers\DiseaseStageMaster.js" />
+    <Content Include="controllers\DiseaseSurgery.js" />
+    <Content Include="controllers\DiseaseTransmissionRoute.js" />
+    <Content Include="controllers\DiseaseTreatment.js" />
+    <Content Include="controllers\DockingReportbyScore.js" />
+    <Content Include="controllers\DrugCrawler.js" />
+    <Content Include="controllers\drugSideEffect.js" />
+    <Content Include="controllers\drugSideEffectNew.js" />
+    <Content Include="controllers\ECGWaveCause.js" />
+    <Content Include="controllers\EnvironmentFactorMaster.js" />
+    <Content Include="controllers\EnvironmentLocationAssign.js" />
+    <Content Include="controllers\ExamTypeMaster.js" />
+    <Content Include="controllers\FoodFamilyAssign.js" />
+    <Content Include="controllers\FoodFamilyAverage.js" />
+    <Content Include="controllers\foodFamilyMaster.js" />
+    <Content Include="controllers\FoodIntakeLimit.js" />
+    <Content Include="controllers\foodMaster.js" />
+    <Content Include="controllers\foodMaster_.js" />
+    <Content Include="controllers\foodNutrient.js" />
+    <Content Include="controllers\FoodNutrientReports.js" />
+    <Content Include="controllers\FoodRecipeCategory.js" />
+    <Content Include="controllers\FoodRegionAssign.js" />
+    <Content Include="controllers\FoodReport.js" />
+    <Content Include="controllers\FoodSearchList.js" />
+    <Content Include="controllers\FoodType.js" />
+    <Content Include="controllers\FoodWeight.js" />
+    <Content Include="controllers\FoodWeightMaster.js" />
+    <Content Include="controllers\hcLanguageTranslation.js" />
+    <Content Include="controllers\header.js" />
+    <Content Include="controllers\henRda.js" />
+    <Content Include="controllers\HistoryInputDepartmentAssign.js" />
+    <Content Include="controllers\IcdCodeMaster.js" />
+    <Content Include="controllers\ImpressionMaster.js" />
+    <Content Include="controllers\InvestigationRangeMaster.js" />
+    <Content Include="controllers\InvestigationResultProperty.js" />
+    <Content Include="controllers\ItemTestMappingKnowmed.js" />
+    <Content Include="controllers\KnowmedEraItemMapping.js" />
+    <Content Include="controllers\languageTranslation.js" />
+    <Content Include="controllers\LevelMaster.js" />
+    <Content Include="controllers\login.js" />
+    <Content Include="controllers\main.js" />
+    <Content Include="controllers\ManageRank.js" />
+    <Content Include="controllers\master.js" />
+    <Content Include="controllers\MealFoodAssign.js" />
+    <Content Include="controllers\MealFoodLimit.js" />
+    <Content Include="controllers\medicine.js" />
+    <Content Include="controllers\MedicineAction.js" />
+    <Content Include="controllers\MedicineAntidote.js" />
+    <Content Include="controllers\MedicineBrand.js" />
+    <Content Include="controllers\MedicineBrandCountry.js" />
+    <Content Include="controllers\MedicineBrandCountryAssign.js" />
+    <Content Include="controllers\medicineCompound.js" />
+    <Content Include="controllers\MedicineContraIndication.js" />
+    <Content Include="controllers\MedicineContraIndicationNew.js" />
+    <Content Include="controllers\MedicineDose.js" />
+    <Content Include="controllers\MedicineElectrolytes.js" />
+    <Content Include="controllers\MedicineElimination.js" />
+    <Content Include="controllers\MedicineGroup.js" />
+    <Content Include="controllers\MedicineGroupAssign.js" />
+    <Content Include="controllers\MedicineGroupNew.js" />
+    <Content Include="controllers\MedicineGroupParentHierarchy.js" />
+    <Content Include="controllers\MedicineIndication.js" />
+    <Content Include="controllers\MedicineIndicationNew.js" />
+    <Content Include="controllers\medicineInteraction.js" />
+    <Content Include="controllers\MedicineMechanismAction.js" />
+    <Content Include="controllers\MedicineMechanismInteraction.js" />
+    <Content Include="controllers\MedicinePathwayActivator.js" />
+    <Content Include="controllers\MedicinePeakValue.js" />
+    <Content Include="controllers\MedicineReport.js" />
+    <Content Include="controllers\MedicineRouteAdministration.js" />
+    <Content Include="controllers\MedicineStatus.js" />
+    <Content Include="controllers\MedicineStrength.js" />
+    <Content Include="controllers\MedicineSupplement.js" />
+    <Content Include="controllers\MedicineTHalf.js" />
+    <Content Include="controllers\MedicineTherapeuticLevel.js" />
+    <Content Include="controllers\MedicineTroughValue.js" />
+    <Content Include="controllers\MenuDescriptionMaster.js" />
+    <Content Include="controllers\MenuMaster.js" />
+    <Content Include="controllers\MergeFood.js" />
+    <Content Include="controllers\MergeGroup.js" />
+    <Content Include="controllers\MergeMedicine.js" />
+    <Content Include="controllers\MergeNutrient.js" />
+    <Content Include="controllers\MergePathwayKeywords.js" />
+    <Content Include="controllers\MergeProblem.js" />
+    <Content Include="controllers\MolecularLibrary.js" />
+    <Content Include="controllers\nutrient.js" />
+    <Content Include="controllers\nutrientBarrier.js" />
+    <Content Include="controllers\NutrientCategoryMaster.js" />
+    <Content Include="controllers\NutrientChannelMaster.js" />
+    <Content Include="controllers\NutrientClinicalFeature.js" />
+    <Content Include="controllers\NutrientComponentAssign.js" />
+    <Content Include="controllers\NutrientDoseLimit.js" />
+    <Content Include="controllers\NutrientInteraction.js" />
+    <Content Include="controllers\NutrientInteractionRank.js" />
+    <Content Include="controllers\NutrientInterConversion.js" />
+    <Content Include="controllers\NutrientLevelGeoLocation.js" />
+    <Content Include="controllers\NutrientMedicineActionPathway.js" />
+    <Content Include="controllers\NutrientMedicineInteraction.js" />
+    <Content Include="controllers\NutrientMetabolite.js" />
+    <Content Include="controllers\NutrientPeakValue.js" />
+    <Content Include="controllers\NutrientReport.js" />
+    <Content Include="controllers\NutrientStatus.js" />
+    <Content Include="controllers\NutrientTHalf.js" />
+    <Content Include="controllers\NutrietFoodSideEffect.js" />
+    <Content Include="controllers\PathwayDiseaseAssign.js" />
+    <Content Include="controllers\PathwayFAQ.js" />
+    <Content Include="controllers\pathwayProcessProblem.js" />
+    <Content Include="controllers\PathwayToDoNotToDo.js" />
+    <Content Include="controllers\PercentageSettingOfMarker.js" />
+    <Content Include="controllers\PhenomenonMaster.js" />
+    <Content Include="controllers\ProblemAttributeAssign.js" />
+    <Content Include="controllers\ProblemAttributeValue.js" />
+    <Content Include="controllers\ProblemCauseMiscellaneous.js" />
+    <Content Include="controllers\ProblemCauseType.js" />
+    <Content Include="controllers\ProblemCauseTypeAssign.js" />
+    <Content Include="controllers\ProblemDietCategory.js" />
+    <Content Include="controllers\ProblemICD.js" />
+    <Content Include="controllers\ProblemInvestigationRelation.js" />
+    <Content Include="controllers\ProblemMaster.js" />
+    <Content Include="controllers\ProblemNutrientImportance.js" />
+    <Content Include="controllers\ProblemNutrientImportanceReport.js" />
+    <Content Include="controllers\ProblemNutrientRole.js" />
+    <Content Include="controllers\problemPatientLanguage.js" />
+    <Content Include="controllers\ProblemVitalRelation.js" />
+    <Content Include="controllers\ProblemWiseDiet.js" />
+    <Content Include="controllers\QuestionTypeMaster.js" />
+    <Content Include="controllers\rda.js" />
+    <Content Include="controllers\ReceptorColor.js" />
+    <Content Include="controllers\RecordCountReport.js" />
+    <Content Include="controllers\ResearchBasedAnalysis.js" />
+    <Content Include="controllers\ServiceProviderLocation.js" />
+    <Content Include="controllers\SignSymptomMaster.js" />
+    <Content Include="controllers\SiteMaster.js" />
+    <Content Include="controllers\ssDiseaseClinicalFeature.js" />
+    <Content Include="controllers\StudyReference.js" />
+    <Content Include="controllers\StudyReferenceReport.js" />
+    <Content Include="controllers\SubjectMaster.js" />
+    <Content Include="controllers\SubjectTopicTime.js" />
+    <Content Include="controllers\SubTestMaster.js" />
+    <Content Include="controllers\SubTestSampleType.js" />
+    <Content Include="controllers\SurgeryContraIndication.js" />
+    <Content Include="controllers\SymptomBasedInvestigation.js" />
+    <Content Include="controllers\SynonymMaster.js" />
+    <Content Include="controllers\TestMaster.js" />
+    <Content Include="controllers\TopicMaster.js" />
+    <Content Include="controllers\ToxinRankingReport.js" />
+    <Content Include="controllers\TransmissionRouteMaster.js" />
+    <Content Include="controllers\unitConversion.js" />
+    <Content Include="controllers\unitFamilyAssign.js" />
+    <Content Include="controllers\UserLoginMaster.js" />
+    <Content Include="controllers\UserPerformanceReport.js" />
+    <Content Include="controllers\VideoMaster.js" />
+    <Content Include="eralogo.png" />
+    <Content Include="fileUpload\1565424633225_Copy of img345.jpg" />
+    <Content Include="fileUpload\1565432909158_PARAMEDICAL logo.jpg" />
+    <Content Include="fileUpload\1565436764748_Copy of img345.jpg" />
+    <Content Include="fileUpload\1565440540756_medical3.jpg" />
+    <Content Include="fileUpload\1566221533517_state-MN.png" />
+    <Content Include="fileUpload\1566294114561_facebook_business_information.png" />
+    <Content Include="fileUpload\1566294123889_city.png" />
+    <Content Include="fileUpload\1566294123889_facebook_business_information.png" />
+    <Content Include="fileUpload\1566294133248_city.png" />
+    <Content Include="fileUpload\1566294133248_facebook_business_information.png" />
+    <Content Include="fileUpload\1566294133248_kasif signature.png" />
+    <Content Include="fileUpload\1566297655284_kasif signature.png" />
+    <Content Include="fileUpload\1566297660619_facebook_business_information.png" />
+    <Content Include="fileUpload\1566297660619_kasif signature.png" />
+    <Content Include="fileUpload\1566297735325_kasif signature.png" />
+    <Content Include="fileUpload\1566297741179_kasif signature.png" />
+    <Content Include="fileUpload\1566297741179_messagebird.png" />
+    <Content Include="fileUpload\1566297748011_city.png" />
+    <Content Include="fileUpload\1566297748011_kasif signature.png" />
+    <Content Include="fileUpload\1566297748011_messagebird.png" />
+    <Content Include="index.html" />
+    <Content Include="js\cache.js" />
+    <Content Include="js\directives.js" />
+    <Content Include="js\filters.js" />
+    <Content Include="js\table2excel.js" />
+    <Content Include="Matabolic\MarkerDietActivators.aspx" />
+    <Content Include="Matabolic\mergedProportion.aspx" />
+    <Content Include="Matabolic\project\activitiesApproval.aspx" />
+    <Content Include="Matabolic\project\activitiesApproval_old1.aspx" />
+    <Content Include="Matabolic\project\assets\apple-touch-icon-precomposed.png" />
+    <Content Include="Matabolic\project\assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Matabolic\project\assets\dist\jstree.min.js" />
+    <Content Include="Matabolic\project\assets\dist\themes\default\32px.png" />
+    <Content Include="Matabolic\project\assets\dist\themes\default\40px.png" />
+    <Content Include="Matabolic\project\assets\dist\themes\default\style.min.css" />
+    <Content Include="Matabolic\project\assets\dist\themes\default\throbber.gif" />
+    <Content Include="Matabolic\project\assets\docs.css" />
+    <Content Include="Matabolic\project\assets\images\find.png" />
+    <Content Include="Matabolic\project\assets\images\logo.png" />
+    <Content Include="Matabolic\project\assets\images\tree.png" />
+    <Content Include="Matabolic\project\assets\jquery-1.10.2.min.js" />
+    <Content Include="Matabolic\project\assets\jquery.address-1.6.js" />
+    <Content Include="Matabolic\project\assets\site.js" />
+    <Content Include="Matabolic\project\assets\vakata.js" />
+    <Content Include="Matabolic\project\build\pdf.js" />
+    <Content Include="Matabolic\project\build\pdf.worker.js" />
+    <Content Include="Matabolic\project\cascade.aspx" />
+    <Content Include="Matabolic\project\CascadeNutrientReport.aspx" />
+    <Content Include="Matabolic\project\CascadeNutrientReport_old.aspx" />
+    <Content Include="Matabolic\project\cascade_old.aspx" />
+    <Content Include="Matabolic\project\chartjs\Chart.js" />
+    <Content Include="Matabolic\project\CofactorDoseReport.aspx" />
+    <Content Include="Matabolic\project\contextMenu.html" />
+    <Content Include="Matabolic\project\css\bootstrap-responsive.min.css" />
+    <Content Include="Matabolic\project\css\bootstrap.min.css" />
+    <Content Include="Matabolic\project\css\jquery.easy-pie-chart.css" />
+    <Content Include="Matabolic\project\css\jquery.tagit.css" />
+    <Content Include="Matabolic\project\css\main.css" />
+    <Content Include="Matabolic\project\css\select2.css" />
+    <Content Include="Matabolic\project\css\select2.png" />
+    <Content Include="Matabolic\project\css\style.min.css" />
+    <Content Include="Matabolic\project\css\styles.css" />
+    <Content Include="Matabolic\project\css\tagit.ui-zendesk.css" />
+    <Content Include="Matabolic\project\css\test.css" />
+    <Content Include="Matabolic\project\css\test.min.css" />
+    <Content Include="Matabolic\project\css\util.css" />
+    <Content Include="Matabolic\project\customCSS\customStyle.css" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\css\add.png" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\css\Clientorgchart.css" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\css\delete.png" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\css\font-awesome.min.css" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\css\jquery.orgchart.css" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\css\style.css" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\js\clientorgchart.js" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\js\html2canvas.min.js" />
+    <Content Include="Matabolic\project\customCSS\Flowchart\js\jquery.orgchart.js" />
+    <Content Include="Matabolic\project\customCSS\markerDietActivator.css" />
+    <Content Include="Matabolic\project\customCSS\markerDietActivator_old.css" />
+    <Content Include="Matabolic\project\customCSS\signalingCascade.css" />
+    <Content Include="Matabolic\project\customjs\activitiesApproval.js" />
+    <Content Include="Matabolic\project\customjs\activitiesApproval_old.js" />
+    <Content Include="Matabolic\project\customjs\cascade.js" />
+    <Content Include="Matabolic\project\customjs\cascade_old.js" />
+    <Content Include="Matabolic\project\customjs\code.js" />
+    <Content Include="Matabolic\project\customjs\CofactorDoseReport.js" />
+    <Content Include="Matabolic\project\customjs\common.js" />
+    <Content Include="Matabolic\project\customjs\cytoscape.min.js" />
+    <Content Include="Matabolic\project\customjs\dashboad.js" />
+    <Content Include="Matabolic\project\customjs\DiseaseNutrientCascadeReport.js" />
+    <Content Include="Matabolic\project\customjs\DiseaseNutrientCascadeReport_OLD.js" />
+    <Content Include="Matabolic\project\customjs\DiseaseNutrientCascadeReport_old1.js" />
+    <Content Include="Matabolic\project\customjs\DiseaseNutrientCascadeReport_old2.js" />
+    <Content Include="Matabolic\project\customjs\eCGDataForChart.js" />
+    <Content Include="Matabolic\project\customjs\editor.js" />
+    <Content Include="Matabolic\project\customjs\find.js" />
+    <Content Include="Matabolic\project\customjs\flowChart.js" />
+    <Content Include="Matabolic\project\customjs\flowDiagram.js" />
+    <Content Include="Matabolic\project\customjs\flowDiagram2.js" />
+    <Content Include="Matabolic\project\customjs\flowDiagram2_.js" />
+    <Content Include="Matabolic\project\customjs\flowGraphOutput.js" />
+    <Content Include="Matabolic\project\customjs\foodPresenceReport.js" />
+    <Content Include="Matabolic\project\customjs\login.js" />
+    <Content Include="Matabolic\project\customjs\master.js" />
+    <Content Include="Matabolic\project\customjs\master.min.js" />
+    <Content Include="Matabolic\project\customjs\mergedProportion.js" />
+    <Content Include="Matabolic\project\customjs\mergedProportion_.js" />
+    <Content Include="Matabolic\project\customjs\MoleculeCountReport.js" />
+    <Content Include="Matabolic\project\customjs\MoleculeCountReport_old.js" />
+    <Content Include="Matabolic\project\customjs\moleculeDietActivators.js" />
+    <Content Include="Matabolic\project\customjs\moleculeDietActivators_170921.js" />
+    <Content Include="Matabolic\project\customjs\moleculeDietActivators_old.js" />
+    <Content Include="Matabolic\project\customjs\note.js" />
+    <Content Include="Matabolic\project\customjs\pathway.js" />
+    <Content Include="Matabolic\project\customjs\patientDiet.js" />
+    <Content Include="Matabolic\project\customjs\patientDiet_old.js" />
+    <Content Include="Matabolic\project\customjs\patientInvestigationReport.js" />
+    <Content Include="Matabolic\project\customjs\patientInvestigationReport_old.js" />
+    <Content Include="Matabolic\project\customjs\PDF.js" />
+    <Content Include="Matabolic\project\customjs\proportionMaster.js" />
+    <Content Include="Matabolic\project\customjs\sectionMaster.js" />
+    <Content Include="Matabolic\project\customjs\setting.js" />
+    <Content Include="Matabolic\project\customjs\signalingCascade.js" />
+    <Content Include="Matabolic\project\customjs\signalingCascade1.js" />
+    <Content Include="Matabolic\project\customjs\signalingCascade_old.js" />
+    <Content Include="Matabolic\project\customjs\signalingCascade_old1.js" />
+    <Content Include="Matabolic\project\customjs\signalingCascade_old2.js" />
+    <Content Include="Matabolic\project\customjs\startEndMapping.js" />
+    <Content Include="Matabolic\project\customjs\test.js" />
+    <Content Include="Matabolic\project\customjs\test123.js" />
+    <Content Include="Matabolic\project\customjs\test2.js" />
+    <Content Include="Matabolic\project\customjs\test3.js" />
+    <Content Include="Matabolic\project\customjs\test4.js" />
+    <Content Include="Matabolic\project\customjs\test4_.js" />
+    <Content Include="Matabolic\project\customjs\userRegistration.js" />
+    <Content Include="Matabolic\project\customjs\writeUPMaster.js" />
+    <Content Include="Matabolic\project\customjs\writeUPMaster_.js" />
+    <Content Include="Matabolic\project\Default.aspx" />
+    <Content Include="Matabolic\project\demo.html" />
+    <Content Include="Matabolic\project\diagramTest - Copy.aspx" />
+    <Content Include="Matabolic\project\diagramTest.aspx" />
+    <Content Include="Matabolic\project\DiseaseNutrientCascadeReport - Copy.aspx" />
+    <Content Include="Matabolic\project\DiseaseNutrientCascadeReport.aspx" />
+    <Content Include="Matabolic\project\DiseaseNutrientCascadeReport_old - Copy.aspx" />
+    <Content Include="Matabolic\project\DiseaseNutrientCascadeReport_old.aspx" />
+    <Content Include="Matabolic\project\DiseaseNutrientFoodPresenceReport.aspx" />
+    <Content Include="Matabolic\project\ECGDataForChart.aspx" />
+    <Content Include="Matabolic\project\editor.aspx" />
+    <Content Include="Matabolic\project\editor.html" />
+    <Content Include="Matabolic\project\editor\browser-not-supported.html" />
+    <Content Include="Matabolic\project\editor\css\custom.css" />
+    <Content Include="Matabolic\project\editor\css\font-files\Arvo-Regular-webfont.svg" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood-webfont.svg" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood_italic-webfont.svg" />
+    <Content Include="Matabolic\project\editor\css\font-files\Junction-webfont.svg" />
+    <Content Include="Matabolic\project\editor\css\font-files\League_Gothic-webfont.svg" />
+    <Content Include="Matabolic\project\editor\css\fonts.css" />
+    <Content Include="Matabolic\project\editor\css\method-draw.compiled.css" />
+    <Content Include="Matabolic\project\editor\css\method-draw.css" />
+    <Content Include="Matabolic\project\editor\embedapi.html" />
+    <Content Include="Matabolic\project\editor\extensions\closepath_icons.svg" />
+    <Content Include="Matabolic\project\editor\extensions\ext-arrows.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-closepath.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-connector.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-eyedropper.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-foreignobject.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-grid.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-helloworld.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-imagelib.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-imagelib.xml" />
+    <Content Include="Matabolic\project\editor\extensions\ext-markers.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-server_moinsave.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-server_opensave.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-shapes.js" />
+    <Content Include="Matabolic\project\editor\extensions\ext-shapes.png" />
+    <Content Include="Matabolic\project\editor\extensions\ext-shapes.xml" />
+    <Content Include="Matabolic\project\editor\extensions\eyedropper-icon.xml" />
+    <Content Include="Matabolic\project\editor\extensions\eyedropper.png" />
+    <Content Include="Matabolic\project\editor\extensions\eyedropper.svg" />
+    <Content Include="Matabolic\project\editor\extensions\fileopen.php" />
+    <Content Include="Matabolic\project\editor\extensions\filesave.php" />
+    <Content Include="Matabolic\project\editor\extensions\foreignobject-icons.xml" />
+    <Content Include="Matabolic\project\editor\extensions\grid-icon.xml" />
+    <Content Include="Matabolic\project\editor\extensions\helloworld-icon.xml" />
+    <Content Include="Matabolic\project\editor\extensions\imagelib\index.html" />
+    <Content Include="Matabolic\project\editor\extensions\imagelib\smiley.svg" />
+    <Content Include="Matabolic\project\editor\extensions\markers-icons.xml" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib.png" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib.svg" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\raphael.txt" />
+    <Content Include="Matabolic\project\editor\icons\jquery.svgicons.js" />
+    <Content Include="Matabolic\project\editor\images\align-bottom.png" />
+    <Content Include="Matabolic\project\editor\images\align-bottom.svg" />
+    <Content Include="Matabolic\project\editor\images\align-center.png" />
+    <Content Include="Matabolic\project\editor\images\align-center.svg" />
+    <Content Include="Matabolic\project\editor\images\align-left.png" />
+    <Content Include="Matabolic\project\editor\images\align-left.svg" />
+    <Content Include="Matabolic\project\editor\images\align-middle.png" />
+    <Content Include="Matabolic\project\editor\images\align-middle.svg" />
+    <Content Include="Matabolic\project\editor\images\align-right.png" />
+    <Content Include="Matabolic\project\editor\images\align-right.svg" />
+    <Content Include="Matabolic\project\editor\images\align-top.png" />
+    <Content Include="Matabolic\project\editor\images\align-top.svg" />
+    <Content Include="Matabolic\project\editor\images\AlphaBar.png" />
+    <Content Include="Matabolic\project\editor\images\bar-opacity.png" />
+    <Content Include="Matabolic\project\editor\images\Bars.png" />
+    <Content Include="Matabolic\project\editor\images\bold.png" />
+    <Content Include="Matabolic\project\editor\images\cancel.png" />
+    <Content Include="Matabolic\project\editor\images\circle.png" />
+    <Content Include="Matabolic\project\editor\images\clear.png" />
+    <Content Include="Matabolic\project\editor\images\clone.png" />
+    <Content Include="Matabolic\project\editor\images\conn.svg" />
+    <Content Include="Matabolic\project\editor\images\copy.png" />
+    <Content Include="Matabolic\project\editor\images\cross.png" />
+    <Content Include="Matabolic\project\editor\images\cut.png" />
+    <Content Include="Matabolic\project\editor\images\delete.png" />
+    <Content Include="Matabolic\project\editor\images\document-properties.png" />
+    <Content Include="Matabolic\project\editor\images\drag.png" />
+    <Content Include="Matabolic\project\editor\images\dragging.png" />
+    <Content Include="Matabolic\project\editor\images\dropdown.gif" />
+    <Content Include="Matabolic\project\editor\images\ellipse.png" />
+    <Content Include="Matabolic\project\editor\images\ellipse.svg" />
+    <Content Include="Matabolic\project\editor\images\eye.png" />
+    <Content Include="Matabolic\project\editor\images\eye.svg" />
+    <Content Include="Matabolic\project\editor\images\eyedropper.png" />
+    <Content Include="Matabolic\project\editor\images\eyedropper_tool.png" />
+    <Content Include="Matabolic\project\editor\images\fhpath.png" />
+    <Content Include="Matabolic\project\editor\images\flyouth.png" />
+    <Content Include="Matabolic\project\editor\images\flyup.gif" />
+    <Content Include="Matabolic\project\editor\images\freehand-circle.png" />
+    <Content Include="Matabolic\project\editor\images\freehand-square.png" />
+    <Content Include="Matabolic\project\editor\images\globe_link.png" />
+    <Content Include="Matabolic\project\editor\images\go-down.png" />
+    <Content Include="Matabolic\project\editor\images\go-up.png" />
+    <Content Include="Matabolic\project\editor\images\image.png" />
+    <Content Include="Matabolic\project\editor\images\image.svg" />
+    <Content Include="Matabolic\project\editor\images\italic.png" />
+    <Content Include="Matabolic\project\editor\images\italic.svg" />
+    <Content Include="Matabolic\project\editor\images\line.png" />
+    <Content Include="Matabolic\project\editor\images\link_controls.png" />
+    <Content Include="Matabolic\project\editor\images\logo.png" />
+    <Content Include="Matabolic\project\editor\images\map-opacity.png" />
+    <Content Include="Matabolic\project\editor\images\mappoint.gif" />
+    <Content Include="Matabolic\project\editor\images\mappoint_c.png" />
+    <Content Include="Matabolic\project\editor\images\mappoint_f.png" />
+    <Content Include="Matabolic\project\editor\images\Maps.png" />
+    <Content Include="Matabolic\project\editor\images\move_bottom.png" />
+    <Content Include="Matabolic\project\editor\images\move_top.png" />
+    <Content Include="Matabolic\project\editor\images\NoColor.png" />
+    <Content Include="Matabolic\project\editor\images\node_clone.png" />
+    <Content Include="Matabolic\project\editor\images\node_delete.png" />
+    <Content Include="Matabolic\project\editor\images\none.png" />
+    <Content Include="Matabolic\project\editor\images\open.png" />
+    <Content Include="Matabolic\project\editor\images\paste.png" />
+    <Content Include="Matabolic\project\editor\images\path.png" />
+    <Content Include="Matabolic\project\editor\images\path.svg" />
+    <Content Include="Matabolic\project\editor\images\pencil.png" />
+    <Content Include="Matabolic\project\editor\images\pencil.svg" />
+    <Content Include="Matabolic\project\editor\images\pencil_cursor.png" />
+    <Content Include="Matabolic\project\editor\images\picker.gif" />
+    <Content Include="Matabolic\project\editor\images\placeholder.svg" />
+    <Content Include="Matabolic\project\editor\images\polygon.png" />
+    <Content Include="Matabolic\project\editor\images\polygon.svg" />
+    <Content Include="Matabolic\project\editor\images\preview-opacity.png" />
+    <Content Include="Matabolic\project\editor\images\rangearrows.gif" />
+    <Content Include="Matabolic\project\editor\images\rangearrows2.gif" />
+    <Content Include="Matabolic\project\editor\images\README.txt" />
+    <Content Include="Matabolic\project\editor\images\rect.png" />
+    <Content Include="Matabolic\project\editor\images\redo.png" />
+    <Content Include="Matabolic\project\editor\images\reorient.png" />
+    <Content Include="Matabolic\project\editor\images\rotate.png" />
+    <Content Include="Matabolic\project\editor\images\save.png" />
+    <Content Include="Matabolic\project\editor\images\select.png" />
+    <Content Include="Matabolic\project\editor\images\select.svg" />
+    <Content Include="Matabolic\project\editor\images\select_node.png" />
+    <Content Include="Matabolic\project\editor\images\sep.png" />
+    <Content Include="Matabolic\project\editor\images\shape_group.png" />
+    <Content Include="Matabolic\project\editor\images\shape_ungroup.png" />
+    <Content Include="Matabolic\project\editor\images\source.png" />
+    <Content Include="Matabolic\project\editor\images\spinbtn_updn_big.png" />
+    <Content Include="Matabolic\project\editor\images\square.png" />
+    <Content Include="Matabolic\project\editor\images\svg_edit_icons.svg" />
+    <Content Include="Matabolic\project\editor\images\text.png" />
+    <Content Include="Matabolic\project\editor\images\text.svg" />
+    <Content Include="Matabolic\project\editor\images\to_path.png" />
+    <Content Include="Matabolic\project\editor\images\undo.png" />
+    <Content Include="Matabolic\project\editor\images\view-refresh.png" />
+    <Content Include="Matabolic\project\editor\images\wave.png" />
+    <Content Include="Matabolic\project\editor\images\wireframe.png" />
+    <Content Include="Matabolic\project\editor\images\zoom.png" />
+    <Content Include="Matabolic\project\editor\images\zoom.svg" />
+    <Content Include="Matabolic\project\editor\index.html" />
+    <Content Include="Matabolic\project\editor\lib\canvg\canvg.js" />
+    <Content Include="Matabolic\project\editor\lib\canvg\rgbcolor.js" />
+    <Content Include="Matabolic\project\editor\lib\contextmenu.js" />
+    <Content Include="Matabolic\project\editor\lib\contextmenu\jquery.contextMenu.js" />
+    <Content Include="Matabolic\project\editor\lib\filesaver.js" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\css\jgraduate.css" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\css\jPicker.css" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\AlphaBar.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\bar-opacity.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\Bars.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\eyedropper.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\map-opacity.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\mappoint.gif" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\mappoint_c.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\mappoint_f.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\Maps.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\NoColor.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\picker.gif" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\preview-opacity.png" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\rangearrows.gif" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\images\rangearrows2.gif" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\jpicker.min.js" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\jquery.jgraduate.js" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\jquery.jgraduate.min.js" />
+    <Content Include="Matabolic\project\editor\lib\jquery-draginput.js" />
+    <Content Include="Matabolic\project\editor\lib\jquery-ui\jquery-ui-1.8.17.custom.min.js" />
+    <Content Include="Matabolic\project\editor\lib\jquery-ui\jquery-ui-1.8.custom.min.js" />
+    <Content Include="Matabolic\project\editor\lib\jquery.js" />
+    <Content Include="Matabolic\project\editor\lib\js-hotkeys\jquery.hotkeys.min.js" />
+    <Content Include="Matabolic\project\editor\lib\mousewheel.js" />
+    <Content Include="Matabolic\project\editor\lib\pathseg.js" />
+    <Content Include="Matabolic\project\editor\lib\requestanimationframe.js" />
+    <Content Include="Matabolic\project\editor\lib\taphold.js" />
+    <Content Include="Matabolic\project\editor\lib\touch.js" />
+    <Content Include="Matabolic\project\editor\src\browser.js" />
+    <Content Include="Matabolic\project\editor\src\dialog.js" />
+    <Content Include="Matabolic\project\editor\src\dragupload.js" />
+    <Content Include="Matabolic\project\editor\src\draw.js" />
+    <Content Include="Matabolic\project\editor\src\embedapi.js" />
+    <Content Include="Matabolic\project\editor\src\history.js" />
+    <Content Include="Matabolic\project\editor\src\math.js" />
+    <Content Include="Matabolic\project\editor\src\method-draw.js" />
+    <Content Include="Matabolic\project\editor\src\path.js" />
+    <Content Include="Matabolic\project\editor\src\sanitize.js" />
+    <Content Include="Matabolic\project\editor\src\select.js" />
+    <Content Include="Matabolic\project\editor\src\svgcanvas.js" />
+    <Content Include="Matabolic\project\editor\src\svgtransformlist.js" />
+    <Content Include="Matabolic\project\editor\src\svgutils.js" />
+    <Content Include="Matabolic\project\editor\src\units.js" />
+    <Content Include="Matabolic\project\FAQReport.aspx" />
+    <Content Include="Matabolic\project\flowChart.aspx" />
+    <Content Include="Matabolic\project\Flowchart\css\add.png" />
+    <Content Include="Matabolic\project\Flowchart\css\Clientorgchart.css" />
+    <Content Include="Matabolic\project\Flowchart\css\delete.png" />
+    <Content Include="Matabolic\project\Flowchart\css\font-awesome.min.css" />
+    <Content Include="Matabolic\project\Flowchart\css\jquery.orgchart.css" />
+    <Content Include="Matabolic\project\Flowchart\css\style.css" />
+    <Content Include="Matabolic\project\Flowchart\js\clientorgchart.js" />
+    <Content Include="Matabolic\project\Flowchart\js\html2canvas.min.js" />
+    <Content Include="Matabolic\project\Flowchart\js\jquery.orgchart.js" />
+    <Content Include="Matabolic\project\flowGraphOutput.aspx" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Matabolic\project\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Matabolic\project\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="Matabolic\project\fonts\montserrat\OFL.txt" />
+    <Content Include="Matabolic\project\FoodPresenceReport.aspx" />
+    <Content Include="Matabolic\project\FoodPresenceReport_old.aspx" />
+    <Content Include="Matabolic\project\go.js" />
+    <Content Include="Matabolic\project\GraphPDF\122390.80000001192_1565432909158_PARAMEDICAL logo.jpg" />
+    <Content Include="Matabolic\project\HtmlPage.html" />
+    <Content Include="Matabolic\project\img\annotation.png" />
+    <Content Include="Matabolic\project\img\bg-01.jpg" />
+    <Content Include="Matabolic\project\img\glyphicons-halflings-white.png" />
+    <Content Include="Matabolic\project\img\glyphicons-halflings.png" />
+    <Content Include="Matabolic\project\img\icons\favicon.ico" />
+    <Content Include="Matabolic\project\index.html" />
+    <Content Include="Matabolic\project\js\bootstrap.min.js" />
+    <Content Include="Matabolic\project\js\createjs-2015.05.21.min.js" />
+    <Content Include="Matabolic\project\js\cytoscape-cola.js" />
+    <Content Include="Matabolic\project\js\flow.min.js" />
+    <Content Include="Matabolic\project\js\jointer.min.js" />
+    <Content Include="Matabolic\project\js\jquery-1.8.2.min.js" />
+    <Content Include="Matabolic\project\js\jquery-1.9.1.min.js" />
+    <Content Include="Matabolic\project\js\jquery.easy-pie-chart.js" />
+    <Content Include="Matabolic\project\js\jquery.highlight-within-textarea.css" />
+    <Content Include="Matabolic\project\js\jquery.highlight-within-textarea.js" />
+    <Content Include="Matabolic\project\js\jquery.mark.min.js" />
+    <Content Include="Matabolic\project\js\jquery.toaster.js" />
+    <Content Include="Matabolic\project\js\jstree.min.js" />
+    <Content Include="Matabolic\project\js\modernizr-2.6.2-respond-1.1.0.min.js" />
+    <Content Include="Matabolic\project\js\scripts.js" />
+    <Content Include="Matabolic\project\js\select2.js" />
+    <Content Include="Matabolic\project\js\select2.multi-checkboxes.js" />
+    <Content Include="Matabolic\project\js\SVGPanZoom.js" />
+    <Content Include="Matabolic\project\js\tag-it.js" />
+    <Content Include="Matabolic\project\login.html" />
+    <Content Include="Matabolic\project\main.js" />
+    <Content Include="Matabolic\project\MarkerDietActivators.aspx" />
+    <Content Include="Matabolic\project\MarkerDietActivators._170921.aspx" />
+    <Content Include="Matabolic\project\MarkerDietActivators_old.aspx" />
+    <Content Include="Matabolic\project\markerReport.aspx" />
+    <Content Include="Matabolic\project\master.aspx" />
+    <Content Include="Matabolic\project\mergedProportion.aspx" />
+    <Content Include="Matabolic\project\mergedProportion_.aspx" />
+    <Content Include="Matabolic\project\MoleculeCountReport.aspx" />
+    <Content Include="Matabolic\project\MoleculeCountReport_old.aspx" />
+    <Content Include="Matabolic\project\MultiSelect.aspx" />
+    <Content Include="Matabolic\project\mytestpage.aspx" />
+    <Content Include="Matabolic\project\Note.aspx" />
+    <Content Include="Matabolic\project\pathway.aspx" />
+    <Content Include="Matabolic\project\pathway1.aspx" />
+    <Content Include="Matabolic\project\pathway2.aspx" />
+    <Content Include="Matabolic\project\pathway2_.aspx" />
+    <Content Include="Matabolic\project\pathwayOutput.aspx" />
+    <Content Include="Matabolic\project\pathwayOutput1.aspx" />
+    <Content Include="Matabolic\project\patientDiet.aspx" />
+    <Content Include="Matabolic\project\patientDiet_old.aspx" />
+    <Content Include="Matabolic\project\patientInvestigationReport.aspx" />
+    <Content Include="Matabolic\project\patientInvestigationReport_old.aspx" />
+    <Content Include="Matabolic\project\PDF.aspx" />
+    <Content Include="Matabolic\project\PDF1.aspx" />
+    <Content Include="Matabolic\project\PDFGallery.aspx" />
+    <Content Include="Matabolic\project\proportionMaster.aspx" />
+    <Content Include="Matabolic\project\rankWiseMolecule.aspx" />
+    <Content Include="Matabolic\project\rankWiseMolecule_old.aspx" />
+    <Content Include="Matabolic\project\SearchMedicineByPID.aspx" />
+    <Content Include="Matabolic\project\SearchMedicineByPID_old.aspx" />
+    <Content Include="Matabolic\project\SectionMaster.aspx" />
+    <Content Include="Matabolic\project\Setting.aspx" />
+    <Content Include="Matabolic\project\signalingCascade.aspx" />
+    <Content Include="Matabolic\project\signalingCascade1.aspx" />
+    <Content Include="Matabolic\project\signalingCascade_old.aspx" />
+    <Content Include="Matabolic\project\signalingCascade_old1.aspx" />
+    <Content Include="Matabolic\project\signalingCascade_old2.aspx" />
+    <Content Include="Matabolic\project\StartEndMapping.aspx" />
+    <Content Include="Matabolic\project\style.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Corona.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Corona1.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Corona2.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Corona3.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\CustomStyle.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\FinalChart.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\jquery-ui.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\mySample.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Sample.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Sample1.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Sample2.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\sample_without_id.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Style.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Style1.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Style1_old.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Style2.css" />
+    <Content Include="Matabolic\project\SVGViewer\CSS\Style4.css" />
+    <Content Include="Matabolic\project\SVGViewer\google_jsapi.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\Arrow.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\jquery-1.10.2.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\jquery-ui.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\Jquery.min.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\Script.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\Script1.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\Script2.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\svgEvents.js" />
+    <Content Include="Matabolic\project\SVGViewer\JS\Variable.js" />
+    <Content Include="Matabolic\project\SVGViewer\loader.js" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\apoptosis.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Corona.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Corona1.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Corona2.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Corona3.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\COVID-19.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Final Chart_Images\Final Chart_ImgID1.png" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Final Chart_Images\Final Chart_ImgID2.png" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\FinalChart.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\FinalChart1.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\mySample.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Sample.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Sample1.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Sample2.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Sample4.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Sample_old.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\sample_without_id.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\TestBlink.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGFiles\Testing.svg" />
+    <Content Include="Matabolic\project\SVGViewer\SVGHTML.html" />
+    <Content Include="Matabolic\project\SVGViewer\SVGHTML1.html" />
+    <Content Include="Matabolic\project\SVGViewer\test-abc.html" />
+    <Content Include="Matabolic\project\SVGViewer\testSVGHTML.html" />
+    <Content Include="Matabolic\project\SVG\css\bootstrap.min.css" />
+    <Content Include="Matabolic\project\SVG\css\FinalChart.css" />
+    <Content Include="Matabolic\project\SVG\css\FinalChart1.css" />
+    <Content Include="Matabolic\project\SVG\css\jquery-ui.css" />
+    <Content Include="Matabolic\project\SVG\css\StyleSheet.css" />
+    <Content Include="Matabolic\project\SVG\css\SvgStyle.css" />
+    <Content Include="Matabolic\project\SVG\css\viewerStyle.css" />
+    <Content Include="Matabolic\project\SVG\index.html" />
+    <Content Include="Matabolic\project\SVG\index1.html" />
+    <Content Include="Matabolic\project\SVG\js\bootstrap.min.js" />
+    <Content Include="Matabolic\project\SVG\js\jquery-1.10.2.js" />
+    <Content Include="Matabolic\project\SVG\js\jquery-ui.js" />
+    <Content Include="Matabolic\project\SVG\js\jquery-ui.min.js" />
+    <Content Include="Matabolic\project\SVG\js\jquery.min.js" />
+    <Content Include="Matabolic\project\SVG\js\Script.js" />
+    <Content Include="Matabolic\project\SVG\js\Script1.js" />
+    <Content Include="Matabolic\project\SVG\js\SvgEvents.js" />
+    <Content Include="Matabolic\project\SVG\js\Variable.js" />
+    <Content Include="Matabolic\project\SVG\js\viewerScript.js" />
+    <Content Include="Matabolic\project\SVG\page.html" />
+    <Content Include="Matabolic\project\SVG\svg\Final Chart %2809-02-21%29_Images\Final Chart %2809-02-21%29_ImgID1.png" />
+    <Content Include="Matabolic\project\SVG\svg\Final Chart %2809-02-21%29_Images\Final Chart %2809-02-21%29_ImgID2.png" />
+    <Content Include="Matabolic\project\SVG\svg\Final Chart %2809-02-21%29_Images\Final Chart %2809-02-21%29_ImgID3.png" />
+    <Content Include="Matabolic\project\SVG\svg\Final Chart %2809-02-21%29_Images\Final Chart %2809-02-21%29_ImgID4.png" />
+    <Content Include="Matabolic\project\SVG\svg\Final Chart_Images\Final Chart_ImgID1.png" />
+    <Content Include="Matabolic\project\SVG\svg\Final Chart_Images\Final Chart_ImgID2.png" />
+    <Content Include="Matabolic\project\SVG\svg\FinalChart.svg" />
+    <Content Include="Matabolic\project\SVG\svg\FinalChart1.svg" />
+    <Content Include="Matabolic\project\SVG\svg\FinalChart2.svg" />
+    <Content Include="Matabolic\project\SVG\svg\FinalChart3.svg" />
+    <Content Include="Matabolic\project\SVG\waves.jpg" />
+    <Content Include="Matabolic\project\SVG\waves.png" />
+    <Content Include="Matabolic\project\swimLanes.html" />
+    <Content Include="Matabolic\project\test.aspx" />
+    <Content Include="Matabolic\project\test123.aspx" />
+    <Content Include="Matabolic\project\test2.aspx" />
+    <Content Include="Matabolic\project\test3.aspx" />
+    <Content Include="Matabolic\project\test4.aspx" />
+    <Content Include="Matabolic\project\test4_.aspx" />
+    <Content Include="Matabolic\project\testRegroupingLayout.aspx" />
+    <Content Include="Matabolic\project\WebService\ActivitiesApproval.asmx" />
+    <Content Include="Matabolic\project\WebService\cascade.asmx" />
+    <Content Include="Matabolic\project\WebService\diseaseNutrientCascadeReport.asmx" />
+    <Content Include="Matabolic\project\WebService\flowChart.asmx" />
+    <Content Include="Matabolic\project\WebService\flowDiagram.asmx" />
+    <Content Include="Matabolic\project\WebService\HeadMaster.asmx" />
+    <Content Include="Matabolic\project\WebService\Login.asmx" />
+    <Content Include="Matabolic\project\WebService\markerDietActivator.asmx" />
+    <Content Include="Matabolic\project\WebService\markerDietActivator_.asmx" />
+    <Content Include="Matabolic\project\WebService\pageDescription.asmx" />
+    <Content Include="Matabolic\project\WebService\pathwayMain.asmx" />
+    <Content Include="Matabolic\project\WebService\pathwayMain1.asmx" />
+    <Content Include="Matabolic\project\WebService\PatientInvestigationReport.asmx" />
+    <Content Include="Matabolic\project\WebService\signalingCascade.asmx" />
+    <Content Include="Matabolic\project\WebService\signalingCascade1.asmx" />
+    <Content Include="Matabolic\project\WebService\signalingCascade__.asmx" />
+    <Content Include="Matabolic\project\WebService\SVGWebService.asmx" />
+    <Content Include="Matabolic\project\WebService\userRegistration.asmx" />
+    <Content Include="Matabolic\project\WebService\WebService.asmx" />
+    <Content Include="Matabolic\project\WebService\writeUpMaster.asmx" />
+    <Content Include="Matabolic\project\web\customViewer.css" />
+    <Content Include="Matabolic\project\web\customViewer.js" />
+    <Content Include="Matabolic\project\web\debugger.js" />
+    <Content Include="Matabolic\project\web\images\annotation-check.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-comment.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-help.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-insert.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-key.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-newparagraph.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-noicon.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-note.svg" />
+    <Content Include="Matabolic\project\web\images\annotation-paragraph.svg" />
+    <Content Include="Matabolic\project\web\images\findbarButton-next%402x.png" />
+    <Content Include="Matabolic\project\web\images\findbarButton-next-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\findbarButton-next-rtl.png" />
+    <Content Include="Matabolic\project\web\images\findbarButton-next.png" />
+    <Content Include="Matabolic\project\web\images\findbarButton-previous%402x.png" />
+    <Content Include="Matabolic\project\web\images\findbarButton-previous-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\findbarButton-previous-rtl.png" />
+    <Content Include="Matabolic\project\web\images\findbarButton-previous.png" />
+    <Content Include="Matabolic\project\web\images\grab.cur" />
+    <Content Include="Matabolic\project\web\images\grabbing.cur" />
+    <Content Include="Matabolic\project\web\images\loading-icon.gif" />
+    <Content Include="Matabolic\project\web\images\loading-small%402x.png" />
+    <Content Include="Matabolic\project\web\images\loading-small.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-documentProperties%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-documentProperties.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-firstPage%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-firstPage.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-handTool%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-handTool.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-lastPage%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-lastPage.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-rotateCcw%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-rotateCcw.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-rotateCw%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-rotateCw.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-scrollHorizontal%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-scrollHorizontal.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-scrollVertical%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-scrollVertical.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-scrollWrapped%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-scrollWrapped.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-selectTool%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-selectTool.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-spreadEven%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-spreadEven.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-spreadNone%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-spreadNone.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-spreadOdd%402x.png" />
+    <Content Include="Matabolic\project\web\images\secondaryToolbarButton-spreadOdd.png" />
+    <Content Include="Matabolic\project\web\images\shadow.png" />
+    <Content Include="Matabolic\project\web\images\texture.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-bookmark%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-bookmark.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-download%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-download.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-menuArrows%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-menuArrows.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-openFile%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-openFile.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageDown%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageDown-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageDown-rtl.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageDown.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageUp%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageUp-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageUp-rtl.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-pageUp.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-presentationMode%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-presentationMode.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-print%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-print.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-search%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-search.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-secondaryToolbarToggle%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-secondaryToolbarToggle-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-secondaryToolbarToggle-rtl.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-secondaryToolbarToggle.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-sidebarToggle%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-sidebarToggle-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-sidebarToggle-rtl.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-sidebarToggle.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewAttachments%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewAttachments.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewOutline%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewOutline-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewOutline-rtl.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewOutline.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewThumbnail%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-viewThumbnail.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-zoomIn%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-zoomIn.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-zoomOut%402x.png" />
+    <Content Include="Matabolic\project\web\images\toolbarButton-zoomOut.png" />
+    <Content Include="Matabolic\project\web\images\treeitem-collapsed%402x.png" />
+    <Content Include="Matabolic\project\web\images\treeitem-collapsed-rtl%402x.png" />
+    <Content Include="Matabolic\project\web\images\treeitem-collapsed-rtl.png" />
+    <Content Include="Matabolic\project\web\images\treeitem-collapsed.png" />
+    <Content Include="Matabolic\project\web\images\treeitem-expanded%402x.png" />
+    <Content Include="Matabolic\project\web\images\treeitem-expanded.png" />
+    <Content Include="Matabolic\project\web\PDF.aspx" />
+    <Content Include="Matabolic\project\web\viewer.css" />
+    <Content Include="Matabolic\project\web\viewer.html" />
+    <Content Include="Matabolic\project\web\viewer.js" />
+    <Content Include="Matabolic\project\writeUp.html" />
+    <Content Include="Matabolic\project\writeUpMaster.aspx" />
+    <Content Include="Matabolic\project\writeUpMaster_.aspx" />
+    <Content Include="Matabolic\signalingCascade.aspx" />
+    <Content Include="Matabolic\test4.aspx" />
+    <Content Include="script\app.js" />
+    <Content Include="script\global.js" />
+    <Content Include="select2\select2.css" />
+    <Content Include="select2\select2.js" />
+    <Content Include="select2\select2OLD.js" />
+    <Content Include="services\serviceDataSource.js" />
+    <Content Include="views\AddfoodCoockingMethod.html" />
+    <Content Include="views\AddQuestionMaster.html" />
+    <Content Include="views\AddToxinsInhibitor.html" />
+    <Content Include="views\AgentFactorEffect.html" />
+    <Content Include="views\AgentFactorMaster.html" />
+    <Content Include="views\AssignCalculatorToDepartment.html" />
+    <Content Include="views\AssignCalculatorToDisease.html" />
+    <Content Include="views\AssignDietSubCategory.html" />
+    <Content Include="views\AssignDiseaseDepartment.html" />
+    <Content Include="views\AssignExamTypeQuestion.html" />
+    <Content Include="views\AssignMedicineToDisease.html" />
+    <Content Include="views\AssignMenuMaster.html" />
+    <Content Include="views\AssignSubCategoryToCategory.html" />
+    <Content Include="views\AssignSubTest.html" />
+    <Content Include="views\AssignSubTestMethod.html" />
+    <Content Include="views\AssignSubTestResultType.html" />
+    <Content Include="views\AssignTopicSubject.html" />
+    <Content Include="views\AssignVideoTopic.html" />
+    <Content Include="views\BacteriaRelation.html" />
+    <Content Include="views\BacteriaReport.html" />
+    <Content Include="views\BodyOrganMaster.html" />
+    <Content Include="views\BodyRegionLocation.html" />
+    <Content Include="views\BrandMedicineAssign.html" />
+    <Content Include="views\CalculatorControlMaster.html" />
+    <Content Include="views\CalculatorFormula.html" />
+    <Content Include="views\CalculatorMaster.html" />
+    <Content Include="views\CalculatorParameterMaster.html" />
+    <Content Include="views\calculatorResult.html" />
+    <Content Include="views\calculatorScore.html" />
+    <Content Include="views\CategoryMaster.html" />
+    <Content Include="views\ChangePassword.html" />
+    <Content Include="views\ClinicalCalendar.html" />
+    <Content Include="views\ClinicalNews.html" />
+    <Content Include="views\clinicalNotification.html" />
+    <Content Include="views\clinicalNotificationAction.html" />
+    <Content Include="views\clinicalNotification_.html" />
+    <Content Include="views\CollegeMaster.html" />
+    <Content Include="views\CookingTemperature.html" />
+    <Content Include="views\CookingTemperatureEffect.html" />
+    <Content Include="views\CuaseAndEffectReport.html" />
+    <Content Include="views\dashboard.html" />
+    <Content Include="views\dataPublish.html" />
+    <Content Include="views\Department.html" />
+    <Content Include="views\DietSubCategory.html" />
+    <Content Include="views\differentialDiagnosis.html" />
+    <Content Include="views\DifferentialDiagnosisNew.html" />
+    <Content Include="views\differentialDiagnosisReport.html" />
+    <Content Include="views\DifferentialDiagnosisReportNew.html" />
+    <Content Include="views\DiseaseAgentFactor.html" />
+    <Content Include="views\DiseaseClinicalFeature.html" />
+    <Content Include="views\DiseaseCommunicabilityDetail.html" />
+    <Content Include="views\DiseaseCommunicabilityDetails.html" />
+    <Content Include="views\DiseaseComplications.html" />
+    <Content Include="views\DiseaseCrawler.html" />
+    <Content Include="views\DiseaseDepartment.html" />
+    <Content Include="views\DiseaseDepartmentMaster.html" />
+    <Content Include="views\DiseaseDepartmentNew.html" />
+    <Content Include="views\DiseaseDepartmentNews.html" />
+    <Content Include="views\DiseaseDepartmentNews18012020.html" />
+    <Content Include="views\DiseaseEnvironmentFactor.html" />
+    <Content Include="views\DiseaseFindings.html" />
+    <Content Include="views\DiseaseGeoLocation.html" />
+    <Content Include="views\DiseaseHostFactor.html" />
+    <Content Include="views\DiseaseImagesUpload.html" />
+    <Content Include="views\DiseaseInput.html" />
+    <Content Include="views\diseaseInvestigation.html" />
+    <Content Include="views\diseaseMaster.html" />
+    <Content Include="views\DiseasePrevention.html" />
+    <Content Include="views\DiseaseReport.html" />
+    <Content Include="views\DiseaseSearchReport.html" />
+    <Content Include="views\DiseaseSignalingCascade.html" />
+    <Content Include="views\DiseaseSpeciality.html" />
+    <Content Include="views\DiseaseSpecialityAssign.html" />
+    <Content Include="views\DiseaseStage.html" />
+    <Content Include="views\DiseaseStageMaster.html" />
+    <Content Include="views\DiseaseSurgery.html" />
+    <Content Include="views\DiseaseTransmissionRoute.html" />
+    <Content Include="views\DiseaseTreatment.html" />
+    <Content Include="views\DockingReportbyScore.html" />
+    <Content Include="views\DrugCrawler.html" />
+    <Content Include="views\drugSideEffect.html" />
+    <Content Include="views\drugSideEffectNew.html" />
+    <Content Include="views\ECGWaveCause.html" />
+    <Content Include="views\EnvironmentFactorMaster.html" />
+    <Content Include="views\environmentLocationAssign.html" />
+    <Content Include="views\ExamTypeMaster.html" />
+    <Content Include="views\FoodFamilyAssign.html" />
+    <Content Include="views\FoodFamilyAverage.html" />
+    <Content Include="views\foodFamilyMaster.html" />
+    <Content Include="views\FoodIntakeLimit.html" />
+    <Content Include="views\foodMaster.html" />
+    <Content Include="views\foodMaster_.html" />
+    <Content Include="views\foodNutrient.html" />
+    <Content Include="views\FoodNutrientReports.html" />
+    <Content Include="views\FoodRecipeCategory.html" />
+    <Content Include="views\foodRegionAssign.html" />
+    <Content Include="views\FoodReport.html" />
+    <Content Include="views\FoodSearchList.html" />
+    <Content Include="views\FoodType.html" />
+    <Content Include="views\FoodWeight.html" />
+    <Content Include="views\FoodWeightMaster.html" />
+    <Content Include="views\hcLanguageTranslation.html" />
+    <Content Include="views\header.html" />
+    <Content Include="views\henRda.html" />
+    <Content Include="views\HistoryInputDepartmentAssign.html" />
+    <Content Include="views\IcdCodeMaster.html" />
+    <Content Include="views\ImpressionMaster.html" />
+    <Content Include="views\index.html" />
+    <Content Include="views\InvestigationRangeMaster.html" />
+    <Content Include="views\InvestigationResultProperty.html" />
+    <Content Include="views\ItemTestMappingKnowmed.html" />
+    <Content Include="views\KnowmedEraItemMapping.html" />
+    <Content Include="views\languageTranslation.html" />
+    <Content Include="views\LevelMaster.html" />
+    <Content Include="views\login.html" />
+    <Content Include="views\ManageRank.html" />
+    <Content Include="views\MealFoodAssign.html" />
+    <Content Include="views\MealFoodLimit.html" />
+    <Content Include="views\MedicineAction.html" />
+    <Content Include="views\MedicineAntidote.html" />
+    <Content Include="views\MedicineBrand.html" />
+    <Content Include="views\MedicineBrandCountry.html" />
+    <Content Include="views\MedicineBrandCountryAssign.html" />
+    <Content Include="views\medicineCompound.html" />
+    <Content Include="views\MedicineContraIndication.html" />
+    <Content Include="views\MedicineContraIndicationNew.html" />
+    <Content Include="views\MedicineDose.html" />
+    <Content Include="views\MedicineElectrolytes.html" />
+    <Content Include="views\MedicineElimination.html" />
+    <Content Include="views\MedicineGroup.html" />
+    <Content Include="views\MedicineGroupAssign.html" />
+    <Content Include="views\MedicineGroupNew.html" />
+    <Content Include="views\MedicineGroupParentHierarchy.html" />
+    <Content Include="views\MedicineIndication.html" />
+    <Content Include="views\MedicineIndicationNew.html" />
+    <Content Include="views\medicineInteraction.html" />
+    <Content Include="views\medicineMaster.html" />
+    <Content Include="views\MedicineMechanismAction.html" />
+    <Content Include="views\MedicineMechanismInteraction.html" />
+    <Content Include="views\MedicinePathwayActivator.html" />
+    <Content Include="views\MedicinePeakValue.html" />
+    <Content Include="views\MedicineReport.html" />
+    <Content Include="views\MedicineRouteAdministration.html" />
+    <Content Include="views\MedicineStatus.html" />
+    <Content Include="views\MedicineStrength.html" />
+    <Content Include="views\MedicineSupplement.html" />
+    <Content Include="views\MedicineTHalf.html" />
+    <Content Include="views\MedicineTherapeuticLevel.html" />
+    <Content Include="views\MedicineTroughValue.html" />
+    <Content Include="views\MenuDescriptionMaster.html" />
+    <Content Include="views\MenuMaster.html" />
+    <Content Include="views\MergeFood.html" />
+    <Content Include="views\MergeGroup.html" />
+    <Content Include="views\MergeMedicine.html" />
+    <Content Include="views\MergeNutrient.html" />
+    <Content Include="views\MergePathway.html" />
+    <Content Include="views\MergePathwayKeywords.html" />
+    <Content Include="views\MergeProblem.html" />
+    <Content Include="views\MolecularLibrary.html" />
+    <Content Include="views\nutrientBarrier.html" />
+    <Content Include="views\NutrientCategoryMaster.html" />
+    <Content Include="views\NutrientChannelMaster.html" />
+    <Content Include="views\NutrientClinicalFeature.html" />
+    <Content Include="views\NutrientComponentAssign.html" />
+    <Content Include="views\NutrientDoseLimit.html" />
+    <Content Include="views\NutrientFoodSideEffect.html" />
+    <Content Include="views\NutrientInteraction.html" />
+    <Content Include="views\NutrientInteractionRank.html" />
+    <Content Include="views\NutrientInterConversion.html" />
+    <Content Include="views\NutrientLevelGeoLocation.html" />
+    <Content Include="views\nutrientMaster.html" />
+    <Content Include="views\NutrientMedicineActionPathway.html" />
+    <Content Include="views\NutrientMedicineInteraction.html" />
+    <Content Include="views\NutrientMetabolic.html" />
+    <Content Include="views\NutrientMetabolite.html" />
+    <Content Include="views\NutrientPeakValue.html" />
+    <Content Include="views\NutrientReport.html" />
+    <Content Include="views\NutrientStatus.html" />
+    <Content Include="views\NutrientTHalf.html" />
+    <Content Include="views\PathwayDiseaseAssign.html" />
+    <Content Include="views\PathwayFAQ.html" />
+    <Content Include="views\pathwayProcessProblem.html" />
+    <Content Include="views\PathwayToDoNotToDo.html" />
+    <Content Include="views\PercentageSettingOfMarker.html" />
+    <Content Include="views\PhenomenonMaster.html" />
+    <Content Include="views\ProblemAttributeAssign.html" />
+    <Content Include="views\ProblemAttributeValue.html" />
+    <Content Include="views\ProblemCauseMiscellaneous.html" />
+    <Content Include="views\ProblemCauseType.html" />
+    <Content Include="views\ProblemCauseTypeAssign.html" />
+    <Content Include="views\ProblemDietCategory.html" />
+    <Content Include="views\ProblemICD.html" />
+    <Content Include="views\ProblemInvestigationRelation.html" />
+    <Content Include="views\ProblemMaster.html" />
+    <Content Include="views\ProblemNutrientImportance.html" />
+    <Content Include="views\ProblemNutrientImportanceReport.html" />
+    <Content Include="views\ProblemNutrientRole.html" />
+    <Content Include="views\problemPatientLanguage.html" />
+    <Content Include="views\ProblemVitalRelation.html" />
+    <Content Include="views\ProblemWiseDiet.html" />
+    <Content Include="views\QuestionTypeMaster.html" />
+    <Content Include="views\rda.html" />
+    <Content Include="views\ReceptorColor.html" />
+    <Content Include="views\RecordCountReport.html" />
+    <Content Include="views\ResearchBasedAnalysis.html" />
+    <Content Include="views\ServiceProviderLocation.html" />
+    <Content Include="views\SignSymptomMaster.html" />
+    <Content Include="views\SiteMaster.html" />
+    <Content Include="views\StudyReference.html" />
+    <Content Include="views\StudyReferenceReport.html" />
+    <Content Include="views\SubjectMaster.html" />
+    <Content Include="views\SubjectTopicTime.html" />
+    <Content Include="views\SubTestMaster.html" />
+    <Content Include="views\SubTestSampleType.html" />
+    <Content Include="views\SurgeryContraIndication.html" />
+    <Content Include="views\SymptomBasedInvestigation.html" />
+    <Content Include="views\SynonymMaster.html" />
+    <Content Include="views\TestMaster.html" />
+    <Content Include="views\TopicMaster.html" />
+    <Content Include="views\ToxinRankingReport.html" />
+    <Content Include="views\TransmissionRouteMaster.html" />
+    <Content Include="views\UnitConversion.html" />
+    <Content Include="views\UnitFamilyAssign.html" />
+    <Content Include="views\UserLoginMaster.html" />
+    <Content Include="views\UserPerformanceReport.html" />
+    <Content Include="views\VideoMaster.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="{E12A5E0D-7FF5-4A93-9586-0A6D763EA539}\CodeAnalysisLog.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\cascade.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\flowChart.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\HeadMaster.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\Login.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\pathwayMain.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\PathwayMain1.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\WebService.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\markerDietActivator.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\ActivitiesApproval.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\diseaseNutrientCascadeReport.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\pageDescription.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\PatientInvestigationReport.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\signalingCascade.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\signalingCascade1.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\SVGWebService.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\userRegistration.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\writeUpMaster.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="App_Code\flowDiagram.cs">
+      <SubType>Component</SubType>
+    </Content>
+    <Compile Include="Matabolic\project\MasterPage2.master.cs">
+      <DependentUpon>MasterPage2.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Matabolic\project\MultiSelect.aspx.cs">
+      <DependentUpon>MultiSelect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Matabolic\project\testRegroupingLayout.aspx.cs">
+      <DependentUpon>testRegroupingLayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\datepicker\less\datepicker.less" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fileUpload\1565419673970_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565419944163_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420030002_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420036674_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420037826_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420038602_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420039267_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420040161_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420231682_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420358202_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565420492931_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565421248618_0Admit Card.pdf" />
+    <Content Include="fileUpload\1565421525370_Admit Card.pdf" />
+    <Content Include="fileUpload\1565421929626_Admit Card.pdf" />
+    <Content Include="fileUpload\1565422088010_Admit Card.pdf" />
+    <Content Include="fileUpload\1565422163194_Admit Card.pdf" />
+    <Content Include="fileUpload\1565422328777_Admit Card.pdf" />
+    <Content Include="fileUpload\1565424633225_Admit Card.pdf" />
+    <Content Include="fileUpload\1565436369101_Admit Card.pdf" />
+    <Content Include="fileUpload\1565436568966_Admit Card.pdf" />
+    <Content Include="fileUpload\1565436991437_Admit Card.pdf" />
+    <Content Include="fileUpload\1565439717068_Admit Card.pdf" />
+    <Content Include="fileUpload\1565440737763_Admit Card.pdf" />
+    <Content Include="fileUpload\1565440821434_Admit Card.pdf" />
+    <Content Include="fileUpload\1565440866643_Admit Card.pdf" />
+    <Content Include="fileUpload\1565441314300_Admit Card.pdf" />
+    <Content Include="fileUpload\1565441326178_Admit Card.pdf" />
+    <Content Include="fileUpload\1565441386058_Admit Card.pdf" />
+    <Content Include="Matabolic\.vs\config\applicationhost.config" />
+    <Content Include="Matabolic\.vs\MBF\v15\Server\sqlite3\db.lock" />
+    <Content Include="Matabolic\.vs\MBF\v15\Server\sqlite3\storage.ide" />
+    <Content Include="Matabolic\.vs\MBF\v15\Server\sqlite3\storage.ide-shm" />
+    <Content Include="Matabolic\.vs\MBF\v15\Server\sqlite3\storage.ide-wal" />
+    <Content Include="Matabolic\project\editor\css\font-files\arvo-bold-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\arvo-bolditalic-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\arvo-italic-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\Arvo-Regular-webfont.ttf" />
+    <Content Include="Matabolic\project\editor\css\font-files\arvo-regular-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\euphoriascript-regular-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood-webfont.eot" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood-webfont.ttf" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood_italic-webfont.eot" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood_italic-webfont.ttf" />
+    <Content Include="Matabolic\project\editor\css\font-files\fanwood_italic-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\Junction-webfont.eot" />
+    <Content Include="Matabolic\project\editor\css\font-files\Junction-webfont.ttf" />
+    <Content Include="Matabolic\project\editor\css\font-files\Junction-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\League_Gothic-webfont.eot" />
+    <Content Include="Matabolic\project\editor\css\font-files\League_Gothic-webfont.ttf" />
+    <Content Include="Matabolic\project\editor\css\font-files\League_Gothic-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\shadowsintolight-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\simonetta-black-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\simonetta-blackitalic-webfont.woff" />
+    <Content Include="Matabolic\project\editor\css\font-files\simonetta-italic-webfont.ttf" />
+    <Content Include="Matabolic\project\editor\css\font-files\simonetta-regular-webfont.woff" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\arrow.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\dialog_balloon.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\flowchart.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\game.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\math.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\music.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\nature.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\object.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\social.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\symbol.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\ui.json" />
+    <Content Include="Matabolic\project\editor\extensions\shapelib\weather.json" />
+    <Content Include="Matabolic\project\editor\images\svg_edit_icons.svgz" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\LICENSE" />
+    <Content Include="Matabolic\project\editor\lib\jgraduate\README" />
+    <Content Include="Matabolic\project\editor\lib\js-hotkeys\README.md" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Matabolic\project\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Matabolic\project\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="Matabolic\project\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="Matabolic\project\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="Matabolic\project\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-Black.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-Light.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="Matabolic\project\fonts\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Matabolic\project\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Matabolic\project\MasterPage.master" />
+    <Content Include="Matabolic\project\MasterPage2.master" />
+    <Content Include="Matabolic\project\build\pdf.js.map" />
+    <Content Include="Matabolic\project\build\pdf.worker.js.map" />
+    <Content Include="Matabolic\project\GraphPDF\10203.810000006342_Dyspnea.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\10204.945000004955_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\103563.7749999878_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\10364.100000006147_fina new Diabetes %2827-01-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\10441.619999999602_COVID-19 %2818-08-20%29pdf.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\104945.64999999966_Covid-19 crossstock .pdf" />
+    <Content Include="Matabolic\project\GraphPDF\10620.16000004951_HYPEREXCITABILITY.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\106987.60999995284_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\1104093.9350000117_AKI Proportional Final 21-8-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\114891.13999999972_LVH shivngai %2818-08-20 %29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\118475.15500000009_CORONA VIRUS DISEASE.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\1210686.389999988_Wound healing New 17-09-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\12206.900000035763_Pain.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\12260.924999980489_Steroid 24-10-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\123005.93500000105_CORONA VIRUS DISEASE.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\124522.9700000491_Sectioning 15-03-21.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\12505.339999999705_Hypertension Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\125159.47500000038_Corona final chart with all parts %2819-11-20%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\126676.13499995787_20-May-2021.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\12676.7300000065_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\1279895.3800000018_Covid-19 Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\13315.600000030827_Corona for tv 16.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\135462.59999999963_Hyperexcitaability.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\1407363.0399999674_Covid-19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\14084.340000001248_LVH 17-02-2021 - Copy.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\14321.750000002794_Covid new.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\14389.469999994617_Corona with Sections.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\14546.099999992293_LVH 10-11-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\14606.604999979027_HYPEREXCITABILITY.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\14892.17499998631_Pain Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\152484.85999999684_LVH Updated.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\15350.139999995008_final Antibiotics.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\15516.170000017155_COVID-19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\1578976.9249999663_COVID-19 %2821-august-2020%29 -.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\163981.09999999404_Hyperexcitability.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\164218.60500000184_LVH 01-02-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\16574_Hyperexcitability.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\16700.29499998782_LVH 20-02-2021cdr.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\16924.14999997709_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\1696471.499999985_LVH%2818-08-20 %29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\173891.26000000033_Diabetes Proportional.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\174330.7499999937_LVH Updated.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\17453.300000001036_Covid-19 crossstock .pdf" />
+    <Content Include="Matabolic\project\GraphPDF\18189.399999976158_LVH.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\182035.55500000948_final COVID-19 %2817-April-21%29 with Diet Highlight.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\182773.20999999938_LVH shivngai %2818-08-20 %29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\18836.69999998808_Pain.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\189082.69999999902_COVID-19 %2804-nov-2020%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\1896169.4449999996_COVID-19 %289-Sept-2020%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\19015.919999999824_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\191943.2000000379_COVID 19 Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\199237.51500004437_COVID 19 Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\20060.264999978244_LVH 17-02-2021 - Copy.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\200622.17000004603_COVID 19 Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\20357.53499999919_Thyroid hormone direct indirect.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\204450.26000001235_Covid-19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\211257.05000000016_corona virus disease.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\215263.47999996506_Diabetes Final 17-8-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\215839.68499989714_Left ventricular hypertrophy.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\217114.65499999758_corona virus disease.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\218463.24499999173_COVID 19 Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\218861.78500001552_CORONA VIRUS DISEASE.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\22412.250000001222_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\22470.025000016904_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\22952.19999999972_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\232463.3399999584_Diabetes Final 17-8-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\23579.15000000139_Pain Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\23653.85000000242_LVH.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\237493.37000000014_Diabetes Proportional.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\240489.86500001047_Covid 02-10-2020 for TV.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\24092.30999999272_Corona final chart with all parts %2812-12-20%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\244900.40000000596_LVH.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\24524.005000013858_Corona Cuts.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\25030.995000000985_Corona final chart with all parts %2819-11-20%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\25077.935000008438_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\25605.39999985695_Final Chart New 14-July-2021.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\2615838.615000015_Comorbidities.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\27285.954999999376_LVH 10-11-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\28884.0799999889_LVH 05-10-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\297550_Dyspnea.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\3119425.9049999528_Covid 10-01-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\33143.96500000112_Corona final chart with all parts %2819-11-20%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\336128.5950000165_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\33756.53500005137_Nutrients Co-factor in Neurotransmitter Synthesis %2817-02-21%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\34222.094999975525_Steroid 24-10-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\342568.4950000141_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\35772.79999999702_Myelination.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\366533.0200000008_Left ventricular hypertrophy.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\37674.6399999829_Covid-19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\38733.09999996424_LVH 21-09-2021 Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\3886724.5649999822_Combine Chart Covid 19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\3893841.1300000153_Combine Chart Covid 19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\3905887.394999969_Combine Chart Covid 19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\39086.1749999458_Corona final chart with all parts.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\399226.57499997877_HYPEREXCITABILITY.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\40091.940000187606_LVH 05-10-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\4046686.355000129_COVID-19 %289-Sept-2020%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\41100.89999999106_Myelination.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\41493.39999999938_Pain Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\41680.09499999971_CORONA VIRUS DISEASE.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\41750.80000001192_Hyperexcitability.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\43892.89000001736_COVID-19 %2821-august-2020%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\45325.65000000068_COVID-19 %2818-08-20%29pdf.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\45645.47500000117_Pain Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\477856.27999994904_Sectioning 15-03-21.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\48767.479999994976_Corona 27-10-20.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\51003.435000020545_Combine Chart Covid 19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\5137959.215000003_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\51709.79999999702_Covid-19 29 Sept 2020 Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\527397.8999999911_LVH.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\54669.34500000025_Covid-19 crossstock .pdf" />
+    <Content Include="Matabolic\project\GraphPDF\564752.0599999989_final COVID-19 %2817-April-21%29 with Diet Highlight.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\56613.910000014585_Combine Chart Covid 19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\57011.02000003448_Left Ventricular Hypertrophy.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\582230.0050000194_LVH 25-9-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\58526.9100000005_Wound healing.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\59317.09999999404_Cardiovascular Disease.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\60038.29500000029_NAFLD Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\6289068.900000006_LVH.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\661402.7299999725_Colorectal cancer direct.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\66277.1800000337_CORONA VIRUS DISEASE.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\66325.0700000026_CORONA VIRUS DISEASE.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\66753.54499999958_Thyroid hormone direct indirect.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\68037.98999999708_LVH 20-02-2021cdr [1].pdf" />
+    <Content Include="Matabolic\project\GraphPDF\68218.349999981_Covid-19 Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\682769.7000000008_Corona redo %2809-10-20%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\69684.93000001763_COVID-19 %2821-august-2020%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\70957.665000009_COVID-19 %2821-august-2020%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\71829.19999998808_Diabetes.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\73837.58000000125_Pain Final.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\74718.7949999934_LVH Updated.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\787989.9749999995_Hypertension Final %281%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\7996.520000000601_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\80612.90000000736_Corona for tv 16.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\80626.37500000006_Corona final chart with all parts.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\8085.344999999506_final COVID-19 %2817-April-21%29 with Diet Highlight.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\82341_Covid 19.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\8249030.209999997_LVH 05-10-2020.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\82597.35499999988_Hypertension Final %281%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\8334.654999998747_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\8879.835000028834_HYPEREXCITABILITY.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\911758.6499999998_COVID-19 %2819-01-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\93532.90000000596_Hyperexcitability Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\9532.854999997653_Final Chart.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\953325.2000000477_Joint Pain %2808-10-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\9565.055000000939_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\96653.23999999964_LVH shivngai %2818-08-20 %29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\9846.679999998742_Diabetes %2804-02-2021%29.pdf" />
+    <Content Include="Matabolic\project\GraphPDF\9966.5_Borderline Personality Disorder.pdf" />
+    <Content Include="Matabolic\project\web\cmaps\78-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\78-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\78-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\78-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\78-RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\78-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\78ms-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\78ms-RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\83pv-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\90ms-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\90ms-RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\90msp-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\90msp-RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\90pv-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\90pv-RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Add-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Add-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Add-RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Add-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-0.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-1.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-3.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-4.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-5.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-6.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-CNS1-UCS2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-GB1-0.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-GB1-1.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-GB1-2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-GB1-3.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-GB1-4.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-GB1-5.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-GB1-UCS2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-0.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-1.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-3.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-4.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-5.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-6.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Japan1-UCS2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Korea1-0.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Korea1-1.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Korea1-2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Adobe-Korea1-UCS2.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\B5pc-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\B5pc-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\CNS-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\CNS-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\CNS1-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\CNS1-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\CNS2-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\CNS2-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\ETen-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\ETen-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\ETenms-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\ETenms-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\ETHK-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\ETHK-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Ext-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Ext-RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Ext-RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Ext-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GB-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GB-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GB-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GB-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBK-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBK-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBK2K-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBK2K-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBKp-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBKp-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBpc-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBpc-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBT-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBT-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBT-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBT-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBTpc-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\GBTpc-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Hankaku.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Hiragana.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKdla-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKdla-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKdlb-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKdlb-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKgccs-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKgccs-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKm314-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKm314-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKm471-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKm471-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKscs-B5-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\HKscs-B5-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Katakana.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSC-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSC-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSC-Johab-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSC-Johab-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSCms-UHC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSCms-UHC-HW-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSCms-UHC-HW-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSCms-UHC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSCpc-EUC-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\KSCpc-EUC-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\LICENSE" />
+    <Content Include="Matabolic\project\web\cmaps\NWP-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\NWP-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\RKSJ-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\RKSJ-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\Roman.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UCS2-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UCS2-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UTF16-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UTF16-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UTF32-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UTF32-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UTF8-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniCNS-UTF8-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UCS2-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UCS2-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UTF16-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UTF16-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UTF32-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UTF32-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UTF8-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniGB-UTF8-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UCS2-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UCS2-HW-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UCS2-HW-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UCS2-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UTF16-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UTF16-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UTF32-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UTF32-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UTF8-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS-UTF8-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS2004-UTF16-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS2004-UTF16-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS2004-UTF32-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS2004-UTF32-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS2004-UTF8-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJIS2004-UTF8-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJISPro-UCS2-HW-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJISPro-UCS2-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJISPro-UTF8-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJISX0213-UTF32-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJISX0213-UTF32-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJISX02132004-UTF32-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniJISX02132004-UTF32-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UCS2-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UCS2-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UTF16-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UTF16-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UTF32-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UTF32-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UTF8-H.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\UniKS-UTF8-V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\V.bcmap" />
+    <Content Include="Matabolic\project\web\cmaps\WP-Symbol.bcmap" />
+    <Content Include="Matabolic\project\web\compressed.tracemonkey-pldi-09.pdf" />
+    <Content Include="Matabolic\project\web\locale\ach\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\af\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\an\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ar\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ast\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\az\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\be\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\bg\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\bn\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\bo\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\brx\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\br\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\bs\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\cak\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ca\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\cs\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\cy\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\da\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\de\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\dsb\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\el\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\en-CA\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\en-GB\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\en-US\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\eo\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\es-AR\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\es-CL\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\es-ES\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\es-MX\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\et\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\eu\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\fa\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ff\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\fi\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\fr\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\fy-NL\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ga-IE\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\gd\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\gl\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\gn\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\gu-IN\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\he\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\hi-IN\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\hr\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\hsb\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\hu\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\hy-AM\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ia\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\id\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\is\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\it\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ja\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\kab\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ka\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\kk\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\km\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\kn\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ko\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\lij\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\locale.properties" />
+    <Content Include="Matabolic\project\web\locale\lo\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ltg\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\lt\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\lv\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\mk\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\mr\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ms\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\my\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\nb-NO\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ne-NP\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\nl\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\nn-NO\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\oc\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\pa-IN\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\pl\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\pt-BR\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\pt-PT\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\rm\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ro\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ru\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\scn\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\si\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\sk\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\sl\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\son\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\sq\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\sr\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\sv-SE\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ta\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\te\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\th\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\tl\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\trs\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\tr\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\uk\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\ur\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\uz\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\vi\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\wo\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\xh\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\zh-CN\viewer.properties" />
+    <Content Include="Matabolic\project\web\locale\zh-TW\viewer.properties" />
+    <Content Include="Matabolic\project\web\viewer.js.map" />
+    <Content Include="Matabolic\project\FileUploadHandler.ashx" />
+    <Content Include="bin\Knowmed.dll.config" />
+    <Content Include="bin\normidna.nlp" />
+    <Content Include="bin\normnfc.nlp" />
+    <Content Include="bin\normnfd.nlp" />
+    <Content Include="bin\normnfkc.nlp" />
+    <Content Include="bin\normnfkd.nlp" />
+    <Content Include="FileUploadHandler.ashx" />
+    <Content Include="Handler.ashx" />
+    <None Include="packages.config" />
+    <Content Include="vwd.webinfo" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="{E12A5E0D-7FF5-4A93-9586-0A6D763EA539}\WebProject.lastcodeanalysissucceeded" />
+    <Content Include="Web_.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63642</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63642/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

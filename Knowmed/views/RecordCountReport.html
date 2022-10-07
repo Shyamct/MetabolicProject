@@ -1,0 +1,128 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>User Performance Report</h2>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    All Records
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <input jqdatepicker2 type="text" class="form-control" ng-model="date" placeholder="Select Date" ng-change="getRecordCountList()" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRecordCount" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Menu</th>
+                                            <th>Tables</th>
+                                            <th>Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in recordCountList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td><a href="" ng-click="showDateWise(list.tableName)">{{list.menuName}}</a></td>
+                                            <td>{{list.tableName}}</td>
+                                            <td>{{list.recordCount}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Date Wise Records
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDetail" class="table table-bordered">
+                                    <tr>
+                                        <th>Entry Date</th>
+                                        <th>Count</th>
+                                    </tr>
+                                    <tr ng-repeat="list in tableReportDateWiseList | filter : search1" ng-class-odd="'striped'">
+                                        <td><a href="" ng-click="showUserWise(list.entryDate)">{{list.entryDate}}</a></td>
+                                        <td>{{list.totalCount}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    User Wise Records
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search2">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDetail" class="table table-bordered">
+                                    <tr>
+                                        <th>User Name</th>
+                                        <th>Department</th>
+                                        <th>Count</th>
+                                    </tr>
+                                    <tr ng-repeat="list in userTaskTableReportList | filter : search2" ng-class-odd="'striped'">
+                                        <td>{{list.userName}}</td>
+                                        <td>{{list.departmentName}}</td>
+                                        <td>{{list.userEntryCount}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,473 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Waves</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+    .img-waves img {
+        width: 100%;
+    }
+
+    .table-wave-section {
+        margin-top: 10px;
+        overflow-x: auto;
+    }
+
+    .table-wave {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .table-wave th {
+            /* padding: 2px;   */
+            font-size: 12px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.226);
+        }
+
+        .table-wave td {
+            /* padding: 2px;   */
+            font-size: 12px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.226);
+        }
+
+    .bg-green {
+        background: green;
+        color: white;
+    }
+
+    .bg-red {
+        background: red;
+        color: white;
+    }
+
+    .entire-br-none {
+        border: 1px double transparent;
+    }
+
+    .main-tr:hover {
+        background: #4caf5030 !important;
+    }
+
+    .main-tr:nth-child(odd) {
+        background: #f2f2f2;
+    }
+
+    .bg-pr {
+        background: #bc3305;
+        color: white
+    }
+
+    .bg-qt {
+        background: #1c4695;
+        color: white;
+    }
+
+    .bg-date {
+        background: #c1c1c1;
+    }
+
+    .fix-th th {
+        position: sticky;
+        top: -2px;
+    }
+</style>
+
+<body>
+
+
+    <div class="container">
+        <div class="img-waves"><img src="waves.jpg" /></div>
+        <hr>
+        <div class="table-wave-section" style="overflow-y: auto;height: 54vh;">
+            <table class="table-wave">
+                <tr class="fix-th">
+                    <th class="bg-date"></th>
+                    <th class="bg-pr">PR Interval</th>
+                    <th class="bg-qt">QT Interval</th>
+                </tr>
+                <tr class="main-tr">
+                    <td>11-10-2020</td><!---main -1-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>P</th>
+                                <th>PQ</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td class="bg-red">3 S</td>
+                                <td>1 M</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td class="bg-green">10</td>
+                                <td>20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -2-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                                <th>RS</th>
+                                <th>S</th>
+                                <th>ST</th>
+                                <th>T</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td>3 S</td>
+                                <td class="bg-green">1 M</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td>10</td>
+                                <td class="bg-red">20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -3-->
+
+                </tr><!----main row-->
+                <tr class="main-tr">
+                    <td>12-10-2020</td><!---main -1-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>P</th>
+                                <th>PQ</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td class="bg-red">3 S</td>
+                                <td>1 M</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td class="bg-green">10</td>
+                                <td>20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -2-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                                <th>RS</th>
+                                <th>S</th>
+                                <th>ST</th>
+                                <th>T</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td>3 S</td>
+                                <td class="bg-green">1 M</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td>10</td>
+                                <td class="bg-red">20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -3-->
+
+                </tr><!----main row-->
+                <tr class="main-tr">
+                    <td>13-10-2020</td><!---main -1-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>P</th>
+                                <th>PQ</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td class="bg-red">3 S</td>
+                                <td>1 M</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td class="bg-green">10</td>
+                                <td>20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -2-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                                <th>RS</th>
+                                <th>S</th>
+                                <th>ST</th>
+                                <th>T</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td>3 S</td>
+                                <td class="bg-green">1 M</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td>10</td>
+                                <td class="bg-red">20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -3-->
+
+                </tr><!----main row-->
+                <tr class="main-tr">
+                    <td>14-10-2020</td><!---main -1-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>P</th>
+                                <th>PQ</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td class="bg-red">3 S</td>
+                                <td>1 M</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td class="bg-green">10</td>
+                                <td>20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -2-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                                <th>RS</th>
+                                <th>S</th>
+                                <th>ST</th>
+                                <th>T</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td>3 S</td>
+                                <td class="bg-green">1 M</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td>10</td>
+                                <td class="bg-red">20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -3-->
+
+                </tr><!----main row-->
+                <tr class="main-tr">
+                    <td>15-10-2020</td><!---main -1-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>P</th>
+                                <th>PQ</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td class="bg-red">3 S</td>
+                                <td>1 M</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td class="bg-green">10</td>
+                                <td>20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -2-->
+                    <td>
+                        <table class="table-wave entire-br-none">
+                            <tr>
+                                <th>-</th>
+                                <th>Q</th>
+                                <th>QR</th>
+                                <th>R</th>
+                                <th>RS</th>
+                                <th>S</th>
+                                <th>ST</th>
+                                <th>T</th>
+                            </tr>
+                            <tr>
+                                <td><b>Duration</b></td>
+                                <td>10 M</td>
+                                <td>5 M</td>
+                                <td>3 S</td>
+                                <td class="bg-green">1 M</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                                <td>1 H</td>
+                            </tr>
+                            <tr>
+                                <td><b>Amp</b></td>
+                                <td>10</td>
+                                <td class="bg-red">20</td>
+                                <td>30</td>
+                                <td>40</td>
+                                <td>50</td>
+                                <td>40</td>
+                                <td>50</td>
+                            </tr>
+                        </table>
+                    </td><!---main -3-->
+
+                </tr><!----main row-->
+
+
+            </table>
+        </div>
+
+        <hr>
+        <div class="table-wave-section" id="ecgDivContainer" style="overflow-y: auto;height: 54vh;">
+        </div>
+
+    </div>
+
+
+
+    <script>
+        $(documnet).ready(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "../WebService/SVGWebService.asmx/getEcgDataForChart",
+                contentType: 'application/json',
+                dataType: 'json',
+                data: "{'markerName': '" + markerName + "','empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "'}",
+                statusCode: {
+                    401: function (xhr) {
+                        window.location.href = "../../index.html";
+                    }
+                },
+                success: function (data) {
+                    var result = JSON.parse(data.d).responseValue;
+
+                    $('#ecgDivContainer').html(result.Table.ecgTable);
+                },
+                error: function (error) {
+
+                }
+            });
+           
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

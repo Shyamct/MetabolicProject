@@ -1,0 +1,109 @@
+﻿
+
+<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Bacteria Report</h2>
+    <div class="row" style="display:none">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1 nopadding">Bacteria Name</div>
+                                    <div class="col-md-9 nopadding">
+                                        <select select2 class="form-control" id="ddlBacteria" ng-model="ddlBacteria" ng-init="ddlBacteria=-1" required="" ng-change="GetBacteriaReportList()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in bacteriaList" value="{{list.bacteriaID}}">
+                                                {{list.agentFactor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 nopadding"><strong>Total Bacteria :&nbsp;&nbsp; {{totaldBacteria}}</strong></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Bacteria Report
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-link" ng-click="exportData()">
+                                <span class="glyphicon glyphicon-share"></span>
+                                Export to Excel
+                            </button>
+                            <input type="button" class="btn btn-success" value="Print" ng-click="printDiv('divPrint');" />
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <style>
+                                    #divPrint {
+                                        font-family: sans-serif;
+                                        font-size: 12px;
+                                    }
+                                </style>
+                                <div id="divPrint">
+                                    <table id="tableMedicineReport" class="table table-bordered" style="table-layout:fixed; width:100%;border-style:solid;border-color:black;border-width:1px;" rules="all">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Bacteria Name</th>
+                                            <th>Name of Antibiotics</th>
+                                            <th>Bacteria Toxin</th>
+                                            <th>Toxin Docking Results</th>
+                                            <th>Virulence & Adhesion Protein</th>
+                                            <th>Site</th>
+                                            <th>Type of Study</th>
+                                            <th>Measurement</th>
+                                            <th>Sign and Symptoms</th>
+                                        </tr>
+
+                                        <tr ng-repeat="list in bacteriaReportList | filter : search">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{list.bacteria}}</td>
+                                            <td><ul><li ng-repeat="listab in list.antibiotics">{{listab.medicineName}}</li></ul> </td>
+                                            <td><ul><li ng-repeat="listtxn in list.toxin">{{listtxn.nutrientName}}</li></ul></td>
+                                            <td><ul>
+                                                <li ng-repeat="listtxnd in list.toxinDockingResult">
+                                                    <b> {{listtxnd.nutrientName}} Inhibitor</b>
+                                                    <ul>
+                                                        <li ng-repeat="listScore in list.toxinDockingResult[0].rankScore">
+                                                            {{listScore.nutrientName}}-{{listScore.dockingScore}}
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                </ul>
+                                            </td>
+                                            <td><ul><li ng-repeat="listv in list.virulence">{{listv.nutrientName}}</li></ul></td>
+                                            <td><ul><li ng-repeat="list3 in list.site">{{list3.regionName}}</li></ul></td>
+                                            <td>{{list.typeOfStudy}}</td>
+                                            <td>{{list.measurement}}</td>
+                                            <td><ul><li ng-repeat="listsas in list.signAndSymtom">{{listsas.problemName}}</li></ul></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

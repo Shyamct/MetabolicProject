@@ -1,0 +1,237 @@
+﻿
+<div class="container-fluid">
+    <h2>Nutrient Food Side Effect</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Nutrient Food Side Effect
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlCompoundType" ng-model="ddlCompoundType" ng-init="ddlCompoundType=''" required="" ng-change="GetCompoundList();">
+                                            <option value="">--Select Compound Type--</option>
+                                            <option value="N"> Nutient </option>
+                                            <option value="F"> Food </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlCompound" ng-model="ddlCompound" ng-init="ddlCompound=''" required="">
+                                            <option value="">--Select Compound--</option>
+                                            <option ng-repeat="list in compoundList" value="{{list.id}}" ng-selected="{{list.id==ddlCompound}}">
+                                                {{list.compoundName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlStatus" ng-model="ddlStatus" ng-init="ddlStatus=''" required="">
+                                            <option value="">--Select Effect Type--</option>
+                                            <option ng-repeat="list in statusList" value="{{list.id}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlSideEffectProblem" ng-model="ddlSideEffectProblem" ng-init="ddlSideEffectProblem=''" required="" ng-change="GetAttributeList();">
+                                            <option value="">--Select Side Effect--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlAttribute" ng-model="ddlAttribute" ng-init="ddlAttribute=''" required="" ng-change="GetAttributeValueList()">
+                                            <option value="">--Select Attribute--</option>
+                                            <option ng-repeat="list in attributeList" value="{{list.id}}" ng-selected="{{list.id==ddlAttribute}}">
+                                                {{list.attributeName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-6 noPadding">
+                                            IsLifeThreatening: &nbsp;<input type="checkbox" ng-checked="chkIsLifeThreatening" ng-model="chkIsLifeThreatening" value="chkIsLifeThreatening" />
+                                        </div>
+                                        <div class="col-md-6 noPadding" style="padding-left:1rem;">
+                                            IsWatchable: &nbsp;<input type="checkbox" ng-checked="chkIsWatchable" ng-model="chkIsWatchable" value="chkIsWatchable" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2" ng-repeat="list in attributeValueList">
+                                        <label for="rdAttribute">
+                                            <input type="radio" ng-model="attributeValue" value="{{list.id}}" name="rdAttribute" />
+                                            {{list.attributeValue}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" ng-model="txtRemark" placeholder="Remark"></textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" ng-model="txtReference" placeholder="Reference"></textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" ng-model="txtURL" placeholder="URL"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-xs btn-info pull-right" ng-click="addNutrietFoodSideEffect()" ng-disabled="isDisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh" ng-if="addedNutrietFoodSideEffectList.length>0">
+                                <div class="col-md-12">
+                                    <table id="tableNutrietFoodSideEffect" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Compound Type</th>
+                                                <th>Compound</th>
+                                                <th>Effect Type</th>
+                                                <th>Side Effect</th>
+                                                <th>Attribute Type</th>
+                                                <th>Attribute Value</th>
+                                                <th>Watchable</th>
+                                                <th>Life Threatening</th>
+                                                <th>Remark</th>
+                                                <th>Reference</th>
+                                                <th>URL</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in addedNutrietFoodSideEffectList track by $index" ng-class-odd="'striped'">
+                                                <td>{{list.compoundType}}</td>
+                                                <td>{{list.compound}}</td>
+                                                <td>{{list.sideEffectType}}</td>
+                                                <td>{{list.effect}}</td>
+                                                <td>{{list.attributeType}}</td>
+                                                <td>{{list.attributeValueName}}</td>
+                                                <td>{{list.isWatchableValue}}</td>
+                                                <td>{{list.isLifeThreateningValue}}</td>
+                                                <td>{{list.remark}}</td>
+                                                <td>{{list.reference}}</td>
+                                                <td>{{list.url}}</td>
+                                                <td><a href="" ng-click="deleteNutrietFoodSideEffectList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Reference</legend>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlBook" ng-init="ddlBook=0" required="">
+                                                <option value="0">--Select Book--</option>
+                                                <option ng-repeat="list in bookList" value="{{list.id}}">
+                                                    {{list.bookName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4"><input type="text" class="form-control" placeholder="Page No." ng-model="txtPageNo" /></div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" placeholder="Edition" ng-model="txtEdition" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="SaveNutrietFoodSideEffect();" />   
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="button" class="btn btn-warning" value="Clear" ng-click="clr();" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Food Side Effect List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Action</th>
+                                            <th>Compound Type</th>
+                                            <th>Compound</th>
+                                            <th>Effect Type</th>
+                                            <th>Effect</th>
+                                            <th>Attribute Type</th>
+                                            <th>Attribute Value</th>
+                                            <th>Watchable</th>
+                                            <th>LifeThreatening</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                            <th>Book Reference</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrietFoodSideEffectList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>
+                                                <a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                                <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td>{{list.compoundType}}</td>
+                                            <td>{{list.compound}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.attributeName}}</td>
+                                            <td>{{list.attributeValue}}</td>
+                                            <td>{{list.isWatchableValue}}</td>
+                                            <td>{{list.isLifeThreateningValue}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                            <td>{{list.bookReference}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

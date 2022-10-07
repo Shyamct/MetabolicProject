@@ -1,0 +1,96 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>User Performance Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    All Records
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-1"> <label>User Details </label></div>
+                                            <div class="col-md-2">
+                                                <select select2 class="form-control" ng-model="ddlUser" ng-init="ddlUser=-1">
+                                                    <option value="-1">--Select--</option>
+                                                    <option ng-repeat="list in userList" value="{{list.id}}">
+                                                        {{list.userName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>From Date</label>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input jqdatepicker2 type="text" class="form-control" ng-model="fromDate" placeholder="From Date" />
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label>To Date</label>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input jqdatepicker2 type="text" class="form-control" ng-model="toDate" placeholder="To Date" />
+                                            </div>
+
+                                            <!--<div class="col-md-10 col-sm-10 ">
+        <tags-input ng-model="userName" replace-spaces-with-dashes="false" display-property="userName" on-tag-added="tagAdded($tag)" on-tag-removed="tagRemoved($tag)" placeholder="User Details">
+            <auto-complete source="GetUserSearch($query)" min-length="0" load-on-focus="true"></auto-complete>
+        </tags-input>
+    </div>-->
+
+                                            <div class="col-md-1">
+                                                <input type="button" class="btn btn-success" value="Show" ng-click="UserRecordCountDetailList();" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRecordCount" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Page Name </th>
+                                            <th>Activity Type</th>
+                                            <th>Entry Date</th>
+                                            <th>Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in userRecordReportList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{list.fromPage}}</td>
+                                            <td>{{list.activityType}}</td>
+                                            <td>{{list.entryTime}}</td>
+                                            <td>{{list.totalCount}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+       
+       
+    </div>
+</div>

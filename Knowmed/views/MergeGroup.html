@@ -1,0 +1,87 @@
+﻿
+<div class="container-fluid">
+    <h2>Merge Group</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Merge Group
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" id="ddlKeepGroup" ng-model="ddlKeepGroup" ng-init="ddlKeepGroup=-1" required="">
+                                            <option value="-1">--Select Keep Group--</option>
+                                            <option ng-repeat="list in MedicineMasterList" value="{{list.id}}">
+                                                {{list.groupName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" id="ddlRemoveGroup" ng-model="ddlRemoveGroup" ng-init="ddlRemoveGroup=-1" required="">
+                                            <option value="-1">--Select Remove Group--</option>
+                                            <option ng-repeat="list in MedicineMasterList" value="{{list.id}}">
+                                                {{list.groupName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Merge" ng-click="updateGroup();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Merge Group List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Keep Group Name</th>
+                                            <th>Remove Group Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in MergeGroupList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.keepGroupName}}</td>
+                                            <td>{{list.removeGroupName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

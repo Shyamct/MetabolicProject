@@ -1,0 +1,305 @@
+﻿
+<div class="container-fluid">
+    <h2>Add Question Master</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Question Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Exam Type</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlExam" ng-init="ddlExam=0" required="">
+                                                <option value="0">--Select Exam Type--</option>
+                                                <option ng-repeat="list in examTypeList" value="{{list.examTypeId}}">
+                                                    {{list.examType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Subject Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlSubject" ng-init="ddlSubject=0" required="">
+                                                <option value="0">--Select Subject--</option>
+                                                <option ng-repeat="list in subjectList" value="{{list.subjectId}}">
+                                                    {{list.subjectName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Topic Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlTopic" ng-init="ddlTopic=0" required="">
+                                                <option value="0">--Select Topic--</option>
+                                                <option ng-repeat="list in topicList" value="{{list.topicId}}">
+                                                    {{list.topicName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Level Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlLevel" ng-init="ddlLevel=0" required="">
+                                                <option value="0">--Select Level--</option>
+                                                <option ng-repeat="list in levelList" value="{{list.levelId}}">
+                                                    {{list.levelName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Question Type</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlQuestion" ng-init="ddlQuestion=0" required="" ng-change="createControl()">
+                                                <option value="0">--Select Question Type--</option>
+                                                <option ng-repeat="list in questionTypeList" value="{{list.questionTypeId}}">
+                                                    {{list.questionType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Question Description</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <summernote ng-model="txtDescription" placeholder="Question Description" height="150"></summernote>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Question</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <textarea type="text" class="form-control" ng-model="txtQuestion" placeholder="Question Details" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Image</label>
+                                        </div>
+                                        <div class="col-md-10" style="height: 37px">
+                                            <input type="file" id="fileTopic" name="fileTopic" ng-files="uploadImage($files)">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>No Of Option</label>
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlType" ng-model="ddlType" ng-init="ddlType=4" ng-change="createControl()">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--text Option-->
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-3" ng-repeat="list in textList">
+                                            <label>Option {{list.id+1}}</label>
+                                            <summernote type="text" class="form-control" id="{{list.textBox}}" placeholder="Options" ng-if="ddlQuestion === '1' || ddlQuestion === '3' || ddlQuestion === '4' || ddlQuestion === '5'" /><br />
+
+                                            <img height="200px" width="200px" id="{{list.imageViewer}}" ng-if="ddlQuestion === '2' || ddlQuestion === '3'" /><br />
+                                            <input type="file" id="{{list.fileUpload}}" ng-files="uploadAndShowImage($files,$index)" ng-if="ddlQuestion === '2' || ddlQuestion === '3' || ddlQuestion === '4' || ddlQuestion === '5'">
+                                            <audio controls type="audio/ogg" style="padding-top:10px" id="{{list.audio}}" ng-if="ddlQuestion === '4'" />
+                                            <video width="410" height="250" controls type="video/mp4" style="padding-top:10px" id="{{list.video}}" ng-if="ddlQuestion === '5'" />
+                                            <input type="checkbox" id="{{list.checkBox}}" ng-click="changeRadio($index)" />&nbsp;&nbsp;&nbsp;&nbsp; Is Correct
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" margin-left style="padding-top:10px">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="save();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Question Master List
+                    
+                </div>
+                <div class=" form-row col-md-12 col-sm-12">
+                    <div class="input-group" style=" padding-top: 10px; padding-left: 80%">
+                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="overflow-x:auto;height:21vh;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>SR NO.</th>
+                                            <th>Exam Type</th>
+                                            <th>Subject Name</th>
+                                            <th>Topic Name</th>
+                                            <th>Level Name</th>
+                                            <th>Question Type</th>
+                                            <th>Description</th>
+                                            <th>Question</th>
+                                            <th>Image</th>
+                                            <th>No Of Option</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in tableList| filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{list.examType}}</td>
+                                            <td>{{list.subjectName}}</td>
+                                            <td>{{list.topicName}}</td>
+                                            <td>{{list.levelName}}</td>
+                                            <td>{{list.questionType}}</td>
+                                            <td>{{list.description}}</td>
+                                            <td>{{list.question}}</td>
+                                            <td><img src="{{list.questionImagePath}}" height="100px" width="100px" /> </td>
+                                            <td ng-if="list.questionType === 'Image'">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr ng-repeat="lst in list.options">
+                                                            <td>
+                                                                {{$index + 1}}
+                                                            </td>
+                                                            <td><img src="{{lst.optionFilePath}}" height="100px" width="100px" /></td>
+                                                            <td>{{lst.optionName}}</td>
+                                                            <td>{{lst.isCorrect}}</td>
+                                                            <!-- <td><a href="" ng-click="DeleteOption(lst.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td ng-if="list.questionType === 'Text'">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr ng-repeat="lst in list.options">
+                                                            <td>
+                                                                {{$index + 1}}
+                                                            </td>
+                                                            <td>{{lst.optionName}}</td>
+                                                            <td>{{lst.isCorrect}}</td>
+                                                            <!-- <td><a href="" ng-click="DeleteOption(lst.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td ng-if="list.questionType != 'Text' && list.questionType != 'Image'">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr ng-repeat="lst in list.options">
+                                                            <td>
+                                                                {{$index + 1}}
+                                                            </td>
+                                                            <td>{{lst.optionName}}</td>
+                                                            <td>{{lst.isCorrect}}</td>
+                                                            <!-- <td><a href="" ng-click="DeleteOption(lst.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+
+                                            <td ng-if="list.questionType === 'Text' && list.questionType === 'Image'">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr ng-repeat="lst in list.options">
+                                                            <td>
+                                                                {{$index + 1}}
+                                                            </td>
+                                                            <td>{{lst.optionName}}</td>
+                                                            <td>{{lst.isCorrect}}</td>
+                                                            <!-- <td><a href="" ng-click="DeleteOption(lst.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td ng-if="list.questionType === 'Audio'">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr ng-repeat="lst in list.options">
+                                                            <td>
+                                                                {{$index + 1}}
+                                                            </td>
+                                                            <td>{{lst.optionName}}</td>
+                                                            <td>{{lst.isCorrect}}</td>
+                                                            <!-- <td><a href="" ng-click="DeleteOption(lst.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td ng-if="list.questionType === 'Video'">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr ng-repeat="lst in list.options">
+                                                            <td>
+                                                                {{$index + 1}}
+                                                            </td>
+                                                            <td>{{lst.optionName}}</td>
+                                                            <td>{{lst.isCorrect}}</td>
+                                                            <!-- <td><a href="" ng-click="DeleteOption(lst.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>-->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <!--<a href="" ng-click="EditQuestionMaster(list.id)" title="Edit"><i class="fa fa-edit"></i></a>|-->
+                                                <a href="" ng-click="deleteAddQuestionMaster(list.id)" title="delete">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

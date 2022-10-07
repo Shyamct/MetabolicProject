@@ -1,0 +1,112 @@
+﻿
+<div class="container-fluid">
+
+    <h2>Manage Rank Details</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Manage Rank
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Pathway</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlPathway" ng-init="ddlPathway=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="pathway in PathwayList" value="{{pathway.pathwayID}}" ng-selected="{{pathwayID==ddlPathway}}">
+                                                {{pathway.pathwayName}}
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Rank</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlRank" ng-init="ddlRank=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="rank in RankList" value="{{rank.rankDetail}}">
+                                                {{rank.rankDetail}}
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Title</div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" ng-model="txtTitle" placeholder="Title" />  <!--pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"-->
+                                    </div>
+                                    <div class="col-md-1">Color Code</div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" ng-model="txtColorCode" placeholder="Color Code" />  <!--pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"-->
+                                    </div>
+                                </div>
+                                </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveRankDetail()" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+</form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Rank Detail List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                   
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableColorCode" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Pathway</th>
+                                            <th>Rank</th>
+                                            <th>Title</th>
+                                            <th>Color</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="rank in rankDetailList | filter : search" ng-class-odd="'striped'">
+
+                                            <td class="sm">{{rank.pathwayName}}</td>
+                                            <td class="sm">{{rank.rankDetail}}</td>
+                                            <td class="sm">{{rank.title}}</td>
+                                            <td><span class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:{{rank.colorCode}}"></span></td>
+                                            <td><a href="" ng-click="edit(rank.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(rank.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

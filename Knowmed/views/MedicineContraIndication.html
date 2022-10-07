@@ -1,0 +1,182 @@
+﻿
+<div class="container-fluid">
+
+    <h2>Add Medicine ContraIndication</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine ContraIndication
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Medicine</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlMedicine" ng-init="ddlMedicine=0" ng-required="" ng-change="getMedicineContraIndication();">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.medicineID}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">ContraIndication Type</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlIndicationType" ng-init="ddlIndicationType=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in contraIindicationTypeList" value="{{list.indicationTypeID}}">
+                                                {{list.indicationName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">ContraIndication</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlContraIndication" ng-init="ddlContraIndication=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.problemID}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">ContraIndication Remark</div>
+                                    <div class="col-md-4">
+                                        <textarea type="text" class="form-control" ng-model="txtindication" placeholder="ContraIndication Remark" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Affected Organ</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlAffectedOrgan" ng-init="ddlAffectedOrgan=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in bodyOrganRegionList" value="{{list.regionID}}">
+                                                {{list.regionName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        Is absolute: &nbsp;<input type="checkbox" ng-model="chkIsAbsolute" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        Is watchable: &nbsp;<input type="checkbox" ng-checked="chkIsWatchable" ng-model="chkIsWatchable" value="1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Caution</div>
+                                    <div class="col-md-10">
+                                        <textarea type="text" class="form-control" ng-model="txtCaution" placeholder="Caution" rows="3" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Remark</div>
+                                    <div class="col-md-10">
+                                        <textarea type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" rows="3" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Reference</legend>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddlBook" ng-init="ddlBook=0" required="">
+                                                <option value="0">--Select Book--</option>
+                                                <option ng-repeat="list in bookList" value="{{list.bookID}}">
+                                                    {{list.bookName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Page No." ng-model="txtPageNo" /></div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Edition" ng-model="txtEdition" /></div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Reference" ng-model="txtReference" /></div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineContraIndication();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine ContraIndication List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableFood" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Action</th>
+                                            <th>Medicine</th>
+                                            <th>ContraIndication Type</th>
+                                            <th>ContraIndication</th>
+                                            <th>ContraIndication Remark</th>
+                                            <th>Absolute</th>
+                                            <th>Watchable</th>
+                                            <th>Affected Organ</th>
+                                            <th>Caution</th>
+                                            <th>Book</th>
+                                            <th>PageNo</th>
+                                            <th>Edition</th>
+                                            <th>Reference</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in medicineContraIndicationList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.indicationType}}</td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.contraIndication}}</td>
+                                            <td>{{list.isAbsolute}}</td>
+                                            <td>{{list.isWatchable}}</td>
+                                            <td>{{list.regionName}}</td>
+                                            <td>{{list.caution}}</td>
+                                            <td>{{list.bookName}}</td>
+                                            <td>{{list.pageNo}}</td>
+                                            <td>{{list.edition}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.remark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

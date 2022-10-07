@@ -1,0 +1,47 @@
+﻿<!--Header Start-->
+
+<div class="container-fluid" style="background-color:#4fb4cc" ng-controller="headerCtrl">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!--<div class="container-fluid">-->
+        <div class="navbar-header">
+            <div class="dashboardHead" style="margin-top: 0.85rem">
+                <div ng-click="showDashboard()" style="cursor:pointer">
+                    <div class="col-md-2 col-sm-2 noPadding">
+                        <img src="../assets/images/eraLogo.png" style="width: 100%;margin-top: -0.6rem;">
+                    </div>
+                    <div class="col-md-8 col-sm-8 noPadding pull-center">
+                        <span class="mainHead1" style="font-size:1.6rem">ERA HOSPITAL</span><br>
+                        <span class="boldtext"><b>KNOWMED</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav navbar-nav" style="margin-top:1rem" dynamic ng-bind-html="SiteMenu | renderHTMLCorrectly"></ul>
+
+        <!--<ul class="nav navbar-nav" style="margin-top:1rem">
+            <li><a ui-sref="rda">RDA</a></li>
+            <li><a href="javascript:">Food Family</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    Master
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="nutrient">Nutrient/AC Master</a></li>
+                </ul>
+            </li>
+            <li><a ui-sref="diseaseInvestigation">Assign Disease Investigation</a></li>
+            <li><a ui-sref="foodNutrient">Assign Food Nutrient/AC</a></li>
+            <li><a ui-sref="differentialDiagnosis">Diff. Diagnosis</a></li>
+        </ul>-->
+        <ul class="nav navbar-nav navbar-right" style="margin-top:1rem">
+
+            <li><a href="javascript:;" ng-click="$root. logOut()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+        <!--</div>-->
+    </nav>
+ 
+</div>
+<!--Header End-->

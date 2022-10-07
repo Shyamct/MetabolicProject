@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/sam.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-ui-router.js"></script>
+    <script src="assets/js/toaster.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!--<script src="assets/slimscrollJs/jquery.slimscroll.min.js"></script>-->
+    <link href="assets/css/fontAwesome.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/toaster.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/ng-tags-input.css" />
+    <link href="assets/css/jquery-ui.css" rel="stylesheet" />
+
+    <!--select2-->
+    <link href="select2/select2.css" rel="stylesheet" />
+    <script src="select2/select2.js"></script>
+    <script src="select2/select2OLD.js"></script>
+    <!--select2-->
+    <script type="text/javascript" src="assets/js/ng-file-upload.min.js"></script>
+
+    <!--angular-drag-and-drop-lists-->
+    <link href="assets/css/dragDrop.css" rel="stylesheet" />
+    <script src="assets/js/angular-drag-and-drop-lists.js"></script>
+    
+    <!--angular-excel-import-export-->
+    <script src="assets/js/xlsx.full.min.js"></script>
+    <!--angular-excel-import-export-->
+
+    <style>
+        .striped {
+            /*color: #e0ebeb;*/
+            background-color: rgba(94, 93, 82, 0.1);
+        }
+    </style>
+</head>
+<body ng-app="app" ng-controller="mainCtrl">
+    <toaster-container></toaster-container>
+    <toast></toast>
+    <div ng-include="'/views/header.html'" ng-if="location.path() !== '/login'"></div>
+    <div ui-view ng-class="{'fullHeight':location.path() == '/login'}" style="margin-top:80px"></div>
+    <ion-loader></ion-loader>
+    <script src="assets/js/ui-bootstrap-tpls-0.12.0.js"></script>
+    <script src="assets/js/highcharts.js"></script>
+    <script src="assets/js/exporting.js"></script>
+    <script src="assets/js/exportData.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/ng-tags-input.js"></script>
+    <script src="script/app.js"></script>
+    <script src="js/cache.js"></script>
+    <script src="/script/global.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="services/serviceDataSource.js"></script>
+
+    <script src="controllers/main.js"></script>
+    <script src="controllers/header.js"></script>
+    <script src="controllers/dashboard.js"></script>
+    <script src="controllers/master.js"></script>
+    <script src="controllers/rda.js"></script>
+    <script src="controllers/login.js"></script>
+    <script src="controllers/nutrient.js"></script>
+    <script src="controllers/disease.js"></script>
+    <script src="controllers/foodNutrient.js"></script>
+    <script src="controllers/differentialDiagnosis.js"></script>
+    <script src="controllers/drugSideEffect.js"></script>
+    <script src="controllers/medicineInteraction.js"></script>
+    <script src="controllers/MedicineTroughValue.js"></script>
+    <script src="controllers/MedicinePeakValue.js"></script>
+    <script src="controllers/MedicineTHalf.js"></script>
+    <script src="controllers/SignSymptomMaster.js"></script>
+    <script src="controllers/ProblemMaster.js"></script>
+    <script src="controllers/foodMaster.js"></script>
+    <script src="controllers/medicine.js"></script>
+    <script src="controllers/TestMaster.js"></script>
+    <script src="controllers/SubTestMaster.js"></script>
+    <script src="controllers/AssignSubTest.js"></script>
+    <script src="controllers/AssignSubTestMethod.js"></script>
+    <script src="controllers/AssignSubTestResultType.js"></script>
+    <script src="controllers/SubTestSampleType.js"></script>
+    <script src="controllers/problemPatientLanguage.js"></script>
+    <script src="controllers/SynonymMaster.js"></script>
+    <script src="controllers/MedicineReport.js"></script>
+    <script src="controllers/ProblemAttributeAssign.js"></script>
+    <script src="controllers/ProblemAttributeValue.js"></script>
+    <script src="controllers/ProblemInvestigationRelation.js"></script>
+    <script src="controllers/AgentFactorMaster.js"></script>
+    <script src="controllers/EnvironmentFactorMaster.js"></script>
+    <script src="controllers/TransmissionRouteMaster.js"></script>
+    <script src="controllers/DiseaseAgentFactor.js"></script>
+    <script src="controllers/DiseaseEnvironmentFactor.js"></script>
+    <script src="controllers/DiseaseTransmissionRoute.js"></script>
+    <script src="controllers/ProblemVitalRelation.js"></script>
+    <script src="controllers/DiseaseGeoLocation.js"></script>
+    <script src="controllers/DiseasePrevention.js"></script>
+    <script src="controllers/Calculator.js"></script>
+    <script src="controllers/CalculatorFormula.js"></script>
+    <script src="controllers/CalculatorFormulaControl.js"></script>
+    <script src="controllers/AssignCalculatorToDepartment.js"></script>
+    <script src="controllers/AssignCalculatorToDisease.js"></script>
+    <script src="controllers/UserLoginMaster.js"></script>
+    <script src="controllers/MenuMaster.js"></script>
+    <script src="controllers/AssignMenuMaster.js"></script>
+    <script src="controllers/RecordCountReport.js"></script>
+    <script src="controllers/AssignMedicineToDisease.js"></script>
+    <script src="controllers/DiseaseTreatment.js"></script>
+    <script src="controllers/DiseaseSurgery.js"></script>
+    <script src="controllers/differentialDiagnosisReport.js"></script>
+    <script src="controllers/DiseaseInput.js"></script>
+    <script src="controllers/DiseaseCommunicabilityDetails.js"></script>
+    <script src="controllers/DiseaseSignalingCascade.js"></script>
+    <script src="controllers/MergeProblem.js"></script>
+    <script src="controllers/NutrientInteraction.js?v=1.1"></script>
+    <script src="controllers/FoodIntakeLimit.js"></script>
+    <script src="controllers/CookingTemperature.js"></script>
+    <script src="controllers/CookingTemperatureEffect.js"></script>
+    <script src="controllers/NutrientClinicalFeature.js"></script>
+    <script src="controllers/ProblemNutrientRole.js"></script>
+    <script src="controllers/FoodRegionAssign.js"></script>
+    <script src="controllers/MedicineStrength.js"></script>
+    <script src="controllers/MedicineMechanismAction.js"></script>
+    <script src="controllers/MedicineMechanismInteraction.js"></script>
+    <script src="controllers/FoodSearchList.js"></script>
+    <script src="controllers/FoodFamilyAssign.js"></script>
+    <script src="controllers/NutrientTHalf.js"></script>
+    <script src="controllers/NutrientPeakValue.js"></script>
+    <script src="controllers/MedicineAction.js"></script>
+    <script src="controllers/ChangePassword.js"></script>
+    <script src="controllers/RecordCountReport.js"></script>
+    <script src="controllers/MedicineIndication.js"></script>
+    <script src="controllers/HistoryInputDepartmentAssign.js"></script>
+    <script src="controllers/NutrientMedicineActionPathway.js"></script>
+    <script src="controllers/NutrientMedicineInteraction.js"></script>
+    <script src="controllers/Department.js"></script>
+    <script src="controllers/MedicineContraIndication.js"></script>
+    <script src="controllers/MedicineSupplement.js"></script>
+    <script src="controllers/NutrientComponentAssign.js"></script>
+    <script src="controllers/DiseaseCommunicabilityDetail.js"></script>
+    <script src="controllers/MedicinePathwayActivator.js"></script>
+    <script src="controllers/FoodWeight.js"></script>
+    <script src="controllers/MedicineDose.js"></script>
+    <script src="controllers/MergeFood.js"></script>
+    <script src="controllers/MergeNutrient.js"></script>
+    <script src="controllers/MedicineBrand.js"></script>
+    <script src="controllers/MedicineBrandCountry.js"></script>
+    <script src="controllers/UnitFamilyAssign.js"></script>
+    <script src="controllers/nutrientBarrier.js"></script>
+    <script src="controllers/DiseaseDepartment.js"></script>
+    <script src="controllers/unitConversion.js"></script>
+    <script src="controllers/nutrientReport.js"></script>
+    <script src="controllers/foodReport.js"></script>
+    <script src="controllers/ReceptorColor.js"></script>
+    <script src="controllers/MedicineGroup.js"></script>
+    <script src="controllers/MedicineGroupAssign.js"></script>
+    <script src="controllers/FoodType.js"></script>
+    <script src="controllers/CalculatorScore.js"></script>
+    <script src="controllers/CalculatorResult.js"></script>
+    <script src="controllers/DiseaseReport.js"></script>
+    <script src="controllers/MedicineStatus.js"></script>
+    <script src="controllers/NutrientStatus.js"></script>
+    <script src="controllers/NutrientLevelGeoLocation.js"></script>
+    <script src="controllers/ManageRank.js"></script>
+    <script src="controllers/ProblemICD.js"></script>
+    <script src="controllers/DrugCrawler.js"></script>
+    <script src="controllers/CalculatorParameterMaster.js"></script>
+    <script src="controllers/henRda.js"></script>
+    <script src="controllers/MedicineTherapeuticLevel.js"></script>
+    <script src="controllers/DiseaseComplications.js"></script>
+    <script src="controllers/ProblemCauseType.js"></script>
+    <script src="controllers/ProblemCauseTypeAssign.js"></script>
+    <script src="controllers/NutrientDoseLimit.js"></script>
+    <script src="controllers/DiseaseCrawler.js"></script>
+    <script src="controllers/DiseaseSpeciality.js"></script>
+    <script src="controllers/DiseaseSpecialityAssign.js"></script>
+    <script src="controllers/InvestigationResultProperty.js"></script>
+    <script src="controllers/FoodFamilyAverage.js"></script>
+    <script src="controllers/DietSubCategory.js"></script>
+    <script src="controllers/AssignSubCategoryToCategory.js"></script>
+    <script src="controllers/ProblemDietCategory.js"></script>
+    <script src="controllers/StudyReference.js"></script>
+    <script src="controllers/DiseaseDepartmentNew.js"></script>
+    <script src="controllers/DiseaseClinicalFeature.js"></script>
+    <script src="controllers/DifferentialDiagnosisNew.js"></script>
+    <script src="controllers/EnvironmentLocationAssign.js"></script>
+    <script src="controllers/DiseaseStage.js"></script>
+    <script src="controllers/dataPublish.js"></script>
+    <script src="controllers/diseaseStageMaster.js"></script>
+    <script src="controllers/MedicineElimination.js"></script>
+    <script src="controllers/medicineCompound.js"></script>
+    <script src="controllers/AlterDiseaseDepartment.js"></script>
+    <script src="controllers/MergePathwayKeywords.js"></script>
+    <script src="controllers/MedicineBrandCountryAssign.js"></script>
+    <script src="controllers/pathwayProcessProblem.js"></script>
+    <script src="controllers/PathwayDiseaseAssign.js"></script>
+    <script src="controllers/FoodFamilyMaster.js"></script>
+    <script src="controllers/MealFoodAssign.js"></script>
+    <script src="controllers/MealFoodLimit.js"></script>
+    <script src="controllers/ResearchBasedAnalysis.js"></script>
+    <script src="controllers/ProblemCauseMiscellaneous.js"></script>
+    <script src="controllers/DifferentialDiagnosisReportNew.js"></script>
+    <script src="controllers/PercentageSettingOfMarker.js"></script>
+    <script src="controllers/MedicineRouteAdministration.js"></script>
+    <script src="controllers/PathwayFAQ.js"></script>
+    <script src="controllers/PathwayToDoNotToDo.js"></script>
+    <script src="controllers/PhenomenonMaster.js"></script>
+    <script src="controllers/NutrientCategoryMaster.js"></script>
+    <script src="controllers/BodyRegionLocation.js"></script>
+    <script src="controllers/InvestigationRangeMaster.js"></script>
+    <script src="controllers/IcdCodeMaster.js"></script>
+    <script src="controllers/FoodWeightMaster.js"></script>
+    <script src="controllers/clinicalNotification.js"></script>
+    <script src="controllers/drugSideEffectNew.js"></script>
+    <script src="controllers/MedicineContraIndicationNew.js"></script>
+    <script src="controllers/MedicineIndicationNew.js"></script>
+    <script src="controllers/CuaseAndEffectReport.js"></script>
+    <script src="controllers/LanguageTranslation.js"></script>
+    <script src="controllers/MedicineGroupNew.js"></script>
+    <script src="controllers/NutrietFoodSideEffect.js"></script>
+    <script src="controllers/MedicineGroupParentHierarchy.js"></script>
+    <script src="controllers/ServiceProviderLocation.js"></script>
+
+</body>
+</html>

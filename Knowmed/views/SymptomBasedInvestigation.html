@@ -1,0 +1,127 @@
+﻿
+<div class="container-fluid">
+    <h2>Symptom Based Investigation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Symptom Based Investigation
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label> Problem Name</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select select2 class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="">
+                                            <option value="-1">--Select Problem Name--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.problemID}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1" style="padding:5px">
+                                        <button class="btn btn-xs btn-info" ng-click="AddSubTest()" ng-disabled="btndisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label> Sub Test Name</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <select select2 class="form-control" id="ddlTest" ng-model="ddlTest" ng-init="ddlTest=-1" required="">
+                                            <option value="-1">--Select Sub Test --</option>
+                                            <option ng-repeat="list in testList" value="{{list.subTestID}}">
+                                                {{list.testName}}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="addedSubTestList.length > 0">
+                                    <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Problem Name</th>
+                                                    <th>Sub Test Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in addedSubTestList" ng-class-odd="'striped'" >
+                                                    <td>{{list.problemName}}</td>
+                                                    <td>{{list.testName}}</td>
+                                                    <td><a href="" ng-click="deleteSubTestList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="{{buttonValue}}" ng-click="saveSymptomBasedInvestigation();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Symptom Based Investigation List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Problem Name</th>
+                                            <th>Sub Test Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in symptomInvestigationList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.testName}}</td>
+
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>   <a href="" ng-click="deleteSymptomBasedInvestigation(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿.blink {
+    -webkit-animation: move 1s linear infinite;
+}
+
+@-webkit-keyframes move {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.25;
+    }
+}

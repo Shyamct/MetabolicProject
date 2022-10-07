@@ -1,0 +1,87 @@
+﻿
+<div class="container-fluid">
+    <h2>Agent Factor Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Agent Factor Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtAgentFactor" placeholder="Agent Factor" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlType" ng-model="ddlType" ng-init="ddlType=-1" required="">
+                                            <option value="-1">--Select Type--</option>
+                                            <option value="Virus">Virus</option>
+                                            <option value="Bacteria">Bacteria</option>
+                                            <option value="Fungi">Fungi</option>
+                                            <option value="Parasite">Parasite</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveAgentFactorMaster();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Agent Factor Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Agent Factor</th>
+                                            <th>Agent Factor Type</th>
+                                            <th>Remark</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in AgentFactorMasterList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.agentFactor}}</td>
+                                            <td>{{list.agentFactorType}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>   <a href="" ng-click="DeleteAgentFactorMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

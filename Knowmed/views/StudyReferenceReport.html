@@ -1,0 +1,159 @@
+﻿
+<div class="container-fluid">
+    <h2>Study Reference Detail Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Study Reference Detail Report
+                </div>
+                <div class="panel-body">
+
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Disease</div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=0" ng-change="getAssociatedProblemAndcentralCompound()">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Phenomenon</div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlPhenomenon" ng-init="ddlPhenomenon=0" ng-change="getParameterList()">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in phenomenonList" value="{{list.id}}">
+                                                {{list.phenomenonName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Parameter</div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlParameter" ng-init="ddlParameter=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in parameterList" value="{{list.id}}">
+                                                {{list.parameterName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1"><input type="button" class="btn btn-success" value="Show" ng-click="getStudyReferenceDetailList()" /></div>
+                                    <div class="col-md-1"><input type="button" class="btn btn-primary" value="Graph" ng-click="getStudyReferenceGraph()" /></div>
+                                    <div class="col-md-1">
+                                        <input type="button" class="btn btn-primary pull-right" value="Print" ng-click="printDiv('divPrint');" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12" style="display:none;">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="print" class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:163vh">
+
+                                <div id="divPrint">
+                                    <table id="tableMedicineReport" class="table table-bordered" style="table-layout:fixed; width:100%;border-style:solid;border-color:black;border-width:1px;" rules="all">
+                                        <thead>
+                                            <tr>
+                                                <th style="word-wrap:break-word;">Disease</th>
+                                                <th style="word-wrap:break-word;">Marker</th>
+                                                <th style="word-wrap:break-word;">Process</th>
+                                                <th style="word-wrap:break-word;">Phenomenon</th>
+                                                <th style="word-wrap:break-word;">Parameter</th>
+                                                <th style="word-wrap:break-word;">StudyLevel</th>
+                                                <th style="word-wrap:break-word;">Location</th>
+                                                <th style="word-wrap:break-word;">Meaning</th>
+                                                <th style="word-wrap:break-word;">CentralCompound</th>
+                                                <th style="word-wrap:break-word;">Associated Problem</th>
+                                                <th style="word-wrap:break-word;">Era's Hypothesis</th>
+                                                <th style="word-wrap:break-word;">Study Treatment</th>
+                                                <th style="word-wrap:break-word;">Other Pathway Details</th>
+                                                <th style="word-wrap:break-word;">Study Reference Details</th>
+                                                <th style="word-wrap:break-word;">Blood Brain Barrier Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in studyReferenceList | filter : search" ng-class-odd="'striped'">
+                                                <td style="word-wrap:break-word;">{{list.problemName}}</td>
+                                                <td style="word-wrap:break-word;">{{list.markerName}}</td>
+                                                <td style="word-wrap:break-word;">{{list.processName}}</td>
+                                                <td style="word-wrap:break-word;">{{list.phenomenonName}}</td>
+                                                <td style="word-wrap:break-word;">{{list.parameterName}}</td>
+                                                <td style="word-wrap:break-word;">{{list.studyLevel}}</td>
+                                                <td style="word-wrap:break-word;">{{list.location}}</td>
+                                                <td style="word-wrap:break-word;">{{list.meaning}}</td>
+                                                <td style="word-wrap:break-word;">{{list.centralCompoundName}}</td>
+                                                <td style="word-wrap:break-word;">{{list.associatedProblemName}}</td>
+                                                <td style="word-wrap:break-word;">{{list.erashypothesis}}</td>
+                                                <td style="word-wrap:break-word;" ng-bind-html="list.studyTreatmentDetails|trustAsHtml">{{list.studyTreatmentDetails}}</td>
+                                                <td style="word-wrap:break-word;" ng-bind-html="list.otherPathwayDetails|trustAsHtml">{{list.otherPathwayDetails}}</td>
+                                                <td style="word-wrap:break-word;" ng-bind-html="list.studyReferenceDetails|trustAsHtml">{{list.studyReferenceDetails}}</td>
+                                                <td style="word-wrap:break-word;" ng-bind-html="list.transporterDetails|trustAsHtml">{{list.transporterDetails}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--<div id="agentFactorModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <div class="modal-content" style="width:90%; height:80%;">
+                    <div class="col-md-12 col-sm-12 paddingTop2rem">
+                        <div id="content" class="col-md-12 col-sm-12">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="modal fade" id="agentFactorModal" style="width: 90%; left: 6%; display: none;" role="dialog">
+            <div class="modal-dialog" style="width: 100rem;">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> Study Reference </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div id="content" class="col-md-12 col-sm-12">
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!--<div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+        

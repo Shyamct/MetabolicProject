@@ -1,0 +1,142 @@
+﻿.main-head {
+    float: left;
+    width: 100%;
+    padding: 25px;
+}
+
+.main-head {
+    float: left;
+    width: 100%;
+    padding: 25px;
+}
+
+.assign-hd h3 {
+    float: left;
+    width: 100%;
+    font-size: 25px;
+    font-weight: 500;
+    padding-left: 17px;
+}
+
+.assign-hd {
+    float: left;
+    width: 100%;
+    padding: 0px
+}
+
+.asn-menu-lt {
+    float: left;
+    width: 100%;
+    border: 1px solid #99cee9;
+    border-radius: 5px;
+}
+
+    .asn-menu-lt p {
+        font-size: 14px;
+        color: #73aac7;
+        float: left;
+        width: 100%;
+        background: #D9EDF7;
+        padding: 8px 6px;
+        border-bottom: 1px solid #99cee9;
+    }
+
+.asign-inner {
+    float: left;
+    width: 100%;
+    padding: 10px 15px;
+}
+
+    .asign-inner label {
+        float: left;
+        width: 100%;
+        font-size: 14px;
+    }
+
+.ass-sear input {
+    float: left;
+    width: 100%;
+    padding: 10px 5px;
+}
+
+.asign-inner select {
+    float: left;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 25px;
+}
+
+.ass-sear {
+    float: left;
+    width: 100%;
+    font-style: italic;
+    position: relative;
+}
+
+.ass-sear-in {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+    .ass-sear-in i {
+        font-size: 14px;
+        color: #2c2a2a;
+        background: #ccc;
+        width: 33px;
+        height: 33px;
+        line-height: 33px;
+        text-align: center;
+    }
+
+.tbl-menu table tr th {
+    border: 1px solid #fff;
+    background: #d9edf7;
+    padding: 7px;
+}
+
+.tbl-menu table tr td {
+    border: 1px solid #ddd;
+    padding: 7px;
+}
+
+.tbl-menu table {
+    width: 100%;
+}
+
+.tbl-menu {
+    float: left;
+    width: 100%;
+    margin: 20px 0;
+    max-height: 67vh;
+    overflow: auto;
+}
+
+.btn-sav button {
+    background: #3796c5;
+    border: 0;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 30px;
+}
+
+.tbl-menu table tr:nth-child(even) td {
+    background: #f5f5f5;
+}
+
+.actn-del i {
+    font-size: 13px;
+    color: #ffffff;
+    background: #a94442;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.tbl-menu table thead th {
+    position: sticky;
+    top: -2px;
+    z-index: 11;
+}

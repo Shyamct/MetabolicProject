@@ -1,0 +1,72 @@
+﻿
+a {
+    text-decoration: none;
+}
+
+nav {
+    font-family: monospace;
+}
+
+#user-nav > ul > li > a:hover {
+    color: #ffffff !important;
+    background: #FA9600 !important;
+    padding: 10px 10px;
+}
+a:hover, a:focus {
+    text-decoration: none;
+    color: white !important;
+}
+li a {
+    color: #fff;
+    padding: 0 16px;
+    line-height: 41px;
+    font-size: 16px;
+}
+ul {
+    background: #222222;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+li {
+    color: #222222;
+    background: transparent;
+    display: block;
+    float: left;
+    padding: 1rem;
+    position: relative;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+
+    li:hover {
+        /*background: red;*/
+        cursor: pointer;
+    }
+
+ul li ul {
+    background: #222222;
+    visibility: hidden;
+    opacity: 0;
+    min-width: 5rem;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+    left: 0;
+    display: none;
+}
+
+    ul li:hover > ul,
+    ul li ul:hover {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+    }
+
+    ul li ul li {
+        clear: both;
+        width: 100%;
+    }
+
+

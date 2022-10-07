@@ -1,0 +1,238 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Department</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Department
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="col-md-1">Disease</div>
+                                    <div class="col-md-3">
+                                        <input disease-details-auto-complete type="text" class="form-control" ng-model="txtDisease" placeholder="Disease Name" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlDepartment" ng-init="ddlDepartment=0" ng-required="">
+                                            <option value="0">--Select Department--</option>
+                                            <option ng-repeat="list in departmentList" value="{{list.departmentID}}">
+                                                {{list.departmentName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlRegion" ng-init="ddlRegion=0" ng-required="">
+                                            <option value="0">--Select Region(Organ)--</option>
+                                            <option ng-repeat="list in organList" value="{{list.regionID}}">
+                                                {{list.regionName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">ICD Code</div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" ng-model="txtICD" placeholder="ICD" />
+                                        <input type="hidden" class="form-control" ng-model="txtProblem" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Age</div>
+                                    <div class="col-md-2"><input type="number" class="form-control" ng-model="txtAgeFrom" placeholder="Age From" /></div>
+                                    <div class="col-md-2"><input type="number" class="form-control" ng-model="txtAgeTo" placeholder="Age To" /></div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in ageUnitList" value="{{list.ageUnitID}}">
+                                                {{list.ageUnitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-12">
+                                    <div class="col-md-1">
+                                        <label for="myFileField">Select  file: </label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="file" id="file1" name="file"
+                                               ng-files="getTheFiles($files)" />
+
+                                    </div>
+                                    <div class="col-md-1">File Description</div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="txtFileDesc" class="form-control" placeholder="File Description" ng-model="txtFileDesc" />
+
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-xs btn-info" ng-click="addImage()" ng-disabled="isDisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" ng-if="addedFileList.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>File Url</th>
+                                                    <th>Description</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in addedFileList" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td><a href="{{list.filePath}}"> {{list.filePath}} </a></td>
+                                                    <td>{{list.fileDescription}}</td>
+
+                                                    <td><a href="" ng-click="deleteAddedFileList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Gender:</div>
+
+                                    <div class="col-md-11">
+                                        <input type="radio" ng-model="rdMale" ng-init="rdMale=0" value="Male" ng-change="changeMaleRadio();" />Male &nbsp;&nbsp;
+                                        <input type="radio" ng-model="rdFemale" ng-init="rdFemale=0" value="Female" ng-change="changeFemaleRadio();" />FeMale &nbsp;&nbsp;
+                                        <input type="radio" ng-model="rdBoth" ng-init="rdBoth=0" value="Both" ng-change="changeBothRadio();" />Both
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Occurence</div>
+                                    <div class="col-md-5">
+                                        <select class="form-control" ng-model="ddlOccurence" ng-init="ddlOccurence=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in occurenceList" value="{{list.occurence}}">
+                                                {{list.occurence}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Alcohalic</div>
+                                    <div class="col-md-5">
+                                        <select class="form-control" ng-model="ddlAlcohalic" ng-init="ddlAlcohalic=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in alcohalicList" value="{{list.alcohalic}}">
+                                                {{list.alcohalic}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Smoking</div>
+                                    <div class="col-md-5">
+                                        <select class="form-control" ng-model="ddlSmoking" ng-init="ddlSmoking=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in smokingList" value="{{list.smoking}}">
+                                                {{list.smoking}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseDepartment();" /></div>
+                                    <div class="col-md-3"><input type="button" class="btn btn-primary" value="Reset" ng-click="reset();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Department List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableMedicineDose" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th>Disease</th>
+                                            <th>Departemnt</th>
+                                            <th>Region(Organ)</th>
+                                            <th>Age</th>
+                                            <th>ICD</th>
+                                            <th>Gender</th>
+                                            <th>Occurence</th>
+                                            <th>Alcohalic</th>
+                                            <th>Smoking</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in diseaseDepartmentList | filter : search" ng-class-odd="'striped'">
+
+
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.departmentName}}</td>
+                                            <td>{{list.regionName}}</td>
+                                            <td>{{list.ageFrom + "-" + list.ageTo + " " + list.ageUnitName}}</td>
+                                            <td>{{list.icdCode}}</td>
+                                            <td>{{list.gender}}</td>
+                                            <td>{{list.occurence}}</td>
+                                            <td>{{list.alcohalic}}</td>
+                                            <td>{{list.smoking}}</td>
+                                            <td><a href="" ng-click="edit(list.diseaseDepartmentID)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.diseaseDepartmentID,list.problemID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

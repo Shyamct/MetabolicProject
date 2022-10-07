@@ -1,0 +1,156 @@
+﻿
+<div class="container-fluid">
+    <h2>Problem Wise Diet</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Problem Wise Diet
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Problem Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="">
+                                                <option value="-1">--Select Problem--</option>
+                                                <option ng-repeat="list in problemList" value="{{list.problemID}}">
+                                                    {{list.problemName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Meal Timing</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlMeal" ng-init="ddlMeal=-1" required="">
+                                                <option value="-1">--Select Meal--</option>
+                                                <option ng-repeat="list in mealList" value="{{list.mealTimingID}}">
+                                                    {{list.meal}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Food Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlFood" ng-init="ddlFood=-1" required="">
+                                                <option value="-1">--Select Food--</option>
+                                                <option ng-repeat="list in foodList" value="{{list.foodID}}">
+                                                    {{list.foodName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Required Calorie</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-model="txtRequired" placeholder="Required Calorie" rows="3" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Quantity</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-model="txtQuantity" placeholder="Quantity" rows="3" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Unit Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlUnit" ng-init="ddlUnit=-1" required="">
+                                                <option value="-1">--Select Unit--</option>
+                                                <option ng-repeat="list in unitList" value="{{list.unitID}}">
+                                                    {{list.unitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>                                   
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Remark</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" rows="3" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveProblemWiseDiet();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Problem Wise Diet List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Problem Name</th>
+                                            <th>Meal Timing</th>
+                                            <th>Food Name</th>
+                                            <th>Required Calorie</th>
+                                            <th>Quantity</th>
+                                            <th>Unit Name</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in problemWiseList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteProblemWiseDiet(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.meal}}</td>
+                                            <td>{{list.foodName}}</td>
+                                            <td>{{list.requiredCalorie}}</td>
+                                            <td>{{list.quantity}}</td>
+                                            <td>{{list.unitName}}</td>
+                                            <td>{{list.remark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+﻿
+<div class="container-fluid">
+    <h2>HC Language Translation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Language Translation
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Translation Type</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlTranslation" ng-model="ddlTranslation" ng-init="ddlTranslation=-1" required="" ng-change="getOriginalWord();getLanguageTranslationList();">
+                                                <option value="-1">--Select Type--</option>
+                                                <option ng-repeat="list in languageTranslation" value="{{list.translationType}}">
+                                                    {{list.translationType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Language</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" id="ddlLanguage" ng-model="ddlLanguage" ng-init="ddlLanguage=-1" required="" ng-change="getLanguageTranslationList()">
+                                                <option value="-1">--Select Type--</option>
+                                                <option ng-repeat="list in languageMaster" value="{{list.id}}">
+                                                    {{list.language}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Original Word</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" id="ddlOriginal" ng-model="ddlOriginal" ng-init="ddlOriginal=-1" required="">
+                                                <option value="-1">--Select Type--</option>
+                                                <option ng-repeat="list in foodmaster" value="{{list.id}}" ng-selected="{{list.id==ddlOriginal}}">
+                                                    {{list.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Translation</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-model="txtTranslation" placeholder="Translation" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-3">
+                                            <input type="file" id="fileUpload" ngf-select="SelectFile($file)" ng-disabled="isDisabled" />
+                                        </div>                                       
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-7">
+                                            <div class="warning">
+                                                <p><strong>Note:</strong> Excel headers must be (Original_Word	& Translation)</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="button" class="btn btn-success pull-right" value="Save" ng-click="saveLanguageTranslation();" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-info" ng-show="showExportTable">
+                <div class="panel-heading">
+                    Data To Export  
+                    <button class="btn btn-link pull-right" ng-click="exportData()">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:72vh">
+                                        <table id="tableToExport" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Original_Word</th>
+                                                    <th>Translation</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in foodmaster" ng-class-odd="'striped'">
+                                                    <td>{{list.name}}</td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Language Translation List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Action</th>
+                                            <th>Translation Type</th>
+                                            <th>Original Word</th>
+                                            <th>Language</th>
+                                            <th>Translation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in languageTranslationList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteLanguageTranslation(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.translationType}}</td>
+                                            <td>{{list.translationss}}</td>
+                                            <td>{{list.language}}</td>
+                                            <td>{{list.translation}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

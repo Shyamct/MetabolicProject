@@ -1,0 +1,283 @@
+﻿<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Problem Investigation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Problem Investigation
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="warning">
+                                            <p><strong>Note:</strong> Assign test to disease to find diagnosis. (ie. Creatnine for Kidney Function)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Problem Refernce</div>
+                                    <div class="col-md-10">
+                                        <select select2 class="form-control" ng-model="ddlDisease" ng-init="ddlDisease=-1" required="" ng-change="GetInvestigationDiseaseList()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="disease in diseaseList" value="{{disease.id}}">
+                                                {{disease.disease}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh">
+                                <table id="tbl1" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th></th>
+                                            <th>Test</th>
+                                            <th>Result Type</th>
+                                            <th>Problem Level</th>
+                                            <th>Result</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="subtest in subTestList | filter : search1" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td><input type="checkbox" name="{{subtest.subTestName}}" value="{{subtest.subTestID}}" ng-model="subtest.selected" ng-change="getResult(subtest)"></td>
+                                            <td>{{subtest.subTestName}}</td>
+                                            <td>
+                                                <select class="form-control" ng-model="subtest.ddlResultProperty" ng-init="subtest.ddlResultProperty=0" ng-click="subtest.resultProperty=subtest.ddlResultProperty" required="" style="width:10rem;">
+                                                    <option value="0">--Select--</option>
+                                                    <option ng-repeat="list in subtest.resultPropertyList" value="{{list.resultPropertyID}}" ng-selected="list.resultPropertyID==subtest.resultProperty">
+                                                        {{list.propertyName}}
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control" ng-model="subtest.ddlEffectLevel" ng-init="subtest.ddlEffectLevel=0" ng-click="subtest.effectLevelID=subtest.ddlEffectLevel" required="" style="width:10rem;">
+                                                    <option value="0">--Select--</option>
+                                                    <option ng-repeat="list in subtest.effectLevelList" value="{{list.effectLevelID}}" ng-selected="list.effectLevelID==subtest.effectLevelID">
+                                                        {{list.effectLevel}}
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control" ng-model="subtest.ddlResultPropertyValue" ng-init="subtest.ddlResultPropertyValue=0" ng-click="subtest.resultPropertyValue=subtest.ddlResultPropertyValue" required="" style="width:10rem;">
+                                                    <option value="0">--Select--</option>
+                                                    <option ng-repeat="list in subtest.resultPropertyValueList" value="{{list.resultPropertyValueID}}" ng-selected="list.resultPropertyValueID==subtest.resultPropertyValue">
+                                                        {{list.propertyValue}}
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" class="form-control" placeholder="Remark" ng-model="subtest.txtRemark" style="width:10rem;"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Reference</legend>
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <select class="form-control" ng-model="ddlBook" ng-init="ddlBook=0" required="">
+                                                <option value="0">--Select Book--</option>
+                                                <option ng-repeat="list in bookList" value="{{list.id}}">
+                                                    {{list.bookName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Page No." ng-model="txtPageNo" /></div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Edition" ng-model="txtEdition" onkeypress="isNumeric(1)" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Reference URL" ng-model="txtReference" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12"><input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseInvestigation()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Investigation List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Problem Reference</th>
+                                            <th>Problem Level</th>
+                                            <th>Sub Test</th>
+                                            <th>Statge Name</th>
+                                            <!--<th>Sample</th>-->
+                                            <th>Result Type</th>
+                                            <th>Result </th>
+                                            <!--<th>resultDetails</th>-->
+                                            <th>Reference</th>
+                                            <th>Remark</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="investigation in investigationList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{investigation.problemReference}}</td>
+                                            <td>{{investigation.effectLevel}}</td>
+                                            <td>{{investigation.subTestName}}</td>
+                                            <td>{{investigation.statgeName}}</td>
+                                            <!--<td>{{investigation.sampleName}}</td>-->
+                                            <td>{{investigation.propertyName}}</td>
+                                            <td>{{investigation.propertyValue}}</td>
+                                            <td>{{investigation.bookReference}}</td>
+                                            <td>{{investigation.remark}}</td>
+
+                                            <td>
+                                                <a href="" ng-click="edit(investigation.probleminvestigationId)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                                <a href="" ng-click="delete(investigation.probleminvestigationId)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="col-md-12 padding1rem marginTop1rem">
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">Test</div>
+                                <div class="col-md-9">
+                                    <select select2 class="form-control" ng-model="ddlSubTest" ng-init="ddlSubTest=0" required="" style="width:100%;">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in subTestList" value="{{list.subTestID}}" ng-selected="{{list.subTestID==ddlSubTest}}">
+                                            {{list.subTestName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">Result Type</div>
+                                <div class="col-md-9">
+                                    <select select2 class="form-control" ng-model="ddlResultProperty" ng-init="ddlResultProperty=0" required="" style="width:100%;">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in resultPropertyList" value="{{list.resultPropertyID}}" ng-selected="{{list.resultPropertyID==ddlResultProperty}}">
+                                            {{list.propertyName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">Problem Level</div>
+                                <div class="col-md-9">
+                                    <select select2 class="form-control" ng-model="ddlEffectLevel" ng-init="ddlEffectLevel=0" required="" style="width:100%;">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in effectLevelList" value="{{list.effectLevelID}}" ng-selected="{{list.effectLevelID==ddlEffectLevel}}">
+                                            {{list.effectLevel}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">Result</div>
+                                <div class="col-md-9">
+                                    <select select2 class="form-control" ng-model="ddlResultPropertyValue" ng-init="ddlResultPropertyValue=0" required="" style="width:100%;">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in resultPropertyValueList" value="{{list.resultPropertyValueID}}" ng-selected="{{list.resultPropertyValueID==ddlResultPropertyValue}}">
+                                            {{list.propertyValue}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">Remark</div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="Remark" ng-model="txtRemark">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <fieldset>
+                                <legend>Reference</legend>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <select class="form-control" ng-model="ddlBookEdit" ng-init="ddlBookEdit=0" required="">
+                                            <option value="0">--Select Book--</option>
+                                            <option ng-repeat="list in bookList" value="{{list.id}}">
+                                                {{list.bookName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3"><input type="text" class="form-control" placeholder="Page No." ng-model="txtPageNoEdit" /></div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" placeholder="Edition" ng-model="txtEditionEdit" onkeypress="isNumeric(1)" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" placeholder="Reference URL" ng-model="txtReferenceEdit" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-success pull-left" value="Save" ng-click="saveDiseaseInvestigation();" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

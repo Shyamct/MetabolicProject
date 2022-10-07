@@ -1,0 +1,98 @@
+﻿
+
+<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Nutrient Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Nutrient Name</div>
+                                    <div class="col-md-6">
+                                        
+                                            <input nutrient-auto-complete type="text" class="form-control" placeholder="Search Nutrient" aria-describedby="basic-addon2" ng-model="txtNutrient" ng-blur="nutrientReport();">
+                                        
+                                    </div>
+                                        <div class="col-md-3"></div>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                   Nutrient Report
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-link" ng-click="exportData()">
+                                <span class="glyphicon glyphicon-share"></span>
+                                Export to Excel
+                            </button>
+
+                            <input type="button" class="btn btn-success" value="Print" ng-click="printDiv('divPrint');" />
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh" id="divPrint">
+                                <span ng-repeat="list in NutrientReportList">
+                                  <p ng-bind-html="list.nutrientDetail|trustAsHtml"}}></p>
+                                </span>
+                                <table id="tableNutrientReport" class="table table-bordered" style="table-layout:auto; width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th style="word-wrap:break-word;">FOODS/Nutrient Value</th>
+                                            <th style="word-wrap:break-word;">INTERACTION</th>
+                                            <th style="word-wrap:break-word;">PEAK VALUE</th>
+                                            <th style="word-wrap:break-word;">Thalf</th>
+                                            <th style="word-wrap:break-word;">RDA</th>
+                                            <th style="word-wrap:break-word;">Medicine Interaction</th>
+                                            <th style="word-wrap:break-word;">Level Effect</th>
+                                            <th style="word-wrap:break-word;">Cleanical Feature</th>
+                                            <th style="word-wrap:break-word;">Role In Disease</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in NutrientReportList | filter : search">
+                                            <td ng-bind-html="list.food|trustAsHtml" style="word-wrap:break-word;">{{list.food}}</td>
+                                            <td ng-bind-html="list.interaction|trustAsHtml" style="word-wrap:break-word;">{{list.interaction}}</td>
+                                            <td ng-bind-html="list.nutrientPeakValue|trustAsHtml" style="word-wrap:break-word;">{{list.nutrientPeakValue}}</td>
+                                            <td ng-bind-html="list.nutrientTHalfValue|trustAsHtml" style="word-wrap:break-word;">{{list.nutrientTHalfValue}}</td>
+                                            <td ng-bind-html="list.rda|trustAsHtml" style="word-wrap:break-word;">{{list.rda}}</td>
+                                            <td ng-bind-html="list.medicinieInteraction|trustAsHtml" style="word-wrap:break-word;">{{list.medicinieInteraction}}</td>
+                                            <td ng-bind-html="list.levelEffect|trustAsHtml" style="word-wrap:break-word;">{{list.levelEffect}}</td>
+                                            <td ng-bind-html="list.clinicalFeature|trustAsHtml" style="word-wrap:break-word;">{{list.clinicalFeature}}</td>
+                                            <td ng-bind-html="list.roleInDisease|trustAsHtml" style="word-wrap:break-word;">{{list.roleInDisease}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

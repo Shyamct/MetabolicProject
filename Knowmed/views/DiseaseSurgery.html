@@ -1,0 +1,123 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Disease Surgery</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Surgery
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Disease</div>
+                                    <div class="col-md-9">
+                                        {{list.problemName}}
+
+                                        <select select2 class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in diseaseList" value="{{list.problemID}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Surgery Title</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Surgery Title" ng-model="txtSurgeryTitle" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Nature Operation</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Nature Operation" ng-model="txtNatureOperation" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Indication</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Indication" ng-model="txtIndication" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Anaesthesia</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Anaesthesia" ng-model="txtAnaesthesia" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Method</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Method" ng-model="txtMethod" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseSurgery();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assigned Surgery List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseSurgery" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Disease</th>
+                                            <th>Surgery Title</th>
+                                            <th>Nature Operation</th>
+                                            <th>Indication</th>
+                                            <th>Anaesthesia</th>
+                                            <th>Method</th>                                            
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in diseaseSurgeryList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.surgeryTitle}}</td>
+                                            <td>{{list.natureOperation}}</td>
+                                            <td>{{list.indication}}</td>
+                                            <td>{{list.anaesthesia}}</td>
+                                            <td>{{list.method}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

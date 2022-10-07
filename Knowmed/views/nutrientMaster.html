@@ -1,0 +1,228 @@
+﻿
+<div class="container-fluid">
+    <style>
+        thead th {
+            white-space: nowrap;
+        }
+    </style>
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Nutrient Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Nutrient Master
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Nutrient Category</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlNutrientCat" ng-init="ddlNutrientCat=-1" required="" ng-change="GetNutrientMasterList()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="nutrient in nutrientCatList" value="{{nutrient.id}}">
+                                                {{nutrient.nutrientCategory}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Tag Name</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtTagName" placeholder="Tag Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Unit</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlUnit" ng-init="ddlUnit=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="nutrient in unitList" value="{{nutrient.id}}">
+                                                {{nutrient.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Nutrient Name</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtNutrientName" nutrient-auto-complete placeholder="Nutrient Name" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Nutrient Type</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlNutrientType" ng-init="ddlNutrientType=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="nutrient in nutrientTypeList" value="{{nutrient.id}}">
+                                                {{nutrient.nutrientType}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Synonym North East</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtSynNorthEast" placeholder="Synonym North East" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Synonym Rural</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtSynRural" placeholder="Synonym Rural" />
+                                    </div>
+                                    <div class="col-md-2">Metabolic Type</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlMetabolicType" ng-init="ddlMetabolicType=0" required="">
+                                            <option value="0">--Select--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Hyper Name</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtHyperName" placeholder="Hyper Name" />
+                                    </div>
+                                    <div class="col-md-2">Lower Name</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtLowerName" placeholder="Lower Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Meaning/Function</div>
+                                    <div class="col-md-10">
+                                        <textarea class="form-control" rows="5" ng-model="txtDescription"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientMaster()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchText">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Name</th>
+                                            <th>Unit</th>
+                                            <th>Tag Name</th>
+                                            <th>Nutrient Type</th>
+                                            <th>Category</th>
+                                            <th>Syn.North East</th>
+                                            <th>Syn.Rural</th>
+                                            <th>Hyper Name</th>
+                                            <th>Lower Name</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="nutrinet in nutrientMasterList | filter : search" ng-class-odd="'striped'">
+                                            <td>
+                                                <a href="" ng-click="edit($index,nutrinet.id)" title="Edit"><i class="fa fa-edit"></i></a>
+                                                |&nbsp;<a href="" ng-click="delete(nutrinet.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                |&nbsp;<a href="" ng-click="getFoodValues(nutrinet.id)" title="Food"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td class="sm">{{nutrinet.nutrientName}}</td>
+                                            <td>{{nutrinet.unit}}</td>
+                                            <td>{{nutrinet.tagName}}</td>
+                                            <td>{{nutrinet.nutrientType}}</td>
+                                            <td>{{nutrinet.nutrientCategory}}</td>
+                                            <td>{{nutrinet.synonymNorthEast}}</td>
+                                            <td>{{nutrinet.synonymRural}}</td>
+                                            <td>{{nutrinet.hyperName}}</td>
+                                            <td>{{nutrinet.lowerName}}</td>
+                                            <td>{{nutrinet.description}}</td>
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="col-md-12 padding1rem marginTop1rem">
+                    <div class="form-group col-md-12">
+                        <div class=" form-row col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchFood">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Food Name</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in foodValuesList | filter : searchFood" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{list.foodName}}</td>
+                                            <td>{{list.nutrientValue}},{{list.name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

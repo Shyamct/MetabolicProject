@@ -1,0 +1,118 @@
+﻿
+<div class="container-fluid">
+    <h2> Calculator Control Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Calculator Control Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Calculator Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select  class="form-control" ng-model="ddlCalculator" ng-init="ddlCalculator=-1" required="">
+                                                <option value="-1">--Select Calculator--</option>
+                                                <option ng-repeat="list in calculatorList" value="{{list.calculatorId}}">
+                                                    {{list.calculatorTitle}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Parameter Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlParameter" ng-init="ddlParameter=-1" required="">
+                                                <option value="-1">--Select Parameter--</option>
+                                                <option ng-repeat="list in parameterList" value="{{list.parameterID}}">
+                                                    {{list.parameterName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>                          
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Score Type</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" placeholder="Score Type" ng-model="txtScoreType" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>IsScore</label>: &nbsp;&nbsp;<input type="checkbox" ng-checked="chkIsScore" ng-model="chkIsScore" value="false" />
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveCalculatorControlMaster();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Calculator Control Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Calculator Name</th>
+                                            <th>Parameter Name</th>
+                                            <th>Is Score</th>
+                                            <th>Score Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in controlList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteCalculatorControlMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.calculatorTitle}}</td>
+                                            <td>{{list.parameterName}}</td>
+                                            <td>{{list.isScore}}</td>
+                                            <td>{{list.scoreType}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

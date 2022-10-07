@@ -1,0 +1,113 @@
+﻿object {
+    /*width: 4000px;*/
+    /*height: 1576px;*/
+    width: 400rem;
+    height: auto;
+}
+
+#divCount {
+    color: green;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.header {
+    width: 100%;
+    background-color: darkgray;
+}
+
+.header-search {
+    /*float: left;*/
+    /*width: 80%;*/
+}
+
+.color-picker {
+    float: right;
+}
+
+#colorPicker {
+    width: 4rem;
+    padding: revert;
+    float: right !important;
+}
+
+#txtSearch {
+    width: 400px;
+}
+
+.container {
+    margin: inherit !important;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+}
+
+@media only screen and (max-width: 1367px) {
+    .modelWidth {
+        width: 100%;
+        left: 10% !important;
+    }
+
+    .modal-body {
+        position: relative;
+        height: 500px !important;
+        max-height: 500px;
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .modal.fade.in {
+        top: 2%;
+    }
+}
+
+thead {
+    font-weight: bold;
+    background: aliceblue;
+}
+
+.count {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+label {
+    font-weight: bold !important;
+    font-size: 1.3rem !important;
+}
+
+/* The whole thing */
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    padding: 0;
+}
+
+    /* Each of the items in the list */
+    .custom-menu li {
+        padding: 3px 3px;
+        cursor: pointer;
+        list-style-type: none;
+        transition: all .3s ease;
+        user-select: none;
+    }
+
+        .custom-menu li:hover {
+            background-color: #DEF;
+        }
+
+.ui-autocomplete {
+    max-height: 20rem;
+    max-width: 20rem;
+    overflow-y:auto;
+}

@@ -1,0 +1,119 @@
+﻿
+
+<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Cuase And Effect Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <!--<div class="row">
+                                        <div class="col-md-2">Cuase Name</div>
+                                        <div class="col-md-10">
+
+                                            <input cuaseeffect-auto-complete type="text" class="form-control" placeholder="Search Cuase And Effect Name" aria-describedby="basic-addon2" ng-model="txtCuaseEffect" ng-blur="nutrientReport();">
+
+                                        </div>
+
+                                    </div>-->
+                                    <div class="col-md-9 col-sm-9 margin01rem noPadding height5rem">
+                                        <div class="col-md-3 col-sm-3 fullHeight" style="background-color:#0f326a;padding:1rem"><span class="col-md-9 col-sm-9 noPadding pull-right boldWhiteFont">Nutrient Name</span></div>
+
+                                        <tags-input ng-model="nutrientDetails" replace-spaces-with-dashes="false" display-property="nutrientName" on-tag-adding="onCustomTagAdd($tag,1)" on-tag-added="tagAdded($tag)" on-tag-removed="tagRemoved($tag)" class="col-md-9 col-sm-9 noPadding" placeholder="Nutrient Name">
+                                            <auto-complete source="GetSymptomsSearch($query)" min-length="0"
+                                                           load-on-focus="true"></auto-complete>
+
+                                            <!--<input cuaseeffect-auto-complete type="text" class="form-control" placeholder="Cuase And Effect Name" aria-describedby="basic-addon2">-->
+                                        </tags-input>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-link" ng-click="exportData()">
+                                            <span class="glyphicon glyphicon-share"></span>
+                                            Export to Excel
+                                        </button>
+                                        <input type="button" class="btn btn-success" value="Print" ng-click="printDiv('divPrint');" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Cuase And EffectR eport
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+
+                            <div ng-repeat="fields in Fields" class="checkbox checkbox-inline">
+                                <label for="chk_{{fields.FieldsId}}" class="checkbox-inline">
+                                    <input id="chk_{{fields.FieldsId}}" type="checkbox" ng-model="fields.Selected" ng-change="ChangeValue();" />
+                                    {{fields.Name}}
+                                </label>
+                            </div>
+                            <!--<div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>-->
+                     
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh" id="divPrint">
+                                <table id="tableCuaseAndEffectReport" class="table table-bordered" style="table-layout:fixed; width:100%;border-style:solid;border-color:black;border-width:1px;" rules="all">
+                                    <thead>
+                                        <tr>
+                                            <th style="word-wrap:break-word;" class="chk_1" ng-show="chk_1">NORMAL FUNCATION</th>
+                                            <th style="word-wrap:break-word;" class="chk_2" ng-show="chk_2">EFFECT AT CELLULAR LEVEL</th>
+                                            <th style="word-wrap:break-word;" class="chk_3" ng-show="chk_3">EFFECT ON THE SYSTEM OR ORGAN</th>
+                                            <th style="word-wrap:break-word;" class="chk_4" ng-show="chk_4">DEFICIENCY WILL CAUSE AT IONIC LEVEL</th>
+                                            <th style="word-wrap:break-word;" class="chk_5" ng-show="chk_5">DEFICIENCY MAY CAUSED AT CELLULAR LEVEL</th>
+                                            <th style="word-wrap:break-word;" class="chk_6" ng-show="chk_6">DEFICIENCY MAY CAUSE</th>
+                                            <th style="word-wrap:break-word;" class="chk_7" ng-show="chk_7">TEST</th>
+                                            <th style="word-wrap:break-word;" class="chk_8" ng-show="chk_8">PROBLEM BY ITS TOXICITY ON IONIC LEVEL ON CELLULAR LEVEL</th>
+                                            <th style="word-wrap:break-word;" class="chk_9" ng-show="chk_9">PROBLEM BY ITS TOXICITY ON CELLULAR LEVEL</th>
+                                            <th style="word-wrap:break-word;" class="chk_10" ng-show="chk_10">TOXICITY MAY CAUSE AT ORGEN LEVEL</th>
+                                            <th style="word-wrap:break-word;" class="chk_11" ng-show="chk_11">TOXICITY MAY CAUSE</th>
+                                            <th style="word-wrap:break-word;" class="chk_12" ng-show="chk_12">WHAT TO DO/ACTION TO BE TAKEN</th>
+                                            <th style="word-wrap:break-word;" class="chk_13" ng-show="chk_13">MEDICINE ADVICED</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr ng-repeat="list in cuaseAndEffectReportList | filter : search">
+                                            <td class="chk_1" ng-bind-html="list.normalFunction|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_1">{{list.normalFunction}}</td>
+                                            <td class="chk_2" ng-bind-html="list.effectatcellularlevel|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_2">{{list.effectatcellularlevel}}</td>
+                                            <td class="chk_3" ng-bind-html="list.effectonsystemororgan|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_3">{{list.effectonsystemororgan}}</td>
+                                            <td class="chk_4" ng-bind-html="list.difficiencywillcauseaticoioniclevel|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_4">{{list.difficiencywillcauseaticoioniclevel}}</td>
+                                            <td class="chk_5" ng-bind-html="list.diffmaycauseatcellularlevl|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_5">{{list.diffmaycauseatcellularlevl}}</td>
+                                            <td class="chk_6" ng-bind-html="list.diffmaycause|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_6">{{list.diffmaycause}}</td>
+                                            <td class="chk_7" ng-bind-html="list.test|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_7">{{list.test}}</td>
+                                            <td class="chk_8" ng-bind-html="list.problembyitstoxicityonioniclevel|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_8">{{list.problembyitstoxicityonioniclevel}}</td>
+                                            <td class="chk_9" ng-bind-html="list.problembybyitstoxicityoncellularlevel|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_9">{{list.problembybyitstoxicityoncellularlevel}}</td>
+                                            <td class="chk_10" ng-bind-html="list.toxicitymaycauseatorgan|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_10">{{list.toxicitymaycauseatorgan}}</td>
+                                            <td class="chk_11" ng-bind-html="list.toxicitymaycause|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_11">{{list.toxicitymaycause}}</td>
+                                            <td class="chk_12" ng-bind-html="list.whattodobetaken|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_12">{{list.whattodobetaken}}</td>
+                                            <td class="chk_13" ng-bind-html="list.medicineadviced|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_13">{{list.medicineadviced}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

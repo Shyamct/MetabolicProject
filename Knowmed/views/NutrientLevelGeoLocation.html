@@ -1,0 +1,233 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Nutrient Level Geo-Location </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Level Geo-Location
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Nutrient</div>
+                                    <div class="col-md-9">
+                                        <select select2 class="form-control" id="ddlNutrient" ng-model="ddlNutrient" ng-init="ddlNutrient=-1" required="" ng-change="getSelectedNutrientLevelGeoLocationList();">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}" ng-selected="{{list.nutrientID==ddlNutrient}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Level</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlLevel" ng-init="ddlLevel=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in levelList" value="{{list.statusID}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Region</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlRegion" ng-init="ddlRegion=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in regionList" value="{{list.regionID}}">
+                                                {{list.regionName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Country</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlCountry" ng-init="ddlCountry=0" required="" ng-change="GetCityList();">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in countryList" value="{{list.countryID}}">
+                                                {{list.countryName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">State</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlState" ng-init="ddlState=0" required="" >
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in stateList" value="{{list.stateID}}">
+                                                {{list.stateName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">City</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlCity" ng-init="ddlCity=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in cityList" value="{{list.cityID}}">
+                                                {{list.cityName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Remark</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Remark" ng-model="txtRemark" /></div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Reference</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Reference" ng-model="txtReference" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">URL</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="URL" ng-model="txtUrl" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientLevelGeoLocation();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Selected Nutrient Level Geo-Location List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableNutrient1" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Level</th>
+                                            <th>Region</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientLevelGeoLocationSelectedList | filter : search1" ng-class-odd="'striped'">
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.regionName}}</td>
+                                            <td>{{list.countryName}}</td>
+                                            <td>{{list.stateName}}</td>
+                                            <td>{{list.cityName}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Level Geo-Location List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableNutrient" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Level</th>
+                                            <th>Region</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientLevelGeoLocationList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.regionName}}</td>
+                                            <td>{{list.countryName}}</td>
+                                            <td>{{list.stateName}}</td>
+                                            <td>{{list.cityName}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

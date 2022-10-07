@@ -1,0 +1,306 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Food Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Food Master
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Food Category</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlFoodCategory" ng-init="ddlFoodCategory=-1" required="" ng-change="GetFoodCategoryList()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="foodCategory in foodCatList" value="{{foodCategory.id}}">
+                                                {{foodCategory.categoryname}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Food Group</div>
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" ng-model="ddlFoodGroup" ng-init="ddlFoodGroup=0" required="" ng-change="GetFoodGroupList()">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="foodGroup in foodGroupList" value="{{foodGroup.id}}">
+                                                {{foodGroup.groupname}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i class="fa fa-info-circle ng-scope" tooltip=" Nutrient Quantity" ng-click="getNutrientQuantity()"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Food Name</div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" ng-model="txtFoodName" placeholder="Food Name" required />
+                                    </div>
+
+                                    <div class="col-md-2" style="display:none">Part</div>
+                                    <div class="col-md-4" style="display:none">
+                                        <select select2 class="form-control" ng-model="ddlPart" ng-init="ddlPart=0">
+                                            <option value="0">--Select--</option>
+                                            <option value="Whole">Whole</option>
+                                            <option value="Fruit">Fruit</option>
+                                            <option value="Leaf">Leaf</option>
+                                            <option value="Seed">Seed</option>
+                                            <option value="Flower">Flower</option>
+                                            <option value="Stem">Stem</option>
+                                            <option value="Root">Root</option>
+                                            <option value="Skin">Skin</option>
+                                            <option value="Peel">Peel</option>
+                                            <option value="Pulp">Pulp</option>
+                                        </select>
+                                        <span style="font-size:12px;color:gray;font-weight:600;font-variant:small-caps"> (i.e; Leaf,Seed etc)</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12" style="display:none">
+                                <div class="row">
+                                    <div class="col-md-2">Color</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlColor" ng-init="ddlColor=0" required="" ng-selected="{{list.id==ddlColor}}">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in colorList" value="{{list.id}}">
+                                                {{list.colorName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2" style="display:none">Nature</div>
+                                    <div class="col-md-4">
+
+                                        <select select2 class="form-control" ng-model="ddlNature" ng-init="ddlNature=0" required="">
+                                            <option value="0">Select Nature</option>
+                                            <option value="Dry">Dry</option>
+                                            <option value="Raw">Raw</option>
+                                            <option value="Wet">Wet</option>
+                                            <option value="Oil">Oil</option>
+                                            <option value="Powder">Powder</option>
+                                            <option value="Juice">Juice</option>
+                                        </select>
+                                        <span style="font-size:12px;color:gray;font-weight:600;font-variant:small-caps">(i.e; Dry,Raw etc)</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Botanical Name(Opt.)</div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" ng-model="txtFoodScientifictName" placeholder="Botanical Name" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Short Name(Opt.)</div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" ng-model="txtFoodShortName" placeholder="Short Name" required />
+                                    </div>
+
+                                    <div class="col-md-2" style="display:none">Common Name</div>
+                                    <div class="col-md-4" style="display:none">
+                                        <input type="text" class="form-control" ng-model="txtCommonName" placeholder="Common Name" />
+                                    </div>
+
+                                    <div class="col-md-2" style="display:none">Botanical Name(Opt.)</div>
+                                    <div class="col-md-4" style="display:none">
+                                        <input type="text" class="form-control" ng-model="txtFoodScientifictName" placeholder="Scientific Name" required />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Company Name(Opt.)</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtCompanyName" placeholder="Company Name" />
+                                    </div>
+                                    <div class="col-md-2">Manufacturer Name(Opt.)</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtManufacturerName" placeholder="Manufacturer Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" style="display:none">
+                                <div class="row">
+                                    <div class="col-md-2">Botanical Name</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtBotanicalName" placeholder="Botanical Name" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" style="display:none">
+                                <div class="row">
+                                    <div class="col-md-2">Nature</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtNature" placeholder="Nature" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        Is Part: &nbsp;<input type="checkbox" ng-checked="ShowHide();" ng-model="chkIsWhole" value="1" />&nbsp;
+                                    </div>
+
+                                    <div class="col-md-4" ng-show="IsVisible">
+                                        <input type="text" class="form-control" ng-model="txtParts" placeholder="Parts" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Food Color</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlColor" ng-init="ddlColor=-1" required="">
+                                            <option value="-1">--Select Color--</option>
+                                            <option ng-repeat="list in colorList" value="{{list.colorId}}">
+                                                {{list.colorName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="button" class="btn btn-success" value="{{buttonText}}" ng-click="saveFoodMaster()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Food Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Food Category</th>
+                                            <!--<th>Sc. Name</th>-->
+                                            <th>Food Group</th>
+                                            <th>Food Name</th>
+                                            <!--<th>Part</th>-->
+                                            <th>Color</th>
+                                            <!--<th>Nature</th>-->
+                                            <th>Botanical Name</th>
+                                            <th>Short Name</th>
+                                            <!--<th>Common Name</th>-->
+                                            <th>Company Name</th>
+                                            <th>Manufacturer Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="food in foodMasterList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(food.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(food.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td class="sm">{{food.categoryname}}</td>
+                                            <!--<td>{{food.scientificName}}</td>-->
+                                            <td>{{food.groupname}}</td>
+                                            <td>{{food.foodName}}</td>
+                                            <!--<td>{{food.partName}}</td>-->
+                                            <td>{{food.colorName}}</td>
+                                            <!--<td>{{food.nature}}</td>-->
+                                            <td>{{food.scientificName}}</td>
+                                            <td>{{food.foodShortName}}</td>
+                                            <!--<td>{{food.commonName}}</td>-->
+                                            <td>{{food.companyName}}</td>
+                                            <td>{{food.manufacturerName}}</td>
+                                            <!--<td>{{food.colorName}}</td>-->
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               
+                <div class="col-md-12 padding1rem marginTop1rem">
+                    <div class="form-group col-md-12">
+                        <div class=" form-row col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nutrient Name</th>
+                                            <th>Quantity</th>
+                                            <!--<th>Unit</th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="food in nutrientQuantityList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{food.nutrientName}}</td>
+                                            <td>{{food.nutrientValue}},{{food.unitName}}</td>
+                                            <!--<td>{{food.unitName}}</td>-->
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<input type="button" class="btn btn-success pull-left" value="Save" ng-click="saveFoodNutrient();" />-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

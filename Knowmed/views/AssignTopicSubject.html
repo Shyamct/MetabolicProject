@@ -1,0 +1,118 @@
+﻿
+<div class="container-fluid">
+    <h2>Assign Topic Subject</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assign Topic Subject
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12" >
+                                        <div class="col-md-2">
+                                            <label>Subject Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select class="form-control" ng-model="ddlSubject" ng-init="ddlSubject=-1" required="">
+                                                <option value="-1">--Select Subject--</option>
+                                                <option ng-repeat="list in subjectList" value="{{list.subjectId}}">
+                                                    {{list.subjectName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" >
+                                        <div class="col-md-2">
+                                            <label>Category Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select class="form-control" ng-model="ddlCategory" ng-init="ddlCategory=-1" required="">
+                                                <option value="-1">--Select Category--</option>
+                                                <option ng-repeat="list in categoryList" value="{{list.categoryId}}">
+                                                    {{list.categoryName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Topic Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select class="form-control" ng-model="ddlTopic" ng-init="ddlTopic=-1" required="">
+                                                <option value="-1">--Select Topic--</option>
+                                                <option ng-repeat="list in topicList" value="{{list.topicId}}">
+                                                    {{list.topicName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveAssignTopicSubject();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assign Topic Subject List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Subject Name</th>
+                                            <th>Category Name</th>
+                                            <th>Topic Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in allTopicList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteAssignTopicSubject(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.subjectName}}</td>
+                                            <td>{{list.categoryName}}</td>
+                                            <td>{{list.topicName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

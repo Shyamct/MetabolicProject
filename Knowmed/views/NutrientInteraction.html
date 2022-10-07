@@ -1,0 +1,212 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Nutrient Inhibitor / Enhancer </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Inhibitor / Enhancer
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Nutrient</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlNutrient" ng-model="ddlNutrient" ng-init="ddlNutrient=-1" required="" ng-change="getSelectedNutrientInteractionList();">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}" ng-selected="{{list.nutrientID==ddlNutrient}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Interaction Type</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlInteractionType" ng-init="ddlInteractionType=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in interactionTypeList" value="{{list.interactionType}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Interaction With Type</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlInteractionWithType" ng-init="ddlInteractionWithType=0" required="" ng-change="loadInteractionWith();">
+                                            <option value="0">--Select--</option>
+                                            <option value="F"> Food </option>
+                                            <option value="N"> Nutrient </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Interaction With</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlInteractedNutrient" ng-init="ddlInteractedNutrient=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in interactionNutrientList" value="{{list.interactedNutrientID}}" ng-selected="list.interactedNutrientID==ddlInteractedNutrient">
+                                                {{list.interactedNutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Disease Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlDiseaseName" ng-init="ddlDiseaseName=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in diseaseList" value="{{list.diseaseID}}">
+                                                {{list.diseaseName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Effect</div>
+                                    <div class="col-md-4"><textarea class="form-control" placeholder="Effect" ng-model="txtEffect"></textarea></div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Docking Score</div>
+                                    <div class="col-md-4"><input type="text" class="form-control" placeholder="Docking Score" ng-model="txtDockingScore" /></div>
+
+                                    <div class="col-md-2">Reference</div>
+                                    <div class="col-md-4"><textarea class="form-control" placeholder="Reference" ng-model="txtReference"></textarea></div>
+                                </div>
+                            </div> 
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                   
+                                    <div class="col-md-2">URL</div>
+                                    <div class="col-md-4"><textarea class="form-control" placeholder="URL" ng-model="txtUrl"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientInteraction();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Selected Nutrient Inhibitor / Enhancer List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableNutrient1" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Interaction Type</th>
+                                            <th>Interaction With Type</th>
+                                            <th>Interaction With</th>
+                                            <th>Disease Name</th>
+                                            <th>Effect</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                            <th>Docking Score</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientInteractionSelectedList | filter : search1" ng-class-odd="'striped'">
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.interactionWithType}}</td>
+                                            <td>{{list.interactedNutrientName}}</td>
+                                            <td>{{list.diseaseName}}</td>
+                                            <td>{{list.effect}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                            <td>{{list.dockingScore}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="display:none">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Inhibitor / Enhancer List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableNutrient" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Interaction Type</th>
+                                            <th>Interaction With Type</th>
+                                            <th>Interaction With</th>
+                                            <th>Effect</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                            <th>Docking Score</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientInteractionList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.interactionWithType}}</td>
+                                            <td>{{list.interactedNutrientName}}</td>
+                                            <td>{{list.effect}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                            <td>{{list.dockingScore}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

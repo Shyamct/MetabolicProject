@@ -1,0 +1,328 @@
+﻿
+<div class="container-fluid">
+    <h2>Pharmacokinetics and Pharmacodynamics</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Pharmacokinetics and Pharmacodynamics
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Molecular Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" ng-model="ddlMolecular" ng-init="ddlMolecular=-1" required="" ng-change="GetMolecularList()">
+                                                <option value="-1">--Select Molecular--</option>
+                                                <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                    {{list.nutrientName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Absorption</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-md-4 noPadding">
+                                                <input type="text" class="form-control" placeholder="Min" ng-model="txtAbsorptionMin">
+                                            </div>
+                                            <div class="col-md-4 noPadding">
+                                                <input type="text" class="form-control" placeholder="Max" ng-model="txtAbsorptionMax">
+                                            </div>
+                                            <div class="col-md-4 noPadding">
+                                                <select class="form-control" ng-model="ddlAbsorptionUnit" ng-init="ddlAbsorptionUnit=30" required="" ng-disabled="ddlAbsorptionUnit">
+                                                    <option value="30">%</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--<div class="col-md-2" >
+            <label>Molecular Source</label>
+        </div>
+        <div class="col-md-3"style.display = "none" >
+            <select class="form-control" id="ddlSource" ng-model="ddlSource" ng-init="ddlSource=-1" required="" ng-change="getNutrientValue()">
+                <option value="-1">--Select Source--</option>
+                <option ng-repeat="list in molecularNutrientList" value="{{list.foodID}}">
+                    {{list.foodName}}
+                </option>
+            </select>
+
+        </div>
+        <div class="col-md-1 noPadding">
+            <input type="text" class="form-control" placeholder="Quantity" ng-model="txtSourceQty" disabled >
+        </div>
+        <div class="col-md-1 noPadding">
+            <select class="form-control" ng-model="ddlQtyUnit" ng-init="ddlQtyUnit=-1" required="" ng-disabled="ddlQtyUnit">
+                <option value="-1">--Unit--</option>
+                <option ng-repeat="list in allUnitmasterList" value="{{list.selectedUnitID}}">
+                    {{list.unitName}}
+                </option>
+            </select>
+        </div>-->
+
+
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+
+                                        <div class="col-md-2">
+                                            <label>Elimination<br />
+                                            (T1/2)</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-md-4 noPadding">
+                                                <input type="text" class="form-control" placeholder="Min" ng-model="txtEliminationMin">
+                                            </div>
+                                            <div class="col-md-4 noPadding">
+                                                <input type="text" class="form-control" placeholder="Max" ng-model="txtEliminationMax">
+                                            </div>
+                                            <div class="col-md-4 noPadding">
+                                                <select class="form-control" ng-model="ddlElimination" ng-init="ddlElimination=30" required="" ng-disabled="ddlElimination">
+                                                    <option value="30">%</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Rate Of Reaction</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="col-md-8 noPadding">
+                                                <input type="text" class="form-control" placeholder="Quantity" ng-model="txtRateQty">
+                                            </div>
+                                            <div class="col-md-4 noPadding">
+                                                <select select2 class="form-control" ng-model="ddlUnit" ng-init="ddlUnit=-1" required="">
+                                                    <option value="-1">--Unit--</option>
+                                                    <option ng-repeat="list in unitmasterList" value="{{list.selectedUnitID}}">
+                                                        {{list.unitName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--<div class="col-md-2">
+            <label>Molecular Intraction</label>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control" ng-model="txtIntraction" ng-init="txtIntraction=-1" required="" >
+                <option value="-1">--Interaction--</option>
+                <option ng-repeat="list in interactionList" value="{{list.id}}">{{list.nutrientName}}({{list.interactionType}})</option>
+            </select>
+
+
+        </div>
+        <div class="col-md-2">
+            <span>
+                <i class="fa fa-plus ng-scope" tooltip="Add Intraction" ng-click="getNutrientIntraction()"></i>
+                <i class="btn btn-success fa fa-refresh"  tooltip="Refresh" ng-click="referesInteractionList()"></i>
+            </span>
+        </div>-->
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <label>Molecular Formula</label>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <summernote ng-model="txtFormula" placeholder="Molecular Formula" height="60"></summernote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Half Life (T1/2)</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" placeholder="Half Life" ng-model="txtHalf" disabled>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Tmax</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" placeholder="Peek Values" ng-model="txttMax" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Metabolites</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <!--<input type="text" class="form-control" placeholder="Metabolite" ng-model="txtMetabolite" disabled>-->
+                                            <select select2 class="form-control" id="ddlMetabolite" ng-model="ddlMetabolite" ng-init="ddlMetabolite=-1" required="">
+                                                <option value="-1">--Select Metabolites--</option>
+                                                <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                    {{list.nutrientName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Remark</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Remark" ng-model="txtRemark">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-xs btn-info" ng-click="AddMetabolite()" ng-disabled="btnAdd">
+                                                <span class="glyphicon glyphicon-plus"></span>Add
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row" ng-if="addedMetaboliteList.length >0" style="padding-top:5px">
+                                            <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                                <table id="tableCalculators" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Metabolite</th>
+                                                            <th>Remark</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in addedMetaboliteList" ng-class-odd="'striped'">
+                                                            <td>{{list.nutrientName}}</td>
+                                                            <td>{{list.remark}}</td>
+                                                            <td><a href="" ng-click="deleteMetabolite($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Toxicity Level</label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="col-md-6 noPadding">
+                                                <input type="text" class="form-control" placeholder="Toxicity Level" ng-model="txtToxicity">
+                                            </div>
+                                            <div class="col-md-6 noPadding">
+                                                <select select2 class="form-control" id="ddlToxicityUnit" ng-model="ddlToxicityUnit" ng-init="ddlToxicityUnit=-1" required="">
+                                                    <option value="-1">--Toxicity Unit--</option>
+                                                    <option ng-repeat="list in toxicityList" value="{{list.toxicityUnitID}}">
+                                                        {{list.toxicityUnit}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Study Type</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" id="ddlStudyType" ng-model="ddlStudyType" ng-init="ddlStudyType=-1" required="">
+                                                <option value="-1">--Select Study Type--</option>
+                                                <option ng-repeat="list in studyMasterList" value="{{list.studyTypeID}}">
+                                                    {{list.studyType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Reference</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" placeholder="Reference" ng-model="txtReference"></textarea>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientMetabolite();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Pharmacokinetics and Pharmacodynamics List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Molecular Name</th>
+                                            <th>Molecular Formula</th>
+                                            <th>Absorption Min - Max</th>
+                                            <th>Elimination Min - Max</th>
+                                            <th>Rate Of Reaction</th>
+                                            <th>Toxicity Level</th>
+                                            <th>Study Type</th>
+                                            <th>Metabolites</th>
+                                            <th>Reference</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientMetaboliteList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteNutrientMetaboliteList(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td ng-bind-html="list.molecularFormula|trustAsHtml" class="ng-binding"></td>
+                                            <td>{{list.absorptionMin}} - {{list.absorptionMax}}</td>
+                                            <td>{{list.eliminationMin}} - {{list.eliminationMax}}</td>
+                                            <td>{{list.rateOfReaction}} {{list.unitName}}</td>
+                                            <td>{{list.toxicityValue}} {{list.toxicityUnit}}</td>
+                                            <td>{{list.studyType}}</td>
+                                            <td>
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.nutrientMetabolite.length > 0">
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Metabolite</td>
+                                                            <td class="col-md-2 labelHeadStyle">Remark</td>
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="list in list.details">
+                                                            <td class="col-md-2">{{list.nutrientName}}</td>
+                                                            <td class="col-md-2">{{list.remark}}</td>
+                                                            <td><a href="" ng-click="deleteNutrientMetabolite(list.subListID)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>{{list.reference}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

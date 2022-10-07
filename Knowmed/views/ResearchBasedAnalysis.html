@@ -1,0 +1,165 @@
+﻿
+<div class="container-fluid">
+    <h2> Research Based Analysis </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Research Based Analysis
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <!--<div class="form-group col-md-12">
+                            <div class="col-md-2 noPadding">
+                                Disease
+                            </div>
+                            <div class="col-md-10 noPadding">
+                                <select select2 class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=0">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="list in problemList" value="{{list.id}}">
+                                        {{list.problemName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>-->
+                        <div class="form-group col-md-12">
+                            <div class="col-md-2 noPadding">
+                                Measurment of
+                            </div>
+                            <div class="col-md-3 noPadding">
+                                <select select2 class="col-md-3 form-control" id="ddlResearchMarker" ng-model="ddlResearchMarker" ng-init="ddlResearchMarker=0">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="list in nutrientList" value="{{list.id}}">
+                                        {{list.nutrientName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                in
+                            </div>
+                            <div class="col-md-2 noPadding">
+                                <select select2 class="form-control" id="ddlSample" ng-model="ddlSample" ng-init="ddlSample=0">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="list in researchSampleList" value="{{list.id}}">
+                                        {{list.sampleName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                by
+                            </div>
+                            <div class="col-md-2 noPadding">
+                                <select select2 class="form-control" id="ddlMethod" ng-model="ddlMethod" ng-init="ddlMethod=0">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="list in methodList" value="{{list.id}}">
+                                        {{list.methodName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-xs btn-info" ng-click="addResearchTestDetails()" ng-disabled="isDisabled">
+                                    <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" style="margin-top:10px">
+                            <div class="row" ng-if="researchList.length>0">
+                                <div class="col-md-12">
+                                    <table id="tableCalculators" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>S.No</th>
+                                                <th>Marker</th>
+                                                <th>Sample</th>
+                                                <th>Method</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in researchList" ng-class-odd="'striped'">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{list.markerName}}</td>
+                                                <td>{{list.sampleName}}</td>
+                                                <td>{{list.testTechniqueName}}</td>
+                                                <td><a href="" ng-click="deleteResearch($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <!--<div class="col-md-2 noPadding">
+        Reference
+    </div>
+    <div class="col-md-4 noPadding">
+        <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference" />
+    </div>-->
+                            <div class="col-md-2 noPadding">
+                                URL
+                            </div>
+                            <div class="col-md-10 noPadding">
+                                <input type="text" class="form-control" ng-model="txturl" placeholder="URL" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveResearchBasedAnalysis();" /></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Research Based Analysis List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class=" form-row col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                    <table id="tableTroughValue" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <!--<th>Disease</th>-->
+                                                <th>Measurment of</th>
+                                                <th>In</th>
+                                                <th>By</th>
+                                                <!--<th>Reference</th>-->
+                                                <th>URL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in studyReferenceResearchTest | filter : search" ng-class-odd="'striped'">
+                                                <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteResearchBasedAnalysis(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                <!--<td>{{list.studyReference}}</td>-->
+                                                <td>{{list.nutrientName}}</td>
+                                                <td>{{list.sampleName}}</td>
+                                                <td>{{list.methodName}}</td>
+                                                <!--<td>{{list.reference}}</td>-->
+                                                <td>{{list.url}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

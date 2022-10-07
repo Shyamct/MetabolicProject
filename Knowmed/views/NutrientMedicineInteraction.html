@@ -1,0 +1,322 @@
+﻿
+<div class="container-fluid">
+    <h3>Nutrient Medicine Interaction</h3>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <label class="labelHeadStyle">Nutrient Medicine Interaction</label>
+                </div>
+                <div class="panel-body">
+                    <form name="nutMedInteraction">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Nutrient</div>
+                                    <div class="col-md-5">
+
+                                        <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=''" required="">
+                                            <option value="">--Select Nutrient--</option>
+                                            <option ng-repeat="list in NutrientList" value="{{list.id}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Medicine</div>
+                                    <div class="col-md-5">
+
+                                        <select select2 class="form-control" ng-model="ddlMedicine" ng-init="ddlMedicine=''" required="">
+                                            <option value="">--Select Medicine--</option>
+                                            <option ng-repeat="list in MedicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Interaction Type</div>
+                                    <div class="col-md-5">
+
+                                        <select class="form-control" ng-model="ddlInteractionType" ng-init="ddlInteractionType=''">
+                                            <option value="">--Select Interaction Type--</option>
+                                            <option ng-repeat="list in InteractionTypeList" value="{{list.id}}">
+                                                {{list.interactionType}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Interaction Effect</div>
+                                    <div class="col-md-5">
+
+                                        <select class="form-control" ng-model="ddlInteractionEffect" ng-init="ddlInteractionEffect=''">
+                                            <option value="">--Select Interaction Effect--</option>
+                                            <option ng-repeat="list in InteractionEffectList" value="{{list.id}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Reference</div>
+                                    <div class="col-md-5">
+
+                                        <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference" />
+                                    </div>
+                                    <div class="col-md-1">URL</div>
+                                    <div class="col-md-5">
+
+                                        <input type="text" class="form-control" ng-model="txtURL" placeholder="URL" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Remark</div>
+                                    <div class="col-md-11">
+
+                                        <input type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Effect Details -->
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Effect Type</div>
+                                    <div class="col-md-3">
+
+                                        <select class="form-control" ng-model="ddlEffectType" id="ddlEffectType" ng-init="ddlEffectType=''" ng-change="loadParameter()">
+                                            <option value="">--Select Interaction Type--</option>
+                                            <option ng-repeat="list in EffectTypeList" value="{{list.id}}">
+                                                {{list.effectType}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Effect Parameter</div>
+                                    <div class="col-md-3">
+
+                                        <select class="form-control" ng-model="ddlEffectParameter" id="ddlEffectParameter" ng-init="ddlEffectParameter=''">
+                                            <option value="">--Select Parameter--</option>
+                                            <option ng-repeat="list in effectParameterList" value="{{list.id}}" ng-selected="{{list.id==ddlEffectParameter}}">
+                                                {{list.effectParameter}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Effect</div>
+                                    <div class="col-md-3">
+
+                                        <select class="form-control" ng-model="ddlEffect" id="ddlEffect" ng-init="ddlEffect=''">
+                                            <option value="">--Select Effect--</option>
+                                            <option ng-repeat="list in InteractionEffectList" value="{{list.id}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Remark</div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" ng-model="txtRemark1" id="txtRemark1" placeholder="Remark" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-xs btn-info" ng-click="addInteractionEffect()" ng-disabled="isDisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="addedInteractionEffect.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Effect Type</th>
+                                                    <th>Effect Parameter</th>
+                                                    <th>Effect</th>
+                                                    <th>Remark</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in addedInteractionEffect" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.effectType}}</td>
+                                                    <td>{{list.effectParameter}}</td>
+                                                    <td>{{list.effect}}</td>
+                                                    <td>{{list.txtRemark1}}</td>
+                                                    <td><a href="" ng-click="deleteaddedInteractionEffect($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-success" ng-click="nutMedInteraction.$valid && SaveNutMedInteraction()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <label class="labelHeadStyle">Nutrient Medicine Interaction List</label>
+                </div>
+                <div class="panel-body" style="height: 50rem;overflow: scroll;">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <div class="row">
+                                    <table id="tableNutMedInteraction" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SNo</th>
+                                                <th>Nutrient</th>
+                                                <th>Medicine</th>
+                                                <th>Interaction Type</th>
+                                                <th>Interaction Effect</th>
+                                                <th>Remark</th>
+                                                <th>Reference</th>
+                                                <th>URL</th>
+                                                <th>Effect Type</th>
+                                                <th>Effect Parameter</th>
+                                                <th>Effect</th>
+                                                <th>Remark</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in NutMedActInteractionList | filter : search" ng-class-odd="'striped'">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{list.nutrientName}}</td>
+                                                <td>{{list.medicineName}}</td>
+                                                <td>{{list.interactionType}}</td>
+                                                <td>{{list.interactionEffec}}</td>
+                                                <td>{{list.remark}}</td>
+                                                <td>{{list.reference}}</td>
+                                                <td>{{list.url}}</td>
+                                                <td>{{list.effectType}}</td>
+                                                <td>{{list.effectParameter}}</td>
+                                                <td>{{list.effect}}</td>
+                                                <td>{{list.remark1}}</td>
+                                                <td><a href="" ng-click="viewInteractionEffect(list.id)" title="Edit Function"><i class="fa fa-eye" tooltip="Edit Function"></i></a> |   <a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+
+                <div class="modal-content">
+
+                    <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh; margin-bottom:0rem!important;">
+                        <table id="tableTroughValue" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Effect Type</th>
+                                    <th>Effect Parameter</th>
+                                    <th>Effect</th>
+                                    <th>Remark</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="list in effectFunctionList" ng-class-odd="'striped'">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{list.effectType}}</td>
+                                    <td>{{list.effectParameter}}</td>
+                                    <td>{{list.effect}}</td>
+                                    <td>{{list.remark1}}</td>
+                                    <td>
+                                        <a href="" ng-click="editEffect(list.id)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                        <a href="" ng-click="deleteEffect(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Effect Details -->
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="col-md-1">Effect Type</div>
+                            <div class="col-md-3">
+
+                                <select class="form-control" ng-model="ddlEffectTypeEdit" id="ddlEffectTypeEdit" ng-init="ddlEffectTypeEdit=''" ng-change="loadParameter()">
+                                    <option value="">--Select Interaction Type--</option>
+                                    <option ng-repeat="list in EffectTypeList" value="{{list.id}}">
+                                        {{list.effectType}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">Effect Parameter</div>
+                            <div class="col-md-3">
+
+                                <select class="form-control" ng-model="ddlEffectParameterEdit" id="ddlEffectParameterEdit" ng-init="ddlEffectParameterEdit=''">
+                                    <option value="">--Select Parameter--</option>
+                                    <option ng-repeat="list in effectParameterList" value="{{list.id}}" ng-selected="{{list.id==ddlEffectParameterEdit}}">
+                                        {{list.effectParameter}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">Effect</div>
+                            <div class="col-md-3">
+
+                                <select class="form-control" ng-model="ddlEffectEdit" id="ddlEffectEdit" ng-init="ddlEffectEdit=''">
+                                    <option value="">--Select Effect--</option>
+                                    <option ng-repeat="list in InteractionEffectList" value="{{list.id}}">
+                                        {{list.statusFor}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="col-md-1">Remark</div>
+                            <div class="col-md-11">
+                                <input type="text" class="form-control" ng-model="txtRemark1Edit" id="txtRemark1Edit" placeholder="Remark" />
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-success pull-left" value="Save" ng-click="saveEffect();" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

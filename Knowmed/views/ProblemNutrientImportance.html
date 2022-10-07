@@ -1,0 +1,136 @@
+﻿<div class="container-fluid">
+    <h2>Problem Nutrient Importance</h2>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Problem Nutrient Importance
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-1">Disease</div>
+                                <div class="col-md-11">
+                                    <select select2 class="form-control" ng-model="ddlDisease" ng-init="ddlDisease=0" required="">
+                                        <option value="0">--Select Disease--</option>
+                                        <option ng-repeat="list in problemList" value="{{list.id}}">
+                                            {{list.problemName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table id="tableDiseaseDepartment" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="max-width:5rem;">Sequence</th>
+                                                <th style="max-width:25rem;">Nutrient</th>
+                                                <th style="max-width:20rem;">Role</th>
+                                                <th style="max-width:10rem;"> </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in assignNutrientList">
+                                                <td style="max-width:5rem;">
+                                                    <input type="text" class="form-control" ng-model="list.sequenceNo" ng-init="list.sequenceNo=($index+1)" />
+                                                </td>
+                                                <td style="max-width:25rem;">
+                                                    <select select2 class="form-control" ng-model="list.nutrientId" ng-init="list.nutrientId=0" required="">
+                                                        <option value="0">--Select Nutrient--</option>
+                                                        <option ng-repeat="list in nutrientList" value="{{list.id}}" ng-selected="{{list.id==list.nutrientId}}" >
+                                                            {{list.nutrientName}}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td style="max-width:20rem;">
+                                                    <select class="form-control" ng-model="list.roleType">
+                                                        <option value="">--Select Role--</option>
+                                                        <option ng-repeat="list in roleTypeList" value="{{list.role}}" ng-selected="{{list.role==list.roleType}}">
+                                                            {{list.roleName}}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td style="max-width:10rem;">
+                                                    <button class="btn btn-xs btn-info" ng-click="addMoreNutrient(list)" ng-disabled="addBtn">
+                                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="button" class="btn btn-success pull-right" value="Save" ng-click="saveDiseaseNutrientSequence();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Problem Nutrient Importance List
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class=" form-row col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                            <table id="tableTroughValue" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Action</th>
+                                        <th>Disease</th>
+                                        <th>Nutrient Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in nutrientSequenceList | filter : search" ng-class-odd="'striped'">
+                                        <td>{{$index+1}}</td>
+                                        <td>
+                                            <!--<a href="" ng-click="edit(list.diseaseID)" title="Edit"><i class="fa fa-edit"></i></a> |-->
+                                            <a href="" ng-click="delete(list.diseaseID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </td>
+                                        <td>{{list.problemName}}</td>
+                                        <td>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr ng-repeat="sequence in list.sequenceList">
+                                                        <td>{{sequence.nutrientName}}</td>
+                                                        <td>{{sequence.sequenceNo}}</td>
+                                                        <td>{{sequence.roleTypeName}}</td>
+                                                        <td> <a href="" ng-click="deleteSequence(sequence.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

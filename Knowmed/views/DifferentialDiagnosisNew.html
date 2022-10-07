@@ -1,0 +1,623 @@
+﻿
+<div class="container-fluid">
+    <!-- Start Diagnosis-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Diagnosis
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select select2 class="form-control" id="ddlDiagnosis" ng-model="ddlDiagnosis" ng-init="ddlDiagnosis=-1" required="" ng-change="diagnosisAttributeList()">
+                                            <option value="-1">--Select Diagnosis--</option>
+                                            <option ng-repeat="list in DiagnosisList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                      
+
+                        <div class="form-group col-md-6">
+                            <fieldset>
+                                <legend>Sign/Symptom</legend>
+                                <div class="row">
+                                    <div class="col-md-6" style="overflow: auto;max-height:20rem;">
+                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <input type="checkbox" ng-model="checkallSign" ng-click="checkUncheckAllSign()" />
+                                                    </th>
+                                                    <th>Sign</th>
+                                                    <th>Attribute Name</th>
+                                                    <th>Attribute Value</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in dAttributeListSign" ng-if="list.inputTypeId == '1'" ng-class-odd="'striped'">
+                                                    <td><input type="checkbox" name="signCheck" ng-model="list.checked" /> </td>
+                                                    <td>{{list.problemName}}</td>
+                                                    <td>{{list.attributeName}}</td>
+                                                    <td>{{list.attributeValue}}</td>
+                                                    <td>
+                                                        <button class="btn btn-xs btn-info" ng-if="list.attributeTypeID == '0'" data-toggle="modal" data-target="#myModal" ng-click="AttValueList(list.problemID,list.id)">
+                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-md-6" style="overflow: auto;max-height:20rem;">
+                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox" ng-model="checkallSymptom" ng-click="checkUncheckAllSymptom()" /></th>
+                                                    <th>Symptom</th>
+                                                    <th>Attribute Name</th>
+                                                    <th>Attribute Value</th>
+                                                    <td>Action</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in dAttributeListSymptom" ng-if="list.inputTypeId == '2'" ng-class-odd="'striped'">
+                                                    <td><input type="checkbox" name="symptomCheck" ng-model="list.checked" /> </td>
+                                                    <td>{{list.problemName}}</td>
+                                                    <td>{{list.attributeName}}</td>
+                                                    <td>{{list.attributeValue}}</td>
+                                                    <td>
+                                                        <button class="btn btn-xs btn-info" ng-if="list.attributeTypeID == '0'" data-toggle="modal" data-target="#myModal" ng-click="AttValueList(list.problemID,list.id)">
+                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" id="ddlInputType" ng-model="ddlInputType" ng-init="ddlInputType=-1" required="" aria-label="ngHide">
+                                            <option value="-1">--Select Input Type--</option>
+                                            <option value="1">Sign</option>
+                                            <option value="2">Symptom</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlInputProblem" ng-model="ddlInputProblem" ng-init="ddlInputProblem=-1" required="" ng-change="AttValueList()" aria-label="ngHide">
+                                            <option value="-1">--Select Problem--</option>
+                                            <option ng-repeat="list in ProblemList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control" ng-model="ddlAttributeName" ng-init="ddlAttributeName=0">
+                                            <option value="0">--Select Attribute Value--</option>
+                                            <option ng-repeat="list in AttributeValueList" value="{{list.attributeID}}">
+                                                {{list.attributeName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div ng-repeat="c in AttributeValue | filter:{attributeID:ddlAttributeName}">
+                                            <label for="chkAttribute">
+                                                <input id="chkAttribute" type="checkbox" ng-model="c.Selected" />
+                                                {{c.attributeValue}}
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-xs btn-info" ng-click="addAttribute()">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <fieldset>
+                                <legend>Investigation</legend>
+                                <div class="row">
+                                    <div class="col-md-12" style="overflow: auto;max-height:20rem;">
+                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox" ng-model="checkallInvestigation" ng-click="checkUncheckAllInvestigation()" /></th>
+                                                    <th>Investigation</th>
+                                                    <th>Property Name</th>
+                                                    <th>Property Value</th>
+                                                    <th>Result</th>
+                                                    <td>Action</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in dInvestigationList" ng-class-odd="'striped'">
+                                                    <td><input type="checkbox" ng-model="list.checked" /> </td>
+                                                    <td>{{list.subTest}}</td>
+                                                    <td>{{list.propertyName}}</td>
+                                                    <td>{{list.propertyValue}}</td>
+                                                    <td ng-bind-html="list.resultDetails|trustAsHtml">{{list.resultDetails}}</td>
+                                                    <td>
+                                                        <button class="btn btn-xs btn-info" ng-if="list.resultPropertyValueID == '0'" data-toggle="modal" data-target="#myModal1" ng-click="rpList(list.subTestID,list.resultPropertyID,list.resultPropertyValueID,list.id)">
+                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlTest" ng-model="ddlTest" ng-init="ddlTest=-1" required="" ng-change="rpList()">
+                                            <option value="-1">--Select Test--</option>
+                                            <option ng-repeat="subtest in SubTestList" value="{{subtest.id}}">
+                                                {{subtest.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlResultProperty" ng-init="ddlResultProperty=-1" required="" ng-change="rpvList()">
+                                            <option value="-1">--Select Property--</option>
+                                            <option ng-repeat="list in ResultPropertyList" value="{{list.id}}">
+                                                {{list.propertyName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlResultPropertyValue" ng-init="ddlResultPropertyValue=-1" required="">
+                                            <option value="-1">--Select Value--</option>
+                                            <option ng-repeat="list in ResultPropertyValueList" value="{{list.id}}">
+                                                {{list.propertyValue}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <input type="text" ng-model="txtResultDetails" class="form-control" />
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <button class="btn btn-xs btn-info" ng-click="addInvestigation()">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal popup-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Attribute</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-control" ng-model="ddlAttributeNameModel" ng-init="ddlAttributeNameModel=0" ng-change="AttributeValueList()">
+                                <option value="0">--Select Attribute Name--</option>
+                                <option ng-repeat="list in AttributeValueModelList" value="{{list.attributeID}}">
+                                    {{list.attributeName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" ng-model="ddlAttributeValueModel" ng-init="ddlAttributeValueModel=0">
+                                <option value="0">--Select Attribute Value--</option>
+                                <option ng-repeat="list in AttributeModelValue" value="{{list.id}}">
+                                    {{list.attributeValue}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-success" value="Save" ng-click="updateAttribute()" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal popup-->
+<!-- Modal popup-->
+<div class="modal fade" id="myModal1" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Property</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-control" ng-model="ddlPropertyNameModel" ng-init="ddlPropertyNameModel=0" ng-change="rpvList(ddlPropertyNameModel)">
+                                <option value="0">--Select Property Name--</option>
+                                <option ng-repeat="list in ResultPropertyList" value="{{list.id}}">
+                                    {{list.propertyName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" ng-model="ddlPropertyValueModel" ng-init="ddlPropertyValueModel=0">
+                                <option value="0">--Select Property Value--</option>
+                                <option ng-repeat="list in ResultPropertyValueList" value="{{list.id}}">
+                                    {{list.propertyValue}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-success" value="Save" ng-click="updateProperty()" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal popup-->
+<!-- End Diagnosis-->
+<!-- Start Differential Diagnosis-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Differential Diagnosis
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select select2 class="form-control" id="ddlDiagnosisDD" ng-model="ddlDiagnosisDD" ng-init="ddlDiagnosisDD=-1" required="" ng-change="diagnosisAttributeListDD()">
+                                            <option value="-1">--Select Diagnosis--</option>
+                                            <option ng-repeat="list in DiagnosisListDD" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <fieldset>
+                                    <legend>Sign/Symptom</legend>
+                                    <div class="row">
+                                        <div class="col-md-6" style="overflow: auto;max-height:20rem;">
+                                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <input type="checkbox" ng-model="checkallSignDD" ng-click="checkUncheckAllSignDD()"/>
+                                                        </th>
+                                                        <th>Sign</th>
+                                                        <th>Attribute Name</th>
+                                                        <th>Attribute Value</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in dAttributeListSignDD" ng-if="list.inputTypeId == '1'" ng-class-odd="'striped'">
+                                                        <td><input type="checkbox"  ng-model="list.checked" /> </td>
+                                                        <td>{{list.problemName}}</td>
+                                                        <td>{{list.attributeName}}</td>
+                                                        <td>{{list.attributeValue}}</td>
+                                                        <td>
+                                                            <button class="btn btn-xs btn-info" ng-if="list.attributeTypeID == '0'" data-toggle="modal" data-target="#myModalDD" ng-click="AttValueListDD(list.problemID,list.id)">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="col-md-6" style="overflow: auto;max-height:20rem;">
+                                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input type="checkbox" ng-model="checkallSymptomDD" ng-click="checkUncheckAllSymptomDD()" /></th>
+                                                        <th>Symptom</th>
+                                                        <th>Attribute Name</th>
+                                                        <th>Attribute Value</th>
+                                                        <td>Action</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in dAttributeListSymptomDD" ng-if="list.inputTypeId == '2'" ng-class-odd="'striped'">
+                                                        <td><input type="checkbox" ng-model="list.checked"/> </td>
+                                                        <td>{{list.problemName}}</td>
+                                                        <td>{{list.attributeName}}</td>
+                                                        <td>{{list.attributeValue}}</td>
+                                                        <td>
+                                                            <button class="btn btn-xs btn-info" ng-if="list.attributeTypeID == '0'" data-toggle="modal" data-target="#myModalDD" ng-click="AttValueListDD(list.problemID,list.id)">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <select select2 class="form-control" id="ddlInputTypeDD" ng-model="ddlInputTypeDD" ng-init="ddlInputTypeDD=-1" required="" aria-label="ngHideDD">
+                                                <option value="-1">--Select Input Type--</option>
+                                                <option value="1">Sign</option>
+                                                <option value="2">Symptom</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" id="ddlInputProblemDD" ng-model="ddlInputProblemDD" ng-init="ddlInputProblemDD=-1" required="" ng-change="AttValueListDD()" aria-label="ngHideDD">
+                                                <option value="-1">--Select Problem--</option>
+                                                <option ng-repeat="list in ProblemListDD" value="{{list.id}}">
+                                                    {{list.problemName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" ng-model="ddlAttributeNameDD" ng-init="ddlAttributeNameDD=0">
+                                                <option value="0">--Select Attribute Value--</option>
+                                                <option ng-repeat="list in AttributeValueListDD" value="{{list.attributeID}}">
+                                                    {{list.attributeName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div ng-repeat="c in AttributeValueDD | filter:{attributeID:ddlAttributeNameDD}">
+                                                <label for="chkAttributeDD">
+                                                    <input id="chkAttributeDD" type="checkbox" ng-model="c.Selected" />
+                                                    {{c.attributeValue}}
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-xs btn-info" ng-click="addAttributeDD()">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <fieldset>
+                                    <legend>Investigation</legend>
+                                    <div class="row">
+                                        <div class="col-md-12" style="overflow: auto;max-height:20rem;">
+                                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input type="checkbox" ng-model="checkallInvestigationDD" ng-click="checkUncheckAllInvestigationDD()" /></th>
+                                                        <th>Investigation</th>
+                                                        <th>Property Name</th>
+                                                        <th>Property Value</th>
+                                                        <th>Result</th>
+                                                        <td>Action</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in dInvestigationListDD" ng-class-odd="'striped'">
+                                                        <td><input type="checkbox" ng-model="list.checked" /> </td>
+                                                        <td>{{list.subTest}}</td>
+                                                        <td>{{list.propertyName}}</td>
+                                                        <td>{{list.propertyValue}}</td>
+                                                        <td ng-bind-html="list.resultDetails|trustAsHtml">{{list.resultDetails}}</td>
+                                                        <td>
+                                                            <button class="btn btn-xs btn-info" ng-if="list.resultPropertyValueID == '0'" data-toggle="modal" data-target="#myModal1DD" ng-click="rpListDD(list.subTestID,list.resultPropertyID,list.resultPropertyValueID,list.id)">
+                                                                <span class="glyphicon glyphicon-plus"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" id="ddlTest" ng-model="ddlTestDD" ng-init="ddlTestDD=-1" required="" ng-change="rpListDD()">
+                                                <option value="-1">--Select Test--</option>
+                                                <option ng-repeat="subtest in SubTestListDD" value="{{subtest.id}}">
+                                                    {{subtest.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <select select2 class="form-control" ng-model="ddlResultPropertyDD" ng-init="ddlResultPropertyDD=-1" required="" ng-change="rpvListDD()">
+                                                <option value="-1">--Select Property--</option>
+                                                <option ng-repeat="list in ResultPropertyListDD" value="{{list.id}}">
+                                                    {{list.propertyName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <select select2 class="form-control" ng-model="ddlResultPropertyValueDD" ng-init="ddlResultPropertyValueDD=-1" required="">
+                                                <option value="-1">--Select Value--</option>
+                                                <option ng-repeat="list in ResultPropertyValueListDD" value="{{list.id}}">
+                                                    {{list.propertyValue}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <input type="text" ng-model="txtResultDetailsDD" class="form-control" />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <button class="btn btn-xs btn-info" ng-click="addInvestigationDD()">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+
+
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <div class="row">               
+                <div class="col-md-4">
+                   <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference"/>
+                </div>
+                <div class="col-md-2">
+                    <select select2 class="form-control" ng-model="ddlDiagnosisType" ng-init="ddlDiagnosisType=''" required="">
+                        <option value="">--Select Diagnosis Type--</option>
+                        <option value="Common">Common</option>
+                        <option value="Rare">Rare</option>
+                    </select>
+
+                </div>
+                <div class="col-md-3">
+                    <input type="button" class="btn btn-success" value="Save" ng-click="saveDifferentialDiagnosisNew()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Modal popup-->
+    <div class="modal fade" id="myModalDD" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Attribute</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select class="form-control" ng-model="ddlAttributeNameModelDD" ng-init="ddlAttributeNameModelDD=0" ng-change="AttributeValueListDD()">
+                                    <option value="0">--Select Attribute Name--</option>
+                                    <option ng-repeat="list in AttributeValueModelListDD" value="{{list.attributeID}}">
+                                        {{list.attributeName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" ng-model="ddlAttributeValueModelDD" ng-init="ddlAttributeValueModelDD=0">
+                                    <option value="0">--Select Attribute Value--</option>
+                                    <option ng-repeat="list in AttributeModelValueDD" value="{{list.id}}">
+                                        {{list.attributeValue}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-success" value="Save" ng-click="updateAttributeDD()" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal popup-->
+    <!-- Modal popup-->
+    <div class="modal fade" id="myModal1DD" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Property</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select class="form-control" ng-model="ddlPropertyNameModelDD" ng-init="ddlPropertyNameModelDD=0" ng-change="rpvListDD(ddlPropertyNameModelDD)">
+                                    <option value="0">--Select Property Name--</option>
+                                    <option ng-repeat="list in ResultPropertyListDD" value="{{list.id}}">
+                                        {{list.propertyName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" ng-model="ddlPropertyValueModelDD" ng-init="ddlPropertyValueModelDD=0">
+                                    <option value="0">--Select Property Value--</option>
+                                    <option ng-repeat="list in ResultPropertyValueListDD" value="{{list.id}}">
+                                        {{list.propertyValue}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-success" value="Save" ng-click="updatePropertyDD()" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal popup-->
+    <!-- End Differential Diagnosis-->

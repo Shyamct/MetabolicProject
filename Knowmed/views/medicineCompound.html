@@ -1,0 +1,188 @@
+﻿<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Medicine Compound</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Medicine Compound
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Medicine</div>
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" ng-model="ddlMedicine" ng-init="ddlMedicine=-1" required="" ng-change="getMedicineCompoundList()">
+                                            <option value="-1">--Select Medicine--</option>
+                                            <option ng-repeat="medicine in medicineList" value="{{medicine.id}}">
+                                                {{medicine.medicineName}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Brand</div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlBrand" ng-init="ddlBrand=0" required="">
+                                            <option value="0">--Select Brand--</option>
+                                            <option ng-repeat="brand in brandList" value="{{brand.brandID}}">
+                                                {{brand.brandName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Dose</div>
+                                    <div class="col-md-2">
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" placeholder="Qty" aria-describedby="basic-addon2" ng-model="txtDoseQty">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-group">
+
+                                            <select class="form-control" ng-model="ddlDoseUnit" ng-init="ddlDoseUnit=0" required="">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in doseUnitList" value="{{list.unitID}}">
+                                                    {{list.unitName}}
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Element Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlCompound" ng-init="ddlCompound=0" required="" ng-change="bindUnit(ddlCompound);">
+                                            <option value="0">--Select Nutrient Compound--</option>
+                                            <option ng-repeat="list in compoundList" value="{{list.compoundID}}">
+                                                {{list.compoundName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Quantity</div>
+                                    <div class="col-md-4">
+                                        <!--<div class="row">-->
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Quantity" aria-describedby="basic-addon2" ng-model="txtCompoundQty">
+                                            <span class="input-group-addon" id="basic-addon2">{{compoundUnit}}</span>
+                                        </div>
+                                        <!--</div>-->
+                                        <!--<input type="text" class="form-control" ng-model="txtNutrientQty" placeholder="Quantity" />-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Reference</div>
+                                    <div class="col-md-10">
+                                        <textarea class="form-control" ng-model="txtReference" placeholder="Reference" required></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Remark</div>
+                                    <div class="col-md-11">
+                                        <textarea class="form-control" placeholder="Details..." ng-model="txtRemark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Reference</legend>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlbookname" ng-init="ddlbookname=0" required="">
+                                                <option value="0">--Select Book--</option>
+                                                <option ng-repeat="list in bookList" value="{{list.bookID}}">
+                                                    {{list.bookName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4"><input type="text" class="form-control" placeholder="Page No." ng-model="txtpageno" /></div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" placeholder="Edition" ng-model="txtedition" onkeypress="isNumeric(1)" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineCompound()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Compound List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Medicine</th>
+                                            <th>Brand</th>
+                                            <th>Dose</th>
+                                            <th>Compound</th>
+                                            <th>Compound Qty</th>
+                                            <th>Book</th>
+                                            <th>Page No</th>
+                                            <th>Edition</th>
+                                            <th>Reference</th>
+                                            <th>Remark</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in medicineCompoundList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.brandName}}</td>
+                                            <td>{{list.dose}}</td>
+                                            <td>{{list.compoundName}}</td>
+                                            <td>{{list.qty}}</td>
+                                            <td>{{list.bookName}}</td>
+                                            <td>{{list.pageNo}}</td>
+                                            <td>{{list.edition}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td><a href="" ng-click="editMedicineCompound(list.medicineID,list.medicineActiveElementID)" title="Edit"><i class="fa fa-edit"></i></a> <a href="" ng-click="deleteMedicineCompound(list.medicineActiveElementID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

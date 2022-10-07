@@ -1,0 +1,66 @@
+﻿/* CSS3 */
+
+/* The whole thing */
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    padding: 0;
+}
+
+    /* Each of the items in the list */
+    .custom-menu li {
+        padding: 8px 12px;
+        cursor: pointer;
+        list-style-type: none;
+        transition: all .3s ease;
+        user-select: none;
+    }
+
+        .custom-menu li:hover {
+            background-color: #DEF;
+        }
+
+
+#tblMarkerDetail thead td {
+    font-weight: bold;
+    background-color: #f8f8f8;
+    white-space: nowrap;
+}
+
+#tblMarkerRDADetail thead td {
+    font-weight: bold;
+    background-color: #f8f8f8;
+}
+
+#modalMarkerEndResult thead td {
+    font-weight: bold;
+    background-color: #f8f8f8;
+}
+
+.toolbarViewerPatient {
+    margin-left: 10rem;
+}
+
+.myTable {
+    border: none;
+    background-color: transparent !important;
+    border-top: none;
+}
+
+
+    .myTable td, th {
+        border-top: 0 !important;
+    }
+
+
+    .myTable tbody > tr:nth-child(odd) > td, .myTable tbody > tr:nth-child(odd) > th {
+        background-color: transparent !important;
+    }

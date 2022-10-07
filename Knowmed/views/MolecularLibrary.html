@@ -1,0 +1,180 @@
+﻿<!--<link href="../assets/summernote/summernote.css" rel="stylesheet" />-->
+<div class="container-fluid">
+    <h2>Molecular Library</h2>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Add Molecular Library
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Molecular Name</div>
+                                <div class="col-md-4">
+                                    <select select2 class="form-control" ng-model="ddlMolecular" ng-init="ddlMolecular=0" required="">
+                                        <!--ng-change="edit(list.nutrientID)"-->
+                                        <option value="0">--Select Molecular--</option>
+                                        <option ng-repeat="list in molecularList" value="{{list.nutrientID}}">
+                                            {{list.nutrientName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">Synonym</div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" ng-model="txtSynonym" placeholder="Synonym" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Molecular Weight</div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" ng-model="txtMolecularWeight" placeholder="Molecular Weight" />
+                                </div>
+                                <div class="col-md-2">
+                                    <select select2 class="form-control" ng-model="ddlUnit" ng-init="ddlUnit=0" required="">
+                                        <option value="0">--Unit--</option>
+                                        <option ng-repeat="list in unitList" value="{{list.unitID}}">
+                                            {{list.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">Structure</div>
+                                <div class="col-md-4">
+                                    <input type="file" id="fileimagePath" name="fileimagePath" ng-files="getStructureFiles($files)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Molecular Formula</div>
+                                <div class="col-md-10">
+                                    <summernote ng-model="txtFormula" placeholder="Molecular Formula" height="60"></summernote>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Melting Point</div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" ng-model="txtMeltingPoint" placeholder="Melting Point" />
+                                </div>
+                                <div class="col-md-2"> Boiling Point</div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" ng-model="txtBoilingPoint" placeholder="Boiling Point" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Molecular Smileys</div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" ng-model="txtSmileys" placeholder="Molecular Smileys" />
+                                </div>
+                                <div class="col-md-2">Solubility</div>
+                                <div class="col-md-4">
+                                    <select select2 class="form-control" ng-model="ddlSolubility" ng-init="ddlSolubility=0" required="" ng-change="">
+                                        <option value="0">--Select Solubility--</option>
+                                        <option ng-repeat="list in solubilityList" value="{{list.solubilityID}}">
+                                            {{list.statusFor}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div ng-show="ddlSolubility==43">
+                                <div class="row">
+                                    <div class="col-md-2">Solubility Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlSolubilityName" ng-init="ddlSolubilityName=0" required="">
+                                            <option value="0">--Select Solubility Name--</option>
+                                            <option ng-repeat="list in solubleNameList" value="{{list.soluble}}">
+                                                {{list.solubleName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3 text-left">
+                                    <input type="button" class="btn btn-success" value="Update" ng-click="saveMolecularLibrary();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Molecular Library List
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class=" form-row col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Molecular ID</th>
+                                        <th>Molecular Name</th>
+                                        <th>Synonym</th>
+                                        <th>Weight/ Unit</th>
+                                        <th>Molecular Formula</th>
+                                        <th>Melting Point</th>
+                                        <th>Boiling Point</th>
+                                        <th>Smileys</th>
+                                        <th>Solubility</th>
+                                        <th>Solubility Name</th>
+                                        <th>Structure</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in molecularLibraryList | filter : search" ng-class-odd="'striped'">
+                                        <td>
+                                            <a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>
+                                            <!--| <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>-->
+                                        </td>
+                                        <td>{{list.moleculeID}}</td>
+                                        <td>{{list.nutrientName}}</td>
+                                        <td>{{list.synonym}}</td>
+                                        <td>{{list.molecularWeight}} / {{list.name}}</td>
+                                        <!--<td>{{list.molecularFormula}}</td>-->
+                                        <td ng-bind-html="list.molecularFormula|trustAsHtml" class="ng-binding"></td>
+                                        <td>{{list.meltingPoint}}</td>
+                                        <td>{{list.boilingPoint}}</td>
+                                        <td>{{list.molecularSmileys}}</td>
+                                        <td>{{list.statusFor}}</td>
+                                        <td>{{list.solubleName}}</td>
+                                        <td ng-if="list.structureImageType == 'sdf'"><a href="{{list.structureImage}}" target="_blank">{{list.structureImage}}</a></td>
+                                        <td ng-if="list.structureImageType == 'mol'"><a href="{{list.structureImage}}" target="_blank">{{list.structureImage}}</a></td>
+                                        <td ng-if="list.structureImageType == 'img'"><img src="{{list.structureImage}}" height="150px" width="150px" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

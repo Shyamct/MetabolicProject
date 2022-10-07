@@ -1,0 +1,96 @@
+﻿
+<div class="container-fluid">
+
+   
+    <h2>Diet SubCategory</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add DietSubCategory
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">SubCategory Name</div>
+                                    <div class="col-md-3">
+                                        <input type="TEXT" class="form-control" ng-model="txtSubCategoryName" />
+                                    </div>
+                                    <div class="col-md-1">Level Type </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlLevelType" ng-model="ddlLevelType" ng-init="ddlLevelType=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="status in statusList" value="{{status.statusID}}">
+                                                {{status.statusName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Nutrient </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlNutrient" ng-model="ddlNutrient" ng-init="ddlNutrient=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="nutrient in nutrientMasterList" value="{{nutrient.nutrientID}}">
+                                                {{nutrient.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                           
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveDietSubCategory();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Diet SubCategory List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>SubCategory</th>
+                                            <th>Level Type</th>
+                                            <th>Nutrient</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in dietSubCategoryList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.subCategoryName}}</td>
+                                            <td>{{list.levelType}}</td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

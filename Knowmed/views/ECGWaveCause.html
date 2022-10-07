@@ -1,0 +1,261 @@
+﻿
+<div class="container-fluid">
+    <h2>ECG Wave Cause</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    ECG Wave Cause
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Effected Compond/Channel</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlEffected" ng-init="ddlEffected=0" required="">
+                                                <option value="0">--Select Effected Compond--</option>
+                                                <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                    {{list.nutrientName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Status H/L</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlChannel" ng-init="ddlChannel=0" required="">
+                                                <option value="0">--Select High/Low--</option>
+                                                <option ng-repeat="list in nutrientLevelList" value="{{list.nutrientLevelID}}">
+                                                    {{list.statusFor}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>ECG Wave</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlECGWave" ng-init="ddlECGWave=0" required="">
+                                                <option value="0">--Select ECG Wave--</option>
+                                                <option ng-repeat="list in ecgWaveList" value="{{list.ecgWaveID}}">
+                                                    {{list.wave}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Amplitude Effect </label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlAmplitude" ng-init="ddlAmplitude=0" required="">
+                                                <option value="0">--Select Amplitude --</option>
+                                                <option ng-repeat="list in amplituEffectList" value="{{list.amplituEffectID}}">
+                                                    {{list.statusFor}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>ECG Interval</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlECGInterval" ng-init="ddlECGInterval=0" required="">
+                                                <option value="0">--Select ECG Interval--</option>
+                                                <option ng-repeat="list in ecgIntervalList" value="{{list.ecgIntervalID}}">
+                                                    {{list.interval}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Interval Effected</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlInterval" ng-init="ddlInterval=0" required="">
+                                                <option value="0">--Select Interval Effected--</option>
+                                                <option ng-repeat="list in intervalEffectList" value="{{list.intervalEffectID}}">
+                                                    {{list.statusFor}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>ECG Wave Effect</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlWaveEffect" ng-init="ddlWaveEffect=0" required="">
+                                                <option value="0">--Select Wave Effect--</option>
+                                                <option ng-repeat="list in waveEffectList" value="{{list.waveEffectID}}">
+                                                    {{list.statusFor}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Effect On Body</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select select2 class="form-control" ng-model="ddlEffectOnBy" id="ddlEffectOnBy" ng-init="ddlEffectOnBy=0" required="">
+                                                <option value="0">--Select Effect On Body--</option>
+                                                <option ng-repeat="list in effectProblemList" value="{{list.effectProblemID}}">
+                                                    {{list.problemName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1" style="padding:5px">
+                                            <button class="btn btn-xs btn-info" ng-click="AddEffectBody()" ng-disabled="btndisabled">
+                                                <span class="glyphicon glyphicon-plus"></span>Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row" ng-if="addedEffectBodyList.length > 0">
+                                            <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                                <table id="tableCalculators" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Effect On Body</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in addedEffectBodyList" ng-class-odd="'striped'">
+                                                            <td>{{list.problemName}}</td>
+                                                            <td><a href="" ng-click="deleteEffectBodyList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <fieldset>
+                                            <legend>Reference</legend>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <select select2 class="form-control" ng-model="ddlBook" ng-init="ddlBook=0" required="">
+                                                        <option value="0">--Select Book--</option>
+                                                        <option ng-repeat="list in bookList" value="{{list.id}}">
+                                                            {{list.bookName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3"><input type="text" class="form-control" placeholder="Page No." ng-model="txtPageNo" /></div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" placeholder="Edition" ng-model="txtEdition" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" placeholder="Reference URL" ng-model="txtReference" />
+                                                </div>
+                                                <div class="col-md-12" style="margin-top: 1rem;">
+                                                    <!--<div class="col-md-2">Remark</div>-->
+                                                    <!--<div class="col-md-12">-->
+                                                        <textarea type="text" class="form-control" ng-model="txtRemark" placeholder="Remark"  />
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveECGWaveCause();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    ECG Wave Cause List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Effected Compond</th>
+                                            <th>Status H/L</th>
+                                            <th>ECG Wave</th>
+                                            <th>Amplitude Effect</th>
+                                            <th>ECG Interval</th>
+                                            <th>Interval Effected</th>
+                                            <th>Wave Effect</th>
+                                            <th>Effect On Body</th>
+                                            <th>Remark</th>
+                                            <th>Ref Book</th>
+                                            <th>Reference URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in ecgWaveCauseList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteECGWaveCause(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.wave}}</td>
+                                            <td>{{list.amplituEffect}}</td>
+                                            <td>{{list.interval}}</td>
+                                            <td>{{list.intervalEffect}}</td>
+                                            <td>{{list.waveEffect}}</td>
+                                            <td>
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.dtECGWaveEffectList.length > 0">
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Problem Name</td>
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="effect in list.dtECGWaveEffectList">
+                                                            <td>{{effect.problemName}}</td>
+                                                            <td><a href="" ng-click="deleteECGWaveEffect(effect.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>                                           
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.bookReference}}</td>
+                                            <td>{{list.reference}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

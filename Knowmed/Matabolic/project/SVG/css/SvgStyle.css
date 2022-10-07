@@ -1,0 +1,41 @@
+﻿@keyframes blink-H {
+    100%, 0% {
+        fill: #FF0000;
+    }
+
+    60% {
+        fill: #FFCCCB;
+    }
+}
+
+.blink-Harmful {
+    animation: blink-H 0.8s infinite;
+}
+
+@keyframes blink-B {
+    100%, 0% {
+        fill: #228B22;
+    }
+
+    60% {
+        fill: #AAF0D1;
+    }
+}
+
+.blink-Beneficial {
+    animation: blink-B 0.8s infinite;
+}
+
+@keyframes blink-C {
+    100%, 0% {
+        fill: #87CEEB;
+    }
+
+    60% {
+        fill: #40829c;
+    }
+}
+
+.blink-Common {
+    animation: blink-C 0.8s infinite;
+}

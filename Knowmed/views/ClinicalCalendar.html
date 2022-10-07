@@ -1,0 +1,130 @@
+﻿
+<div class="container-fluid">
+    <h2>Clinical Calendar</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Clinical Calendar
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Day Title</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" ng-model="txtdayTitle" placeholder="Day Title" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Day From</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input text="text" class="form-control" ng-model="txtdayFrom" placeholder="Day From" onkeypress="isNumeric(true)" />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Day To</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input text="text" class="form-control" ng-model="txtdayTo" placeholder="Day To" onkeypress="isNumeric(true)" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Month</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input text="text" class="form-control" ng-model="txtmonth" placeholder="Month" onkeypress="isNumeric(true)" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Description</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea text="text" class="form-control" ng-model="txtdescription" placeholder="Description" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Image</label>
+                                        </div>
+                                        <div class="col-md-10" style="height: 37px">
+                                            <input type="file" id="fileimagePath" name="fileimagePath" ng-files="getClinicalFiles($files)">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveClinicalCalendar();" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Clinical Calendar List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Day Title</th>
+                                            <th>Day From</th>
+                                            <th>Day To</th>
+                                            <th>Month</th>
+                                            <th>Description</th>
+                                            <th>Image URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in clinicalList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteClinicalCalendar(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.dayTitle}}</td>
+                                            <td>{{list.dayFrom}}</td>
+                                            <td>{{list.dayTo}}</td>
+                                            <td>{{list.month}}</td>
+                                            <td>{{list.description}}</td>
+                                            <td><img src="{{list.imagePath}}" height="100px" width="100px" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

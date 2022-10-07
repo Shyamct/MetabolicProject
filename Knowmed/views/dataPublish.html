@@ -1,0 +1,198 @@
+﻿
+
+<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Data Publish</h2>
+   
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                  Data Publish
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="col-md-3">
+                                    <div class="col-md-3 col-sm-3 padding1rem table table-sm table-responsive table-border" style="max-height:60vh" id="divPrint">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="medName" ng-change="searchMedicine()">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                        <table id="tableFoodReport" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Medicine</th>
+                                                    <th>Is Published</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr ng-repeat="list in medicineMasterList ">
+                                                    <td ng-mouseenter="checkMedicineCount('medicineID',list.medicineID);">
+                                                        
+                                                            {{list.medicineName}}
+                                                        
+                                                        <span ng-show="medicineID == list.medicineID"> <a class="dot" style="height: 25px; width: 50px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; ">{{countSum}}</a> </span>
+                                                   
+                                                          </td>
+                                                    <td>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="{{list.medicineName}}" value="{{list.medicineID}}" ng-model="list.isPublished" >
+                                                            <span class="slider round"   ></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-md-3 col-sm-3 padding1rem table table-sm table-responsive table-border" style="max-height:60vh" id="divPrint">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="disName" ng-change="searchDisease()" >
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                        <table id="tableFoodReport" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Disease</th>
+
+                                                    <th>Is Published</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <tr ng-repeat="list in diseaseMasterList ">
+                                                    <td ng-mouseenter="checkMedicineCount('diseaseRefID',list.diseaseRefID);">
+                                                        {{list.diseaseName}}
+                                                        <span ng-show="diseaseRefID == list.diseaseRefID"> <a class="dot" style="height: 25px; width: 50px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; ">{{countSum}}</a> </span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="{{list.diseaseName}}" value="{{list.diseaseID}}" ng-model="list.isPublished">
+                                                            <span class="slider round" ></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-md-3 col-sm-3 padding1rem table table-sm table-responsive table-border" style="max-height:60vh" id="divPrint">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="foodName" ng-change="searchFood()">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                        <table id="tableFoodReport" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Food</th>
+                                                    <th>Is Published</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <tr ng-repeat="list in foodMasterList ">
+                                                    <td ng-mouseenter="checkMedicineCount('foodID',list.foodID);">{{list.foodName}}
+                                                    
+                                                        <span ng-show="foodID == list.foodID"> <a class="dot" style="height: 25px; width: 50px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; ">{{countSum}}</a> </span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="{{list.foodName}}" value="{{list.foodID}}" ng-model="list.isPublished">
+                                                            <span class="slider round" ></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="col-md-3 col-sm-3 padding1rem table table-sm table-responsive table-border" style="max-height:60vh" id="divPrint">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="nutName" ng-change="searchNutrient()">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                        <table id="tableFoodReport" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Nutrient</th>
+                                                    <th>Is Published</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <tr ng-repeat="list in nutrientMasterList ">
+                                                    <td ng-mouseenter="checkMedicineCount('nutrientID',list.nutrientID);">
+                                                        {{list.nutrientName}}
+                                                        <span ng-show="nutrientID == list.nutrientID"> <a class="dot" style="height: 25px; width: 50px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; ">{{countSum}}</a> </span>
+                                                    </td>
+                                                    <td>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="{{list.nutrientName}}" value="{{list.nutrientID}}" ng-model="list.isPublished">
+                                                            <span class="slider round" ></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-2">
+                                    <input type="button" class="btn btn-success pull-left" value="Save" ng-click="saveIsPublished();" />
+                                </div>
+                                <div class="col-md-10">
+                                    <table>
+                                        <tr>
+                                            <td align="center">
+                                                <span class="form-group pull-left page-size form-inline">
+                                                    <select id="ddlPageSize" class="form-control control-color"
+                                                            ng-model="pageSizeSelected"
+                                                            ng-change="changePageSize()">
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                        <option value="200">200</option>
+                                                        <option value="500">500</option>
+                                                    </select>
+                                                </span>
+                                            </td>
+                                            <td align="right">
+                                                <div >
+                                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                                                    <a class="btn btn-primary">Page: {{pageIndex}} / {{numPages}}</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

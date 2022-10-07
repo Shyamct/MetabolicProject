@@ -1,0 +1,126 @@
+﻿
+<div class="container-fluid">
+    <h2> ICD Code Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    ICD Code Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>ICD Code</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-model="txtIcd" placeholder="ICD Code" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Disease Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-model="txtDisease" placeholder="Disease Name" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Short Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-model="txtShort" placeholder="Short Name" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12" margin-left>
+                                    <div class="row">
+                                        <div class="col-md-2"><input type="button" class="btn btn-success" value="Save" ng-click="saveIcdCodeMaster();" /></div>
+                                        <!--<div class="col-md-2"><input type="button" class="btn redBtn" value="Clear"  /></div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Icd Code Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchKey" ng-change="initControls()">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:65vh; padding-left:0px;">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>ICD Code</th>
+                                            <th>Disease Name</th>
+                                            <th>Short Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in icdCodeMasterList" ng-class-odd="'striped'">
+                                            <td>{{list.icdCode}}</td>
+                                            <td>{{list.diseaseName}}</td>
+                                            <td>{{list.shortName}}</td>
+                                            <td>
+                                                <div ng-if="list.status==0">
+                                                    <a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteIcdCodeMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                </div>
+                                                <div ng-if="list.status==1">
+                                                    <a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <table class="col-sm-12">
+                                    <tr>
+                                        <td align="center" colspan="6">
+                                            <span class="form-group pull-left page-size form-inline">
+                                                <select id="ddlPageSize" class="form-control control-color" ng-model="pageSizeSelected" ng-change="changePageSize(pageSizeSelected)">
+                                                    <option value="20">20</option>
+                                                    <option value="50">50</option>
+                                                    <option value="100">100</option>
+                                                    <option value="{{totalCount}}">All</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                        <td align="center" colspan="6">
+                                            <div class="pull-right">
+                                                <pagination total-items="totalCount" ng-change="pageChanged(pageIndex)" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                                                <a class="btn btn-primary" style="margin-top:1rem;">Page: {{pageIndex}} / {{numPages}} Total record: {{totalCount}}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

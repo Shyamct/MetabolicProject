@@ -1,0 +1,147 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Service Provider Location</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Service Provider Location
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Provider Type</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlServiceName" ng-init="ddlServiceName=0" ng-required="">
+                                            <option value="0">--Select Provider Type--</option>
+                                            <option ng-repeat="list in providerLocationList" value="{{list.id}}">
+                                                {{list.serviceName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Provider Name</div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" ng-model="txtProvider" placeholder="Provider Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Mobile No</div>
+                                    <div class="col-md-5">
+                                        <input type="text" maxlength="10" class="form-control" ng-model="txtMobile" placeholder="Mobile No" onkeypress="isNumeric(false)" />
+                                    </div>
+                                    <div class="col-md-1">Phone No</div>
+                                    <div class="col-md-5">
+                                        <input type="text" maxlength="10" class="form-control" ng-model="txtPhone" placeholder="Phone No" onkeypress="isNumeric(false)" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Pin Code</div>
+                                    <div class="col-md-5">
+                                        <input type="text"  class="form-control" ng-model="txtPin" placeholder="Pin Code" onkeypress="isNumeric(false)" ng-change="bindStateCity(txtPin)" />
+                                    </div>
+                                    <div class="col-md-1">State</div>
+                                    <div class="col-md-5">
+                                        <input type="text" readonly class="form-control" ng-model="txtState" placeholder="State" style="readonly" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">City</div>
+                                    <div class="col-md-5">
+                                        <input type="text" readonly class="form-control" ng-model="txtCity" placeholder="City" />
+                                    </div>
+                                    <div class="col-md-1">Zone</div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" ng-model="txtZone" placeholder="Zone" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Address</div>
+                                    <div class="col-md-11">
+                                        <input type="text" class="form-control" ng-model="txtAddress" placeholder="Address" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveServiceProviderLocation();" /></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Service Provider Location List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableMedicineDose" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Provider Type</th>
+                                            <th>Provider Name</th>
+                                            <th>Mobile No</th>
+                                            <th>Phone No</th>
+                                            <th>Pin Code</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Zone</th>
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in providerLocationList2 | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.serviceName}}</td>
+                                            <td>{{list.serviceProviderName}}</td>
+                                            <td>{{list.mobileNo}}</td>
+                                            <td>{{list.phoneNo}}</td>
+                                            <td>{{list.pinCode}}</td>
+                                            <td>{{list.state}}</td>
+                                            <td>{{list.city}}</td>
+                                            <td>{{list.zone}}</td>
+                                            <td>{{list.address}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

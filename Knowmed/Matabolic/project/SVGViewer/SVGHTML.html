@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!--<script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
+    <!--<script src="JS/Jquery.min.js"></script>-->
+    <!--For Autocomplete-->
+    <!--<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
+    <!--end-->
+
+    <link href="CSS/jquery-ui.css" rel="stylesheet" /> <!--For Autocomplete-->
+    <link href="CSS/CustomStyle.css" rel="stylesheet" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="JS/jquery-1.10.2.js"></script>
+    <!--For Autocomplete-->
+    <script src="JS/jquery-ui.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!--end-->
+    <!--For WebService and User Login Management-->
+    <script src="../../../script/global.js"></script>
+    <script src="../../../js/cache.js"></script>
+    <!--For Autocomplete-->
+    <!--<script src="https://d3js.org/d3.v3.min.js"></script>-->
+
+</head>
+<body>
+    <div class="header" id="main-head">
+        <div class="header-search">
+            <div class="ui-widget">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <select id="ddlSection" onchange="getMarkerRelation(); sectionSubSectionChange();" style="width:100%;">
+                            <option value="0">-- Select Section --</option>
+                        </select>
+                    </div>
+                    <div class="span2" style="display:none;">
+                        <select id="ddlSubSection" onchange="getMarkerRelation(); sectionSubSectionChange();" style="width:100%;">
+                            <option value="0">-- Select Sub-Section --</option>
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <input id="txtSearch" style="width:100%;" placeholder="Search Marker...">
+                    </div>
+                    <div class="span2 count">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <input type="button" value=" > " title="Next" onclick="searchNext();" />
+                                Count :
+                            </div>
+                            <div class="span6">
+                                <label id="lblCount"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span2">
+                        <input id="txtSearchFood" style="width:100%;" placeholder="Search Food...">
+                    </div>
+                    <div class="span4">
+                        <input type="color" id="colorPicker" name="colorPicker" value="#ff0000">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modelWidth" id="modalMarker" style="display: none; width:50%; left: 40%;" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Marker Report</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered" id="tblMarkerReport">
+                            <thead>
+                                <tr>
+                                    <td class="td_Section">Section</td>
+                                    <td class="td_SubSection">Sub Section</td>
+                                    <td class="td_Count">Count</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <object id="svgObject" data="SVGFiles/FinalChart.svg" type="image/svg+xml"></object>
+
+        <!-- Menu (Right-Click) -->
+        <ul class='custom-menu'>
+            <li data-action="getMarkerDetail">URL</li>
+        </ul>
+    </div>
+
+    <script src="JS/Variable.js"></script> <!--Must be added before Script.js-->
+    <script src="JS/Script.js"></script>
+
+    
+
+</body>
+</html>

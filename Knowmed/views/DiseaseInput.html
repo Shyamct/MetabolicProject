@@ -1,0 +1,528 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Input</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Disease Input
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <select select2 class="form-control" id="ddlDiseaseDepartment" ng-model="ddlDiseaseDepartment" ng-init="ddlDiseaseDepartment=-1" required="" ng-change="iTypeList()">
+                                            <option value="-1">--Select Disease Department--</option>
+                                            <option ng-repeat="list in DiseaseDepartmentList" value="{{list.id}}">
+                                                {{list.disease}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a ui-sref="diseaseInvestigation" class="btn btn-xs btn-info">Goto Problem Investigation</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" id="ddlInputType" ng-model="ddlInputType" ng-init="ddlInputType=-1" required="" aria-label="ngHide">
+                                            <option value="-1">--Select Input Type--</option>
+                                            <option ng-repeat="list in InputTypeList" value="{{list.id}}">
+                                                {{list.inputType}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="" ng-change="AttValueList()" aria-label="ngHide">
+                                            <option value="-1">--Select Problem--</option>
+                                            <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" ng-model="ddlAttributeName" ng-init="ddlAttributeName=0">
+                                            <option value="0">--Select Attribute Value--</option>
+                                            <option ng-repeat="list in AttributeValueList" value="{{list.attributeID}}">
+                                                {{list.attributeName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div ng-repeat="c in AttributeValue | filter:{attributeID:ddlAttributeName}">
+                                            <label for="chkAttribute">
+                                                <input id="chkAttribute" type="checkbox" ng-model="c.Selected" />
+                                                {{c.attributeValue}}
+                                            </label>
+                                        </div>
+                                        <!--<ul>
+                                            <li ng-repeat="c in AttributeValue | filter:{attributeID:ddlAttributeName}">
+                                                <input type="checkbox" ng-model="c.selected" id="chkAttributeValue_{{c.problemAttributeValueId}}" />{{c.attributeValue}}
+                                            </li>
+                                        </ul>-->
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-xs btn-info" ng-click="addAttribute()">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="attributeNameList.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Input Type</th>
+                                                    <th>Problem</th>
+                                                    <th>Attribute</th>
+                                                    <th>Attribute Value</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in attributeNameList track by $index" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.inputTypeName}}</td>
+                                                    <td>{{list.problemName}}</td>
+                                                    <td>{{list.attributeName}}</td>
+                                                    <td>{{list.attributeValueName}}</td>
+                                                    <td><a href="" ng-click="deleteAttribute($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" ng-model="txtEmergencyTreatment" placeholder="Emergency Treatment" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" ng-model="txtProvisionalDiet" placeholder="Provisional Diet" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" ng-model="txtSOP" placeholder="SOP" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <fieldset>
+                                <legend>Add Disease Medication</legend>
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlMedicine" ng-model="ddlMedicine" ng-init="ddlMedicine=-1" required="">
+                                                <option value="-1">--Select Medicine--</option>
+                                                <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                    {{list.medicineName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlDoseForm" ng-model="ddlDoseForm" ng-init="ddlDoseForm=-1" required="">
+                                                <option value="-1">--Select Dose Form--</option>
+                                                <option ng-repeat="list in DosageFormMasterList" value="{{list.id}}">
+                                                    {{list.formName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="number" class="form-control" ng-model="txtStrength" placeholder="Strength" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlUnit" ng-model="ddlUnit" ng-init="ddlUnit=-1" required="">
+                                                <option value="-1">--Select Unit--</option>
+                                                <option ng-repeat="list in unitList" value="{{list.id}}">
+                                                    {{list.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlFrequency" ng-model="ddlFrequency" ng-init="ddlFrequency=-1" required="">
+                                                <option value="-1">--Select Frequency--</option>
+                                                <option ng-repeat="list in FrequencyMasterList" value="{{list.id}}">
+                                                    {{list.frequencyName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <input type="number" class="form-control" ng-model="txtDuration" placeholder="Duration in Days" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-xs btn-info" ng-click="addDiseaseMedication()">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="row" ng-if="diseaseMedicationNameList.length>0">
+                                        <div class="col-md-12">
+                                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.No</th>
+                                                        <th>Medicine</th>
+                                                        <th>Dose Form</th>
+                                                        <th>Strength</th>
+                                                        <th>Unit</th>
+                                                        <th>Frequency</th>
+                                                        <th>Duration</th>
+                                                        <th>Remark</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in diseaseMedicationNameList track by $index" ng-class-odd="'striped'">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{list.medicineName}}</td>
+                                                        <td>{{list.dosageFormName}}</td>
+                                                        <td>{{list.dosageStrength}}</td>
+                                                        <td>{{list.doseUnitName}}</td>
+                                                        <td>{{list.doseFrequencyName}}</td>
+                                                        <td>{{list.durationDays}}</td>
+                                                        <td>{{list.remark}}</td>
+                                                        <td><a href="" ng-click="deletediseaseMedication($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Add Disease Supportive Medicine</legend>
+
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlSymptom" ng-model="ddlSymptom" ng-init="ddlSymptom=-1" required="">
+                                                <option value="-1">--Select Symptom--</option>
+                                                <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                    {{list.problemName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlSupportiveMedicine" ng-model="ddlSupportiveMedicine" ng-init="ddlSupportiveMedicine=-1" required="">
+                                                <option value="-1">--Select Medicine--</option>
+                                                <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                    {{list.medicineName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlSupportiveDoseForm" ng-model="ddlSupportiveDoseForm" ng-init="ddlSupportiveDoseForm=-1" required="">
+                                                <option value="-1">--Select Dose Form--</option>
+                                                <option ng-repeat="list in DosageFormMasterList" value="{{list.id}}">
+                                                    {{list.formName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="number" class="form-control" ng-model="txtSupportiveStrength" placeholder="Strength" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlSupportiveUnit" ng-model="ddlSupportiveUnit" ng-init="ddlSupportiveUnit=-1" required="">
+                                                <option value="-1">--Select Unit--</option>
+                                                <option ng-repeat="list in unitList" value="{{list.id}}">
+                                                    {{list.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlSupportiveFrequency" ng-model="ddlSupportiveFrequency" ng-init="ddlSupportiveFrequency=-1" required="">
+                                                <option value="-1">--Select Frequency--</option>
+                                                <option ng-repeat="list in FrequencyMasterList" value="{{list.id}}">
+                                                    {{list.frequencyName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <input type="number" class="form-control" ng-model="txtSupportiveDuration" placeholder="Duration in Days" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" ng-model="txtSupportiveRemark" placeholder="Remark" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-xs btn-info" ng-click="addDiseaseSupportiveMedication()">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group col-md-12">
+                                    <div class="row" ng-if="diseaseSupportiveMedicationNameList.length>0">
+                                        <div class="col-md-12">
+                                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.No</th>
+                                                        <th>Symptom</th>
+                                                        <th>Medicine</th>
+                                                        <th>Dose Form</th>
+                                                        <th>Strength</th>
+                                                        <th>Unit</th>
+                                                        <th>Frequency</th>
+                                                        <th>Duration</th>
+                                                        <th>Remark</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in diseaseSupportiveMedicationNameList track by $index" ng-class-odd="'striped'">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{list.symptomName}}</td>
+                                                        <td>{{list.medicineName}}</td>
+                                                        <td>{{list.dosageFormName}}</td>
+                                                        <td>{{list.dosageStrength}}</td>
+                                                        <td>{{list.doseUnitName}}</td>
+                                                        <td>{{list.doseFrequencyName}}</td>
+                                                        <td>{{list.durationDays}}</td>
+                                                        <td>{{list.remark}}</td>
+                                                        <td><a href="" ng-click="deletediseaseSupportiveMedication($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </fieldset>
+                            <br />
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveDiseaseMedication();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Input History List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search2">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tbl" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Disease Department</th>
+                                            <th>Emergency Treatment</th>
+                                            <th>Provisional Diet</th>
+                                            <th>SOP</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in DiseaseHistoryList | filter : search2 track by $index " ng-class-odd="'striped'">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{list.disease}}</td>
+                                            <td>{{list.emergencyTreatment}}</td>
+                                            <td>{{list.provisionalDiet}}</td>
+                                            <td>{{list.sop}}</td>
+                                            <td>
+                                                <a href="" ng-click="edit(list.id,list.diseaseRefID)" title="Edit"><i class="fa fa-edit"></i></a>
+                                                <!--<a href="" ng-click="dHistoryIntakeAttributeList(list.id)" title="View History Intake"><i class="fa fa-eye" tooltip="View History Intake"></i></a>
+                                                <a href="" ng-click="dMedicationList(list.diseaseRefID)" title="View Medication"><i class="fa fa-eye" tooltip="View History Medication"></i></a>
+                                                <a href="" ng-click="dSupportiveMedicineList(list.diseaseRefID)" title="View Supportive Medication"><i class="fa fa-eye" tooltip="View Supportive Medication"></i></a>-->
+                                                <a href="" ng-click="DelDiseaseInput(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                        <table id="tableTroughValue" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Input Type</th>
+                                    <th>Problem Name</th>
+                                    <th>Attribute Name</th>
+                                    <th>Attribute Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="list in DiseaseHistoryIntakeAttributeList | filter : search" ng-class-odd="'striped'">
+                                    <td>{{list.inputType}}</td>
+                                    <td>{{list.problemName}}</td>
+                                    <td>{{list.attributeName}}</td>
+                                    <td>{{list.attributeValue}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="myModal1" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                        <table id="tableTroughValue" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Medicine Name</th>
+                                    <th>Dosage Form</th>
+                                    <th>Unit</th>
+                                    <th>Frequency</th>
+                                    <th>Duration in Days</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="list in DiseaseMedicationList | filter : search" ng-class-odd="'striped'">
+                                    <td>{{list.medicineName}}</td>
+                                    <td>{{list.dosageForm}}</td>
+                                    <td>{{list.unit}}</td>
+                                    <td>{{list.frequencyName}}</td>
+                                    <td>{{list.durationDays}}</td>
+                                    <td>{{list.remark}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="myModal2" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                        <table id="tableTroughValue" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Symptom</th>
+                                    <th>Medicine Name</th>
+                                    <th>Dosage Form</th>
+                                    <th>Unit</th>
+                                    <th>Frequency</th>
+                                    <th>Duration in Days</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="list in DiseaseSupportiveMedicineList | filter : search" ng-class-odd="'striped'">
+                                    <td>{{list.symptom}}</td>
+                                    <td>{{list.medicineName}}</td>
+                                    <td>{{list.dosageForm}}</td>
+                                    <td>{{list.unit}}</td>
+                                    <td>{{list.frequencyName}}</td>
+                                    <td>{{list.durationDays}}</td>
+                                    <td>{{list.remark}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

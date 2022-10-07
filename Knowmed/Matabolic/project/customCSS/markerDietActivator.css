@@ -1,0 +1,336 @@
+﻿
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../img/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .6;
+}
+
+.marginTop1rem {
+    margin-top: 1rem;
+}
+
+.marginTop2rem {
+    margin-top: 2rem;
+}
+
+td:nth-child(2) {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.pathway-div {
+    height: 20px;
+    float: left;
+    cursor: pointer;
+}
+
+.phenomenon-div {
+    width: 75%;
+    float: left;
+    white-space: normal !important;
+    text-align: left !important;
+    padding-right: 5px;
+}
+
+.phenomenon-color {
+    width: 25%;
+    float: left;
+    height: 3rem;
+}
+
+.marker-div {
+    float: left;
+    text-align: left;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+table tr th {
+    font-size: 1.2rem !important;
+}
+
+table tr td {
+    text-align: center;
+    vertical-align: inherit;
+}
+
+.icon, .header {
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.icon-remove {
+    color: red;
+}
+
+.marginTop5rem {
+    margin-top: 5rem;
+}
+
+.boldtext {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #1c4484;
+}
+
+.boldtextPadding {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #1c4484;
+    padding: 10px;
+}
+
+.progress {
+    height: 15px;
+    cursor: pointer;
+}
+
+.progress-bar {
+    line-height: 16px;
+}
+
+.noPadding {
+    padding: 0;
+}
+
+/*  bhoechie tab */
+div .bhoechie-tab-container {
+    /* z-index: 10; */
+    /* background-color: #ffffff; */
+    padding: 0 !important;
+    /* border-radius: 4px; */
+    -moz-border-radius: 4px;
+    /* border: 1px solid #ddd; */
+    /* -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175); */
+    /* box-shadow: 0 6px 12px rgba(0,0,0,.175); */
+    -moz-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    background-clip: padding-box;
+    /* opacity: 0.97; */
+    filter: alpha(opacity=97);
+    min-height: 65rem !important;
+}
+
+div.bhoechie-tab-menu {
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+    div.bhoechie-tab-menu div.list-group {
+        margin-bottom: 0;
+    }
+
+        div.bhoechie-tab-menu div.list-group > a {
+            margin-bottom: 0;
+        }
+
+            div.bhoechie-tab-menu div.list-group > a .glyphicon,
+            div.bhoechie-tab-menu div.list-group > a .fa {
+                color: #5A55A3;
+            }
+
+            div.bhoechie-tab-menu div.list-group > a:first-child {
+                border-top-right-radius: 0;
+                -moz-border-top-right-radius: 0;
+            }
+
+            div.bhoechie-tab-menu div.list-group > a:last-child {
+                border-bottom-right-radius: 0;
+                -moz-border-bottom-right-radius: 0;
+            }
+
+            div.bhoechie-tab-menu div.list-group > a.active,
+            div.bhoechie-tab-menu div.list-group > a.active .glyphicon,
+            div.bhoechie-tab-menu div.list-group > a.active .fa {
+                background-color: #5A55A3;
+                background-image: #5A55A3;
+                color: #ffffff;
+            }
+
+                div.bhoechie-tab-menu div.list-group > a.active:after {
+                    content: '';
+                    position: absolute;
+                    left: 100%;
+                    top: 50%;
+                    margin-top: -13px;
+                    border-left: 0;
+                    border-bottom: 13px solid transparent;
+                    border-top: 13px solid transparent;
+                    border-left: 10px solid #5A55A3;
+                }
+
+div.bhoechie-tab-content {
+    background-color: #ffffff;
+    /* border: 1px solid #eeeeee; */
+    padding-left: 20px;
+    padding-top: 10px;
+    overflow-y: auto;
+}
+
+.contentDiv {
+    max-height: 63rem !important;
+}
+
+div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
+    display: none;
+}
+
+#modalNav .modal-body {
+    padding: 0 !important;
+}
+
+.rdaTable tr, th td {
+    text-align: center !important;
+}
+
+.table th {
+    /* background-color: #eee !important;*/
+    background-color: #70ad47 !important;
+    color: #000000 !important;
+}
+table#tblnutrient th {
+    color: black !important;
+    background-color: whitesmoke !important;
+}
+
+table#tblnutrient thead tr th {
+    background: #f59842 !important;
+    position: sticky;
+    top: -16px;
+    z-index: 111111;
+}
+table#tblFood th {
+    color: black !important;
+    background-color: whitesmoke !important;
+}
+
+table#tblFood thead tr th {
+    background: #f57b42 !important;
+    position: sticky;
+    top: -16px;
+    z-index: 111111;
+}
+
+
+/*jj*/
+table#tblNutrientNotToEat th {
+    color: black !important;
+    background-color: whitesmoke !important;
+}
+
+table#tblNutrientNotToEat thead tr th {
+    background: #f59842 !important;
+    position: sticky;
+    top: -16px;
+    z-index: 111111;
+}
+
+table#tblNutrientToEat th {
+    color: black !important;
+    background-color: whitesmoke !important;
+}
+
+table#tblNutrientToEat thead tr th {
+    background: #f57b42 !important;
+    position: sticky;
+    top: -16px;
+    z-index: 111111;
+}
+
+
+.clsPeakThalf {
+    margin-left: 16px;
+}
+
+table {
+    background-color: white;
+}
+
+#divPageDescription h4 {
+    font-weight: bold;
+}
+
+p {
+    font-size: 13px;
+}
+
+.cell-middle {
+    vertical-align: middle !important;
+    font-weight: bold;
+    text-align: left;
+}
+
+.cell-left {
+    text-align: left;
+}
+
+.table {
+    margin-bottom: 0px !important;
+}
+
+.peakThalf {
+    margin-top: 0.8rem;
+    white-space: nowrap;
+    color: mediumvioletred;
+}
+
+.med-table {
+    white-space: nowrap;
+    padding: 2px;
+}
+
+.food-cell {
+    background-color: #70ad47 !important;
+    color: #000000 !important;
+}
+
+/*.central-molecule {
+    background-color: #e5097f !important;
+    color: #fff;
+}*/
+
+/*.subcentral-molecule {
+    background-color: #393185 !important;
+    color: #fff;
+}*/
+
+/*.specific-molecule {
+    background-color: #a45e4d !important;
+    color: #fff;
+}*/
+
+.supplement-given {
+    background-color: #cc3399 !important;
+    color: #fff;
+}
+
+.diet-given {
+    background-color: #92d050 !important;
+    color: #fff;
+}
+
+.multiviamin {
+    background-color: #bf8f00 !important;
+    color: #fff;
+}
+
+.description-div {
+    white-space: normal;
+    font-weight: 500;
+}
+
+.disease-span {
+    text-align: left;
+    font-size: 2rem !important;
+    font-weight: bold;
+    color: brown;
+}

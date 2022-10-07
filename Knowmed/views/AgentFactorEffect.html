@@ -1,0 +1,367 @@
+﻿
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <h2>Condition Caused by Bacteria</h2>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Condition Caused by Bacteria
+                    </div>
+                    <div class="panel-body">
+                        <form name="form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-2">
+                                                <label>Bacteria Name</label>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <select select2 class="form-control" ng-model="ddlAgent" ng-init="ddlAgent=-1" required="">
+                                                    <option value="-1">--Select Bacteria--</option>
+                                                    <option ng-repeat="list in factorList" value="{{list.agentFactorID}}">
+                                                        {{list.agentFactor}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-2">
+                                                <label>Disease/ Condition</label>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <select select2 class="form-control" ng-model="ddlEffect" ng-init="ddlEffect=-1" required="">
+                                                    <option value="-1">--Select Disease/ Condition --</option>
+                                                    <option ng-repeat="list in problemList" value="{{list.effectProblemID}}">
+                                                        {{list.problemName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2"><label>Remark</label></div>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" placeholder="Remark" ng-model="txtRemark" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2"><label>Reference</label></div>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" placeholder="Reference" ng-model="txtReference" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2"><label>URL</label></div>
+                                                <div class="col-md-10"><input type="text" class="form-control" placeholder="Url" ng-model="txtUrl" /></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12" margin-left>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <input type="button" class="btn btn-success" value="Save" ng-click="saveAgentFactorEffect();" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Condition Caused by Bacteria List
+                    </div>
+                    <div class="panel-body">
+                        <form name="form">
+                            <div class="form-row">
+                                <div class=" form-row col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-row col-md-12">
+                                    <div class="row">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                    <table id="tableTroughValue" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Bacteria Name</th>
+                                                <th>Disease/ Condition</th>
+                                                <th>Remark</th>
+                                                <th>Reference</th>
+                                                <th>URL</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in agentFactorList | filter : search" ng-class-odd="'striped'">
+                                                <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteAgentFactorEffect(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                <td>{{list.agentFactor}}</td>
+                                                <td>{{list.problemName}}</td>
+                                                <td>{{list.remark}}</td>
+                                                <td>{{list.reference}}</td>
+                                                <td>{{list.url}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-md-6">
+                <h2>Toxins Produced by Bacteria</h2>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Toxins Produced by Bacteria
+                    </div>
+                    <div class="panel-body">
+                        <form name="form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-2">
+                                                <label>Bacteria Name</label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <select select2 class="form-control" ng-model="ddlAgentFa" ng-init="ddlAgentFa=-1" required="">
+                                                    <option value="-1">--Select Bacteria--</option>
+                                                    <option ng-repeat="list in factorsList" value="{{list.agentFactorID}}">
+                                                        {{list.productionName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <select select2 class="form-control" ng-model="ddlInfection" ng-init="ddlInfection=-1" required="">
+                                                    <option value="-1">--Select Infection Site--</option>
+                                                    <option ng-repeat="list in infectionSiteList" value="{{list.siteID}}">
+                                                        {{list.infectionName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-2">
+                                                <label>Production Name</label>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="radio" ng-model="rdProductionType" name="toxin" value="33" /> Toxin &nbsp;
+                                                <input type="radio" ng-model="rdProductionType" name="virulance" value="34" /> Virulance
+                                            </div>
+
+                                            <div class="col-md-7">
+                                                <select select2 class="form-control" ng-model="ddlNutrient" id="ddlNutrient" ng-init="ddlNutrient=-1" required="">
+                                                    <option value="-1">--Select Compound --</option>
+                                                    <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                        {{list.nutrientName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-2">
+                                                <label>Study Type </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select select2 class="form-control" ng-model="ddlStudy" ng-init="ddlStudy=-1" required="">
+                                                    <option value="-1">--Select Study--</option>
+                                                    <option ng-repeat="list in studyTypeList" value="{{list.studyTypeID}}">
+                                                        {{list.studyName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Measurement Name</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select select2 class="form-control" ng-model="ddlMeasurement" ng-init="ddlMeasurement=-1" required="">
+                                                    <option value="-1">--Select Measurement--</option>
+                                                    <option ng-repeat="list in measurementList" value="{{list.measurementTechniqueID}}">
+                                                        {{list.measurementName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-2">
+                                                <label>Problem By Toxins</label>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <select select2 class="form-control" ng-model="ddlProblem" id="ddlProblem" ng-init="ddlProblem=-1" required="">
+                                                    <option value="-1">--Select Problem --</option>
+                                                    <option ng-repeat="list in problemlist" value="{{list.problemID}}">
+                                                        {{list.problemName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1" style="padding:15px">
+                                                <button class="btn btn-xs btn-info" ng-click="AddAgent()">
+                                                    <span class="glyphicon glyphicon-plus"></span>Add
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row" ng-if="addedAgentList.length > 0">
+                                                <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                                    <table id="tableCalculators" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <!--<th>Toxins Name</th>-->
+                                                                <th>Problem By Toxins</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="list in addedAgentList" ng-class-odd="'striped'">
+                                                                <!--<td>{{list.nutrientName}}</td>-->
+                                                                <td>{{list.problemName}}</td>
+                                                                <td><a href="" ng-click="deleteAgentList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2"><label>Remark</label></div>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" placeholder="Remark" ng-model="txtRemarks" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2"><label>Reference</label></div>
+                                                <div class="col-md-10">
+                                                    <input type="text" class="form-control" placeholder="Reference" ng-model="txtReferences" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-2"><label>URL</label></div>
+                                                <div class="col-md-10"><input type="text" class="form-control" placeholder="Url" ng-model="txtUrls" /></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12" margin-left>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <input type="button" class="btn btn-success" value="Save" ng-click="saveAgentFactorProduction();" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Toxins Produced by Bacteria List
+                    </div>
+                    <div class="panel-body">
+                        <form name="form">
+                            <div class="form-row">
+                                <div class=" form-row col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchBacteria">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-row col-md-12">
+                                    <div class="row">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border">
+                                    <table id="tableTroughValue" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Action</th>
+                                                <th>Measurement Name</th>
+                                                <th>Production Type</th>
+                                                <th>Study Name</th>
+                                                <th>Bacteria Name</th>
+                                                <th>Infection Site</th>
+                                                <th>Toxins Name</th>
+                                                <th>Problem By Toxins</th>
+                                                <th>URL</th>
+                                                <th>Remark</th>
+                                                <th>Reference</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in agentFactorProductList | filter : searchBacteria" ng-class-odd="'striped'">
+                                                <td><a href="" ng-click="editAgentFactorProduction(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteAgentFactorProduction(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                <td>{{list.measurementName}}</td>
+                                                <td>{{list.statusFor}}</td>
+                                                <td>{{list.studyName}}</td>
+                                                <td>{{list.productionName}}</td>
+                                                <td>{{list.infectionName}}</td>
+                                                <td>{{list.nutrientName}}</td>
+                                                <td>
+
+                                                    <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.problemToxinsDetails.length > 0">
+                                                        <thead class="theadCustom">
+                                                            <tr>
+                                                                <td class="col-md-2 labelHeadStyle">Problem Name</td>
+                                                                <td class="col-md-2 labelHeadStyle">Action</td>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="tbodyCustomList">
+                                                            <tr ng-repeat="process in list.problemToxinsDetails">
+                                                                <td>{{process.problemName}}</td>
+                                                                <td><a href="" ng-click="deleteProblemToxins(process.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>{{list.url}}</td>
+                                                <td>{{list.remark}}</td>
+                                                <td>{{list.reference}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

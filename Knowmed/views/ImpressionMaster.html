@@ -1,0 +1,185 @@
+﻿
+<div class="container-fluid">
+    <h2>Impression Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Impression Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Test Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlTest" ng-init="ddlTest=-1" required="">
+                                                <option value="-1">--Select Test--</option>
+                                                <option ng-repeat="list in impressionTestList" value="{{list.id}}">
+                                                    {{list.testName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                             <label>Findings</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" ng-model="txtFindings" placeholder="Findings" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                         <div class="col-md-2">
+                                             <label>Impression</label>
+                                         </div>
+                                         <div class="col-md-10">
+                                             <input type="text" class="form-control" ng-model="txtImpression" placeholder="Impression" rows="3" />
+                                         </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                         <div class="col-md-2">
+                                             <label>Description</label>
+                                         </div>
+                                         <div class="col-md-10">
+                                             <textarea type="text" class="form-control" ng-model="txtDescription" placeholder="Description" rows="3" />
+                                         </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Image Upload</label>
+                                        </div>
+                                        <div class="col-md-9" style="height: 37px">
+                                            <input type="file" id="fileImage" name="fileImage" ng-files="getImageFiles($files)">
+                                        </div>
+                                        <div class="col-md-1" style="padding:5px">
+                                            <button class="btn btn-xs btn-info" ng-click="AddImpresImage()">
+                                                <span class="glyphicon glyphicon-plus"></span>Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Image Description</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea type="text" class="form-control" ng-model="txtImgDescription" placeholder="Image Description" rows="3" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="row" ng-if="addedImpressImageList.length > 0">
+                                            <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                                <table id="tableCalculators" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Image Upload</th>
+                                                            <th>Image Description</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in addedImpressImageList" ng-class-odd="'striped'">
+                                                            <td>{{list.imagePath}}</td>
+                                                            <td>{{list.description}}</td>
+                                                            <td><a href="" ng-click="deleteImpressImageList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveImpression();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Impression Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Test Name</th>
+                                            <th>Findings</th>
+                                            <th>Impression</th>
+                                            <th>Description</th>
+                                            <th>Image Description</th>
+                                            <th>Entry Date</th>
+                                            <th>Entry By</th>
+                                     
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in getAllImpressionList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteImpressiontMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.testName}}</td>
+                                            <td>{{list.findings}}</td>
+                                            <td>{{list.impression}}</td>
+                                            <td>{{list.description}}</td>
+                                            <td>
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" >
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Image</td>
+                                                            <td class="col-md-2 labelHeadStyle">description</td>
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="list in list.details">
+                                                            <td class="col-md-2">{{list.imagePath}}</td>
+                                                            <td class="col-md-2">{{list.description}}</td>
+                                                            <td><a href="" ng-click="deleteImpressiontImages(list.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>{{list.createdDate}}</td>
+                                            <td>{{list.userName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

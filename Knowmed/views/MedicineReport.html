@@ -1,0 +1,124 @@
+﻿<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Medicine Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1 nopadding">Medicine</div>
+                                    <div class="col-md-9 nopadding">
+                                        <select select2 class="form-control" id="ddlMedicine" ng-model="ddlMedicine" ng-init="ddlMedicine=-1" required="" ng-change="MedicineReport()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 nopadding"><strong>Total Medicine :&nbsp;&nbsp; {{totalMedicine}}</strong></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Report
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+
+                            <div ng-repeat="fields in Fields" class="checkbox checkbox-inline">
+                                <label for="chk_{{fields.FieldsId}}" class="checkbox-inline">
+                                    <input id="chk_{{fields.FieldsId}}" type="checkbox" ng-model="fields.Selected" ng-change="ChangeValue();" />
+                                    {{fields.Name}}
+                                </label>
+                            </div>
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-link" ng-click="exportData()">
+                                <span class="glyphicon glyphicon-share"></span>
+                                Export to Excel
+                            </button>
+                            <input type="button" class="btn btn-success" value="Print" ng-click="printDiv('divPrint');" />
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">  
+                                <style>
+                                    #divPrint {
+                                        font-family:sans-serif;
+                                        font-size:12px;
+                                    }
+                                </style>
+                                <div id="divPrint">
+                                    <table id="tableMedicineReport" class="table table-bordered" style="table-layout:fixed; width:100%;border-style:solid;border-color:black;border-width:1px;" rules="all">
+                                        <tr>
+                                            <th style="word-wrap:break-word;" class="chk_1" ng-show="chk_1">MEDICINE /BRAND /GROUP</th>
+                                            <th style="word-wrap:break-word;" class="chk_2" ng-show="chk_2">DOSAGE FORM/STRENGTH</th>
+                                            <th style="word-wrap:break-word;" class="chk_3" ng-show="chk_3">ADULT DOSE</th>
+                                            <th style="word-wrap:break-word;" class="chk_4" ng-show="chk_4">PEDIATRIC DOSE</th>
+                                            <th style="word-wrap:break-word;" class="chk_5" ng-show="chk_5">ROUTE OF ADMINISTRATION</th>
+                                            <th style="word-wrap:break-word;" class="chk_6" ng-show="chk_6">PATHWAY (EFFECT)</th>
+                                            <th style="word-wrap:break-word;" class="chk_7" ng-show="chk_7">MECHANISM_OF_ACTION</th>
+                                            <th style="word-wrap:break-word;" class="chk_8" ng-show="chk_8">PHARMACO KINETICS</th>
+                                            <th style="word-wrap:break-word;" class="chk_9" ng-show="chk_9">INDICATIONS/USES</th>
+                                            <th style="word-wrap:break-word;" class="chk_10" ng-show="chk_10">SIDE EFFECTS</th>
+                                            <th style="word-wrap:break-word;" class="chk_11" ng-show="chk_11">CONTRAINDICATIONS / PRECAUTION</th>
+                                            <th style="word-wrap:break-word;" class="chk_12" ng-show="chk_12">DRUG INTERACTIONS</th>
+                                            <th style="word-wrap:break-word;" class="chk_13" ng-show="chk_13">MECHANISM OF DRUG INTERACTION</th>
+                                            <th style="word-wrap:break-word;" class="chk_14" ng-show="chk_14">DESIRED EFFECT</th>
+                                            <th style="word-wrap:break-word;" class="chk_15" ng-show="chk_15">DISEASE</th>
+                                            <th style="word-wrap:break-word;" class="chk_16" ng-show="chk_16">ROUTE OF ELIMINATION</th>
+                                            <th style="word-wrap:break-word;" class="chk_17" ng-show="chk_17">MEDICINE GROUP HIERARCHY</th>
+											 <th style="word-wrap:break-word;" class="chk_18" ng-show="chk_18">MEDICINE ANTIDOTE</th>
+ <th style="word-wrap:break-word;" class="chk_19" ng-show="chk_19">MEDICINE ELECTROLYTES</th>
+ <th style="word-wrap:break-word;" class="chk_20" ng-show="chk_20">MEDICINE BACTERIA RELATION</th>
+                                        </tr>
+
+                                        <tr ng-repeat="list in MedicineReportList | filter : search">
+                                            <td class="chk_1" ng-bind-html="list.medicine|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_1">{{list.medicine}}</td>
+                                            <td class="chk_2" ng-bind-html="list.dosageFormStrength|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_2">{{list.dosageFormStrength}}</td>
+                                            <td class="chk_3" ng-bind-html="list.adultDose|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_3">{{list.adultDose}}</td>
+                                            <td class="chk_4" ng-bind-html="list.pediatricDose|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_4">{{list.pediatricDose}}</td>
+                                            <td class="chk_5" ng-bind-html="list.routeOfAdministration|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_5">{{list.routeOfAdministration}}</td>
+                                            <td class="chk_6" ng-bind-html="list.pathway|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_6">{{list.pathway}}</td>
+                                            <td class="chk_7" ng-bind-html="list.mechanismOfAction|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_7">{{list.mechanismOfAction}}</td>
+                                            <td class="chk_8" ng-bind-html="list.pharmacoKinetics|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_8">{{list.pharmacoKinetics}}</td>
+                                            <td class="chk_9" ng-bind-html="list.indicationUses|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_9">{{list.indicationUses}}</td>
+                                            <td class="chk_10" ng-bind-html="list.sideEffects|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_10">{{list.sideEffects}}</td>
+                                            <td class="chk_11" ng-bind-html="list.contraIndications|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_11">{{list.contraIndications}}</td>
+                                            <td class="chk_12" ng-bind-html="list.drugIntraction|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_12">{{list.drugIntraction}}</td>
+                                            <td class="chk_13" ng-bind-html="list.mechanismOfDrugIntraction|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_13">{{list.mechanismOfDrugIntraction}}</td>
+                                            <td class="chk_14" ng-bind-html="list.desiredEffect|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_14">{{list.desiredEffect}}</td>
+                                            <td class="chk_15" ng-bind-html="list.disease|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_15">{{list.disease}}</td>
+                                            <td class="chk_16" ng-bind-html="list.medicineElimination|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_16">{{list.medicineElimination}}</td>
+                                            <td class="chk_17" ng-bind-html="list.medicineGroupHierarchy|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_16">{{list.medicineGroupHierarchy}}</td>
+											<td class="chk_18" ng-bind-html="list.medicineAntidote|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_18">{{list.medicineAntidote}}</td>
+<td class="chk_19" ng-bind-html="list.medicineElectrolytes|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_19">{{list.medicineElectrolytes}}</td>
+<td class="chk_20" ng-bind-html="list.medicineBacteriaRelation|trustAsHtml" style="word-wrap:break-word;" ng-show="chk_20">{{list.medicineBacteriaRelation}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+﻿
+<div class="container-fluid">
+    <h2>Nutrient Category Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Category Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Nutrient Category</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" ng-model="txtNutrientCategory" placeholder="Nutrient Category" onkeypress="isAlphabet(true)" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Color Code</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="color" ng-model="pickColorCode" style="border-radius:2rem!important; width:100%!important;">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Display Order</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="number" class="form-control" ng-model="txtDisplayOrder" placeholder="Display Order" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Image</label>
+                                        </div>
+                                        <div class="col-md-10" style="height: 37px">
+                                            <input type="file" id="fileIconPath" name="fileIconPath" ng-files="getIconPathFiles($files)">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientCategoryMaster();" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Category Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Nutrient Category</th>
+                                            <th>Color Code</th>
+                                            <th>Display Order</th>
+                                            <th>Image URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientCategoryMaster | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteNutrientCategoryMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.nutrientCategory}}</td>
+                                            <td>{{list.colorCode}}</td>
+                                            <td>{{list.displayOrder}}</td>
+                                            <td>{{list.iconPath}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+﻿<div class="container-fluid">
+    <h2>Medicine Pathway Activator</h2>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Add Medicine Pathway Activator
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Medicine</div>
+                                <div class="col-md-4">
+                                    <select select2 class="form-control" ng-model="ddlmedicine" ng-init="ddlmedicine=0" ng-required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in medicineList" value="{{list.medicineID}}">
+                                            {{list.medicineName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">Effect</div>
+                                <div class="col-md-4">
+                                    <select select2 class="form-control" ng-model="ddleffect" ng-init="ddleffect=0" ng-required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in effectList" value="{{list.statusID}}">
+                                            {{list.statusFor}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Pathway</div>
+                                <div class="col-md-4">
+                                    <select select2 class="form-control" ng-model="ddlpathway" ng-init="ddlpathway=0" ng-required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in pathwayList" value="{{list.nutrientID}}">
+                                            {{list.nutrientName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">Reference</div>
+                                <div class="col-md-4">
+                                    <textarea type="text" class="form-control" ng-model="txtReference" placeholder="Reference "></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Remark:</div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" />
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <fieldset>
+                                <legend>Reference</legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlbookname" ng-init="ddlbookname=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="blist in bookList" value="{{blist.bookID}}">
+                                                {{blist.bookName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4"> <input type="text" class="form-control" ng-model="txtpageno" placeholder="Page No" /></div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtedition" placeholder="Edition" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveMedicinePathwayActivator()" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Medicine Pathway Activator List
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class=" form-row col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Action</th>
+                                        <th>Medicine</th>
+                                        <th>Effect</th>
+                                        <th>Pathway</th>
+                                        <th>Refrence</th>
+                                        <th>Book Refrence</th>
+                                        <th>Remark</th>
+                                        <!--<th>Edition</th>-->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in medicinePathwayActivatorlist | filter : search" ng-class-odd="'striped'">
+                                        <td>{{$index+1}}</td>
+                                        <td><a href="" ng-click="edit(list.medCofactorId)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.medCofactorId)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        <td>{{list.medicineName}}</td>
+                                        <td>{{list.statusFor}}</td>
+                                        <td>{{list.nutrientName}}</td>
+                                        <td>{{list.reference}}</td>
+                                        <td>{{list.bookName}}</td>
+                                        <td>{{list.remark}}</td>
+                                        <!-- <td>{{list.edition}}</td>-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

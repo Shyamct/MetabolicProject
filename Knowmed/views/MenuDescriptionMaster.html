@@ -1,0 +1,138 @@
+﻿
+<div class="container-fluid">
+    <style>
+        .zoom {
+            transition: transform .2s; /* Animation */
+        }
+
+            .zoom:hover {
+                transform: scale(6.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+            }
+    </style>
+    <h2>Menu Description Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Menu Description Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label> Main Head</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlMainHead" ng-init="ddlMainHead=0" required="" ng-change="getHeadRelatedMenuList(list.menuID)">
+                                                <option value="0">--Select Main Head--</option>
+                                                <option ng-repeat="list in mainHeadlist" value="{{list.menuID}}">
+                                                    {{list.menuName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label> Menu List</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" ng-model="ddlMenuList" ng-init="ddlMenuList=0" required="" ng-change="createControl()">
+                                                <option value="0">--Select Menu List--</option>
+                                                <option ng-repeat="list in getMenuList" value="{{list.menuID}}" ng-selected="menuName==list.menuID">
+                                                    {{list.menuName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label> Title Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" name="title" ng-model="title" class="form-control" required="" placeholder="Title Name" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Upload File</label>
+                                        </div>
+                                        <div class="col-md-4" style="height: 37px">
+                                            <input type="file" id="FileUpload1" name="FileUpload1" ng-files="addFiles($files)">
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="col-md-12 col-sm-12  marginTop1rem">
+                                        <label class="labelHeadStyle pull-left">Description</label>
+                                        <div class="col-md-12 col-sm-12 noPadding">
+                                            <summernote height="300" ng-model="Details"></summernote>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-6 col-sm-6 marginTop1rem pull-right">
+                                            <button type="button" class="btn redBtn pull-right" ng-click="clearMenuMaster()">Clear</button>
+                                            <button type="submit" ng-show="update" class="btn blueBtn pull-right" ng-click="updateFormDescription()">Update</button>
+                                            <button type="submit" ng-show="submit" class="btn blueBtn pull-right" ng-click="addFormDescription()">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Menu Description Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Main Head</th>
+                                            <th>Menu List</th>
+                                            <th>Title Name</th>
+                                            <th>Description</th>
+                                            <th>Upload File </th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in getmenuDescription | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{list.menuName}} </td>
+                                            <td>{{list.menuName}} </td>
+                                            <td>{{list.title}}</td>
+                                            <td>{{list.description}}</td>
+                                            <td><img src="{{list.imageURL}}" height="100px" width="100px" /> </td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteMenuDescriptionMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

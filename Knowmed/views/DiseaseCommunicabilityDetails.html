@@ -1,0 +1,197 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Communicability Details</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Disease Communicability Details
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="">
+                                            <option value="-1">--Select Problem--</option>
+                                            <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtIncubationPeriodFrom" placeholder="Incubation Period From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtIncubationPeriodTo" placeholder="Incubation Period To" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlIncubationUnit" ng-model="ddlIncubationUnit" ng-init="ddlIncubationUnit=-1">
+                                            <option value="-1">--Select Incubation Unit--</option>
+                                            <option ng-repeat="list in IncubationUnitList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtCommunicabilityPeriodFrom" placeholder="Communicability Period From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtCommunicabilityPeriodTo" placeholder="Communicability Period To" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlCommunicabilityUnit" ng-model="ddlCommunicabilityUnit" ng-init="ddlCommunicabilityUnit=-1">
+                                            <option value="-1">--Select Communicability Unit--</option>
+                                            <option ng-repeat="list in CommunicabilityUnitList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtVariationMonthFrom" placeholder="Variation Month From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtVariationMonthTo" placeholder="Variation Month To" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtTempFrom" placeholder="Temp From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtTempTo" placeholder="Temp To" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlTempUnitID" ng-model="ddlTempUnitID" ng-init="ddlTempUnitID=-1">
+                                            <option value="-1">--Select Temp Unit--</option>
+                                            <option ng-repeat="list in TempUnitList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtHumidityFrom" placeholder="Humidity From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtHumidityTo" placeholder="Humidity To" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlHumidityUnitID" ng-model="ddlHumidityUnitID" ng-init="ddlHumidityUnitID=-1">
+                                            <option value="-1">--Select Humidity Unit--</option>
+                                            <option ng-repeat="list in HumidityUnitList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference" />
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveDiseaseCommunicabilityDetails();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Communicability Details List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row"> 
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Problem</th>
+                                            <th>Incubation Period From </th>
+                                            <th>Incubation Period To</th>
+                                            <th>Incubation Unit</th>
+                                            <th>Communicability Period From</th>
+                                            <th>Communicability Period To</th>
+                                            <th>Communicability Unit</th>
+                                            <th>Variation Month From</th>
+                                            <th>Variation Month To</th>
+                                            <th>Temp From</th>
+                                            <th>Temp To</th>
+                                            <th>Temp Unit</th>
+                                            <th>Humidity From</th>
+                                            <th>Humidity To</th>
+                                            <th>Humidity Unit</th>
+                                            <th>Reference</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in DiseaseCommunicabilityDetailsList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>   <a href="" ng-click="DeleteDiseaseCommunicabilityDetails(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.incubationPeriodFrom}}</td>
+                                            <td>{{list.incubationPeriodTo}}</td>
+                                            <td>{{list.incubationPeriodUnit}}</td>
+                                            <td>{{list.communicabilityPeriodFrom}}</td>
+                                            <td>{{list.communicabilityPeriodTo}}</td>
+                                            <td>{{list.communicabilityUnit}}</td>
+                                            <td>{{list.variationMonthFrom}}</td>
+                                            <td>{{list.variationMonthTo}}</td>
+                                            <td>{{list.tempFrom}}</td>
+                                            <td>{{list.tempTo}}</td>
+                                            <td>{{list.tempUnit}}</td>
+                                            <td>{{list.humidityFrom}}</td>
+                                            <td>{{list.humidityTo}}</td>
+                                            <td>{{list.humidityUnit}}</td>
+                                            <td>{{list.reference}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

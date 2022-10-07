@@ -1,0 +1,122 @@
+﻿
+#content {
+    margin-left: 0px !important;
+}
+
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    list-style-type: none;
+    padding: 0;
+}
+
+    .custom-menu li {
+        padding: 8px 12px;
+        cursor: pointer;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .custom-menu li:hover {
+            background-color: #DEF;
+        }
+
+textarea {
+    width: auto !important;
+}
+
+.red {
+    background-color: #fd6300 !important;
+}
+
+.green {
+    background-color: #20fb11 !important;
+}
+
+.white {
+    background-color: #fff !important;
+}
+
+.span10 {
+    width: 83% !important;
+}
+
+.ui-autocomplete {
+    height: 55%;
+    overflow: auto;
+    top: 27%;
+    left: 14%;
+}
+
+
+.icon-info-sign:before {
+    content: "\f05a";
+    position: absolute;
+    font-size: 20px;
+    text-align: right;
+    right: 5px;
+    top: 7px;
+}
+
+.plusSymbol:after {
+    position: absolute;
+    content: '\2719';
+    font-size: 20px;
+    text-align: right;
+    right: 35px;
+    top: 3px;
+}
+
+.modal-body.popup-decreption {
+    position: relative;
+    height: 40vh !important;
+    max-height: 9650px;
+    padding: 15px;
+    overflow-y: auto;
+    overflow: auto;
+    text-align: center;
+}
+
+#mySidenav a {
+    position: absolute;
+    right: 10px;
+    transition: 0.3s;
+    padding: 10px;
+    width: 0px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px 0px 0px 10px;
+}
+
+    #mySidenav a:hover {
+        right: 10px;
+        width: 30px;
+        writing-mode: vertical-rl;
+        font-size: 15px;
+        text-align: center;
+    }
+
+#btnNote {
+    top: 120px;
+    background-color: DarkGoldenRod;
+}
+
+#btnNoteShow {
+    top: 210px;
+    background-color: #555;
+}
+
+.modal-xl {
+    width: 1190px;
+    margin: 83px auto;
+}
+
+

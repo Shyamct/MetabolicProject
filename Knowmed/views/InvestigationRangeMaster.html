@@ -1,0 +1,191 @@
+﻿
+<div class="container-fluid">
+    <h2>Investigation Range Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Investigation Range Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Sub Test Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlSubTest" ng-model="ddlSubTest" ng-init="ddlSubTest=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in investigationSubTest" value="{{list.subTestID}}">
+                                                {{list.testName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Country Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlCountry" ng-model="ddlCountry" ng-init="ddlCountry=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in countryMaster" value="{{list.countryID}}">
+                                                {{list.countryName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Machine Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlMachine" ng-model="ddlMachine" ng-init="ddlMachine=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in machineMaster" value="{{list.machineID}}">
+                                                {{list.machineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">System Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlSystem" ng-model="ddlSystem" ng-init="ddlSystem=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in bodyOrganRegion" value="{{list.systemID}}">
+                                                {{list.systemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Lab Name</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlLab" ng-model="ddlLab" ng-init="ddlLab=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in labMaster" value="{{list.labID}}">
+                                                {{list.labName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Gender</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlGender" ng-model="ddlGender" ng-init="ddlGender=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Min Age</div>
+                                <div class="col-md-2"><input type="text" class="form-control" placeholder="Min Age" ng-model="txtAgeMin" onkeypress="isNumeric(true)" /></div>
+                                <div class="col-md-2">Max Age</div>
+                                <div class="col-md-2"><input type="text" class="form-control" placeholder="Max Age" ng-model="txtAgeMax" onkeypress="isNumeric(true)" /></div>
+                                <div class="col-md-2">Age Unit</div>
+                                <div class="col-md-2">
+                                    <select class="form-control" id="ddlAgeUnit" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=0" required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in unitMaster" value="{{list.ageUnitID}}">
+                                            {{list.ageUnit}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Min Range</div>
+                                <div class="col-md-2"><input type="text" class="form-control" placeholder="Min Range" ng-model="txtMinRange" /></div>
+                                <div class="col-md-2">Max Range</div>
+                                <div class="col-md-2"><input type="text" class="form-control" placeholder="Max Range" ng-model="txtMaxRange" /></div>
+                                <div class="col-md-2">Unit Range</div>
+                                <div class="col-md-2">
+                                    <select select2 class="form-control" id="ddlUnit" ng-model="ddlUnitRange" ng-init="ddlUnitRange=0" required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in unitMaster2" value="{{list.rangeUnitID}}">
+                                            {{list.rangeName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Normal Result</div>
+                                <div class="col-md-10"><input type="text" class="form-control" placeholder="Normal Result" ng-model="txtNormalResultText" /></div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveInvestigationRangeMaster();" /></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Investigation Range List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableInvestigationRangeMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Sub Test Name</th>
+                                            <th>Country Name</th>
+                                            <th>Machine Name</th>
+                                            <th>System Name</th>
+                                            <th>Lab Name</th>
+                                            <th>Gender</th>
+                                            <th>Min Age</th>
+                                            <th>Max Age</th>
+                                            <th>Age Unit</th>
+                                            <th>Min Range</th>
+                                            <th>Max Range</th>
+                                            <th>Unit Range</th>
+                                            <th>Normal Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in investigationRangeList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="DeleteInvestigationRangeMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.testName}}</td>
+                                            <td>{{list.countryName}}</td>
+                                            <td>{{list.machineName}}</td>
+                                            <td>{{list.systemName}}</td>
+                                            <td>{{list.labName}}</td>
+                                            <td>{{list.gender}}</td>
+                                            <td>{{list.minAge}}</td>
+                                            <td>{{list.maxAge}}</td>
+                                            <td>{{list.ageUnit}}</td>
+                                            <td>{{list.minRange}}</td>
+                                            <td>{{list.maxRange}}</td>
+                                            <td>{{list.rangeName}}</td>
+                                            <td>{{list.normalResultText}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

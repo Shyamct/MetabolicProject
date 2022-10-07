@@ -1,0 +1,224 @@
+﻿
+<div class="container-fluid">
+    <h2>Environment Location Assign</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Environment Location Assign
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <fieldset>
+                            <legend>
+                                Environment Location
+                            </legend>
+
+                            <div class="form-group col-md-12">
+                                <div class="col-md-4">
+                                    <label>Environment Factor</label>
+                                    <select class="form-control" id="ddlEnvironment" ng-model="ddlEnvironment" ng-init="ddlEnvironment=-1" required="">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="list in environmentFactorList" value="{{list.id}}">
+                                            {{list.enviorenmentFactor}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Country</label>
+                                    <select class="form-control" id="ddlCountry" ng-model="ddlCountry" ng-init="ddlCountry=-1" required="" ng-change="bindState()">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="list in countryList" value="{{list.id}}">
+                                            {{list.countryName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>State</label>
+                                    <select class="form-control" id="ddlState" ng-model="ddlState" ng-init="ddlState=-1" required="" ng-change="bindCity()">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="list in stateList" value="{{list.id}}" ng-selected="{{list.id==ddlState}}">
+                                            {{list.stateName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-4">
+                                    <label>City</label>
+                                    <select class="form-control" id="ddlCity" ng-model="ddlCity" ng-init="ddlCity=-1" required="">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="list in cityList" value="{{list.id}}" ng-selected="{{list.id==ddlCity}}">
+                                            {{list.cityName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>From Month</label>
+                                    <select class="form-control" id="ddlAgentFactore" ng-model="ddlFromMonth" ng-init="ddlFromMonth=0" required="">
+                                        <option value="0">--Select--</option>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+
+                                    <!--<input type="text" class="form-control" ng-model="txtfromMonth" placeholder="From Month" onkeypress="isNumeric(true)" />-->
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>To Month</label>
+                                    <select class="form-control" id="ddlAgentFactore" ng-model="ddlToMonth" ng-init="ddlToMonth=0" required="">
+                                        <option value="0">--Select--</option>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                    <!--<input type="text" class="form-control" ng-model="txttoMonth" placeholder="To Month" onkeypress="isNumeric(true)" />-->
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Agent Factor</legend>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-12">
+                                    <label>Agent Factore</label>
+                                    <select class="form-control" id="ddlAgentFactore" ng-model="ddlAgentFactor" ng-init="ddlAgentFactor=-1" required="">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="list in agentFactorList" value="{{list.id}}">
+                                            {{list.agentFactor}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-4">
+                                    <label>Temprature From</label>
+                                    <input type="text" class="form-control" ng-model="txttempratureFrom" placeholder="Temprature From" onkeypress="isNumeric(true)" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Temprature To</label>
+                                    <input type="text" class="form-control" ng-model="txttempratureTo" placeholder="Temprature To" onkeypress="isNumeric(true)" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Temprature Unit</label>
+                                    <select class="form-control" id="ddlTempratureUnit" ng-model="ddlTempratureUnit" ng-init="ddlTempratureUnit=-1" required="">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="list in tempratureUnitList" value="{{list.id}}">
+                                            {{list.unitName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-4">
+                                    <label>Humidity From</label>
+                                    <input type="text" class="form-control" ng-model="txthumidityFrom" placeholder="Humidity From" onkeypress="isNumeric(true)" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Humidity To</label>
+                                    <input type="text" class="form-control" ng-model="txthumidityTo" placeholder="Humidity To" onkeypress="isNumeric(true)" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Humidity Unit</label>
+                                    <select class="form-control" id="ddlHumidityUnit" ng-model="ddlHumidityUnit" ng-init="ddlHumidityUnit=0" required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in tempratureUnitList" value="{{list.id}}">
+                                            {{list.unitName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-group col-md-12">
+                            <div class="col-md-12" style="margin:2rem; text-align:right">
+                                <input type="button" class="btn btn-success" value="Save" ng-click="saveEnvironmentLocationAssign();" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Environment Location List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Environment Factor</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>From Month</th>
+                                            <th>To Month</th>
+                                            <th>Agent Factor</th>
+                                            <th>Temprature From</th>
+                                            <th>Temprature To</th>
+                                            <th>Temprature Unit</th>
+                                            <th>Humidity From</th>
+                                            <th>Humidity To</th>
+                                            <th>Humidity Unit</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in environmentLocationAssign" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>   <a href="" ng-click="deleteEnvironmentLocationAssign(list.id, list.agentFactorDetailID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.enviorenmentFactor}}</td>
+                                            <td>{{list.countryName}}</td>
+                                            <td>{{list.stateName}}</td>
+                                            <td>{{list.cityName}}</td>
+                                            <td>{{list.fromMonth}}</td>
+                                            <td>{{list.toMonth}}</td>
+                                            <td>{{list.agentFactors}}</td>
+                                            <td>{{list.tempratureFrom}}</td>
+                                            <td>{{list.tempratureTo}}</td>
+                                            <td>{{list.tempratureUnit}}</td>
+                                            <td>{{list.humidityFrom}}</td>
+                                            <td>{{list.humidityTo}}</td>
+                                            <td>{{list.humidityName}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

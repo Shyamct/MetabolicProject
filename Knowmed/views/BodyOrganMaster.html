@@ -1,0 +1,130 @@
+﻿
+<div class="container-fluid">
+    <h2>Body Organ Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Body Organ Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Body Organ Region</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" ng-model="txtBodyRegion" placeholder="Body Organ Region" />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Body Type</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlBodyType" ng-model="ddlBodyType"  required="">
+                                                <option value="">--Select Type--</option>
+                                                <option value="R">Region</option>
+                                                <option value="O">Organ</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Body Region</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlBodyRegion" ng-model="ddlBodyRegion" ng-init="ddlBodyRegion=-1" required="">
+                                                <option value="-1">--Select Type--</option>
+                                                <option ng-repeat="list in bodyRegionList" value="{{list.bodyRegionId}}">
+                                                    {{list.bodyRegionName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Department</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlDepartment" ng-model="ddlDepartment" ng-init="ddlDepartment=-1" required="">
+                                                <option value="-1">--Select Department--</option>
+                                                <option ng-repeat="list in departmentList" value="{{list.departmentID}}">
+                                                    {{list.departmentName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Description</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea type="text" class="form-control" ng-model="txtDescription" placeholder="Description" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12" margin-left>
+                                    <div class="row">
+                                        <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveBodyOrganMaster();" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Body Organ Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Body Organ Region</th>
+                                            <th>Body Type</th>
+                                            <th>Body Region</th>
+                                            <th>Department</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in bodyOrganRregionList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteBodyOrganMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.regionName}}</td>
+                                            <td>{{list.type}}</td>
+                                            <td>{{list.bodyRegionName}}</td>
+                                            <td>{{list.departmentName}}</td>
+                                            <td>{{list.description}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

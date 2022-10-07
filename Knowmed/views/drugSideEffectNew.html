@@ -1,0 +1,286 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Drug Side Effect New</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Side Effect
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Medicine</div>
+                                    <div class="col-md-11">
+                                        <select select2 class="form-control" id="ddlMedicine" ng-model="ddlMedicine" ng-init="ddlMedicine=-1" required="" ng-change="GetSideEffectList()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                            <!--<option value="0">All</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Side Effect</div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" ng-model="ddlSideEffect" ng-init="ddlSideEffect=-1" required="" ng-options="sideEffect as sideEffect.sideEffectName for sideEffect in sideEffectList">
+                                            <option value="">--Select--</option>
+                                            {{list.sideEffectName}}
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        IsRare: &nbsp;<input type="checkbox" ng-model="chkLifeThreatening" />&nbsp;
+                                        IsLifeThreatening: &nbsp;<input type="checkbox" ng-model="chkLifeThreatening" />&nbsp;
+                                        IsWatchable: &nbsp;<input type="checkbox" ng-model="chkLifeThreatening" />&nbsp;
+                                        IsLongTerm: &nbsp;<input type="checkbox" ng-model="chkLifeThreatening" />&nbsp;
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-info" ng-click="AddSideEffect(ddlSideEffect)">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class="form-group col-md-12 noPadding">
+                                <fieldset>
+                                    <legend>Side Effect</legend>
+                                    <!--<div class="row">-->
+                                    <div class="form-group col-md-12 noPadding">
+                                        <div class="col-md-2 noPadding">Side Effect</div>
+                                        <div class="col-md-4">
+                                            <select select2 class="form-control" id="ddlSideEffect" ng-model="ddlSideEffect" ng-init="ddlSideEffect=0" required="" ng-change="GetAttributeList()">
+                                                <option value="0">--Select SideEffect--</option>
+                                                <option ng-repeat="list in sideEffectList" value="{{list.id}}">
+                                                    {{list.sideEffectName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1">Attribute</div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlAttribute" ng-model="ddlAttribute" ng-init="ddlAttribute=0" required="" ng-change="GetAttributeValueList()">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in attributeList" value="{{list.id}}" ng-selected="{{list.id==ddlAttribute}}">
+                                                    {{list.attributeName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 noPadding">
+                                            <div ng-repeat="list in attributeValueList">
+                                                <label for="rdAttribute">
+                                                    <input type="radio" ng-model="attributeValue" value="{{list.id}}" name="rdAttribute" />
+                                                    {{list.attributeValue}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 noPadding">
+                                        <!--<div class="row">-->
+                                        <div class="col-md-2 noPadding">Side Effect Type</div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlSideEffectType" ng-model="ddlSideEffectType" ng-init="ddlSideEffectType=0">
+                                                <option value="0">--SideEffect Type--</option>
+                                                <option ng-repeat="list in sideEffectTypeList" value="{{list.id}}">
+                                                    {{list.sideEffectType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            IsLifeThreatening: &nbsp;&nbsp;<input type="checkbox" ng-checked="chkIsLifeThreatening" ng-model="chkIsLifeThreatening" value="1" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            IsWatchable: &nbsp;&nbsp;<input type="checkbox" ng-checked="chkIsWatchable" ng-model="chkIsWatchable" value="1" />&nbsp;
+                                        </div>
+                                    </div>
+                                    <!--</div>-->
+                                    <div class="form-group col-md-12 noPadding">
+                                        <div class="col-md-1 noPadding">Remark</div>
+                                        <div class="col-md-9"><textarea class="form-control" rows="3" placeholder="Details.." ng-model="txtRemark"></textarea></div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-xs btn-info" ng-click="AddSideEffect(ddlSideEffect)" ng-disabled="isDisabled">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-if="dSideEffectList.length>0" style="padding-top:5px">
+                                        <div class="col-md-12">
+                                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.No</th>
+                                                        <th>Side Effect</th>
+                                                        <th>Attribute</th>
+                                                        <th>Attribute Value</th>
+                                                        <th>Side Effect Type</th>
+                                                        <th>isLifeThreatening</th>
+                                                        <th>isWatchable</th>
+                                                        <th>Remark</th>
+                                                        
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in dSideEffectList" ng-class-odd="'striped'">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{list.effectName}}</td>
+                                                        <td>{{list.attributeName}}</td>
+                                                        <td>{{list.attributeValueName}}</td>
+                                                        <td>{{list.sideEffectType}}</td>
+                                                        <td>{{list.isLifeThreatening}}</td>
+                                                        <td>{{list.isWatchable}}</td>
+                                                        <td>{{list.remark}}</td>
+                                                        
+                                                        <td><a href="" ng-click="deleteSideEffect($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <!--<div class="form-group col-md-12" ng-if="dSideEffectList.length>0">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Side Effect</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in dSideEffectList" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.sideEffect}}</td>
+                                                    <td><a href="" ng-click="deleteSideEffect($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <!--<div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        Remark
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" rows="5" id="comment" placeholder="Details..." ng-model="txtRemark"></textarea>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Reference</legend>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select class="form-control" ng-model="ddlBook" ng-init="ddlBook=0" required="">
+                                                <option value="0">--Select Book--</option>
+                                                <option ng-repeat="list in bookList" value="{{list.id}}">
+                                                    {{list.bookName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Page No." ng-model="txtPageNo" /></div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Edition" ng-model="txtEdition" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Reference URL" ng-model="txtReference" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveDrugSideEffect();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Side Effect List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Medicine</th>
+                                            <th>Symptom</th>
+                                            <th>Attribute</th>
+                                            <th>Attribute Value</th>
+                                            <th>Type</th>
+                                            <th>Remark</th>
+                                            <th>LT</th>
+                                            <th>W</th>
+                                            <th>Reference</th>
+                                            <th>URL Reference</th>
+                                            <th>Entry Date</th>
+                                            <th>Entry By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in drugSideEffectList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.medSideEffectId)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.medSideEffectId)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.symptomName}}</td>
+                                            <td>{{list.attributeName}}</td>
+                                            <td>{{list.attributeValueName}}</td>
+                                            <td>{{list.sideEffectType}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.isLifeThreatening}}</td>
+                                            <td>{{list.isWatchable}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.referenceURL}}</td>
+                                            <td>{{list.createdDate}}</td>
+                                            <td>{{list.userName}}</td>
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

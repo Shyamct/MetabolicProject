@@ -1,0 +1,128 @@
+﻿
+<div class="container-fluid">
+    <h2>Add Food Cooking Method</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Food Cooking Method
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Food Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlFood" ng-init="ddlFood=-1" required="">
+                                                <option value="-1">--Select Food--</option>
+                                                <option ng-repeat="list in foodList" value="{{list.foodID}}">
+                                                    {{list.foodName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Cooking Method Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlCoocking" ng-init="ddlCoocking=-1" required="">
+                                                <option value="-1">--Select Coocking--</option>
+                                                <option ng-repeat="list in cookingMethodList" value="{{list.methodTypeID}}">
+                                                    {{list.methodName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Dish Type</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlDish" ng-init="ddlDish=-1" required="">
+                                                <option value="-1">--Select Dish Type--</option>
+                                                <option ng-repeat="list in foodDishList" value="{{list.dishTypeID}}">
+                                                    {{list.foodDishType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Cooking Description</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <summernote ng-model="txtCoockingMethod" placeholder="Cooking Method Description" height="300"></summernote>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveAddfoodCoockingMethod();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Food Cooking Method List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Food Name</th>
+                                            <th>Cooking Method Name</th>
+                                            <th>Dish Type</th>
+                                            <th>Cooking Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in allFoodCookingMethodList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteAddfoodCoockingMethod (list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.foodName}}</td>
+                                            <td>{{list.methodName}}</td>
+                                            <td>{{list.foodDishType}}</td>
+                                            <td ng-bind-html="list.coockingMethod|trustAsHtml">{{list.coockingMethod}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

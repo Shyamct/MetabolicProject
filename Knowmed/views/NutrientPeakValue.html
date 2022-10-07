@@ -1,0 +1,124 @@
+﻿
+<div class="container-fluid">
+    <h2>Nutrient Peak Value </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Nutrient Peak Value
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Nutrient</div>
+                                    <div class="col-md-11">
+                                        <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Peak Value</legend>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Min Peak Value" ng-model="txtMinPeakValue" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Max Peak Value" ng-model="txtMaxPeakValue" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlUnit" ng-model="ddlUnit" ng-init="ddlUnit=0" required="">
+                                                <option value="0">--Select Unit--</option>
+                                                <option ng-repeat="list in unitList" value="{{list.unitID}}">
+                                                    {{list.unitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Remark" ng-model="txtRemark" />
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">                                    
+                                    <div class="col-md-6">
+                                        <textarea rows="3" type="text" class="form-control" placeholder="Reference" ng-model="txtReference" ></textarea>
+                                    </div>                                    
+                                    <div class="col-md-6">
+                                        <textarea rows="3" type="text" class="form-control" placeholder="URL" ng-model="txtUrl"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientPeakValue();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Peak Value List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableNutrientTHalf" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Nutrient</th>
+                                            <th>Unit</th>
+                                            <th>Min Peak Value</th>
+                                            <th>Max Peak Value</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>Url</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientPeakValueList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.unitName}}</td>
+                                            <td>{{list.minPeakValue}}</td>
+                                            <td>{{list.maxPeakValue}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

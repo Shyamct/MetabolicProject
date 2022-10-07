@@ -1,0 +1,203 @@
+﻿
+<div class="container-fluid">
+    <h2>Problem Vital Relation</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Problem Vital Relation
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=0" required="" ng-change="GetAttributeList()">
+                                            <option value="0">--Select Problem--</option>
+                                            <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlAttribute" ng-model="ddlAttribute" ng-init="ddlAttribute=0" required="" ng-change="GetAttributeValueList()">
+                                            <option value="0">--Select Attribute--</option>
+                                            <option ng-repeat="list in attributeList" value="{{list.id}}" ng-selected="{{list.id==ddlAttribute}}">
+                                                {{list.attributeName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-6 noPaddingRight" ng-repeat="list in attributeValueList">
+                                            <label for="rdAttribute">
+                                                <input type="radio" ng-model="attributeValue" value="{{list.id}}" name="rdAttribute" />
+                                                {{list.attributeValue}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtAgeFrom" placeholder="Age From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtAgeTo" placeholder="Age To" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlAgeUnit" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="list in unitList" value="{{list.unitID}}">
+                                                {{list.unitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlGender" ng-model="ddlGender" ng-init="ddlGender=0" required="">
+                                            <option value="0">--Select Gender--</option>
+                                            <option ng-repeat="list in genderList" value="{{list.genderCode}}">
+                        {{list.genderName}}
+                    </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlVital" ng-model="ddlVital" ng-init="ddlVital=0" required="">
+                                            <option value="0">--Select Vital--</option>
+                                            <option ng-repeat="list in VitalMasterList" value="{{list.id}}">
+                                                {{list.vitalName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlStatus" ng-model="ddlStatus" ng-init="ddlStatus=0" required="">
+                                            <option value="0">--Select Status--</option>
+                                            <option ng-repeat="list in investigationStatus" value="{{list.id}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtRangeFrom" placeholder="Range From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtRangeTo" placeholder="Range To" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" id="ddlRangeUnit" ng-model="ddlRangeUnit" ng-init="ddlRangeUnit=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="list in unitList" value="{{list.unitID}}">
+                                                {{list.unitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-xs btn-info" ng-click="addVitalRelation()" ng-disabled="btnAdd">
+                                            <span class="glyphicon glyphicon-plus"></span>Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="vitalRelationList.length >0" style="padding-top:5px">
+                                    <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Vital Name</th>
+                                                    <th>Vital Status</th>
+                                                    <th>Range From</th>
+                                                    <th>Range To</th>
+                                                    <th>Range Unit</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in vitalRelationList" ng-class-odd="'striped'">
+                                                    <td>{{list.vitalName}}</td>
+                                                    <td>{{list.statusName}}</td>
+                                                    <td>{{list.rangeFrom}}</td>
+                                                    <td>{{list.rangeTo}}</td>
+                                                    <td>{{list.rangeUnitId}}</td>
+                                                    <td><a href="" ng-click="deleteVitalRelationList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveProblemVitalRelation();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Problem Vital Relation List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Problem</th>
+                                            <th>Attribute</th>
+                                            <th>Attribute Value</th>
+                                            <th>Vital</th>
+                                            <th>Vital Status</th>
+                                            <th>Age</th>
+                                            <th>Gender</th>
+                                            <th>Range</th>
+                                            <th style="width: 5rem;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in ProblemVitalRelationList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.attributeName}}</td>
+                                            <td>{{list.attributeValueName}}</td>
+                                            <td>{{list.vitalName}}</td>
+                                            <td>{{list.status}}</td>
+                                            <td>{{list.age}}</td>
+                                            <td>{{list.gender}}</td>
+                                            <td>{{list.range}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> &nbsp;|&nbsp; <a href="" ng-click="DeleteProblemVitalRelation(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

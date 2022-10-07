@@ -1,0 +1,449 @@
+﻿<style>
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+</style>
+<div class="container-fluid">
+    <h2>Medicine Interaction</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Medicine Interaction
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Medicine</div>
+                                    <div class="col-md-10">
+                                        <select select2 class="form-control" ng-model="ddlMedicine" ng-init="ddlMedicine=-1" required="" ng-change="GetMedInteractionList()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Interaction Type</div>
+                                    <div class="col-md-10">
+                                        <input type="radio" ng-model="rdInteractionType" name="interactionType" value="1" ng-change="GetInteractedWith(rdInteractionType);" /> Medicine &nbsp;
+                                        <input type="radio" ng-model="rdInteractionType" name="interactionType" value="2" ng-change="GetInteractedWith(rdInteractionType);" /> MedicineGroup &nbsp;
+                                        <input type="radio" ng-model="rdInteractionType" name="interactionType" value="3" ng-change="GetInteractedWith(rdInteractionType);" /> NutrientActComp &nbsp;
+                                        <input type="radio" ng-model="rdInteractionType" name="interactionType" value="5" ng-change="GetInteractedWith(rdInteractionType);" /> Addiquate &nbsp;
+                                        <input type="radio" ng-model="rdInteractionType" name="interactionType" value="9" ng-change="GetInteractedWith(rdInteractionType);" /> Problem &nbsp;&nbsp;
+                                        <input type="radio" ng-model="rdInteractionType" name="interactionType" value="0" ng-change="GetInteractedWith(rdInteractionType);" /> Other
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12 padding1rem">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        Interacted With
+                                    </div>
+                                    <div class="col-md-10">
+                                        <select class="form-control" ng-model="ddlInteracted" ng-init="ddlInteracted=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in interactedWithList" value="{{list.interactedElementID}}" ng-selected="{{list.interactedElementID==ddlInteracted}}">
+                                                {{list.interactedElementName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <!--<div class="col-md-1">Interaction Nature</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlInteractionNature" ng-init="ddlInteractionNature=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in interactionNature" value="{{list.interactionNature}}">
+                                                {{list.interactionNature}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>-->
+                                    <!--<div class="col-md-1">Interaction Nature</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlInteractionNature" ng-init="ddlInteractionNature=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in interactionNature" value="{{list.interactionNature}}">
+                                                {{list.interactionNature}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>-->
+
+                                    <div class="col-md-2">Interaction Nature</div>
+                                    <div class="col-md-10">
+                                        <input type="radio" ng-model="rdNature" name="nature" value="Beneficial" /> Beneficial &nbsp;
+                                        <input type="radio" ng-model="rdNature" name="nature" value="Harmful" /> Harmful &nbsp;
+                                        <input type="radio" ng-model="rdNature" name="nature" value="Caution" /> Caution &nbsp;
+                                        <input type="radio" ng-model="rdNature" name="nature" value="Not Significant" /> Not Significant &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Problem With Interaction </div>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <tags-input ng-model="signSymtomps" replace-spaces-with-dashes="false" display-property="problemName" on-tag-added="tagAdded($tag)" on-tag-removed="tagRemoved($tag)" placeholder="Sign / Symtopms">
+                                            <auto-complete source="GetSymptomsSearch($query)" min-length="0"
+                                                           load-on-focus="true"></auto-complete>
+                                        </tags-input>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Indication / Uses</div>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <tags-input ng-model="indicationName" replace-spaces-with-dashes="false" display-property="indicationName" on-tag-added="tag1added($tag)" on-tag-removed="tag1Removed($tag)" placeholder="Indication Uses...">
+                                            <auto-complete source="GetIndicationSearch($query)" min-length="0"
+                                                           load-on-focus="true"></auto-complete>
+                                        </tags-input>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Indication / Uses</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlIndicationProblem" id="ddlIndicationProblem" ng-init="ddlIndicationProblem=-1" required="">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.problemID}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        URL
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="URL" ng-model="txtIndicationUrl" id="txtIndicationUrl" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-xs btn-info" ng-click="AddIndication()" ng-disabled="isDisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <!--<div class="form-group col-md-12">
+                                <div class="row" ng-if="addedIndicationList.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Indication / Uses</th>
+                                                    <th>Url</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in addedIndicationList" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.indicationName}}</td>
+                                                    <td>{{list.indicationUrl}}</td>
+                                                    <td><a href="" ng-click="deleteAddedIndicationList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>-->
+
+
+                            <div class="form-group col-md-12">
+                                <fieldset style="padding: 20px 25px 5px;">
+                                    <div class="row">
+                                        <div class="col-md-1 noPadding" style="width:16%!important;">
+                                            <select class="form-control " id="ddlSubstituteForType" ng-model="ddlSubstituteForType" ng-init="ddlSubstituteForType=0" required="" ng-change="GetSubstituteLists('ddlSubstituteForType')">
+                                                <option value="0">--Type--</option>
+                                                <option ng-repeat="list in interactionTypeList | limitTo:3" value="{{list.id}}">
+                                                    {{list.interactionTypeName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4" style="width:30%!important;">
+                                            <select select2 class="form-control" ng-model="ddlSubstituteMedicineFor" id="ddlSubstituteMedicineFor" ng-init="ddlSubstituteMedicineFor=-1" required="">
+                                                <option value="-1">--Select Substitute For--</option>
+                                                <option ng-repeat="list in substituteMedicineForList" value="{{list.interactedElementID}}">
+                                                    {{list.interactedElementName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1 noPadding" style="width:16%!important;">
+                                            <select class="form-control" id="ddlSubstituteType" ng-model="ddlSubstituteType" ng-init="ddlSubstituteType=0" required="" ng-change="GetSubstituteLists('ddlSubstituteType')">
+                                                <option value="0">--Type--</option>
+                                                <option ng-repeat="list in interactionTypeList | limitTo:3" value="{{list.id}}">
+                                                    {{list.interactionTypeName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4" style="width:30%!important;">
+                                            <select select2 class="form-control" ng-model="ddlSubstituteMedicine" id="ddlSubstituteMedicine" ng-init="ddlSubstituteMedicine=-1" required="">
+                                                <option value="-1">--Select Substitute--</option>
+                                                <option ng-repeat="list in substituteMedicineList" value="{{list.interactedElementID}}">
+                                                    {{list.interactedElementName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1 noPadding" style="width:8%;">
+                                            <button class="btn btn-xs btn-info" ng-click="AddSubstitute()" ng-disabled="isDisabled">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12" style="margin-top:1rem;">
+                                            <div class="row" ng-if="addedSubstituteList.length>0">
+                                                <div class="col-md-12">
+                                                    <table id="tableCalculators" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No</th>
+                                                                <th>Substitute For</th>
+                                                                <th>Substitute</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="list in addedSubstituteList" ng-class-odd="'striped'">
+                                                                <td>{{$index + 1}}</td>
+                                                                <td>{{list.substituteForName}}</td>
+                                                                <td>{{list.substituteName}}</td>
+                                                                <td><a href="" ng-click="deleteAddedSubstituteList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+
+                            <!--NEW CODE END HERE-->
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        Interaction Effect
+                                    </div>
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" id="comment" placeholder="Interaction Effect" ng-model="txtInteractionEffect"></textarea>
+                                    </div>
+                                    <div class="col-md-1">
+                                        Other Effect
+                                    </div>
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" id="comment" placeholder="Other Effect" ng-model="txtOtherEffect"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        Suggestive Action
+                                    </div>
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" id="comment" placeholder="Suggestive Action" ng-model="txtSuggAction"></textarea>
+                                    </div>
+                                    <div class="col-md-1">
+                                        Interaction Remark
+                                    </div>
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" rows="5" id="comment" placeholder="Interaction Remark" ng-model="txtRemark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend></legend>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            Dose Modification
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddlMedicineForDoseModification" ng-init="ddlMedicineForDoseModification=-1" required="">
+                                                <option value="-1">--Select--</option>
+                                                <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                    {{list.medicineName}}
+                                                </option>
+                                                <!--<option value="0">All</option>-->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-2"><input type="text" class="form-control" placeholder="Decreased From" ng-model="txtDecreasedFrom" /></div>
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control" placeholder="Decreased To" ng-model="txtDecreasedTo" onkeypress="isNumeric(1)" />
+                                        </div>
+                                        <div class="col-md-4" style="padding-bottom: 10px;">
+                                            <textarea class="form-control" rows="5" id="doseModificationRemark" placeholder="Remark" ng-model="txtDoseModificationRemark"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            Monitoring For
+                                        </div>
+                                        <div class="col-md-5">
+                                            <select select2 class="form-control" ng-model="ddlMonitoringFor" ng-init="ddlMonitoringFor=-1" required="" ng-change="GetString(ddlMonitoringFor)">
+                                                <option value="-1">--Select--</option>
+                                                <option ng-repeat="list in monitoringForList" value="{{list.monitoringFor}}">
+                                                    {{list.monitoringForName}}
+                                                </option>
+                                                <!--<option value="0">All</option>-->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <textarea class="form-control" rows="5" id="monitoringForRemark" placeholder="Remark" ng-model="txtMonitoringForRemark"></textarea>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Reference</legend>
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <select class="form-control" ng-model="ddlBook" ng-init="ddlBook=0" required="">
+                                                <option value="0">--Select Book--</option>
+                                                <option ng-repeat="list in bookList" value="{{list.id}}">
+                                                    {{list.bookName}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Page No." ng-model="txtPageNo" /></div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Edition" ng-model="txtEdition" onkeypress="isNumeric(1)" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Reference URL" ng-model="txtReference" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" placeholder="Page Reference.........." ng-model="txtPageReference" />
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-9"></div>
+                                    <div class="col-md-3 text-right">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineInteraction();" />
+                                        <!--<button class="btn btn-default" ng-click="reloadPage();">Reset</button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Interaction List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Medicine Name</th>
+                                            <th>Interaction Type</th>
+                                            <th>Interacted With</th>
+                                            <th>Interaction Nature</th>
+                                            <th>Sign/Symptoms</th>
+                                            <th>Indication/Uses </th>
+                                            <th>Medicine Substitute For And Medicine Substitute</th>
+                                            <th>Interaction Effect</th>
+                                            <th>Other Effect</th>
+                                            <th>Suggestive Action</th>
+                                            <th>Interaction Remark</th>
+                                            <th>Dose Modification Medicine Name</th>
+                                            <th>Dose Modification Decreased By</th>
+                                            <th>Dose Modification Decreased To</th>
+                                            <th>Dose Modification Reamrk</th>
+                                            <th>Monitoring For</th>
+                                            <th>Monitoring Remark</th>
+                                            <th>Reference Book</th>
+                                            <th>Page No</th>
+                                            <th>Edition</th>
+                                            <th>Reference URL</th>
+                                            <th>Page Reference </th>
+                                            <th>Entry Date</th>
+                                            <th>Entry By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in medicineInteractionList | filter : search" ng-class-odd="'striped'">
+                                            <td>
+                                                <a href="" ng-click="edit($index,list.medicineInteractionId)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                                <a href="" ng-click="delete(list.medicineInteractionId)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.interactionType}}</td>
+                                            <td>{{list.interactedElementName}}</td>
+                                            <td>{{list.interactionNature}}</td>
+                                            <td>{{list.signs}}</td>
+                                            <td ng-bind-html="list.indicationUses|trustAsHtml">{{list.indicationUses}}</td>
+                                            <td ng-bind-html="list.substitute|trustAsHtml">{{list.substitute}}</td>
+                                            <td>{{list.interactionEffect}}</td>
+                                            <td>{{list.otherEffect}}</td>
+                                            <td>{{list.suggestiveAction}}</td>
+                                            <td>{{list.interactionRemark}}</td>
+                                            <td>{{list.doseModificationMedicineName}}</td>
+                                            <td>{{list.decreasedBy}}</td>
+                                            <td>{{list.decreasedTo}}</td>
+                                            <td>{{list.doseModificationRemark}}</td>
+
+                                            <td>{{list.monitoringFor.split('_')[2]}}</td>
+                                            <td>{{list.monitoringForRemark}}</td>
+
+                                            <td>{{list.bookReference}}</td>
+                                            <td>{{list.pageNo}}</td>
+                                            <td>{{list.edition}}</td>
+                                            <td>{{list.reference}}</td>                  <!--referenceURL-->
+                                            <td>{{list.pageReference}}</td>                  <!--page reference-->
+                                            <td>{{list.createdDate}}</td>
+                                            <td>{{list.userName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

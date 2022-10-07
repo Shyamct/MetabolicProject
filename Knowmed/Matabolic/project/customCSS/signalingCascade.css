@@ -1,0 +1,132 @@
+﻿
+@-webkit-keyframes blink1 {
+    50% {
+        border-color: #1e8449;
+    }
+}
+
+.blink1 {
+    border: 2px white dashed;
+    -webkit-animation: blink1 .5s step-end infinite alternate;
+    background-color: chartreuse;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 3px;
+}
+
+@-webkit-keyframes blink2 {
+    50% {
+        border-color: #ff0000;
+    }
+}
+
+.blink2 {
+    border: 2px white dashed;
+    -webkit-animation: blink2 .5s step-end infinite alternate;
+    background-color: chartreuse;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 3px;
+}
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../img/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .6;
+}
+
+th {
+    text-align: center !important;
+    font-size: 12px;
+}
+
+.td_CascadeNutrient {
+    text-align: center !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#tblSignaling ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#tblSignaling li {
+    padding-left: 10px;
+    line-height: 32px;
+}
+
+.pieChart {
+    width: 10%;
+    float: right;
+    cursor: pointer;
+}
+
+.commonFoodFamily {
+    width: 80%;
+    float: left;
+    color: #1e00f6;
+    cursor: pointer;
+}
+
+.uncommonFoodFamily {
+    width: 100%;
+    color: #8a5ea5;
+    cursor: pointer;
+}
+
+.foodFamilyPanel {
+    width: 100%;
+    /*max-height: 40rem;
+            overflow-y: auto;*/
+}
+
+.nutrientFunction {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    list-style: disc !important;
+    padding-left: 2rem !important;
+}
+
+    .nutrientFunction li {
+        line-height: 20px !important;
+        text-align: left;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+.process {
+    margin-top: 0.5rem !important;
+    list-style: disc !important;
+    padding-left: 1rem !important;
+}
+
+    .process li {
+        line-height: 20px !important;
+        text-align: left;
+        font-size: 12px;
+        font-weight: normal;
+        padding-left: 0 !important;
+    }
+
+.process-name {
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: underline;
+    margin-top: 1rem !important;
+}
+
+#tblCascadeCount {
+    margin-top: 6%;
+}
+
+    #tblCascadeCount td {
+        text-align: center;
+    }

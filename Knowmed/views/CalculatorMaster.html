@@ -1,0 +1,99 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Calculator Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Calculator
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Calculator Title</div>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" ng-model="txtCalculatorTitle" placeholder="Calculator Title" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Remark</div>
+                                    <div class="col-md-9">
+                                        <textarea type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" rows="3" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Reference</div>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="SaveCalculatorMaster()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Calculator List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableCalculatorMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Calculator Title</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in CalList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.calculatorTitle}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td><a href="" ng-click="edit(list.calculatorId)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteCalculatorMaster(list.calculatorId)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,228 @@
+﻿<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    .percent {
+        position: absolute;
+        width: 300px;
+        height: 14px;
+        z-index: 2;
+        text-align: center;
+        font-size: 0.8em;
+        color: white;
+    }
+
+    .progress-bar {
+        width: 300px;
+        height: 20px;
+        border-radius: 8px;
+        border: 1px solid #CCC;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#4800ff), to(#4800ff));
+        border-image: initial;
+    }
+
+    .uploaded {
+        padding: 0;
+        height: 20px;
+        border-radius: 8px;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#66cc00), to(#66cc00));
+        border-image: initial;
+    }
+
+    .dropbox {
+        width: 15em;
+        height: 4em;
+        border: 3px solid #DDD;
+        border-radius: 8px;
+        background-color: #FEFFEC;
+        text-align: center;
+        color: #BBB;
+        font-size: 2em;
+        font-family: Arial, sans-serif;
+    }
+
+        .dropbox span {
+            margin-top: 0.9em;
+            display: block;
+        }
+
+        .dropbox.not-available {
+            background-color: #F88;
+        }
+
+        .dropbox.over {
+            background-color: #bfb;
+        }
+</style>
+
+<div class="container-fluid">
+    <h2>Video Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Video Master
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Video Title</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="col-md-10">
+                                                <input type="text" class="form-control" ng-model="txtVideoTitle" placeholder="Video Title" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Image Upload</label>
+                                        </div>
+                                        <div class="col-md-10" style="height: 37px">
+                                            <input type="file" id="fileImage" name="fileImage" ng-files="getImageFiles($files)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Video Upload </label>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <input type="file" name="fileVideo" id="fileVideo" ng-files="getVideo($files)">
+                                        </div>
+                                        <div ng-show="progressVisible">
+                                            <!--<div class="percent">{{progress}}%</div>-->
+                                            <div class="progress-bar">
+                                                <div class="uploaded" ng-style="{'width': progress+'%'}">{{progress}}%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2" style="padding:15px">
+                                           
+                                            <label>Description</label>
+                                        </div>
+                                        <div class="col-md-2" style="padding:15px">
+                                            <input type="text" tooltip="Please fill time" ng-model="time" placeholder="HH:MM:TM" class="form-control">
+                                        </div>
+                                        <div class="col-md-7" style="padding:10px">
+                                            <textarea text="text" class="form-control" ng-model="txtdescription" placeholder="Description" />
+                                        </div>
+                                        <div class="col-md-1" style="padding:15px">
+                                            <button class="btn btn-xs btn-info" ng-click="AddAssign()" ng-disabled="btnAdd">
+                                                <span class="glyphicon glyphicon-plus"></span>Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row" ng-if="addedAssignList.length > 0">
+                                            <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                                <table id="tableCalculators" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Time</th>
+                                                            <th>Description</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in addedAssignList" ng-class-odd="'striped'">
+                                                            <td>{{list.startTime}}</td>
+                                                            <td>{{list.description}}</td>
+                                                            <td><a href="" ng-click="deleteAddedAssignList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" style="margin-top: 30px;" value="Save" ng-click="saveVideoMaster();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Video Details List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Video Title</th>
+                                            <th>Image URL</th>
+                                            <th>Video URL</th>
+                                            <th>Transcript</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in videoList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteVideoMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.videoTitle}}</td>
+                                            <td><img src="{{list.thumbnailPath}}" height="100px" width="100px" /> </td>
+                                            <td><a target="_blank" href={{list.videoPath}}> {{list.videoPath}} </a></td>
+                                            <!-- <td><img src="{{list.videoPath}}" height="100px" width="100px" /> </td>-->
+                                            <td>
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.transcriptDetails.length > 0">
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Time</td>
+                                                            <td class="col-md-2 labelHeadStyle">Description</td>
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="process in list.transcriptDetails">
+                                                            <td class="col-md-2">{{process.startTime}}</td>
+                                                            <td class="col-md-2">{{process.description}}</td>
+                                                            <td><a href="" ng-click="deleteAssignVideo(process.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

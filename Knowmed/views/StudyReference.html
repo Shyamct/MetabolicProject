@@ -1,0 +1,546 @@
+﻿<div class="container-fluid">
+
+    <h2>Study Reference</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Study Reference
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Mechanism</div>
+                                    <div class="col-md-4">
+                                        <input type="radio" ng-model="rbMechanism" value="Yes"> Yes &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" ng-model="rbMechanism" value="No"> No
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" ng-show="rbMechanism=='Yes' && existId==0">
+
+                                <div class="row">
+                                    <div class="col-md-2">Disease</div>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        <tags-input ng-model="diseaseName" replace-spaces-with-dashes="false" display-property="diseaseName" on-tag-added="tagAdded($tag)" on-tag-removed="tagRemoved($tag)" placeholder="Disease.....">
+                                            <auto-complete source="GetDiseaseSearch($query)" min-length="0"
+                                                           load-on-focus="true"></auto-complete>
+                                        </tags-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" ng-show="rbMechanism=='No' || existId > 0">
+                                <div class="row">
+                                    <div class="col-md-2">Disease</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=0" ng-change="getAssociatedProblemAndcentralCompound()">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="col-md-2">Marker</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlMarker" ng-init="ddlMarker=0" ng-change="getNutrientBarrierDetails()">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Process / Section</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlProcess" ng-init="ddlProcess=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in processList" value="{{list.rank}}" ng-selected="list.rank==ddlProcess">
+                                                {{list.rankName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Phenomenon</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlPhenomenon" ng-init="ddlPhenomenon=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in phenomenonList" value="{{list.id}}" ng-selected="list.id==ddlPhenomenon">
+                                                {{list.phenomenonName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div ng-show="rbIsNotCovid">Other Disease / Phenomenon</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div ng-show="rbIsNotCovid">
+                                            <select select2 class="form-control" ng-model="ddlOtherDisease" ng-init="ddlOtherDisease=0" style="width:100%">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in otherProblemList" value="{{list.id}}">
+                                                    {{list.problemName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12" style="display:none">
+                                <div class="row">
+                                    <div class="col-md-2">Parameter</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlParameter" ng-init="ddlParameter=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in parameterList" value="{{list.id}}" ng-selected="list.id==ddlParameter">
+                                                {{list.parameterName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <!--<div class="col-md-6">
+                <input type="radio" ng-model="rbIsCovid" value="1"> COVID-19 &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" ng-model="rbIsCovid" value="0"> Other
+            </div>-->
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Marker Level</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlStudyLevel" ng-init="ddlStudyLevel='-'">
+                                            <option value="-">--Select--</option>
+                                            <option ng-repeat="list in studyLevelList" value="{{list.studyLevel}}">
+                                                {{list.studyLevel}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Location</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" ng-model="txtLocation" placeholder="Location" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Meaning</div>
+                                    <div class="col-md-4">
+                                        <textarea type="text" class="form-control" ng-model="txtMeaning" placeholder="Meaning"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <fieldset style="padding: 20px 20px 15px;" class="marginBottom1rem">
+                                <div class="row marginBottom1rem">
+                                    <div class="col-md-2">Study For</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlStudyType" ng-model="ddlStudyType" ng-init="ddlStudyType=0" ng-change="setIsHuman();">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in studyTypeList" value="{{list.id}}">
+                                                {{list.studyFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2" ng-show="isHuman">Sample Size</div>
+                                    <div class="col-md-2" ng-show="isHuman">
+                                        <input type="text" class="form-control" onkeypress="isNumeric(true);" ng-model="txtSampleSizeCase" placeholder="Case" />
+                                    </div>
+                                    <div class="col-md-2" ng-show="isHuman">
+                                        <input type="text" class="form-control" onkeypress="isNumeric(true);" ng-model="txtSampleSizeControl" placeholder="Control" />
+                                    </div>
+                                </div>
+
+                                <div class="row marginBottom1rem">
+                                    <div class="col-md-2" ng-show="isHuman">Age Group</div>
+                                    <div class="col-md-2" ng-show="isHuman">
+                                        <input type="text" class="form-control" onkeypress="isNumeric(true);" ng-model="txtAgeGroupFrom" placeholder="From" />
+                                    </div>
+                                    <div class="col-md-2" ng-show="isHuman">
+                                        <input type="text" class="form-control" onkeypress="isNumeric(true);" ng-model="txtAgeGroupTo" placeholder="To" />
+                                    </div>
+                                    <div class="col-md-2" ng-show="isHuman">Age Unit</div>
+                                    <div class="col-md-4" ng-show="isHuman">
+                                        <select class="form-control" id="ddlAgeUnit" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in ageUnitList" value="{{list.ageUnitID}}">
+                                                {{list.ageUnitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row marginBottom1rem">
+                                    <div class="col-md-2" ng-show="isHuman">Gender</div>
+                                    <div class="col-md-10" ng-show="isHuman">
+                                        <input type="radio" ng-model="rbGender" value="Male"> Male &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" ng-model="rbGender" value="Female"> Female &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" ng-model="rbGender" value="Both"> Both
+                                    </div>
+                                </div>
+                                <div class="row marginBottom1rem">
+                                    <div class="col-md-2">URL</div>
+                                    <div class="col-md-4">
+                                        <textarea class="form-control" ng-model="txtURL" placeholder="URL"></textarea>
+                                    </div>
+                                    <div class="col-md-2">Research Year</div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" onkeypress="isNumeric(false);" ng-model="txtResearchYear" placeholder="Research" />
+                                    </div>
+                                    <div class="col-md-1 noPadding">
+                                        <button class="btn btn-xs btn-info" ng-click="addReferenceDetails()">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row marginBottom1rem" ng-if="selectedReferenceDetails.length>0">
+                                    <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                        <table class="table table-bordered" style="margin-bottom: 5px!important;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Study For</th>
+                                                    <th>Sample Size Case</th>
+                                                    <th>Sample Size Control</th>
+                                                    <th>Age From</th>
+                                                    <th>Age To</th>
+                                                    <th>Age Unit</th>
+                                                    <th>Gender</th>
+                                                    <th>URL</th>
+                                                    <th>Research Year</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in selectedReferenceDetails" ng-class-odd="'striped'">
+                                                    <td>{{list.studyFor}}</td>
+                                                    <td>{{list.sampleSizeCase}}</td>
+                                                    <td>{{list.sampleSizeControl}}</td>
+                                                    <td>{{list.ageGroupFrom}}</td>
+                                                    <td>{{list.ageGroupTo}}</td>
+                                                    <td>{{list.ageUnitText}}</td>
+                                                    <td>{{list.gender}}</td>
+                                                    <td>{{list.url}}</td>
+                                                    <td>{{list.researchYear}}</td>
+                                                    <td><a href="" ng-click="deleteReferenceDetails($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Central Compound</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlCentralCompound" ng-init="ddlCentralCompound=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in centralCompoundList" value="{{list.id}}" ng-selected="list.id==ddlCentralCompound">
+                                                {{list.molecule}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Compound Status</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlCompoundStatu" ng-init="ddlCompoundStatu=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in centralCompoundStatuList" value="{{list.centralCompoundStatus}}" ng-selected="list.id==ddlCompoundStatu">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Other Pathway</div>
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" id="ddlOtherPathway" ng-model="ddlOtherPathway" ng-init="ddlOtherPathway=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 noPadding">
+                                        <button class="btn btn-xs btn-info" ng-click="addOtherPathway()">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6">
+                                        <div class="row marginTop1rem" ng-if="selectedOtherPathwayList.length>0">
+                                            <div class="col-md-12">
+                                                <table id="tableOtherPathwayList" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Other Pathway Name</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in selectedOtherPathwayList" ng-class-odd="'striped'">
+                                                            <td>{{$index + 1}}</td>
+                                                            <td>{{list.otherPathwayName}}</td>
+                                                            <td><a href="" ng-click="deleteOtherPathwayDetails($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Associated Problem</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlAssociatedProblem" ng-model="ddlAssociatedProblem" ng-init="ddlAssociatedProblem=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in associatedProblemList" value="{{list.rank}}" ng-selected="list.rank==ddlAssociatedProblem">
+                                                {{list.rankName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Era's Hypothesis</div>
+                                    <div class="col-md-4">
+                                        <input type="radio" ng-model="rbHypothesis" value="Yes"> Yes &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" ng-model="rbHypothesis" value="No"> No
+                                    </div>
+                                </div>
+                            </div>
+                            <fieldset style="padding:10px; margin-top: 1.5rem;">
+                                <legend>Study Treatment</legend>
+
+                                <div class="form-group col-md-11">
+                                    <div class="col-md-2">Disease</div>
+                                    <div class="col-md-10">
+                                        <select select2 class="form-control" id="ddlStudyTreatmentProblem" ng-model="ddlStudyTreatmentProblem" ng-init="ddlStudyTreatmentProblem=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-11">
+                                    <div class="col-md-2">Treatment</div>
+                                    <div class="col-md-4">
+                                        <textarea type="text" class="form-control" ng-model="txtTreatment" placeholder="Treatment"></textarea>
+                                    </div>
+                                    <div class="col-md-1">URL</div>
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" ng-model="txtStudyTreatmentURL" placeholder="URL"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <button class="btn btn-xs btn-info" ng-click="addStudyTreatmentDetails()">
+                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                    </button>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="row" ng-if="selectedStudyTreatmentDetailList.length>0">
+                                        <div class="col-md-12">
+                                            <table id="tableStudyTreatmentDetailList" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.No</th>
+                                                        <th>Disease</th>
+                                                        <th>Treatment</th>
+                                                        <th>URL</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in selectedStudyTreatmentDetailList" ng-class-odd="'striped'">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{list.problemName}}</td>
+                                                        <td>{{list.treatment}}</td>
+                                                        <td>{{list.url}}</td>
+                                                        <td><a href="" ng-click="deleteStudyTreatment($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <!--<fieldset style="padding:10px; margin-top: 1.5rem;">
+        <legend>Blood Brain Barrier</legend>
+
+        <div class="form-group col-md-12">
+            <div class="row">
+                <div class="col-md-2">IS Cross:</div>
+                <div class="col-md-2">
+                    <input type="radio" ng-model="isCross" value="Yes" />Yes &nbsp;&nbsp;
+                    <input type="radio" ng-model="isCross" value="No" />No &nbsp;&nbsp;
+                </div>
+                <div class="col-md-2">
+                    <input type="radio" ng-model="isIn" value="1" />IN &nbsp;&nbsp;
+                    <input type="radio" ng-model="isIn" value="0" />OUT &nbsp;&nbsp;
+                </div>
+                <div class="col-md-2">Transporter</div>
+                <div class="col-md-4">
+                    <select select2 class="form-control" id="ddlTransporter" ng-model="ddlTransporter" ng-init="ddlTransporter=0">
+                        <option value="0">--Select--</option>
+                        <option ng-repeat="list in transporterList" value="{{list.id}}">
+                            {{list.transporterName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="row">
+                <div class="col-md-2">Remark</div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" placeholder="Remark" ng-model="txtBloodBarrierRemark" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="row">
+                <div class="col-md-2">URL</div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" placeholder="URL" ng-model="txtBloodBarrierUrl" />
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-xs btn-info" ng-click="addBloodBarrier()">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="row" ng-if="selectedBloodBarrierList.length>0">
+                <div class="col-md-12">
+                    <table id="tableStudyTreatmentDetailList" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>IsCross</th>
+                                <th>In/Out</th>
+                                <th>Transporter</th>
+                                <th>Remark</th>
+                                <th>URL</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="list in selectedBloodBarrierList" ng-class-odd="'striped'">
+                                <td>{{list.isCross}}</td>
+                                <td>{{list.inOutText}}</td>
+                                <td>{{list.transporter}}</td>
+                                <td>{{list.remark}}</td>
+                                <td>{{list.url}}</td>
+                                <td><a href="" ng-click="deleteBloodBarrier($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </fieldset>-->
+                            <div class="form-group col-md-12">
+                                <div class="col-md-1 noPadding">
+                                    <input type="button" class="btn btn-success" style="margin-top: 2rem;" value="Save" ng-click="SaveStudyReferencee()" />
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="button" class="btn btn-warning" style="margin-top: 2rem;" value="Reset" ng-click="clr()" />
+                                </div>
+                            </div>
+                        </div>
+</form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Study Reference List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:163vh">
+                                <table id="tableCalculatorMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Action</th>
+                                            <th>Disease</th>
+                                            <th>Marker</th>
+                                            <th>Process</th>
+                                            <th>Phenomenon</th>
+                                            <th>Parameter</th>
+                                            <th>COVID-19</th>
+                                            <th>Other Disease</th>
+                                            <th>StudyLevel</th>
+                                            <th>Location</th>
+                                            <th>Meaning</th>
+                                            <th>CentralCompound</th>
+                                            <th>Compound Status</th>
+                                            <th>Associated Problem</th>
+                                            <th>Era's Hypothesis</th>
+                                            <th>Study Treatment</th>
+                                            <th>Other Pathway Details</th>
+                                            <th>Study Reference Details</th>
+                                            <!--<th>Blood Brain Barrier Details</th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in studyReferenceList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit" ng-show="rbMechanism=='No'"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteStudyReference(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.markerName}}</td>
+                                            <td>{{list.processName}}</td>
+                                            <td>{{list.phenomenonName}}</td>
+                                            <td>{{list.parameterName}}</td>
+                                            <td>{{list.isCovidText}}</td>
+                                            <td>{{list.otherDiseaseName}}</td>
+                                            <td>{{list.studyLevel}}</td>
+                                            <td>{{list.location}}</td>
+                                            <td>{{list.meaning}}</td>
+                                            <td>{{list.centralCompoundName}}</td>
+                                            <td>{{list.statusFor}}</td>
+                                            <td>{{list.associatedProblemName}}</td>
+                                            <td>{{list.erashypothesis}}</td>
+                                            <td ng-bind-html="list.studyTreatmentDetails|trustAsHtml">{{list.studyTreatmentDetails}}</td>
+                                            <td ng-bind-html="list.otherPathwayDetails|trustAsHtml">{{list.otherPathwayDetails}}</td>
+                                            <td ng-bind-html="list.studyReferenceDetails|trustAsHtml">{{list.studyReferenceDetails}}</td>
+                                            <!--<td ng-bind-html="list.transporterDetails|trustAsHtml">{{list.transporterDetails}}</td>-->
+                                        </tr>
+
+
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

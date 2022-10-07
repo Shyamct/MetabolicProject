@@ -1,0 +1,210 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Medicine Supplement </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Supplement
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Medicine</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlMedicine" ng-init="ddlMedicine=0" required="" ng-change="getMedicineBrandList();">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Medicine Brand</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlMedicineBrand" ng-init="ddlMedicineBrand=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in medicineBrandList" value="{{list.id}}" ng-selected="{{list.id==ddlMedicineBrand}}">
+                                                {{list.brandName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Dose</div>
+                                    <div class="col-md-4"><input type="text" class="form-control" placeholder="Dose" ng-model="txtMedicineDose" /></div>
+                                    <div class="col-md-2">Unit</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlDoseUnitID" ng-init="ddlDoseUnitID=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in unitList" value="{{list.id}}">
+                                                {{list.unitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Nutrient</legend>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" id="ddlNutrient" ng-model="ddlNutrient" ng-init="ddlNutrient=0">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in nutrientList" value="{{list.id}}">
+                                                    {{list.nutrientName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">Quantity Per Pill</div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Quantity/Pill" id="txtNutrientQuantity" ng-model="txtNutrientQuantity" /></div>
+                                        <div class="col-md-1">Unit</div>
+                                        <div class="col-md-2">
+                                            <select select2 class="form-control" id="ddlQuantityUnitID" ng-model="ddlQuantityUnitID" ng-init="ddlQuantityUnitID=0">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in unitList" value="{{list.id}}">
+                                                    {{list.unitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-xs btn-info" ng-click="AddNutrient()">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-if="addedNutrientList.length>0" style="margin-top:2vh">
+                                        <div class="col-md-12">
+                                            <table id="tableCalculators" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.No</th>
+                                                        <th>Nutrient</th>
+                                                        <th>Quantity/Pill</th>
+                                                        <th>Unit</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in addedNutrientList" ng-class-odd="'striped'">
+                                                        <td>{{$index + 1}}</td>
+                                                        <td>{{list.nutrientName}}</td>
+                                                        <td>{{list.nutrientQuantity}}</td>
+                                                        <td>{{list.quantityUnitName}}</td>
+                                                        <td><a href="" ng-click="removeNutrient($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Reference</div>
+                                    <div class="col-md-10"><textarea class="form-control" placeholder="Reference" ng-model="txtReference"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Remark</div>
+                                    <div class="col-md-10"><textarea class="form-control" placeholder="Remark" ng-model="txtRemark"></textarea></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineSupplement();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Supplement List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border">
+                                <table id="tableMedicineSupplement" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>#</th>
+                                            <th>Medicine</th>
+                                            <th>Medicine Brand</th>
+                                            <!--<th>Dose</th>-->
+                                            <th>Dose</th>
+                                            <th>Nutrient Details</th>
+                                            <th>Entry Date</th>
+                                            <th>Entry By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in medicineSupplementList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{$index+1}}</td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.brandName}}</td>
+                                            <!--<td>{{list.dose}}</td>-->
+                                            <td>{{list.doseUnit}}</td>
+                                            <td>
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nutrient</th>
+                                                            <th>Qty/Pill</th>
+                                                            <!--<th>Unit</th>-->
+                                                            <th>Reference</th>
+                                                            <th>Remark</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="nList in list.nutrientList">
+                                                            <td>{{nList.nutrientName}}</td>
+                                                            <!--<td>{{nList.nutrientQuantity}}</td>-->
+                                                            <td>{{nList.quantityUnit}}</td>
+                                                            <td>{{nList.reference}}</td>
+                                                            <td>{{nList.remark}}</td>
+                                                            <td> <a href="" ng-click="deleteNutrient(nList.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+
+                                            <td>{{list.createdDate}}</td>
+                                            <td>{{list.userName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

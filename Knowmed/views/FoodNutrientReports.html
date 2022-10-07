@@ -1,0 +1,193 @@
+﻿<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Food Nutrient Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Food Nutrient Report
+                    <button class="btn btn-link pull-right" ng-click="exportData()">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <label>Food Category</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control" ng-model="ddlCategory" ng-init="ddlCategory=0" required="" ng-change="foodNutrientReportsList()">
+                                            <option value="0">--Select Food Category--</option>
+                                            <option ng-repeat="list in foodCategoryList" value="{{list.foodCategoryID}}">
+                                                {{list.categoryname}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Food Group</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlFoodGroup" ng-init="ddlFoodGroup=0" required="" ng-change="foodNutrientReportsList()">
+                                            <option value="0">--Select Food Group--</option>
+                                            <option ng-repeat="list in foodGroupList" value="{{list.foodGroupID}}">
+                                                {{list.groupname}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <!--<i class="btn btn-success fa fa-refresh" tooltip="Refresh" ng-click="getFoodNutrientList()"></i>-->
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="row">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:70vh">
+
+                                <div id="divPrint">
+                                    <table id="tableMedicineReport" class="table table-bordered" style="table-layout:fixed; width:100%;border-style:solid;border-color:black;border-width:1px;" rules="all">
+                                        <tr style="position: sticky; top: -15px; background: #d9edf7;">
+                                            <th>#</th>
+                                            <th>Food Name</th>
+                                            <th>Protein (gm)</th>
+                                            <th>Carbohydrates (gm)</th>
+                                            <th>Fat (gm)</th>
+                                            <th>Ca (mg)</th>
+                                            <th>Mg (mg)</th>
+                                            <th>Na (mg)</th>
+                                            <th>K (mg)</th>
+                                            <th>Calorie (Kcal)</th>
+                                        </tr>
+
+                                        <!--<tr ng-repeat="list in foodNutrientList | filter : search">
+        <td>{{$index + 1}}</td>
+        <td>{{list.foodName}}</td>
+        <td ng-show="list.protien=='NA'" ng-click="openpopup(list.foodId,1243,list.foodName,'protien',8,'gm');"><b style="color:red; cursor:pointer">{{list.protien}}</b></td>
+        <td ng-show="list.protien !='NA'">{{list.protien}}</td>
+        <td ng-show="list.carbohydrates=='NA'" ng-click="openpopup(list.foodId,3897,list.foodName,'carbohydrates',8,'gm');"><b style="color:red; cursor:pointer">{{list.carbohydrates}}</b></td>
+        <td ng-show="list.carbohydrates !='NA'">{{list.carbohydrates}}</td>
+        <td ng-show="list.fat=='NA'" ng-click="openpopup(list.foodId,1680,list.foodName,'fat',8,'gm');"><b style="color:red;cursor:pointer">{{list.fat}}</b></td>
+        <td ng-show="list.fat !='NA'">{{list.fat}}</td>
+        <td ng-show="list.calcium=='NA'" ng-click="openpopup(list.foodId,2,list.foodName,'calcium',36,'mg');"><b style="color:red; cursor:pointer">{{list.calcium}}</b></td>
+        <td ng-show="list.calcium !='NA'">{{list.calcium}}</td>
+        <td ng-show="list.magnesium=='NA'" ng-click="openpopup(list.foodId,1178,list.foodName,'magnesium',36,'mg');"><b style="color:red;cursor:pointer">{{list.magnesium}}</b></td>
+        <td ng-show="list.magnesium !='NA'">{{list.magnesium}}</td>
+        <td ng-show="list.sodium=='NA'" ng-click="openpopup(list.foodId,336,list.foodName,'sodium',36,'mg');"><b style="color:red;cursor:pointer">{{list.sodium}}</b></td>
+        <td ng-show="list.sodium !='NA'">{{list.sodium}}</td>
+        <td ng-show="list.potassium=='NA'" ng-click="openpopup(list.foodId,8265,list.foodName,'potassium',36,'mg');"><b style="color:red;cursor:pointer">{{list.potassium}}</b></td>
+        <td ng-show="list.potassium !='NA'">{{list.potassium}}</td>
+        <td ng-show="list.energy=='NA'" ng-click="openpopup(list.foodId,2419,list.foodName,'energy',107,'Kcal');"><b style="color:red;cursor:pointer">{{list.energy}}</b></td>
+        <td ng-show="list.energy !='NA'">{{list.energy}}</td>
+    </tr>-->
+                                        <tr ng-repeat="list in foodNutrientList | filter : search">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{list.foodName}}</td>
+                                            <td ng-show="list.protien=='NA' &&  list.foodName!=list.foodFamily" ng-click="openpopup(list.foodId,1243,list.foodName,'protien',8,'gm');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.protien}}</b></td>
+                                            <td ng-show="list.protien !='NA' ||  list.foodName == list.foodFamily">{{list.protien}}</td>
+
+                                            <td ng-show="list.carbohydrates=='NA' &&  list.foodName!=list.foodFamily" ng-click="openpopup(list.foodId,3897,list.foodName,'carbohydrates',8,'gm');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.carbohydrates}}</b></td>
+                                            <td ng-show="list.carbohydrates !='NA'">{{list.carbohydrates}}</td>
+
+                                            <td ng-show="list.fat=='NA' &&  list.foodName!=list.foodFamily" " ng-click="openpopup(list.foodId,1680,list.foodName,'fat',8,'gm');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.fat}}</b></td>
+                                            <td ng-show="list.fat !='NA'">{{list.fat}}</td>
+
+                                            <td ng-show="list.calcium=='NA' &&  list.foodName!=list.foodFamily" " ng-click="openpopup(list.foodId,2,list.foodName,'calcium',36,'mg');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.calcium}}</b></td>
+                                            <td ng-show="list.calcium !='NA'">{{list.calcium}}</td>
+
+                                            <td ng-show="list.magnesium=='NA' &&  list.foodName!=list.foodFamily" " ng-click="openpopup(list.foodId,1178,list.foodName,'magnesium',36,'mg');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.magnesium}}</b></td>
+                                            <td ng-show="list.magnesium !='NA'">{{list.magnesium}}</td>
+
+                                            <td ng-show="list.sodium=='NA' &&  list.foodName!=list.foodFamily" " ng-click="openpopup(list.foodId,336,list.foodName,'sodium',36,'mg');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.sodium}}</b></td>
+                                            <td ng-show="list.sodium !='NA'">{{list.sodium}}</td>
+
+                                            <td ng-show="list.potassium=='NA' &&  list.foodName!=list.foodFamily" " ng-click="openpopup(list.foodId,8265,list.foodName,'potassium',36,'mg');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.potassium}}</b></td>
+                                            <td ng-show="list.potassium !='NA'">{{list.potassium}}</td>
+
+                                            <td ng-show="list.energy=='NA' &&  list.foodName!=list.foodFamily" " ng-click="openpopup(list.foodId,2419,list.foodName,'energy',107,'Kcal');"><b style="color:{{list.foodName != list.foodFamily?'red':'green'}};cursor:pointer">{{list.energy}}</b></td>
+                                            <td ng-show="list.energy !='NA'">{{list.energy}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overlay" ng-show="showNutrient">
+        <div class="modal-dialog modal-history">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#bd362f;color:#fff">
+                    <i class="fa fa-times pull-right" style="font-size:2rem;color:#fff" ng-click="showNutrient=false"></i>
+                    <h4 class="modal-title">   </h4>
+                </div>
+                <div class="col-md-12 padding1rem marginTop1rem">
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Nutrient/Active Compound</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Nutrient Compound" ng-model="txtCompound" disabled>
+                            </div>
+                            <div class="col-md-2">
+                                <label>Food Product</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Food Product" ng-model="txtFood" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Nutrient Quantity</label>
+                            </div>
+                            <div class="col-md-3" style="padding-right: 0px; ">
+                                <input type="text" class="form-control" placeholder="Quantity" ng-model="txtNutrientQty">
+
+                            </div>
+                            <br>
+                            <div class="col-md-1" style="padding-left: 0px; ">
+                                <label>{{selectedUnitName}}</label>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="savefoodNutrient()" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function showModel(arg) {
+
+    }
+
+</script>

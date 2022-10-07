@@ -1,0 +1,127 @@
+﻿
+<div class="container-fluid">
+    <h2>Problem Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Problems
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Problem Name" ng-model="txtProblemName" id="txtProblemName" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Patient Language" ng-model="txtPatientLanguageName" id="txtPatientLanguageName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" id="ddlProblemType" ng-model="ddlProblemType" ng-init="ddlProblemType=-1" required="">
+                                            <option value="-1">--Select Option Type--</option>
+                                            <option ng-repeat="list in ProblemCategoryList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" id="ddlRegionOrganID" ng-model="ddlRegionOrganID" ng-init="ddlRegionOrganID=-1" required="">
+                                            <option value="-1">--Select Region Organ--</option>
+                                            <option ng-repeat="list in BodyOrganRegionList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" placeholder="Definition" ng-model="txtDefinition" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" placeholder="Remark" ng-model="txtRemark" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="col-md-2">
+                                    <label>Display Icon</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="file" id="fileProblem" name="fileProblem" ng-files="getProblemFiles($files)">
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveProblemMaster();" /></div>
+                                </div>
+                            </div>
+                        </div>
+</form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Problem Master List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Problem Name</th>
+                                            <th>Patient Language</th>
+                                            <th>Problem Type</th>
+                                            <th>Region Organ</th>
+                                            <th>Definition</th>
+                                            <th>Display Icon</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in ProblemMasterList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="" ng-click="DeleteProblemMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td style="width:30%">{{list.problemName}}</td>
+                                            <td>{{list.patientLanguage}}</td>
+                                            <td>{{list.problemType}}</td>
+                                            <td>{{list.regionOrgan}}</td>
+                                            <td>{{list.defintion}}</td>
+                                            <td>{{list.displayIcon}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

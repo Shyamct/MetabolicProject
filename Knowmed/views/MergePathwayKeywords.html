@@ -1,0 +1,136 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Merge Pathway Keywords</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Merge Pathway Keywords
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Old Keywords</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlOldPathwayKeywords" ng-model="ddlOldPathwayKeywords" ng-init="ddlOldPathwayKeywords=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in oldPathwayNutrientList" value="{{list.keyword}}">
+                                                {{list.keyword}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">New Keywords</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlNewPathwayKeywords" ng-model="ddlNewPathwayKeywords" ng-init="ddlNewPathwayKeywords=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in newPathwayNutrientList" value="{{list.nutrientName}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Merge" ng-click="saveMergePathwayKeywords()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Merge Phenomenon
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Keep Phenomenon</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlNewPhenomenon" ng-model="ddlNewPhenomenon" ng-init="ddlNewPhenomenon=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in phenomenonList" value="{{list.id}}">
+                                                {{list.phenomenonName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Remove Phenomenon</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="dlOldPhenomenon" ng-model="ddlOldPhenomenon" ng-init="ddlOldPhenomenon=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in phenomenonList" value="{{list.id}}">
+                                                {{list.phenomenonName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Merge" ng-click="saveMergePhenomenon()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display:none;">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Merge Pathway
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Keep Pathway</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlNewPathway" ng-model="ddlNewPathway" ng-init="ddlNewPathway=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in pathwayList" value="{{list.id}}">
+                                                {{list.pathwayName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Remove Pathway</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlOldPathway" ng-model="ddlOldPathway" ng-init="ddlOldPathway=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in pathwayList" value="{{list.id}}">
+                                                {{list.pathwayName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Merge" ng-click="saveMergePathway()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,182 @@
+﻿<style>
+    .required:before {
+        content: "*";
+        font-weight: bold;
+    }
+</style>
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Nutrient Dose Limit</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Dose Limit
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="Nutrient" required>Nutrient</label>
+                                <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=0" required="" ng-change="getNutrientDoseLimitList()">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="nutrient in nutrientList" value="{{nutrient.id}}">
+                                        {{nutrient.nutrientName}}
+                                    </option>
+
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ageGroup">Dose Unit</label>
+                                <select class="form-control" ng-model="ddlDoseUnit" ng-init="ddlDoseUnit=0" required="">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="doseUnit in doseUnitList" value="{{doseUnit.id}}">
+                                        {{doseUnit.name}}
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12">
+                                <label for="inputAddress2">Max Dose One Time</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtOneTimeFrom" placeholder="from">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtOneTimeTo" placeholder="To">
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12">
+                                <label for="inputAddress2">Max Dose One Day</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtOneDayFrom" placeholder="from">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtOneDayTo" placeholder="To">
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12">
+                                <label for="inputState">Problem</label>
+                                 <select select2 class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=0">
+                                            <option value="0">--Select Problem--</option>
+                                            <option ng-repeat="problem in problemList" value="{{problem.id}}">
+                                                {{problem.problemName}}
+                                            </option>
+                                        </select>
+                                      </div>
+                           
+                        </div>
+                        <div class="form-row">
+                            
+                            <div class="form-group col-md-6">
+                                <label for="Deficiency">Reference</label>
+                                <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="URL">URL</label>
+                                <input type="text" class="form-control" ng-model="txtUrl" placeholder="URL">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary" ng-show="ShowSave" ng-click="saveNutrientDoseLimit()">Save</button>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="overflow:auto;">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Dose Limit List
+                </div>
+                <div class="panel-body">
+                    <div class=" form-row col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 padding1rem table-responsive" style="max-height:100vh">
+                        <table id="tableRDA" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nutrient</th>
+                                    <th>Dose Unit</th>
+                                    <th>Max Dose One Time</th>
+                                    <th>Max Dose One Day</th>
+                                    <th>Problem</th>
+                                    <th>Reference</th>
+                                    <th>URL</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="nutrientDoseLimit in nutrientDoseLimitList | filter : search" ng-class-odd="'striped'" ng-style="{'background-color': (rda.isUpdated == 1)? '#98FB98': ''}">
+                                    <td>{{nutrientDoseLimit.nutrientName}}</td>
+                                    <td>{{nutrientDoseLimit.unitName}}</td>
+                                    <td>{{nutrientDoseLimit.maxDoseOneTime}}</td>
+                                    <td>{{nutrientDoseLimit.maxDoseOneDay}}</td>
+                                    <td>{{nutrientDoseLimit.problemName}}</td>
+                                    <td>{{nutrientDoseLimit.reference}}</td>
+                                    <td>{{nutrientDoseLimit.url}}</td>
+                                    <td><a href="" ng-click="edit(nutrientDoseLimit.id)">Edit</a> &nbsp;<a href="" ng-click="delete(nutrientDoseLimit.id)">Delete</a></td>
+                                    <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--<div id="form1" class="tab-pane fade in active">-->
+        <!--<div id="form2" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div id="form3" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>-->
+        <!--</div>-->
+
+    </div>
+</div>

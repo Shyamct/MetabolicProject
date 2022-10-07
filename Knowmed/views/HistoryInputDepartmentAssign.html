@@ -1,0 +1,72 @@
+﻿
+<div class="container-fluid">
+    <h3>History Input Department Assign</h3>
+    <div class="col-md-12 col-sm-12 noPadding">
+        <div class="col-md-6 noPadding">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <label class="labelHeadStyle">History Input Department Assign</label>
+                </div>
+                <div class="panel-body">
+                    <form name="depAssignForm" ng-submit="depAssignForm.$valid && SaveHistoryInputDepartmentAssign()">
+                        <div class="col-md-12 col-sm-12 noPadding marginBottom1rem">
+                            <div class="col-md-2"><label class="labelHeadStyle">Input Type</label></div>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="ddlInputType" ng-init="ddlInputType= ''" required="">
+                                    <option value="">--Select Input Type--</option>
+                                    <option ng-repeat="list in InputTypeMasterList" value="{{list.id}}">
+                                        {{list.inputType}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-2"><label class="labelHeadStyle">Department</label></div>
+                            <div class="col-md-4">
+                                <select class="form-control" ng-model="ddlDepartment" ng-init="ddlDepartment= ''" required="">
+                                    <option value="">--Select Department--</option>
+                                    <option ng-repeat="list in DepartmentList" value="{{list.id}}">
+                                        {{list.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 noPaddingRight">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <label class="labelHeadStyle">History Input Department Assigned List</label>
+                </div>
+                <div class="panel-body" style="height: 50rem;overflow: scroll;">
+                    <div class="col-md-12 col-sm-12 marginBottom1rem noPadding">
+                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                    </div>
+                    <div class="col-md-12 col-sm-12 marginBottom1rem noPadding">
+                        <table id="tableHistoryInputDepartmentAssign" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>SNo</th>
+                                    <th>Input Type</th>
+                                    <th>Department</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="list in historyInputDepartmentAssignList | filter : search" ng-class-odd="'striped'">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{list.inputType}}</td>
+                                    <td>{{list.department}}</td>
+                                    <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

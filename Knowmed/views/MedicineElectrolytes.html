@@ -1,0 +1,140 @@
+﻿
+<div class="container-fluid">
+    <h2>Medicine Electrolytes</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Electrolytes
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Medicine Name</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlMedicineName" ng-init="ddlMedicineName=-1" required="">
+                                                <option value="-1">--Select Medicine--</option>
+                                                <option ng-repeat="list in medicineList" value="{{list.medicineID}}">
+                                                    {{list.medicineName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Effected Electrolytes</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select select2 class="form-control" ng-model="ddlElectrolytes" ng-init="ddlElectrolytes=-1" required="">
+                                                <option value="-1">--Select Electrolytes--</option>
+                                                <option ng-repeat="list in nutrientList" value="{{list.mineralID}}">
+                                                    {{list.nutrientName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Intensity</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select class="form-control" ng-model="ddlIntensity"  required="">
+                                                <option value="">--Select Intensity--</option>
+                                                <option value="increase in blood">Increase in Blood</option>
+                                                <option value="decrease in blood">Decrease in Blood</option>
+                                                <option value="increase excretion">Increase Excretion</option>
+                                                <option value="decrease excretion">Decrease Excretion</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Reference</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea type="text" class="form-control" ng-model="txtReference" placeholder="Reference" rows="3" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Remark</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" rows="3" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" margin-left>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineElectrolytes();" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Electrolytes List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Medicine Name</th>
+                                            <th>Electrolytes</th>
+                                            <th>Intensity</th>
+                                            <th>Reference</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in electrolytesList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteMedicineElectrolytes(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.intensity}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.remark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

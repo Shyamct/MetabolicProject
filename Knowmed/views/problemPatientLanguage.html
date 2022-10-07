@@ -1,0 +1,135 @@
+﻿<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Problem Patient Language</h2>
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Problem Language
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Problem</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="" ng-change="GetProblemLanguageNew()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                            <!--<option value="0">All</option>-->
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-2">Patient Word</div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="Patient Word" ng-model="txtPatientWord" />
+                                    </div>
+                                    <!--<div class="col-md-2">Symtom</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlSymtom" ng-model="ddlSymtom" ng-init="ddlSymtom=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in symptomList" value="{{list.id}}">
+                                                {{list.symptom}}
+                                            </option>
+                                            <option value="0">All</option>
+                                        </select>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveProblemLanguage();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Selected Problem List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Problem</th>
+                                            <th>Patient Word</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in languageNewList | filter : search1" ng-class-odd="'striped'">
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.patientWord}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Problem List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Problem</th>
+                                            <!--<th>Symptom</th>-->
+                                            <th>Patient Word</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in languageList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit($index,list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.problemName}}</td>
+                                            <!--<td>{{list.symptom}}</td>-->
+                                            <td>{{list.patientWord}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

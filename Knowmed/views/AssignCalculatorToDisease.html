@@ -1,0 +1,137 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Assign Calculator To Disease</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assign Calculator
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Calculator</div>
+                                    <div class="col-md-8">
+                                        <select class="form-control" id="ddlCalculator" ng-model="ddlCalculator" ng-init="ddlCalculator=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="calculator in calculatorList" value="{{calculator.calculatorId}}">
+                                                {{calculator.calculatorTitle}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Disease</div>
+                                    <div class="col-md-8">
+                                        {{list.problemName}}
+
+                                        <select select2 class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.problemId}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Remark</div>
+                                    <div class="col-md-8"><textarea class="form-control" rows="3" placeholder="Details.." ng-model="txtRemark"></textarea></div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-xs btn-info" ng-click="AddCalculators()" ng-disabled="isDisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="calculatorAssignedList.length>0" style="margin-top:3vh">
+                                    <div class="col-md-12">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Calculator</th>
+                                                    <th>Problem</th>
+                                                    <th>Remark</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in calculatorAssignedList" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.calculatorTitle}}</td>
+                                                    <td>{{list.problemName}}</td>
+                                                    <td>{{list.remark}}</td>
+                                                    <td><a href="" ng-click="deleteAssignedCalculator($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveAssignedCalculator();" /></div>
+                                </div>
+                            </div>
+                        </div>             
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assigned Calculator List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Disease</th>
+                                            <th>Calculator</th>
+                                            <th>Remark</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in calculatorAssignedToDiseaseList | filter : search" ng-class-odd="'striped'">                                            
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.calculatorTitle}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

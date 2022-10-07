@@ -1,0 +1,143 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage2.master.cs" Inherits="MasterPage2" %>
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Dashboard</title>
+
+    
+ <%--   <link href="customCSS/mastermenu.css" rel="stylesheet" />--%>
+
+ <%--<link rel="stylesheet" href="css/bootstrap.min.css" />--%>
+    <link href="css/multi-select/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/select2.css" />
+    <link rel="stylesheet" href="css/matrix-style.css" />
+    <link rel="stylesheet" href="css/matrix-media.css" />
+    <link href="fonts/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <%--<script>$.each($q, function (i, f) { $(f) }); $q = null;</script>--%>
+    <script src="js/jquery.min.js"></script>
+    <script src="../../js/cache.js"></script>
+    <link href="css/bootstrap-multiselect.css" rel="stylesheet" />
+    <script src="js/bootstrap-multiselect.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+    
+<body runat="server">
+    <form id="form1" runat="server">
+        <div id="header">
+            <h1><a href="../../index.html#/dashboard">home</a></h1>
+        </div>
+        <div id="user-nav" class="navbar navbar-inverse">
+
+            <ul class="mainH">
+            <li><a title="" href="../../index.html#/dashboard"><span class="text">Home</span></a></li>
+
+                <li class=""> <asp:LinkButton TabIndex="-1" ID="LinkButton1" runat="server" CssClass="text" Text="Logout" OnClick="linkLogout_Click">Logout</asp:LinkButton></li>
+                </ul>
+        </div>
+           
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+    </form>
+   <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easy-pie-chart.js"></script>
+    <script src="../../assets/js/highcharts.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/jquery.toaster.js"></script>
+    <script src="customjs/common.js"></script>
+    <script>
+        $(function ($) {
+            var obj = {
+                "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "WebService/assignMenu.asmx/forBindMenu",
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(obj),
+
+                statusCode: {
+                    401: function (xhr) {
+                        window.location.href = "../../index.html";
+                    }
+                },
+
+                success: function (data) {
+                    var result = JSON.parse(data.d).responseValue;
+                    var parentTable = result.Table1;
+                    var allData = result.Table;
+
+                    var showModule = [];
+                    $.each(parentTable, function () {
+                        var parentId = this.parentMenuID;
+                        var children = [];
+                        $.each(allData, function () {
+                            if (this.parentMenuID == parentId) {
+                                children.push({
+                                    id: this.subMenuID,
+                                    label: this.subMenu,
+                                    url: this.URL || 'javascript:;'
+                                });
+                            }
+                        });
+                        showModule.push({
+                            id: parentId,
+                            label: this.menuName,
+                            url: this.URL || 'javascript:;',
+                            children: children
+                        });
+
+                    });
+                    var htm = '';
+                    if (showModule.length > 0) {
+                        for (var i = 0; i < showModule.length; i++) {
+                            if (typeof showModule[i].children == 'undefined' || showModule[i].children.length == 0) {
+
+                                htm += "<li><a href='" + showModule[i].url + "'>" + showModule[i].label + "</a></li>";
+                            }
+                            else {
+                                htm += "<li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='" + showModule[i].url + "'>" + showModule[i].label + "<span class='caret'></span></a>";
+                                htm += "<ul class='dropdown-menu' align='left'>";
+                                for (var j = 0; j < showModule[i].children.length; j++) {
+
+                                    htm += "<li><a href='" + showModule[i].children[j].url + "'>" + showModule[i].children[j].label + "</a></li>";
+                                }
+                                htm += "</ul></li>";
+                            }
+                        }
+                    }
+
+                    $('div .mainH').append(htm);
+                },
+                error: function (error) {
+
+                }
+            });
+        });
+
+
+        $(function ($) {
+            let url = window.location.href;
+            $('.mainH ul li a').removeClass('activeTop');
+            $('.mainH a').each(function () {
+                if (this.href == url) {
+                    $(this).addClass('activeTop');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

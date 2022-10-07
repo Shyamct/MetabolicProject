@@ -1,0 +1,473 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Stage</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Stage
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <fieldset>
+                                <legend>Disease Department</legend>
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+
+                                        <div class="col-md-1"><b>Disease</b></div>
+                                        <div class="col-md-3">
+                                            <input disease-Department-auto-complete type="text" class="form-control" ng-model="txtDisease" placeholder="Disease Department Name" ng-blur="iTypeList();" />
+                                        </div>
+                                        <div class="col-md-1"><b>Type</b></div>
+                                        <div class="col-md-3">
+                                            <input type="radio" ng-model="rdType" ng-init="rdType=C" value="C" />Classification &nbsp;&nbsp;
+                                            <input type="radio" ng-model="rdType" ng-init="rdType=C" value="S" />Stage &nbsp;&nbsp;
+
+                                        </div>
+                                        <div class="col-md-1"><b>Stage Name</b></div>
+                                        <div class="col-md-3">
+                                            <input  type="text" class="form-control" ng-model="txtStageName" placeholder="Stage Name"  />
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row">
+
+                                            <div class="col-md-1"><b>Stage Defintion</b></div>
+                                            <div class="col-md-11">
+                                                <textarea class="form-control" ng-model="txtStageDefintion" placeholder="Stage Defintion" rows="4"></textarea>
+                                            </div>
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                  
+
+</fieldset>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <legend>Investigation</legend>
+                                            <div class="form-group col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlTest" ng-model="ddlTest" ng-init="ddlTest=-0" required="" aria-label="ngHide">
+                                                            <option value="0">--Select Test--</option>
+                                                            <option ng-repeat="list in subTestList" value="{{list.subTestID}}">
+                                                                {{list.subTestName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlResultType" ng-model="ddlResultType" ng-init="ddlResultType=0" required="" aria-label="ngHide">
+                                                            <option value="0">--Select Result Type--</option>
+                                                            <option ng-repeat="list in resultPropertyList" value="{{list.resultPropertyID}}">
+                                                                {{list.propertyName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <select class="form-control" ng-model="ddlResult" id="ddlResult" ng-init="ddlResult=0">
+                                                            <option value="0">--Select Result--</option>
+                                                            <option ng-repeat="list in resultPropertyValueList" value="{{list.resultPropertyValueID}}">
+                                                                {{list.propertyValue}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+
+                                                        <input type="text" class="form-control" ng-model="txtInvestigationRemark" placeholder="Remark">
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <button class="btn btn-xs btn-info" ng-click="addDiseaseInvestigation()">
+                                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="form-group col-md-12">
+                                                <div class="row" ng-if="diseaseInvestigationNameList.length>0">
+                                                    <div class="col-md-12">
+                                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Test</th>
+                                                                    <th>Result Type</th>
+                                                                    <th>Result</th>
+                                                                    <th>Remark</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="list in diseaseInvestigationNameList track by $index" ng-class-odd="'striped'">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{list.testName}}</td>
+                                                                    <td>{{list.resultTypeName}}</td>
+                                                                    <td>{{list.resultName}}</td>
+                                                                    <td>{{list.reason}}</td>
+                                                                    <td><a href="" ng-click="deleteDiseaseInvestigation($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <legend>Input Type</legend>
+                                            <div class="form-group col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlInputType" ng-model="ddlInputType" ng-init="ddlInputType=-1" required="" aria-label="ngHide">
+                                                            <option value="-1">--Select Input Type--</option>
+                                                            <option ng-repeat="list in InputTypeList" value="{{list.id}}">
+                                                                {{list.inputType}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlInputProblem" ng-model="ddlInputProblem" ng-init="ddlInputProblem=-1" required="" ng-change="AttValueList()" aria-label="ngHide">
+                                                            <option value="-1">--Select Problem--</option>
+                                                            <option ng-repeat="list in ProblemMasterList" value="{{list.problemID}}">
+                                                                {{list.problemName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <select class="form-control" ng-model="ddlAttributeName" ng-init="ddlAttributeName=0">
+                                                            <option value="0">--Select Attribute Value--</option>
+                                                            <option ng-repeat="list in AttributeValueList" value="{{list.attributeID}}">
+                                                                {{list.attributeName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2">
+                <div ng-repeat="c in AttributeValue | filter:{attributeID:ddlAttributeName}">
+                    <label for="chkAttribute">
+                        <input id="chkAttribute" type="checkbox" ng-model="c.Selected" />
+                        {{c.attributeValue}}
+                    </label>
+                </div>
+
+            </div>
+                                                    <div class="col-md-2">
+
+                                                        <select class="form-control" id="ddlDiseaseInputOccurence" ng-model="ddlDiseaseInputOccurence" ng-init="ddlDiseaseInputOccurence=0" ng-required="">
+                                                            <option value="0">--Select Occurence--</option>
+                                                            <option ng-repeat="list in occurenceList" value="{{list.statusID}}">
+                                                                {{list.statusFor}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-1">
+                                                        <button class="btn btn-xs btn-info" ng-click="addAttribute()">
+                                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="form-group col-md-12">
+                                                <div class="row" ng-if="attributeNameList.length>0">
+                                                    <div class="col-md-12">
+                                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Input Type</th>
+                                                                    <th>Problem</th>
+                                                                    <th>Attribute</th>
+                                                                    <th>Attribute Value</th>
+                                                                    <th>Occurence</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="list in attributeNameList track by $index" ng-class-odd="'striped'">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{list.inputTypeName}}</td>
+                                                                    <td>{{list.problemName}}</td>
+                                                                    <td>{{list.attributeName}}</td>
+                                                                    <td>{{list.attributeValueName}}</td>
+                                                                    <td>{{list.occurenceName}}</td>
+                                                                    <td><a href="" ng-click="deleteAttribute($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <legend>Add Disease Medication</legend>
+                                            <div class="form-group col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlMedicine" ng-model="ddlMedicine" ng-init="ddlMedicine=-1" required="">
+                                                            <option value="-1">--Select Medicine--</option>
+                                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                                {{list.medicineName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlDoseForm" ng-model="ddlDoseForm" ng-init="ddlDoseForm=-1" required="">
+                                                            <option value="-1">--Select Dose Form--</option>
+                                                            <option ng-repeat="list in DosageFormMasterList" value="{{list.id}}">
+                                                                {{list.formName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="number" class="form-control" ng-model="txtStrength" placeholder="Strength" />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlUnit" ng-model="ddlUnit" ng-init="ddlUnit=-1" required="">
+                                                            <option value="-1">--Select Unit--</option>
+                                                            <option ng-repeat="list in unitList" value="{{list.id}}">
+                                                                {{list.name}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <select select2 class="form-control" id="ddlFrequency" ng-model="ddlFrequency" ng-init="ddlFrequency=-1" required="">
+                                                            <option value="-1">--Select Frequency--</option>
+                                                            <option ng-repeat="list in FrequencyMasterList" value="{{list.id}}">
+                                                                {{list.frequencyName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <input type="number" class="form-control" ng-model="txtDuration" placeholder="Duration in Days" />
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" />
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button class="btn btn-xs btn-info" ng-click="addDiseaseMedication()">
+                                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <div class="row" ng-if="diseaseMedicationNameList.length>0">
+                                                    <div class="col-md-12">
+                                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Medicine</th>
+                                                                    <th>Dose Form</th>
+                                                                    <th>Strength</th>
+                                                                    <th>Unit</th>
+                                                                    <th>Frequency</th>
+                                                                    <th>Duration</th>
+                                                                    <th>Remark</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="list in diseaseMedicationNameList track by $index" ng-class-odd="'striped'">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{list.medicineName}}</td>
+                                                                    <td>{{list.dosageFormName}}</td>
+                                                                    <td>{{list.dosageStrength}}</td>
+                                                                    <td>{{list.doseUnitName}}</td>
+                                                                    <td>{{list.doseFrequencyName}}</td>
+                                                                    <td>{{list.durationDays}}</td>
+                                                                    <td>{{list.remark}}</td>
+                                                                    <td><a href="" ng-click="deletediseaseMedication($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                        <div class="col-md-6">
+                                            <fieldset>
+                                                <legend>Add Treatment</legend>
+                                                <div class="form-group col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <select select2 class="form-control" id="ddlTreatmentType" ng-model="ddlTreatmentType" ng-init="ddlTreatmentType=-1" required="" aria-label="ngHide">
+                                                                <option value="-1">--Select Treatment Type--</option>
+                                                                <option ng-repeat="list in treatmentTypeList" value="{{list.treatmentTypeID}}">
+                                                                    {{list.treatmentName}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <textarea class="form-control" ng-model="txtEmergencyTreatment" placeholder="Treatment Description" rows="3"></textarea>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <button class="btn btn-xs btn-info" ng-click="addTreatmentType()">
+                                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <div class="row" ng-if="addedTreatmentTypeList.length>0">
+                                                        <div class="col-md-12">
+                                                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>S.No</th>
+                                                                        <th>Treatment Type</th>
+                                                                        <th>Treatment Description</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr ng-repeat="list in addedTreatmentTypeList" ng-class-odd="'striped'">
+                                                                        <td>{{$index + 1}}</td>
+                                                                        <td>{{list.treatmentTypeName}}</td>
+                                                                        <td>{{list.treatmentDescription}}</td>
+                                                                        <td><a href="" ng-click="deleteAddedTreatmentTypeList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                    </div>
+
+                                  
+                                
+                            </div>
+                            
+
+
+                                </div>
+                            </div>
+
+                                              
+                                                <div class="form-group col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseStage();" /></div>
+                                                        <div class="col-md-3"><input type="button" class="btn btn-primary" value="Reset" ng-click="reset();" /></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+</form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Stage/Classification List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableMedicineDose" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Action</th>
+                                            <th>Disease(Department)</th>
+                                            <th>Stage Name</th>
+                                            <th>Stage Descrition</th>
+                                            <th>Type</th>
+                                            <th>Input Details</th>
+                                            <th>Treatment Details</th>
+                                            <th>Medication</th>
+                                            <th>Investigation</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in diseaseStageList | filter : search" ng-class-odd="'striped'">
+
+                                            <td><a href="" ng-click="edit(list.id,list.diseaseDepartmentID)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id,list.diseaseDepartmentID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.diseaseDepartmentName}}</td>
+                                            <td>{{list.stageClassificationName}}</td>
+                                            <td>{{list.description}}</td>
+                                           
+                                            <td>{{list.dType}}</td>
+                                            
+                                            <td ng-bind-html="list.inputDetails|trustAsHtml">{{list.inputDetails}}</td>
+                                            <td ng-bind-html="list.treatmentDetails|trustAsHtml">{{list.treatmentDetails}}</td>
+                                            <td ng-bind-html="list.medication|trustAsHtml">{{list.medication}}</td>
+                                            <td ng-bind-html="list.supportiveMedicine|trustAsHtml">{{list.supportiveMedicine}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    
+</div>

@@ -1,0 +1,69 @@
+﻿.icon-info-sign:before {
+    content: "\f05a";
+    position: absolute;
+    font-size: 20px;
+    text-align: right;
+    right: 5px;
+    top: 7px;
+    color: red;
+}
+
+.plusSymbol:after {
+    position: absolute;
+    content: '\2719';
+    font-size: 20px;
+    text-align: right;
+    right: 35px;
+    top: 3px;
+}
+
+.modal-body.popup-decreption {
+    position: relative;
+    height: 40vh !important;
+    max-height: 9650px;
+    padding: 15px;
+    overflow-y: auto;
+    overflow: auto;
+    text-align: center;
+}
+
+.ft-big {
+    font-size: 16px !important;
+}
+
+#mySidenav a {
+    position: absolute;
+    right: 10px;
+    transition: 0.3s;
+    padding: 10px;
+    width: 0px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px 0px 0px 10px;
+}
+
+    #mySidenav a:hover {
+        right: 10px;
+        width: 30px;
+        writing-mode: vertical-rl;
+        font-size: 15px;
+        text-align: center;
+    }
+
+#btnNote {
+    top: 120px;
+    background-color: DarkGoldenRod;
+}
+
+#btnNoteShow {
+    top: 210px;
+    background-color: #555;
+}
+
+.modal-xl {
+    width: 1190px;
+    margin: 83px auto;
+}
+
+

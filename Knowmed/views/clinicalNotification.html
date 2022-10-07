@@ -1,0 +1,663 @@
+﻿<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>clinical Notification</h2>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Input clinical Notification
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control" placeholder="Title" id="txtTitle" ng-model="txtTitle" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" placeholder="Age From" id="txtAgeFrom" ng-model="txtAgeFrom" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" placeholder="Age To" ng-model="txtAgeTo" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" id="ddlAgeUnit" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=2014" required="">
+                                                <option value="0">--Select Age Unit--</option>
+                                                <option ng-repeat="list in ageUnitList" value="{{list.id}}" ng-selected="list.id==2014">
+                                                    {{list.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select select2 class="form-control" id="ddlGender" ng-model="ddlGender" ng-init="ddlGender='M'" required="">
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
+                                                <option value="O">Both</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="checkbox" ng-model="chkIsCritical" /> &nbsp;isCritical
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea rows="7" type="text" class="form-control" placeholder="Scenario" ng-model="txtScenario" style="margin-top: 15px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <fieldset>
+                                        <legend>Input</legend>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlCategory" ng-model="ddlCategory" ng-init="ddlCategory=0" required="" ng-change="GetProblemByClinicalCategory();">
+                                                    <option value="0">--Select Category--</option>
+                                                    <option ng-repeat="list in clinicalNotificationCategoryList" value="{{list.id}}">
+                                                        {{list.clinicalCategoryName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlReference" ng-model="ddlReference" ng-init="ddlReference=0">
+                                                    <option value="0">--Reference--</option>
+                                                    <option ng-repeat="list in referenceList" value="{{list.id}}" ng-selected="{{list.id==ddlReference}}">
+                                                        {{list.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlResultType" ng-model="ddlResultType" ng-init="ddlResultType=0">
+                                                    <option value="0">--Result Type--</option>
+                                                    <option ng-repeat="list in resultTypeList" value="{{list.id}}">
+                                                        {{list.resultType}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select class="form-control" id="ddlClinicalNotificationType" ng-model="ddlClinicalNotificationType" ng-init="ddlClinicalNotificationType=0">
+                                                    <option value="0">--Notification Type--</option>
+                                                    <option ng-repeat="list in clinicalNotificationTypeList" value="{{list.id}}">
+                                                        {{list.notificationType}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="number" class="form-control" placeholder="Min Value" ng-model="txtResultMinValue" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="number" class="form-control" placeholder="Max Value" ng-model="txtResultMaxValue" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlResultUnit" ng-model="ddlResultUnit" ng-init="ddlResultUnit=0" required="">
+                                                    <option value="0">--Select Unit--</option>
+                                                    <option ng-repeat="list in resultUnitList" value="{{list.id}}">
+                                                        {{list.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" placeholder="Waiting Duration" id="txtWaitingDuration" ng-model="txtWaitingDuration" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlWaitingUnit" ng-model="ddlWaitingUnit" ng-init="ddlWaitingUnit=0" required="">
+                                                    <option value="0">--Waiting Duration Unit--</option>
+                                                    <option ng-repeat="list in unitList" value="{{list.id}}">
+                                                        {{list.unit}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlRestriction" ng-model="ddlRestriction" ng-init="ddlRestriction=0" ng-change="GetProblemByClinicalCategoryRestriction();">
+                                                    <option value="0">--Restriction Type --</option>
+                                                    <option ng-repeat="list in clinicalNotificationCategoryList" value="{{list.id}}">
+                                                        {{list.clinicalCategoryName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlRestrictionRefer" ng-model="ddlRestrictionRefer" ng-init="ddlRestrictionRefer=0">
+                                                    <option value="0">--Restriction Reference--</option>
+                                                    <option ng-repeat="list in restrictionReferenceList" value="{{list.id}}">
+                                                        {{list.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-3" ng-show="ddlClinicalNotificationType==1">
+                                                <input type="text" class="form-control" placeholder="Scheduled Duration" id="txtScheduledDuration" ng-model="txtScheduledDuration" />
+                                            </div>
+                                            <div class="col-md-3" ng-show="ddlClinicalNotificationType==1">
+                                                <select select2 class="form-control" id="ddlScheduledDurationUnit" ng-model="ddlScheduledDurationUnit" ng-init="ddlScheduledDurationUnit=0" required="">
+                                                    <option value="0">--Scheduled Duration Unit--</option>
+                                                    <option ng-repeat="list in unitList" value="{{list.id}}" ng-selected="{{list.id==ddlScheduledDurationUnit}}">
+                                                        {{list.unit}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-2 pull-right" ng-if="isAddInput">
+                                                <button class="btn btn-xs btn-info pull-right" ng-click="AddInput()">
+                                                    <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                </button>
+                                            </div>
+                                            <div class="col-md-2 pull-right" ng-if="!isAddInput">
+                                                <button class="btn btn-xs btn-primary pull-right" ng-click="UpdateInput()">
+                                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;Update
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row" ng-if="inputList.length>0" style="padding-top:5px">
+                                            <div class="col-md-12" style="overflow:auto;">
+                                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Category</th>
+                                                            <th>Reference</th>
+                                                            <th>Result Type</th>
+                                                            <th>Min Value</th>
+                                                            <th>Max Value</th>
+                                                            <th>Unit</th>
+                                                            <th>Duration</th>
+                                                            <th>Duration Unit</th>
+                                                            <th>Restriction</th>
+                                                            <th>Restriction Reference</th>
+                                                            <th>Notification Type</th>
+                                                            <th>Scheduled Duration</th>
+                                                            <th>Scheduled Duration Unit</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in inputList" ng-class-odd="'striped'">
+                                                            <td>{{$index + 1}}</td>
+                                                            <td>{{list.clinicalCategoryName}}</td>
+                                                            <td>{{list.reference}}</td>
+                                                            <td>{{list.resultType}}</td>
+                                                            <td>{{list.resultMinValue}}</td>
+                                                            <td>{{list.resultMaxValue}}</td>
+                                                            <td>{{list.unitName}}</td>
+
+                                                            <td>{{list.waitingDuration}}</td>
+                                                            <td>{{list.unit}}</td>
+                                                            <td>{{list.restrictionType}}</td>
+                                                            <td>{{list.restrictionReference}}</td>
+
+                                                            <td>{{list.notificationType}}</td>
+                                                            <td>{{list.scheduledDuration}}</td>
+                                                            <td>{{list.scheduledDurationUnit}}</td>
+
+                                                            <td><a href="" ng-click="deleteInput($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Output Clinical Notification
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12">
+                                    <fieldset>
+                                        <legend>To Do</legend>
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <select class="form-control" id="ddlToDoNotificationCategory" ng-model="ddlToDoNotificationCategory" ng-init="ddlToDoNotificationCategory=0" required="">
+                                                    <option value="0">--Notification Category--</option>
+                                                    <option ng-repeat="list in notificationCategoryList" value="{{list.id}}">
+                                                        {{list.notificationCategoryName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlCategoryOutputToDo" ng-model="ddlCategoryOutputToDo" ng-init="ddlCategoryOutputToDo=0" required="" ng-change="GetProblemByClinicalCategoryOutputToDo();">
+                                                    <option value="0">--Select Category--</option>
+                                                    <option ng-repeat="list in clinicalNotificationCategoryList" value="{{list.id}}">
+                                                        {{list.clinicalCategoryName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlReferenceOutputToDo" ng-model="ddlReferenceOutputToDo" ng-init="ddlReferenceOutputToDo=0">
+                                                    <option value="0">--Reference--</option>
+                                                    <option ng-repeat="list in referenceListOutputToDo" value="{{list.id}}" ng-selected="{{list.id==ddlReferenceOutputToDo}}">
+                                                        {{list.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlSupport" ng-model="ddlSupport" ng-init="ddlSupport=0">
+                                                    <option value="0">--Support Type--</option>
+                                                    <option ng-repeat="list in statusList" value="{{list.id}}">
+                                                        {{list.statusFor}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="number" class="form-control" placeholder="Min Value" ng-model="txtResultMinValueOutputToDo" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="number" class="form-control" placeholder="Max Value" ng-model="txtResultMaxValueOutputToDo" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select select2 class="form-control" id="ddlResultUnitOutputToDo" ng-model="ddlResultUnitOutputToDo" ng-init="ddlResultUnitOutputToDo=0" required="">
+                                                    <option value="0">--Select Unit--</option>
+                                                    <option ng-repeat="list in resultUnitList" value="{{list.id}}">
+                                                        {{list.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--<input type="text" class="form-control" placeholder="Advise" ng-model="txtAdviseOutputToDo" />-->
+                                                <summernote ng-model="txtAdviseOutputToDo" placeholder="Advise" height="150"></summernote>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" placeholder="Changed Volume Frequency " ng-model="txtChangedVolumeFrequency" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select select2 class="form-control" id="ddlChangedVolumeFrequencyUnit" ng-model="ddlChangedVolumeFrequencyUnit" ng-init="ddlChangedVolumeFrequencyUnit=0" required="">
+                                                    <option value="0">--Volume Frequency Unit--</option>
+                                                    <option ng-repeat="list in unitMasterList" value="{{list.id}}">
+                                                        {{list.times}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                            </div>
+                                            <div class="col-md-2" ng-if="isAddToDo">
+                                                <button class="btn btn-xs btn-info pull-right" ng-click="AddOutputToDo()" ng-disabled="isDisabledToDo">
+                                                    <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                </button>
+                                            </div>
+                                            <div class="col-md-2" ng-if="!isAddToDo">
+                                                <button class="btn btn-xs btn-primary pull-right" ng-click="UpdateOutputToDo()">
+                                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;Update
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-if="outputToDoList.length>0" style="padding-top:5px">
+                                            <div class="col-md-12" style="overflow: auto;">
+                                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Notification Category</th>
+                                                            <th>Category</th>
+                                                            <th>Reference</th>
+                                                            <th>Support</th>
+                                                            <th>Min Value</th>
+                                                            <th>Max Value</th>
+                                                            <th>Unit</th>
+                                                            <th>Advise</th>
+                                                            <th>Frequency</th>
+                                                            <th>Frequency Unit</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in outputToDoList" ng-class-odd="'striped'">
+                                                            <td>{{$index + 1}}</td>
+                                                            <td>{{list.notificationCategoryName}}</td>
+                                                            <td>{{list.clinicalCategoryName}}</td>
+                                                            <td>{{list.reference}}</td>
+                                                            <td>{{list.statusFor}}</td>
+                                                            <td>{{list.referenceValueFrom}}</td>
+                                                            <td>{{list.referenceValueTo}}</td>
+                                                            <td>{{list.unitName}}</td>
+                                                            <td ng-bind-html="list.advise|trustAsHtml">{{list.advise}}</td>
+                                                            <td>{{list.changedVolumeFrequency}}</td>
+                                                            <td>{{list.times}}</td>
+                                                            <td>
+                                                                <a href="" ng-click="DeleteOutputToDo($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <fieldset>
+                                        <legend>Not To Do</legend>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="ddlNotToDoNotificationCategory" ng-model="ddlNotToDoNotificationCategory" ng-init="ddlNotToDoNotificationCategory=0" required="">
+                                                    <option value="0">--Notification Category--</option>
+                                                    <option ng-repeat="list in notificationCategoryList" value="{{list.id}}">
+                                                        {{list.notificationCategoryName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select select2 class="form-control" id="ddlCategoryOutputNotToDo" ng-model="ddlCategoryOutputNotToDo" ng-init="ddlCategoryOutputNotToDo=0" required="" ng-change="GetProblemByClinicalCategoryOutputNotToDo();">
+                                                    <option value="0">--Select Category--</option>
+                                                    <option ng-repeat="list in clinicalNotificationCategoryList" value="{{list.id}}">
+                                                        {{list.clinicalCategoryName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select select2 class="form-control" id="ddlReferenceOutputNotToDo" ng-model="ddlReferenceOutputNotToDo" ng-init="ddlReferenceOutputNotToDo=0">
+                                                    <option value="0">--Reference--</option>
+                                                    <option ng-repeat="list in referenceListOutputNotToDo" value="{{list.id}}" ng-selected="{{list.id==ddlReferenceOutputNotToDo}}">
+                                                        {{list.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--<input type="text" class="form-control" placeholder="Advise" ng-model="txtAdviseOutputNotToDo" />-->
+                                                <summernote ng-model="txtAdviseOutputNotToDo" placeholder="Advise" height="150"></summernote>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="number" class="form-control" placeholder="Min Value" ng-model="txtResultMinValueOutputNotToDo" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="number" class="form-control" placeholder="Max Value" ng-model="txtResultMaxValueOutputNotToDo" />
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select select2 class="form-control" id="ddlResultUnitOutputNotToDo" ng-model="ddlResultUnitOutputNotToDo" ng-init="ddlResultUnitOutputNotToDo=0" required="">
+                                                    <option value="0">--Select Unit--</option>
+                                                    <option ng-repeat="list in resultUnitList" value="{{list.id}}">
+                                                        {{list.name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                            </div>
+                                            <div class="col-md-2" ng-if="isAddNotToDo">
+                                                <button class="btn btn-xs btn-info pull-right" ng-click="AddOutputNotToDo()" ng-disabled="isDisabledNotToDo">
+                                                    <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                </button>
+                                            </div>
+                                            <div class="col-md-2" ng-if="!isAddNotToDo">
+                                                <button class="btn btn-xs btn-primary pull-right" ng-click="UpdateOutputNotToDo()">
+                                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;Update
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" ng-if="outputNotToDoList.length>0" style="padding-top:5px">
+                                            <div class="col-md-12" style="overflow: auto;">
+                                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Notification Category</th>
+                                                            <th>Category</th>
+                                                            <th>Reference</th>
+                                                            <th>Advise</th>
+                                                            <th>Min Value</th>
+                                                            <th>Max Value</th>
+                                                            <th>Unit</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in outputNotToDoList" ng-class-odd="'striped'">
+                                                            <td>{{$index + 1}}</td>
+                                                            <td>{{list.notificationCategoryName}}</td>
+                                                            <td>{{list.clinicalCategoryName}}</td>
+                                                            <td>{{list.reference}}</td>
+                                                            <td ng-bind-html="list.advise|trustAsHtml">{{list.advise}}</td>
+                                                            <td>{{list.referenceValueFrom}}</td>
+                                                            <td>{{list.referenceValueTo}}</td>
+                                                            <td>{{list.unitName}}</td>
+                                                            <td><a href="" ng-click="DeleteOutputNotToDo($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group col-md-12">
+                <div class="col-md-6"><input type="button" class="btn btn-success pull-right" value="Save" ng-click="AddFinal();" ng-disabled="isDisabledAddFinal" /></div>
+                <div class="col-md-6"><input type="button" class="btn btn-warning" value="Clear" ng-click="clear();" /></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Clinical Notification Report
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-link" ng-click="exportData()">
+                                <span class="glyphicon glyphicon-share"></span>
+                                Export to Excel
+                            </button>
+
+                            <input type="button" class="btn btn-success" value="Print" ng-click="printDiv('divPrint');" />
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh" id="divPrint">
+                                <table id="tableClinicalNotificationReprt" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>SR NO.</th>
+                                            <th>Title</th>
+                                            <th>Age From</th>
+                                            <th>Age To</th>
+                                            <th>Unit Name</th>
+                                            <th>Gender</th>
+                                            <th>Remark</th>
+                                            <th>Scenario</th>
+                                            <th>IsCritical</th>
+                                            <th>Input Details</th>
+                                            <th>To Do Details</th>
+                                            <th>Not To Do Details</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in clinicalNotificationList | filter : search track by $index" ng-class-odd="'striped'">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{list.title}}</td>
+                                            <td>{{list.ageFrom}}</td>
+                                            <td>{{list.ageTo}}</td>
+                                            <td>{{list.unitName}}</td>
+                                            <td>{{list.gender}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.scenario}}</td>
+                                            <td>{{list.isCritical}}</td>
+
+                                            <td style="overflow:auto;">
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.input.length > 0">
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Category</td>
+                                                            <td class="col-md-2 labelHeadStyle">Reference</td>
+                                                            <td class="col-md-2 labelHeadStyle">Result Type</td>
+                                                            <td class="col-md-2 labelHeadStyle">Min value</td>
+                                                            <td class="col-md-2 labelHeadStyle">Max value</td>
+                                                            <td class="col-md-2 labelHeadStyle">Unit Name</td>
+
+                                                            <td class="col-md-2 labelHeadStyle">Duration</td>
+                                                            <td class="col-md-2 labelHeadStyle">Duration Unit</td>
+                                                            <td class="col-md-2 labelHeadStyle">Restriction</td>
+                                                            <td class="col-md-2 labelHeadStyle">Restriction Reference</td>
+
+                                                            <th class="col-md-2 labelHeadStyle">Notification Type</th>
+                                                            <th class="col-md-2 labelHeadStyle">Scheduled Duration</th>
+                                                            <th class="col-md-2 labelHeadStyle">Scheduled Duration Unit</th>
+
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="process in list.input">
+                                                            <td class="col-md-2">{{process.clinicalCategoryName}}</td>
+                                                            <td class="col-md-2">{{process.reference}}</td>
+                                                            <td class="col-md-2">{{process.resultType}}</td>
+                                                            <td class="col-md-2">{{process.resultMinValue}}</td>
+                                                            <td class="col-md-2">{{process.resultMaxValue}}</td>
+                                                            <td class="col-md-2">{{process.unitName}}</td>
+
+                                                            <td class="col-md-2">{{process.waitingDuration}}</td>
+                                                            <td class="col-md-2">{{process.unit}}</td>
+                                                            <td class="col-md-2">{{process.restrictionType}}</td>
+                                                            <td class="col-md-2">{{process.restrictionReference}}</td>
+
+                                                            <td class="col-md-2">{{process.notificationType}}</td>
+                                                            <td class="col-md-2">{{process.scheduledDuration}}</td>
+                                                            <td class="col-md-2">{{process.scheduledDurationUnit}}</td>
+
+                                                            <td><a href="" ng-click="EditInput(process.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="DeleteClinicalNotificationInput(process.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.toDo.length > 0">
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Notification Category</td>
+                                                            <td class="col-md-2 labelHeadStyle">Category</td>
+                                                            <td class="col-md-2 labelHeadStyle">Reference</td>
+                                                            <td class="col-md-2 labelHeadStyle">Support</td>
+                                                            <td class="col-md-2 labelHeadStyle">Min value</td>
+                                                            <td class="col-md-2 labelHeadStyle">Max value</td>
+                                                            <td class="col-md-2 labelHeadStyle">Unit Name</td>
+                                                            <td class="col-md-2 labelHeadStyle">Advise</td>
+                                                            <td class="col-md-2 labelHeadStyle">Frequency</td>
+                                                            <td class="col-md-2 labelHeadStyle">Frequency Unit</td>
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="process in list.toDo">
+                                                            <td class="col-md-2">{{process.notificationCategoryName}}</td>
+                                                            <td class="col-md-2">{{process.clinicalCategoryName}}</td>
+                                                            <td class="col-md-2">{{process.reference}}</td>
+                                                            <td class="col-md-2">{{process.statusFor}}</td>
+                                                            <td class="col-md-2">{{process.referenceValueFrom}}</td>
+                                                            <td class="col-md-2">{{process.referenceValueTo}}</td>
+                                                            <td class="col-md-2">{{process.unitName}}</td>
+                                                            <td class="col-md-2" ng-bind-html="process.advise|trustAsHtml">{{process.advise}}</td>
+                                                            <td class="col-md-2">{{process.changedVolumeFrequency}}</td>
+                                                            <td class="col-md-2">{{process.times}}</td>
+                                                            <td><a href="" ng-click="EditOutputToDo(process.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="DeleteClinicalNotificationOutput(process.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.notToDo.length > 0">
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Notification Category</td>
+                                                            <td class="col-md-2 labelHeadStyle">Category</td>
+                                                            <td class="col-md-2 labelHeadStyle">Reference</td>
+                                                            <td class="col-md-2 labelHeadStyle">Advise</td>
+                                                            <td class="col-md-2 labelHeadStyle">Min value</td>
+                                                            <td class="col-md-2 labelHeadStyle">Max value</td>
+                                                            <td class="col-md-2 labelHeadStyle">Unit Name</td>
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="process in list.notToDo">
+                                                            <td class="col-md-2">{{process.notificationCategoryName}}</td>
+                                                            <td class="col-md-2">{{process.clinicalCategoryName}}</td>
+                                                            <td class="col-md-2">{{process.reference}}</td>
+                                                            <td class="col-md-2" ng-bind-html="process.advise|trustAsHtml">{{process.advise}}</td>
+                                                            <td class="col-md-2">{{process.referenceValueFrom}}</td>
+                                                            <td class="col-md-2">{{process.referenceValueTo}}</td>
+                                                            <td class="col-md-2">{{process.unitName}}</td>
+                                                            <td><a href="" ng-click="EditOutputNotToDo(process.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="DeleteClinicalNotificationOutput(process.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </td>
+                                            <td><a href="" ng-click="EditClinicalNotification(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="DeleteClinicalNotification(list.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

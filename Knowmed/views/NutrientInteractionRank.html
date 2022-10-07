@@ -1,0 +1,61 @@
+﻿<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Nutrient Rank Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Rank Report
+
+                    <button class="btn btn-link pull-right" ng-click="exportData()">
+                        <span class="glyphicon glyphicon-share"></span>
+                        Export to Excel
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <!--<div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+    </div>-->
+
+
+                                        <div class="col-md-1">
+                                            <label>Docking Type</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" ng-model="ddlDockingType" ng-init="ddlDockingType=0" required="" ng-change="filterDockingReference()">
+                                                <option value="0">--Select Docking Type--</option>
+                                                <option ng-repeat="list in dockingTypeList" value="{{list.id}}">
+                                                    {{list.dockingType}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Docking Reference</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select select2 class="form-control" ng-model="ddlDockingReference" ng-init="ddlDockingReference=0" required="" ng-change="nutrientRankReport()">
+                                                <option value="0">--Select Toxins Protein--</option>
+                                                <option ng-repeat="list in dockingReferenceList" value="{{list.id}}">
+                                                    {{list.dockingReference}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" id="divNutrientRank" style="max-height:100vh">
+                                <!--<table id="tblNutrientRank" class="table table-bordered">
+                                    </table>-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

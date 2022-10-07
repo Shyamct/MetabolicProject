@@ -1,0 +1,257 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Medicine Dose</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Dose
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Medicine</div>
+                                    <div class="col-md-4 noPadding">
+                                        <select select2 class="form-control" ng-model="ddlMedicine" ng-init="ddlMedicine=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.medicineID}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Disease</div>
+                                    <div class="col-md-4 noPadding">
+                                        <select select2 class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.problemID}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Indication Remark</div>
+                                    <div class="col-md-4 noPadding"><textarea class="form-control" ng-model="txtIndicationRemark" placeholder="Indication Remark"></textarea></div>
+
+                                    <div class="col-md-2">
+                                    </div>
+                                    <div class="col-md-4 noPadding">
+                                        <input type="radio" ng-model="rdDoseForAdult" ng-init="rdDoseForAdult=0" value="A" ng-change="changeAdultRadio();" />Adult &nbsp;&nbsp;
+                                        <input type="radio" ng-model="rdDoseForPaedia" ng-init="rdDoseForPaedia=0" value="P" ng-change="changePaediaRadio();" />Paedia
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <fieldset>
+                                        <div class="col-md-3"><input type="text" class="form-control" ng-model="txtAgeMin" placeholder="Min Age" onkeypress="isNumeric(true)" /></div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddlAgeUnitFrom" ng-init="ddlAgeUnitFrom=0" ng-required="">
+                                                <option value="0">--Age Unit--</option>
+                                                <option ng-repeat="list in ageUnitList" value="{{list.ageUnitID}}">
+                                                    {{list.ageUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3"><input type="text" class="form-control" ng-model="txtAgeMax" placeholder="Max Age" onkeypress="isNumeric(true)" /></div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=0" ng-required="">
+                                                <option value="0">--Age Unit--</option>
+                                                <option ng-repeat="list in ageUnitList" value="{{list.ageUnitID}}">
+                                                    {{list.ageUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2"> Weight (Kg)</div>
+                                    <div class="col-md-5 noPadding">
+                                        <input type="text" class="form-control" ng-model="txtWeightFrom" placeholder="From" />
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" ng-model="txtWeightTo" placeholder="To" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Administration Route</div>
+                                    <div class="col-md-4 noPadding">
+                                        <select select2 class="form-control" ng-model="ddlRouteAdministration" ng-init="ddlRouteAdministration=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in routeAdministrationList" value="{{list.routeAdministrationID}}">
+                                                {{list.routeAdministration}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 pull-center">Frequency</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlFrequency" ng-init="ddlFrequency=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in frequencyList" value="{{list.frequencyID}}">
+                                                {{list.frequencyName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <fieldset style="padding-left:0px; padding-right:10px;">
+                                        <legend>
+                                            Dose
+                                        </legend>
+                                        <div class="col-md-3"><input type="text" class="form-control" ng-model="txtDoseFrom" placeholder="From" onkeypress="isNumeric(true)" /></div>
+                                        <div class="col-md-3 noPadding">
+                                            <select select2 class="form-control" ng-model="ddlDoseUnitFrom" ng-init="ddlDoseUnitFrom=0" ng-required="">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in doseUnitList" value="{{list.doseUnitID}}">
+                                                    {{list.doseUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3"><input type="text" class="form-control" ng-model="txtDoseTo" placeholder="To" onkeypress="isNumeric(true)" /></div>
+                                        <div class="col-md-3 noPadding">
+                                            <select select2 class="form-control" ng-model="ddlDoseUnit" ng-init="ddlDoseUnit=0" ng-required="">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="list in doseUnitList" value="{{list.doseUnitID}}">
+                                                    {{list.doseUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12 marginTop1rem">
+                                            <div class="col-md-3">Dosage Form </div>
+                                            <div class="col-md-9 noPadding">
+                                                <select select2 class="form-control" ng-model="ddlDosage" ng-init="ddlDosage=0" ng-required="">
+                                                    <option value="0">--Select Dosage Form--</option>
+                                                    <option ng-repeat="list in dosageFormList" value="{{list.dosageID}}">
+                                                        {{list.formName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Remark</div>
+                                    <div class="col-md-11">
+                                        <input type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <fieldset>
+                                    <legend>Reference</legend>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <select class="form-control" ng-model="ddlbookname" ng-init="ddlbookname=0" required="">
+                                                <option value="0">--Select Book--</option>
+                                                <option ng-repeat="list in bookList" value="{{list.bookID}}">
+                                                    {{list.bookName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="Page No." ng-model="txtpageno" /></div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Edition" ng-model="txtedition" onkeypress="isNumeric(1)" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control" placeholder="Reference URL" ng-model="txtReference" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineDose();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Dose List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableMedicineDose" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Medicine</th>
+                                            <th>Disease</th>
+                                            <th>Indication Remark</th>
+                                            <th>Dose For</th>
+                                            <th>Age</th>
+                                            <th>Weight</th>
+                                            <th>Administration Route</th>
+                                            <th>Frequency</th>
+                                            <th>Dose</th>
+                                            <th>Dose Form</th>
+                                            <th>Remark</th>
+                                            <th>Book Name</th>
+                                            <th>Page No</th>
+                                            <th>Edition</th>
+                                            <th>Reference</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in medicineDoseList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.indicationRemark}}</td>
+                                            <td>{{list.doseFor}}</td>
+                                            <td>{{list.age}}</td>
+                                            <td>{{list.weight}}</td>
+                                            <td>{{list.routeAdministration}}</td>
+                                            <td>{{list.frequencyName}}</td>
+                                            <td>{{list.dose}}</td>
+                                            <td>{{list.formName}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.bookName}}</td>
+                                            <td>{{list.pageNo}}</td>
+                                            <td>{{list.edition}}</td>
+                                            <td>{{list.reference}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

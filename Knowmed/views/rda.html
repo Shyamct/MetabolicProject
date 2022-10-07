@@ -1,0 +1,254 @@
+﻿<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Recommended Dietary Allowance</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Recommended Dietary Allowance
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="Nutrient">Nutrient</label>
+                                <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=-1" required="" ng-change="GetRDAList()">
+                                    <option value="-1">--Select--</option>
+                                    <option ng-repeat="nutrient in nutrientList" value="{{nutrient.id}}">
+                                        {{nutrient.nutrientName}}
+                                    </option>
+                                    <option value="0">All</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="ageGroup">Age Group</label>
+                                <select class="form-control" ng-model="ddlAgeGroup" ng-init="ddlAgeGroup=0" required="">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="ageGroup in ageGroupList" value="{{ageGroup.id}}">
+                                        {{ageGroup.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Activity">Activity</label>
+                                <select class="form-control" ng-model="ddlActivity" ng-init="ddlActivity=0">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="activity in activityList" value="{{activity.id}}">
+                                        {{activity.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress2">Age</label>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="txtAgeFrom" placeholder="from">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control" ng-model="ddlAgeFromUnit" ng-init="ddlAgeFromUnit=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="ageUnit in ageUnitList" value="{{ageUnit.id}}">
+                                                {{ageUnit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="txtAgeTo" placeholder="To">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select select2 class="form-control" ng-model="ddlAgeToUnit" ng-init="ddlAgeToUnit=0">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="ageUnit in ageUnitList" value="{{ageUnit.id}}">
+                                                {{ageUnit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="radio" ng-model="rbMale" ng-init="rbMale=0" value="1" ng-change="changeMaleRadio();">
+                                        <label>Male</label>
+
+                                        <input type="radio" ng-model="rbFemale" ng-init="rbFemale=0" value="2" ng-change="changeFemaleRadio();">
+                                        <label>Female</label>
+
+                                        <input type="radio" ng-model="rbAny" ng-init="rbAny=0" value="3" ng-change="changeAnyRadio();">
+                                        <label>Any</label>
+                                    </div>
+                                </div>
+                            </div>                          
+                            <div class="form-group col-md-6">
+                                <label for="RDA">RDA</label>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" ng-model="txtRdaFrom" placeholder="from">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" ng-model="ddlRDAUnitFrom" ng-init="ddlRDAUnitFrom=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" ng-model="txtRdaTo" placeholder="To">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" ng-model="ddlRDAUnitTo" ng-init="ddlRDAUnitTo=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="inputState">Toxicity Level</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtToxicityLevel" placeholder="Toxicity Level">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" ng-model="ddlToxicityUnit" ng-init="ddlToxicityUnit=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Deficiency">Deficiency Level</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtDeficiencyLevel" placeholder="Deficiency Level">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" ng-model="ddlDefUnit" ng-init="ddlDefUnit=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="country">Country</label>
+                                <select class="form-control" ng-model="ddlCountry" ng-init="ddlCountry=0">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="country in countryList" value="{{country.id}}">
+                                        {{country.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Deficiency">Reference</label>
+                                <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="URL">URL</label>
+                                <input type="text" class="form-control" ng-model="txtUrl" placeholder="URL">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary" ng-show="ShowSave" ng-click="saveRDA()">Save</button>
+                                        <button type="submit" class="btn btn-primary" ng-show="ShowUpdate" ng-click="updateRDA()">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="overflow:auto;">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Recommended Dietary Allowance List
+                </div>
+                <div class="panel-body">
+                    <div class=" form-row col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 padding1rem table-responsive" style="max-height:100vh">
+                        <table id="tableRDA" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nutrient</th>
+                                    <th>Age Group</th>
+                                    <th>Activity</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>RDA</th>
+                                    <th>Toxicity Level</th>
+                                    <th>Deficiency Level</th>
+                                    <th>Country</th>
+                                    <th>Reference</th>
+                                    <th>URL</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rda in rdaList | filter : search" ng-class-odd="'striped'" ng-style="{'background-color': (rda.isUpdated == 1)? '#98FB98': ''}">
+                                    <td>{{rda.nutrientName}}</td>
+                                    <td>{{rda.ageGroup}}</td>
+                                    <td>{{rda.activity}}</td>
+                                    <td>{{rda.age}}</td>
+                                    <td>{{rda.genderName}}</td>
+                                    <td>{{rda.rda}}</td>
+                                    <td>{{rda.toxicityLevel}}</td>
+                                    <td>{{rda.deficiencyLevel}}</td>
+                                    <td>{{rda.country}}</td>
+                                    <td>{{rda.reference}}</td>
+                                    <td>{{rda.url}}</td>
+                                    <td><a href="" ng-click="edit($index,rda.id)">Edit</a> &nbsp;<a href="" ng-click="delete(rda.id)">Delete</a></td>
+                                    <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--<div id="form1" class="tab-pane fade in active">-->
+        <!--<div id="form2" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div id="form3" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>-->
+        <!--</div>-->
+
+    </div>
+</div>

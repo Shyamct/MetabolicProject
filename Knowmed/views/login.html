@@ -1,0 +1,27 @@
+﻿    <div class="box" style="height:auto;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYcv-0ewt7HOXii0rH2Z7Ct6dBzLiL6q7ErolktZQmTVFB77W3" class="logo">
+        <h1>Login Here</h1>
+        <form name="loginForm" ng-submit="loginForm.$valid && login()">
+            <p>Username</p>
+            <input type="text" placeholder="Enter the Username" ng-model="txtUserName" required="">
+            <p>Password</p>
+
+            <input type="password" placeholder="Enter your password" ng-model="txtUserPassword" required="">
+           
+            <div class="password-div" ng-if="isOTPSent == 1">
+                <input type="text" ng-model="txtOTP" placeholder="OTP" id="txtOTP" required="" />
+            </div>
+
+            <div class="password-div" ng-if="isOTPSent == 1">
+                <h6 class="boldtext">OTP has been sent to your mobile !!</h6>
+            </div>
+            <input type="submit" value="Login">
+            <a href="#" style="color:white;">Forget Password</a><br>
+            <a href="#" style="color:white;">Don't have Account</a>
+        </form>        
+    </div>
+    <div class="footer-note">
+        <div class="footer-note-inner"><b>Note :</b> If anyone has face problem with login OTP then contact to 9454728060</div>
+    </div>
+
+

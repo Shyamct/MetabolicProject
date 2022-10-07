@@ -1,0 +1,210 @@
+﻿<div class="container-fluid">
+    <h2>Disease Finding</h2>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Disease Finding
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+
+                            <div class="row">
+                                <div class="col-md-3">Problem Reference</div>
+                                <div class="col-md-9">
+                                    <select select2 class="form-control" ng-model="ddlDisease" ng-init="ddlDisease=-1" required="" ng-change="GetDiseaseSubTestList()">
+                                        <option value="-1">--Select--</option>
+                                        <option ng-repeat="list in diseaseList" value="{{list.id}}">
+                                            {{list.disease}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <table id="tableDiseaseDepartment" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <!--<th>#</th>-->
+                                        <th>Sub Test</th>
+                                        <th>Findings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in subTestList">
+                                        <!--<td>{{$index+1}}</td>-->
+                                        <td style="max-width:6rem;">{{list.subTestName}}</td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-11"><input type="text" class="form-control" ng-model="list.finding" placeholder="Finding" /></div>
+                                                <div class="col-md-1 noPadding">
+                                                    <button class="btn btn-xs btn-info" ng-click="addFinding(list)">
+                                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-if="list.findingList.length >0" style="padding-top:10px">
+                                                <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                                    <table id="tableCalculators" class="table table-bordered">
+                                                        <!--<thead>
+                                                            <tr>
+                                                                <th>Finding</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>-->
+                                                        <tbody>
+                                                            <tr ng-repeat="fl in list.findingList" ng-class-odd="'striped'">
+                                                                <td>{{fl.finding}}</td>
+                                                                <td><a href="" ng-click="deleteAddFindingList(list, $index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!--<tr ng-if="subTestList.length >0">-->
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="button" class="btn btn-success pull-left" value="Add More" ng-click="addMoreSubtest();" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table id="tableNewSubTest" class="table table-bordered" ng-if="subTestListNew.length>0">
+                                <thead>
+                                    <tr>
+                                        <!--<th>#</th>-->
+                                        <th>Sub Test</th>
+                                        <th>Findings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in subTestListNew">
+
+                                        <!--<td>{{$index+1}}</td>-->
+                                        <td style="max-width:9rem;">
+                                            <!--<div class="col-md-12 col-sm-12">-->
+                                            <select select2 class="form-control col-md-12 col-sm-12" ng-model="list.ddlSubTest" ng-init="list.ddlSubTest=-1" required="">
+                                                <option value="-1">--Select Sub Test--</option>
+                                                <option ng-repeat="list in SubTestMasterList" value="{{list.id}}">
+                                                    {{list.name}}
+                                                </option>
+                                            </select>
+                                            <!--</div>-->
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-11"><input type="text" class="form-control" ng-model="list.finding" placeholder="Finding" /></div>
+                                                <div class="col-md-1 noPadding">
+                                                    <button class="btn btn-xs btn-info" ng-click="addFinding(list)">
+                                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row" ng-if="list.findingList.length >0" style="padding-top:10px">
+                                                <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                                    <table id="tableCalcul" class="table table-bordered">
+                                                        <!--<thead>
+                                                            <tr>
+                                                                <th>Finding</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>-->
+                                                        <tbody>
+                                                            <tr ng-repeat="fl in list.findingList" ng-class-odd="'striped'">
+                                                                <td>{{fl.finding}}</td>
+                                                                <td><a href="" ng-click="deleteAddFindingList(list, $index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="button" class="btn btn-success pull-right" value="Save" ng-click="saveDiseaseFindings();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Disease Finding List
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class=" form-row col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                            <table id="tableTroughValue" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Action</th>
+                                        <th>Disease Department</th>
+                                        <th>Sub Test & Findings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in diseaseFindingstList | filter : search" ng-class-odd="'striped'">
+                                        <td>{{$index+1}}</td>
+                                        <td>
+                                            <a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                            <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </td>
+                                        <td>{{list.disease}}</td>
+                                        <td>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr ng-repeat="test in list.subTestList">
+                                                        <td>{{test.subTestName}}</td>
+                                                        <td>
+                                                            <table class="table table-bordered">
+                                                                <tbody>
+                                                                    <tr ng-repeat="findList in test.findingList">
+                                                                        <td>{{findList.finding}}</td>
+                                                                        <td> <a href="" ng-click="deleteFindings(findList.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

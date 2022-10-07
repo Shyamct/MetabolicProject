@@ -1,0 +1,196 @@
+﻿<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Nutrient Requirements of Leghorn-Type Laying Hens</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                   Units per Killogram (90 percent dry matter)
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            
+                            <div class="form-group col-md-6">
+                                <label for="Nutrient">Nutrient</label>
+                                <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=-1" required="" ng-change="GetHenRDAList()">
+                                    <option value="-1">--Select--</option>
+                                    <option ng-repeat="nutrient in nutrientList" value="{{nutrient.id}}">
+                                        {{nutrient.nutrientName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ageGroup">Hen Type</label>
+                                <select class="form-control" ng-model="ddlHenType" ng-init="ddlHenType=0" required="">
+                                    <option value="0">--Select--</option>
+                                    <option ng-repeat="henType in HenTypeList" value="{{henType.hen}}">
+                                        {{henType.hen}}
+                                    </option>
+                                </select>
+                            </div>
+                        
+                        </div>
+                        <div class="form-row">
+
+                           
+                            <div class="form-group col-md-12">
+                                <label for="RDA">RDA</label>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="txtRdaFrom" placeholder="from">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlRDAUnitFrom" ng-init="ddlRDAUnitFrom=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="txtRdaTo" placeholder="To">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlRDAUnitTo" ng-init="ddlRDAUnitTo=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Toxicity Level</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtToxicityLevel" placeholder="Toxicity Level">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" ng-model="ddlToxicityUnit" ng-init="ddlToxicityUnit=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Deficiency">Deficiency Level</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="txtDeficiencyLevel" placeholder="Deficiency Level">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" ng-model="ddlDefUnit" ng-init="ddlDefUnit=0">
+                                            <option value="0">--Select Unit--</option>
+                                            <option ng-repeat="unit in unitList" value="{{unit.id}}">
+                                                {{unit.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="Deficiency">Remark</label>
+                                <textarea class="form-control" rows="5" ng-model="txtRemark"></textarea>
+                            </div>
+                          
+
+
+                        </div>
+                  
+                       
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary" ng-show="ShowSave" ng-click="saveHenRDA()">Save</button>
+                                        <button type="submit" class="btn btn-primary" ng-show="ShowUpdate" ng-click="updateHenRDA()">Update</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-12" style="overflow:auto;">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Recommended Dietary Allowance List
+                </div>
+                <div class="panel-body">
+                    <div class=" form-row col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 padding1rem table-responsive" style="max-height:100vh">
+                        <table id="tableRDA" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nutrient</th>
+                                    <th>Hen Type</th>
+                                    <th>RDA</th>
+                                    <th>Toxicity Level</th>
+                                    <th>Deficiency Level</th>
+                                    <th>Remark</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rda in rdaList | filter : search" ng-class-odd="'striped'">
+                                    <td>{{rda.nutrientName}}</td>
+                                    <td>{{rda.henType}}</td>
+                                    <td>{{rda.rda}}</td>
+                                    <td>{{rda.toxicityLevel}}</td>
+                                    <td>{{rda.deficiencyLevel}}</td>
+                                    <td>{{rda.remark}}</td>
+                                    <td><a href="" ng-click="edit($index,rda.id)">Edit</a> &nbsp;<a href="" ng-click="delete(rda.id)">Delete</a></td>
+                                    <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--<div id="form1" class="tab-pane fade in active">-->
+        <!--<div id="form2" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+        <div id="form3" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div>-->
+        <!--</div>-->
+
+    </div>
+</div>

@@ -1,0 +1,155 @@
+﻿
+<div class="container-fluid">
+    <h2>Pathway Process Problem</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Pathway Process Problem
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-2">
+                                            <label>Symptom/Side Effect</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select class="form-control" id="ddlSymptom" ng-model="ddlSymptom" ng-init="ddlSymptom=-1" required="">
+                                                <option value="-1">--Select Type--</option>
+                                                <option ng-repeat="list in problemMaster" value="{{list.id}}">
+                                                    {{list.problemName}}
+                                                </option>
+                                            </select>
+                                            <div class="form-group col-md-12" style="margin-top:10px">
+                                                <div class="row" ng-if="symptomList.length>0">
+                                                    <table id="tableCalculators" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>S.No</th>
+                                                                <th>Symptom</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="list in symptomList" ng-class-odd="'striped'">
+                                                                <td>{{$index + 1}}</td>
+                                                                <td>{{list.symptomName}}</td>
+                                                                <td><a href="" ng-click="deleteSymptom($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn btn-xs btn-info" ng-click="AddSymptom()" style="margin-top:5px;" ng-disabled="isDisabled">
+                                                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                            </button>
+                                        </div>
+                                        <div class="form-group col-md-12 noPadding">
+                                            <div class="col-md-2">
+                                                <label>Disease/Pathway</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="ddlDisease" ng-model="ddlDisease" ng-init="ddlDisease=-1" required="">
+                                                    <option value="-1">--Select Type--</option>
+                                                    <option ng-repeat="list in headerMaster" value="{{list.id}}">
+                                                        {{list.problemName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label>Phenomenon</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="ddlPhenomenon" ng-model="ddlPhenomenon" ng-init="ddlPhenomenon=-1" required="">
+                                                    <option value="-1">--Select Type--</option>
+                                                    <option ng-repeat="list in phenomenon" value="{{list.id}}">
+                                                        {{list.pathwayName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12 noPadding">
+                                            <div class="col-md-2">
+                                                <label>Process</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="ddlProcess" ng-model="ddlProcess" ng-init="ddlProcess=-1" required="">
+                                                    <option value="-1">--Select Type--</option>
+                                                    <option ng-repeat="list in rankMaster" value="{{list.id}}">
+                                                        {{list.rankName}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6" style="padding-top: 5px;">
+                                                <input type="radio" name="effect" ng-model="rdCauseEffect" value="1026" />Cause
+                                                <input type="radio" name="effect" ng-model="rdCauseEffect" value="1027" style="margin-left:20px" />Effect
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12" margin-left>
+                                            <div class="row">
+                                                <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="savePathwayProcessProblem();" /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Pathway Process List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-row col-md-12">
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Symptom/Side Effect</th>
+                                            <th>Disease/Pathway</th>
+                                            <th>Phenomenon</th>
+                                            <th>Process</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in pathwayProcessProblem" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deletePathwayProcessProblem(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.symptomName}}</td>
+                                            <td>{{list.headName}}</td>
+                                            <td>{{list.phenomenonName}}</td>
+                                            <td>{{list.processName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,243 @@
+﻿
+@media print {
+    html, body, div
+
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body * {
+    display: none;
+}
+
+#content, #myImages, #myImages * {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+    #myImages br {
+        display: none;
+    }
+
+img {
+    page-break-inside: avoid;
+    page-break-after: always;
+}
+
+}
+
+
+@page {
+    margin: 1cm;
+}
+
+table tr td {
+    text-align: left !important;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+}
+/* CSS for the traditional context menu */
+.menu {
+    display: none;
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 999;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, .2), 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12);
+    list-style: none;
+    background-color: #f5f5f5;
+    /*border-radius: 4px;*/
+}
+
+.menu-item {
+    display: block;
+    position: relative;
+    min-width: 180px;
+    margin: 0;
+    padding: 8px 8px;
+    font: 12px sans-serif;
+    /*color: rgba(0, 0, 0, .87);*/
+    color: #000;
+    cursor: pointer;
+    border-bottom: solid 1px #b5b1b1;
+}
+
+    .menu-item::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+    }
+
+    .menu-item:hover::before {
+        opacity: .06;
+    }
+
+.menu .menu {
+    top: -8px;
+    left: 100%;
+}
+
+.show-menu, .menu-item:hover > .menu {
+    display: block;
+    opacity: 1;
+}
+
+.searchCat {
+    display: none;
+}
+
+.modal-body {
+    position: relative;
+    height: 200px !important;
+    max-height: 650px;
+    padding: 15px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.modelWidth {
+    width: 90%;
+    left: 6%;
+}
+
+
+@media only screen and (max-width: 1367px) {
+    .modelWidth {
+        width: 90%;
+        left: 27%;
+    }
+
+    .modal-body {
+        position: relative;
+        height: 200px !important;
+        max-height: 500px;
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .modal.fade.in {
+        top: 2%;
+    }
+}
+
+#sidebar li {
+    color: #fff;
+}
+
+#myOverviewDiv1 {
+    display: none;
+    position: absolute;
+    background-color: white;
+    z-index: 300; /* make sure its in front */
+    border: solid 1px blue;
+    width: 600px;
+    height: 337px;
+    pointer-events: none;
+}
+
+.ui-widget-header {
+    border: 10px solid #ff8080;
+}
+
+.progress-label {
+    font-weight: bold;
+}
+
+.icon-info-sign:before {
+    content: "\f05a";
+    position: absolute;
+    font-size: 20px;
+    text-align: right;
+    right: 5px;
+    top: 7px;
+    color: red;
+}
+
+.description {
+    text-align: left;
+}
+
+.plusSymbol:after {
+    position: absolute;
+    content: '\2719';
+    font-size: 20px;
+    text-align: right;
+    right: 35px;
+    top: 3px;
+}
+
+img {
+    width: 28px;
+    height: 28px;
+}
+
+.h5, h5 {
+    font-size: 14px;
+    line-break: anywhere;
+}
+
+.modal-body.popup-decreption {
+    position: relative;
+    height: 40vh !important;
+    max-height: 650px;
+    padding: 15px;
+    /* overflow-y: auto; */
+    overflow: auto;
+}
+
+#loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    width: 32px;
+    height: 32px;
+}
+
+.modal-xl {
+    width: 1190px;
+    margin: 83px auto;
+}
+#tblMarkerDetail thead td {
+    text-align: center !important;
+}
+
+ul#contextmenu {
+    margin-top: -750px;
+    /* margin-right: 31px; */
+    margin-left: 900px;
+}
+
+li#coFactorss {
+    /* margin: 15px; */
+    font-size: 20px;
+    border: solid;
+}
+
+.ft-big {
+    font-size: 16px !important;
+}
+
+

@@ -1,0 +1,73 @@
+﻿#content {
+    margin-left: 0px;
+}
+
+
+.widget-title, .modal-header, .table th, div.dataTables_wrapper .ui-widget-header {
+    border-bottom: 1px solid #CDCDCD;
+    height: 36px;
+    background-color: antiquewhite;
+}
+
+.heading {
+    font-size: initial;
+    margin-left: 75px;
+}
+
+select#ddlMarker {
+    margin-top: -27px;
+    margin-left: 213px;
+}
+
+.p-5 {
+    padding: 3rem;
+}
+
+.bg-dark {
+    background: #efefef;
+    border: 1px solid #000;
+}
+
+.d-flex {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+
+#tblPhenomenonReport tbody td {
+    font-size: 20px;
+}
+
+
+#tblPhenomenonReport thead th {
+    font-size: 18px;
+    color:black;
+
+}
+.btnProcess {
+
+    font-size:large;
+    border-radius:5px;
+}
+
+
+.btnPhenomenon {
+    /* font-size: 14px; */
+    border-radius: 6px;
+    width: 146px;
+    color: black;
+    background-color: darkgray;
+}
+#loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+}

@@ -1,0 +1,145 @@
+﻿
+<div class="container-fluid">
+    <h3>Nutrient Medicine Action Pathway</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <label class="labelHeadStyle">Nutrient Medicine Action Pathway</label>
+                </div>
+                <div class="panel-body">
+                    <form name="nutMedActPathway" ng-submit="nutMedActPathway.$valid && SaveNutMedActPathway()">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4"><label class="labelHeadStyle">Nutrient</label></div>
+                                    <div class="col-md-8">
+                                        <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=''" required="">
+                                            <option value="">--Select Nutrient--</option>
+                                            <option ng-repeat="list in NutrientList" value="{{list.id}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:1rem;">
+                                    <div class="col-md-4"><label class="labelHeadStyle">Medicine</label></div>
+                                    <div class="col-md-8">
+                                        <select select2 class="form-control" ng-model="ddlMedicine" ng-init="ddlMedicine=''" required="">
+                                            <option value="">--Select Medicine--</option>
+                                            <option ng-repeat="list in MedicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:1rem;">
+                                    <div class="col-md-4"><label class="labelHeadStyle">Mech Of Action</label></div>
+                                    <div class="col-md-8">
+                                        <select class="form-control" ng-model="ddlMechanism" ng-init="ddlMechanism=''" required="">
+                                            <option value="">--Select Mechanism of Action--</option>
+                                            <option ng-repeat="list in MechanismList" value="{{list.id}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:1rem;">
+                                    <div class="col-md-4"><label class="labelHeadStyle">Pathway</label></div>
+                                    <div class="col-md-8">
+                                        <select select2 class="form-control" ng-model="ddlPathway" ng-init="ddlPathway=''" required="">
+                                            <option value="">--Select Pathway--</option>
+                                            <option ng-repeat="list in PathwayList" value="{{list.id}}">
+                                                {{list.pathway}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:1rem;">
+                                    <div class="col-md-4"><label class="labelHeadStyle">Reference</label></div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" ng-model="txtReference" placeholder="Reference" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:1rem;">
+                                    <div class="col-md-4"><label class="labelHeadStyle">URL</label></div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" ng-model="txtURL" placeholder="URL" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:1rem;">
+                                    <div class="col-md-4"><label class="labelHeadStyle">Description</label></div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" ng-model="txtDescription" placeholder="Description" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <label class="labelHeadStyle">Nutrient Medicine Action Pathway List</label>
+                </div>
+                <div class="panel-body" style="height: 50rem;overflow: scroll;">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <div class="row">
+                                    <table id="tableNutMedActPathway" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SNo</th>
+                                                <th>Nutrient</th>
+                                                <th>Medicine</th>
+                                                <th>Mech Of Action</th>
+                                                <th>Pathway</th>
+                                                <th>Description</th>
+                                                <th>Reference</th>
+                                                <th>URL</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in NutMedActPathwayList | filter : search" ng-class-odd="'striped'">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{list.nutrientName}}</td>
+                                                <td>{{list.medicineName}}</td>
+                                                <td>{{list.mechanismOfAction}}</td>
+                                                <td>{{list.pathway}}</td>
+                                                <td>{{list.pathwayDescription}}</td>
+                                                <td>{{list.reference}}</td>
+                                                <td>{{list.url}}</td>
+                                                <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

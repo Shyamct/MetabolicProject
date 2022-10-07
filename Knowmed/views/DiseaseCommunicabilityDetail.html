@@ -1,0 +1,564 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Disease Communicability Details </h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Communicability Details
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">Disease</div>
+                                        <div class="col-md-9">
+                                            <select select2 class="form-control" ng-model="ddlDisease" ng-init="ddlDisease=0" required="">
+                                                <option value="0">--Select Disease--</option>
+                                                <option ng-repeat="list in problemList" value="{{list.problemID}}">
+                                                    {{list.problemName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">Incubation Period </div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="From" ng-model="txtIncubationFrom" /></div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="To" ng-model="txtIncubationTo" /></div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddlIncubationPeriodUnit" ng-init="ddlIncubationPeriodUnit=0">
+                                                <option value="0">--Select Unit--</option>
+                                                <option ng-repeat="list in incubationPeriodUnitList" value="{{list.incubationPeriodUnitID}}">
+                                                    {{list.incubationPeriodUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">Communicability Period </div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="From" ng-model="txtCommunicabilityFrom" /></div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="To" ng-model="txtCommunicabilityTo" /></div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddlCommunicabilityPeriodUnit" ng-init="ddlCommunicabilityPeriodUnit=0">
+                                                <option value="0">--Select Unit--</option>
+                                                <option ng-repeat="list in communicabilityPeriodUnitList" value="{{list.communicabilityPeriodUnitID}}">
+                                                    {{list.communicabilityPeriodUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">Variation</div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="From Month" ng-model="txtVariationFrom" /></div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="To Month" ng-model="txtVariationTo" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">Temprature</div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="From" ng-model="txtTempratureFrom" /></div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="To" ng-model="txtTempratureTo" /></div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddTtempUnit" ng-init="ddTtempUnit=0">
+                                                <option value="0">--Select Unit--</option>
+                                                <option ng-repeat="list in tempUnitList" value="{{list.tempUnitID}}">
+                                                    {{list.tempUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">Humidity </div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="From" ng-model="txtHumidityFrom" /></div>
+                                        <div class="col-md-3"><input type="text" class="form-control" placeholder="To" ng-model="txtHumidityTo" /></div>
+                                        <div class="col-md-3">
+                                            <select select2 class="form-control" ng-model="ddlHumidityUnit" ng-init="ddlHumidityUnit=0">
+                                                <option value="0">--Select Unit--</option>
+                                                <option ng-repeat="list in humidityUnitList" value="{{list.humidityUnitID}}">
+                                                    {{list.humidityUnitName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <legend>Prevention</legend>
+                                            <div class="row">
+                                                <div class="col-md-6"><textarea class="form-control" placeholder="To do..." ng-model="txtPreventionToDo" rows="4"></textarea></div>
+                                                <div class="col-md-6"><textarea class="form-control" placeholder="Not to do..." ng-model="txtPreventionNotToDo" rows="4"></textarea></div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <legend>Geo Location</legend>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <select select2 class="form-control" id="ddlRegion" ng-model="ddlRegion" ng-init="ddlRegion=0" required="">
+                                                        <option value="0">--Select Region--</option>
+                                                        <option ng-repeat="list in regionList" value="{{list.regionID}}">
+                                                            {{list.regionName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <select select2 class="form-control" id="ddlCountry" ng-model="ddlCountry" ng-init="ddlCountry=0" required=""  ng-change="State()">
+                                                        <option value="0">--Select Country--</option>
+                                                        <option ng-repeat="list in countryList" value="{{list.id}}">
+                                                            {{list.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:2vh">
+                                                <div class="col-md-5">
+                                                    <select select2 class="form-control" id="ddlState" ng-model="ddlState" ng-init="ddlState=0" required="" ng-change="City()">
+                                                        <option value="0">--Select State--</option>
+                                                        <option ng-repeat="list in stateList" value="{{list.id}}">
+                                                            {{list.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <select select2 class="form-control" id="ddlCity" ng-model="ddlCity" ng-init="ddlCity=0" required="">
+                                                        <option value="0">--Select City--</option>
+                                                        <option ng-repeat="list in cityList" value="{{list.id}}">
+                                                            {{list.name}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button class="btn btn-xs btn-info" ng-click="AddGeoLocation()">
+                                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:2vh">
+                                                <div class="row" ng-if="selectedGeoLocationList.length>0">
+                                                    <div class="col-md-10">
+                                                        <table id="tableAgentFactor" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Region</th>
+                                                                    <th>Country</th>
+                                                                    <th>State</th>
+                                                                    <th>City</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="list in selectedGeoLocationList" ng-class-odd="'striped'">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{list.regionName}}</td>
+                                                                    <td>{{list.countryName}}</td>
+                                                                    <td>{{list.stateName}}</td>
+                                                                    <td>{{list.cityName}}</td>
+                                                                    <td><a href="" ng-click="deleteGeoLocation($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <fieldset>
+                                            <legend>Agent Factor</legend>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <select select2 class="form-control" id="ddlAgentFactor" ng-model="ddlAgentFactor" ng-init="ddlAgentFactor=0" required="">
+                                                        <option value="0">--Select--</option>
+                                                        <option ng-repeat="list in agentFactorList" value="{{list.agentFactorID}}">
+                                                            {{list.agentFactorName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-xs btn-info" ng-click="AddAgentFactor()" >
+                                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:2vh">
+                                                <div class="row" ng-if="selectedAgentFactorList.length>0">
+                                                    <div class="col-md-10">
+                                                        <table id="tableAgentFactor" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Agent Factor</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="list in selectedAgentFactorList" ng-class-odd="'striped'">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{list.agentFactorName}}</td>
+                                                                    <td><a href="" ng-click="deleteAgentFactor($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset>
+                                            <legend>Environment Factor</legend>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <select select2 class="form-control" id="ddlEnviorenmentFactor" ng-model="ddlEnviorenmentFactor" ng-init="ddlEnviorenmentFactor=0" required="">
+                                                        <option value="0">--Select--</option>
+                                                        <option ng-repeat="list in enviorenmentFactorList" value="{{list.enviorenmentFactorID}}">
+                                                            {{list.enviorenmentFactorName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-xs btn-info" ng-click="AddEnviorenmentFactor()" >
+                                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:2vh">
+                                                <div class="row" ng-if="selectedEnviorenmentFactorList.length>0">
+                                                    <div class="col-md-10">
+                                                        <table id="tableAgentFactor" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Environment Factor</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="list in selectedEnviorenmentFactorList" ng-class-odd="'striped'">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{list.enviorenmentFactorName}}</td>
+                                                                    <td><a href="" ng-click="deleteEnviorenmentFactor($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset>
+                                            <legend>Transmission Route</legend>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <select select2 class="form-control" id="ddlTransmissionRoute" ng-model="ddlTransmissionRoute" ng-init="ddlTransmissionRoute=0" required="">
+                                                        <option value="0">--Select--</option>
+                                                        <option ng-repeat="list in transmissionRouteList" value="{{list.transmissionRouteID}}">
+                                                            {{list.transmissionRouteName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-xs btn-info" ng-click="AddTransmissionRoute()" >
+                                                        <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:2vh">
+                                                <div class="row" ng-if="selectedTransmissionRouteList.length>0">
+                                                    <div class="col-md-10">
+                                                        <table id="tableAgentFactor" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S.No</th>
+                                                                    <th>Transmission Route</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="list in selectedTransmissionRouteList" ng-class-odd="'striped'">
+                                                                    <td>{{$index + 1}}</td>
+                                                                    <td>{{list.transmissionRouteName}}</td>
+                                                                    <td><a href="" ng-click="deleteTransmissionRoute($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-1"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" placeholder="Remark" ng-model="txtRemark"></textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" placeholder="Reference" ng-model="txtReference"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseCommunicabilityDetail();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Communicability Details List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableselectedNutrientComponentAssign" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Disease</th>
+                                            <th>Incubation Period</th>
+                                            <th>Communicability Period</th>
+                                            <th>Variation Month</th>
+                                            <th>Temprature</th>
+                                            <th>Humidity</th>
+                                            <th>To do</th>
+                                            <th>Not to do</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>Agent Factor</th>
+                                            <th>Environnment Factor</th>
+                                            <th>Transmission Route</th>
+                                            <th>Geo Location</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in diseaseCommunicabilityDetailList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.incubationPeriod}}</td>
+                                            <td>{{list.communicabilityPeriod}}</td>
+                                            <td>{{list.variationMonth}}</td>
+                                            <td>{{list.temprature}}</td>
+                                            <td>{{list.humidity}}</td>
+                                            <td>{{list.toDo}}</td>
+                                            <td>{{list.notToDo}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.agentFactor}}</td>
+                                            <td>{{list.enviorenmentFactor}}</td>
+                                            <td>{{list.transmissionRouted}}</td>
+                                            <td ng-bind-html="list.geoLocation|trustAsHtml">{{list.geoLocation}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div id="agentFactorModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content
+            <div class="modal-content">
+                <div class="col-md-12 col-sm-12 paddingTop2rem">
+                    <div class="col-md-12">
+                        <select select2 class="form-control" ng-model="ddlAgentFactorEdit" ng-init="ddlAgentFactorEdit=0" required="" style="width:100%">
+                            <option value="0">--Select--</option>
+                            <option ng-repeat="list in agentFactorList" value="{{list.agentFactorID}}">
+                                {{list.agentFactorName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                        <table id="tableTroughValue" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Agent Factor</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="list in agentFactorDetailList | filter : search" ng-class-odd="'striped'">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{list.agentFactor}}</td>
+                                    <td><a href="" ng-click="editAgentFactorDetail(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteAgentFactorDetail(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-success pull-left" value="Save" ng-click="editAgentFactorDetail();" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="enviorenmentFactorModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content
+            <div class="modal-content">
+                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                    <table id="tableTroughValue" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>Environnment Factor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="list in enviorenmentFactorDetailList | filter : search" ng-class-odd="'striped'">
+                                <td>{{list.problemName}}</td>
+                                <td>{{list.enviorenmentFactor}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="transmissionRouteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content
+            <div class="modal-content">
+                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                    <table id="tableTroughValue" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>Transmission Route</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="list in transmissionRouteDetailList | filter : search" ng-class-odd="'striped'">
+                                <td>{{list.problemName}}</td>
+                                <td>{{list.transmissionRoute}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="geoLocationModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content
+            <div class="modal-content">
+                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                    <table id="tableTroughValue" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>Region</th>
+                                <th>Country</th>
+                                <th>State</th>
+                                <th>City</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="list in geoLocationDetailList | filter : search" ng-class-odd="'striped'">
+                                <td>{{list.problemName}}</td>
+                                <td>{{list.regionName}}</td>
+                                <td>{{list.countryName}}</td>
+                                <td>{{list.stateName}}</td>
+                                <td>{{list.cityName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="preventionModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content
+            <div class="modal-content">
+                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                    <table id="tableTroughValue" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Disease</th>
+                                <th>To do</th>
+                                <th>Not to do</th>
+                                <th>Remark</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="list in preventionDetailList | filter : search" ng-class-odd="'striped'">
+                                <td>{{list.problemName}}</td>
+                                <td>{{list.toDo}}</td>
+                                <td>{{list.notToDo}}</td>
+                                <td>{{list.remark}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>

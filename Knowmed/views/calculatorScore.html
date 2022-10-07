@@ -1,0 +1,302 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Calculator Score </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Calculator Score
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Calculator</div>
+                                    <div class="col-md-9">
+                                        <select select2 class="form-control" id="ddlCalculator" ng-model="ddlCalculator" ng-init="ddlCalculator=-1" required="" ng-change="getSelectedCalculatorScoreList();">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in calculatorList" value="{{list.calculatorID}}" ng-selected="{{list.calculatorID==ddlCalculator}}">
+                                                {{list.calculatorName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Parameter</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlControl" ng-init="ddlControl=0" required="" ng-change="isScore(ddlControl);">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in calculatorControlList" value="{{list.controlID}}" ng-selected="{{list.controlID==ddlControl}}">
+                                                {{list.controlName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" placeholder="Age From" id="txtAgeFrom" ng-model="txtAgeFrom" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" placeholder="Age To" ng-model="txtAgeTo" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" id="ddlAgeUnit" ng-model="ddlAgeUnit" ng-init="ddlAgeUnit=2014" required="">
+                                                <option value="0">--Select Age Unit--</option>
+                                                <option ng-repeat="list in unitMasterList" value="{{list.id}}" ng-selected="list.id==2014">
+                                                    {{list.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select select2 class="form-control" id="ddlGender" ng-model="ddlGender" ng-init="ddlGender='M'" required="">
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
+                                                <option value="B">Both</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-show="NM">
+
+
+                                    <div class="col-md-3">Parameter Text</div>
+                                    <div class="col-md-9">
+                                        <div class="col-md-9"><input type="text" class="form-control" placeholder="Normal" ng-model="txtNormal" /></div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row" ng-show="QA">
+                                    <div class="col-md-3">Parameter Text</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlQuestionList" ng-init="ddlQuestionList=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in questionList" value="{{list.optionText}}" ng-selected="{{list.optionText==ddlQuestionList}}">
+                                                {{list.optionText}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-show="Range">
+                                    <div class="form-group col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">Range From</div>
+                                            <div class="col-md-9"><input type="text" class="form-control" placeholder="Range From" ng-model="txtRangeFrom" /></div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-3">Range To</div>
+                                            <div class="col-md-9"><input type="text" class="form-control" placeholder="Range To" ng-model="txtRangeTo" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Problem</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlProblem" ng-init="ddlProblem=0" required="" ng-selected="{{list.problemID==ddlProblem}}">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in problemList" value="{{list.problemID}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Color</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlColor" ng-init="ddlColor=0" required="" ng-selected="{{list.id==ddlColor}}">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in colorList" value="{{list.id}}">
+                                                {{list.colorName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Ratio-1</div>
+                                    <div class="col-md-4"><input type="NUMBER" class="form-control" placeholder="Ratio-1" ng-model="txtRatio1" /></div>
+                                    <div class="col-md-2">Ratio-2</div>
+                                    <div class="col-md-3"><input type="NUMBER" class="form-control" placeholder="Ratio-2" ng-model="txtRatio2" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Score</div>
+                                    <div class="col-md-9"><input type="NUMBER" class="form-control" placeholder="Score" ng-model="txtScore" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Remark</div>
+                                    <div class="col-md-9"><input type="text" class="form-control" placeholder="Remark" ng-model="txtRemark" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveCalculatorScore();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Selected Calculator Score List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableCalculatorScore1" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Calculator</th>
+                                            <th>Parameter</th>
+
+                                            <th>Age From</th>
+                                            <th>Age To</th>
+                                            <th>Unit Name</th>
+                                            <th>Gender</th>
+
+                                            <th>Parameter Text</th>
+                                            <th>Range</th>
+                                            <th>Problem</th>
+                                            <th>Color</th>
+                                            <th>Ratio-1</th>
+                                            <th>Ratio-2</th>
+                                            <th>Score</th>
+                                            <th>Remark</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in calculatorScoreSelectedList | filter : search1" ng-class-odd="'striped'">
+                                            <td>{{list.calculatorName}}</td>
+                                            <td>{{list.parameterName}}</td>
+
+                                            <td>{{list.ageFrom}}</td>
+                                            <td>{{list.ageTo}}</td>
+                                            <td>{{list.unitName}}</td>
+                                            <td>{{list.gender}}</td>
+
+                                            <td> {{list.parameterText}}</td>
+                                            <td>{{list.rangeFrom}}  -  {{list.rangeTo}}</td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.colorName}}</td>
+                                            <td>{{list.ratio1}}</td>
+                                            <td>{{list.ratio2}}</td>
+                                            <td>{{list.score}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Calculator Score  List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableNutrient" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Calculator</th>
+                                            <th>Parameter</th>
+
+                                            <th>Age From</th>
+                                            <th>Age To</th>
+                                            <th>Unit Name</th>
+                                            <th>Gender</th>
+
+                                            <th>parameter Text</th>
+                                            <th>Range</th>
+                                            <th>Problem</th>
+                                            <th>Color</th>
+                                            <th>Ratio-1</th>
+                                            <th>Ratio-2</th>
+                                            <th>Score</th>
+                                            <th>Remark</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in calculatorScoreList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.calculatorName}}</td>
+                                            <td>{{list.parameterName}}</td>
+
+                                            <td>{{list.ageFrom}}</td>
+                                            <td>{{list.ageTo}}</td>
+                                            <td>{{list.unitName}}</td>
+                                            <td>{{list.gender}}</td>
+
+                                            <td>{{list.parameterText}}</td>
+                                            <td>{{list.rangeFrom}}  -  {{list.rangeTo}}</td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.colorName}}</td>
+                                            <td>{{list.ratio1}}</td>
+                                            <td>{{list.ratio2}}</td>
+                                            <td>{{list.score}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

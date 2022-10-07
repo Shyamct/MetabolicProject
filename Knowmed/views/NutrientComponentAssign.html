@@ -1,0 +1,223 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Assign Nutrient Component </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">phenomenon</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlPhenomenon" ng-init="ddlPhenomenon=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in phenomenList" value="{{list.nutrientPhenomenID}}">
+                                                {{list.phenomen}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Nutrient</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlComponent" ng-init="ddlComponent=0" required="" ng-change="getSelectedNutrientComponentList();">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in componentList" value="{{list.componentID}}">
+                                                {{list.componentName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--<div class="col-md-2">Anti-oxidant</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlAntioxidant" ng-init="ddlAntioxidant=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in antioxidantList" value="{{list.id}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Nutrient CoFactor</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Storage Organ</div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" ng-model="ddlBodyOrganRegion" ng-init="ddlBodyOrganRegion=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in bodyOrganRegionList" value="{{list.id}}">
+                                                {{list.regionName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Storage</div>
+                                    <div class="col-md-4">
+                                        <input type="radio" ng-model="rbStorage" value="1"> Yes &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" ng-model="rbStorage" value="0"> No
+                                    </div>
+                                    <div class="col-md-2">No Of Days</div>
+                                    <div class="col-md-4"><input type="text" class="form-control" placeholder="No Of Days" ng-model="txtDays" onkeypress="isNumeric(true);" /></div>
+                                </div>
+                            </div>
+                            <!--<div class="form-group col-md-12">
+        <div class="row">
+            <div class="col-md-2">Remark</div>
+            <div class="col-md-4"><textarea type="text" class="form-control" placeholder="Remark" ng-model="txtRemark"></textarea></div>
+            <div class="col-md-2">Reference</div>
+            <div class="col-md-4"><textarea class="form-control" placeholder="Reference" ng-model="txtReference"></textarea></div>
+        </div>
+    </div>-->
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">URL 1</div>
+                                    <div class="col-md-10"><input type="text" class="form-control" placeholder="Url 1" ng-model="txtUrl" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">URL 2</div>
+                                    <div class="col-md-10"><input type="text" class="form-control" placeholder="Url 2" ng-model="txtOtherUrl" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">URL 3</div>
+                                    <div class="col-md-10"><input type="text" class="form-control" placeholder="Url 3" ng-model="txtOtherUrlt" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveNutrientComponentAssign();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Selected Nutrient Component List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableselectedNutrientComponentAssign" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Nutrient CoFactor</th>
+                                            <th>Remark</th>
+                                            <th>Reference</th>
+                                            <th>URL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in selectedNutrientComponentList | filter : search1" ng-class-odd="'striped'">
+                                            <td>{{list.componentName}}</td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.url}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Nutrient Component Assigned List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableNutrientComponentAssign" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Phenomen</th>
+                                            <!--<th>Antioxidant</th>-->
+                                            <th>Nutrient</th>
+                                            <th>Nutrient CoFactor</th>
+                                            <!--<th>Remark</th>
+                                            <th>Reference</th>-->
+                                            <th>Storage</th>
+                                            <th>Storage Organ</th>
+                                            <th>No Of Days</th>
+                                            <!--<th>URL 1</th>-->
+                                            <th>URL</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in nutrientComponentAssignList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.phenomen}}</td>
+                                            <!--<td>{{list.antioxidant}}</td>-->
+                                            <td>{{list.componentName}}</td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <!--<td>{{list.remark}}</td>
+                                            <td>{{list.reference}}</td>-->
+                                            <td>{{list.storageText}}</td>
+                                            <td>{{list.regionName}}</td>
+                                            <td>{{list.days}}</td>
+                                            <!--<td>{{list.url}}</td>-->
+                                            <td ng-bind-html="list.allUrl|trustAsHtml">{{list.allUrl}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Geo Location</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Disease Geo Location
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="">
+                                            <option value="-1">--Select Problem--</option>
+                                            <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlRegion" ng-model="ddlRegion" ng-init="ddlRegion=-1" required="">
+                                            <option value="-1">--Select World Region--</option>
+                                            <option ng-repeat="list in MultipleTableWiseList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlCountry" ng-model="ddlCountry" ng-init="ddlCountry=-1" required="" ng-change="State()">
+                                            <option value="-1">--Select Country--</option>
+                                            <option ng-repeat="list in CountryList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlState" ng-model="ddlState" ng-init="ddlState=-1" required="" ng-change="City()">
+                                            <option value="-1">--Select State--</option>
+                                            <option ng-repeat="list in StateList" ng-selected="{{list.id==ddlState}}" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>                                   
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlCity" ng-model="ddlCity" ng-init="ddlCity=-1" required="">
+                                            <option value="-1">--Select City--</option>
+                                            <option ng-repeat="list in CityList" ng-selected="{{list.id==ddlCity}}" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveDiseaseGeoLocation();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Geo Location List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Problem</th>
+                                            <th>World Region</th>
+                                            <th>Country</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in DiseaseGeoLocationList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.worldRegion}}</td>
+                                            <td>{{list.country}}</td>
+                                            <td>{{list.state}}</td>
+                                            <td>{{list.city}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>   <a href="" ng-click="DeleteDiseaseGeoLocation(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

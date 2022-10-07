@@ -1,0 +1,175 @@
+﻿ <!--Assign MEdicine To Group-->
+<div class="container-fluid">
+
+
+    <h2>Assign Medicine To Group</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assign Medicine To Group
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Classfication Name</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" id="ddlClassification" ng-model="ddlClassification" ng-init="ddlClassification=0" ng-required="">
+                                            <option value="0">--Select Classification--</option>
+                                            <option ng-repeat="list in classificationList" value="{{list.classificationID}}">
+                                                {{list.classificationName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">System Name</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" id="ddlSystem" ng-model="ddlSystem" ng-init="ddlSystem=0" ng-required="">
+                                            <option value="0">--Select System--</option>
+                                            <option ng-repeat="list in bodySystemList" value="{{list.systemID}}">
+                                                {{list.systemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Medicine Name</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" id="ddlMedicine" ng-model="ddlMedicine" ng-init="ddlMedicine=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Group Name</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" id="ddlMedicineGroup" ng-model="ddlMedicineGroup" ng-init="ddlMedicineGroup=0" ng-required="" ng-change="bindGroup(ddlMedicineGroup);">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="medicineGroup in medicineGroupMasterList" value="{{medicineGroup.id}}">
+                                                {{medicineGroup.groupName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div ng-repeat="c in medicineParentGroup ">
+                                        <label for="parentGroup">
+                                            <input id="chkGroupParent" type="checkbox" ng-model="c.Selected" value="{{c.parentGroupID}}" />
+                                            {{c.groupName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <fieldset>
+                                <legend>Reference</legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" ng-model="ddlbookname" ng-init="ddlbookname=0" required="">
+                                            <option value="0">--Select Book--</option>
+                                            <option ng-repeat="list in bookList" value="{{list.bookID}}">
+                                                {{list.bookName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4"><input type="text" class="form-control" placeholder="Page No." ng-model="txtpageno" /></div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="Edition" ng-model="txtedition" onkeypress="isNumeric(1)" />
+                                    </div>
+                                </div>
+                            </fieldset>     
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineGroupParentHierarchy();" /></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assigned  Medicine Group List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchMedicineGroup">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Action</th>
+                                            <th>Classification Name</th>
+                                            <th>System Name</th>
+                                            <th>Medicine Name</th>
+                                            <th>Group Name</th>
+                                            <th>Parent Group Name</th>
+                                            <th>Book Name</th>
+                                            <th>Page No</th>
+                                            <th>Edition</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in assignedMedicineGroupList | filter : searchMedicineGroup" ng-class-odd="'striped'">
+                                            <td>{{$index + 1}}</td>
+                                            <td>
+                                                <a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                                <a href="" ng-click="deleteMedicineGroup(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td>{{list.classificationName}}</td>
+                                            <td>{{list.systemName}}</td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.groupName}}</td>
+                                            <td>
+                                                <table rules="rows" style="width:100%;border:1px solid #000;" ng-if="list.details.length > 0">
+                                                    <thead class="theadCustom">
+                                                        <tr>
+                                                            <td class="col-md-2 labelHeadStyle">Group Name</td>
+                                                            <td class="col-md-2 labelHeadStyle">Action</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyCustomList">
+                                                        <tr ng-repeat="process in list.details">
+                                                            <td class="col-md-2">{{process.groupName}}</td>
+                                                            <td><a href="" ng-click="deleteMedicineGroupParentHierarchy(process.id)" title="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>{{list.bookName}}</td>
+                                            <td>{{list.pageNo}}</td>
+                                            <td>{{list.edition}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

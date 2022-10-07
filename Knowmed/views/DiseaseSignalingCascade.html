@@ -1,0 +1,218 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Signaling Cascade</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Disease Signaling Cascade
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="" ng-change="dSignalingCascadeList();">
+                                            <option value="-1">--Select Problem--</option>
+                                            <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlNutrient" ng-model="ddlNutrient" ng-init="ddlNutrient=-1" required="">
+                                            <option value="-1">--Select Cascade--</option>
+                                            <option ng-repeat="list in NutrientMasterList" value="{{list.id}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ddlStatus" ng-model="ddlStatus" ng-init="ddlStatus=-1" required="" onchange="loadISRDA();">
+                                            <option value="-1">--Select Effect--</option>
+                                            <option ng-repeat="list in StatusMasterList" value="{{list.roleTypeID}}">
+                                                {{list.statusFor}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div ng-show="ddlStatus==1">
+                                            IS RDA Required: <input type="checkbox" ng-model="isRDA" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4" id="harmful">
+                                        <textarea class="form-control" ng-model="txtHarmfulEffect" placeholder="Harmful Effect" rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-4" id="beneficial">
+                                        <textarea class="form-control" ng-model="txtBeneficialEffect" placeholder="Beneficial Effect" rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-1">Problem Level</div>
+                                    <div class="col-md-3">
+                                        <select select2 class="form-control" id="ddlProblemLevel" ng-model="ddlProblemLevel" ng-init="ddlProblemLevel=-1" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in EffectLevelList" value="{{list.effectLevelID}}">
+                                                {{list.effectLevel}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" ng-model="txtFunction" placeholder="Function" rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <textarea class="form-control" ng-model="txtRemark" placeholder="Remark" rows="3"></textarea>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-xs btn-info" ng-click="addFunction()" ng-disabled="isDisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="functionList.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableDiseaseMaster" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Function</th>
+                                                    <th>Remark</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in functionList track by $index" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.nutrientFunction}}</td>
+                                                    <td>{{list.remark}}</td>
+                                                    <td><a href="" ng-click="deleteFunction($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveDiseaseSignalingCascade();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Signaling Cascade List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Action</th>
+                                            <th>Disease</th>
+                                            <th>Cascade</th>
+                                            <th>Effect</th>
+                                            <th>Harmful Effect</th>
+                                            <th>RDA Required</th>
+                                            <th>Beneficial Effect</th>
+                                            <th>Problem Level</th>
+                                            <th>Function</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in DiseaseSignalingCascadeList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>
+                                                <a href="" ng-click="editDiseaseSignalingCascade(list.id)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                                <a href="" ng-click="viewHistoryDetails(list.id)" title="Edit Function"><i class="fa fa-eye" tooltip="Edit Function"></i></a> |
+                                                <a href="" ng-click="DeleteDiseaseSignalingCascade(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            </td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.nutrientName}}</td>
+                                            <td>{{list.roleType}}</td>
+                                            <td>{{list.roleHarmful}}</td>
+                                            <td>{{list.isRDA}}</td>
+                                            <td>{{list.roleBeneficial}}</td>
+                                            <td>{{list.effectLevel}}</td>
+                                            <td>{{list.functions}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+
+                <div class="modal-content">
+
+                    <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh; margin-bottom:0rem!important;">
+                        <table id="tableTroughValue" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Function</th>
+                                    <th>Remark</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="list in DiseaseFunctionList" ng-class-odd="'striped'">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{list.nutrientFunction}}</td>
+                                    <td>{{list.remark}}</td>
+                                    <td><a href="" ng-click="editFunction(list.id)" title="Edit"><i class="fa fa-edit"></i></a> |
+                                    <a href="" ng-click="deleteFunctionDetail(list.id, list.diseaseNutrientRoleID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <textarea class="form-control" ng-model="txtFunctionEdit" placeholder="Function"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea class="form-control" ng-model="txtRemarkEdit" placeholder="Remark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-success pull-left" value="Save" ng-click="saveFunction();" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,170 @@
+﻿<div class="container-fluid">
+    <h2>Medicine Antidote</h2>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Add Medicine Antidote 
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Medicine</div>
+                                <div class="col-md-4">
+                                    <select select2 class="form-control" id="ddlmedicine" ng-model="ddlmedicine" ng-init="ddlmedicine=0" ng-required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in medicineList" value="{{list.medicineID}}">
+                                            {{list.medicineName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Antidote</div>
+                                <div class="col-md-3">
+                                    <select select2 class="form-control" id="ddlAntidote" ng-model="ddlAntidote" ng-init="ddlAntidote=0" ng-required="">
+                                        <option value="0">--Select--</option>
+                                        <option ng-repeat="list in antidoteList" value="{{list.antidoteID}}">
+                                            {{list.antidoteName}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    IsSpecific: &nbsp;&nbsp;<input type="checkbox" ng-checked="chkIsSpecific" ng-model="chkIsSpecific" value="false" />
+                                </div>
+
+                                <div class="col-md-1">Machanism</div>
+                                <div class="col-md-3">
+                                    <textarea type="text" class="form-control" ng-model="txtMachanism" placeholder="Machanism" />
+                                </div>
+                                <div class="col-md-1 noPadding">
+                                    <button class="btn btn-xs btn-info" ng-click="AddAntidote()" ng-disabled="btnAdd">
+                                        <span class="glyphicon glyphicon-plus"></span>Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="addedAntidoteList.length >0" style="padding-top:5px">
+                                    <div class="col-md-12 col-sm-12 table table-sm table-responsive table-border">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Antidote</th>
+                                                    <th>IsSpecific</th>
+                                                    <th>Machanism</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in addedAntidoteList" ng-class-odd="'striped'">
+                                                    <td>{{list.antidoteName}}</td>
+                                                    <td>{{list.isSpecific}}</td>
+                                                    <td>{{list.machanism}}</td>
+                                                    <td><a href="" ng-click="deleteAntidote($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">Reference</div>
+                                <div class="col-md-10">
+                                    <textarea type="text" class="form-control" ng-model="txtReference" placeholder="Reference" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <fieldset>
+                                <legend>Reference</legend>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select select2 class="form-control" id="ddlbookname" ng-model="ddlbookname" ng-init="ddlbookname=0" required="">
+                                            <option value="0">--Select Book--</option>
+                                            <option ng-repeat="list in bookList" value="{{list.bookID}}">
+                                                {{list.bookName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4"><input type="text" class="form-control" placeholder="Page No." ng-model="txtpageno" /></div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" placeholder="Edition" ng-model="txtedition" onkeypress="isNumeric(1)" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-3 text-left">
+                                    <input type="button" class="btn btn-success" value="Save" ng-click="saveMedicineAntidote();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Medicine Antidote List
+            </div>
+            <div class="panel-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class=" form-row col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                            <table id="tableDiseaseMaster" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Medicine Name</th>
+                                        <th>Antidote Name</th>
+                                        <th>IsSpecific</th>
+                                        <th>Machanism</th>
+                                        <th>Reference</th>
+                                        <th>Book Name</th>
+                                        <th>Page No</th>
+                                        <th>Edition</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="list in medicineAntidoteList | filter : search" ng-class-odd="'striped'">
+                                        <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        <td>{{list.medicineName}}</td>
+                                        <td>{{list.antidoteName}}</td>
+                                        <td>{{list.isSpecific==true?'Yes':'No'}}</td>
+                                        <td>{{list.machanism}}</td>
+                                        <td>{{list.reference}}</td>
+                                        <td>{{list.bookName}}</td>
+                                        <td>{{list.pageNo}}</td>
+                                        <td>{{list.edition}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,227 @@
+﻿
+<div class="container-fluid">
+  
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Calculator Parameter Master</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Calculator Parameter
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Label To Display</div>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" ng-model="txtLabelToDisplay" ng-required="" placeholder="Label To Display" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Control Name</div>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" ng-model="txtControlName" ng-required="" placeholder="Control Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Unit</div>
+                                    <div class="col-md-5">
+                                        <select class="form-control" ng-model="ddlUnit" id="ddlUnit" ng-init="ddlUnit=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in unitList" value="{{list.unitID}}">
+                                                {{list.unitName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Is Default:</div>
+                                    <div class="col-md-2">
+                                        <input type="radio" ng-model="rdIsDefault" value="1" />Yes &nbsp;&nbsp;
+                                        <input type="radio" ng-model="rdIsDefault" value="0" />No &nbsp;&nbsp;
+                                    </div>
+                                    <div class="col-md-1"><button class="btn btn-xs btn-info" ng-click="addUnit()"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="addedUnitNameList.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Unit</th>
+                                                    <th>Is Default</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in addedUnitNameList" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.unit}}</td>
+                                                    <td>{{list.isDefault}}</td>
+                                                    <td><a href="" ng-click="deleteUnitList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Label Type</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlLabelType" ng-init="ddlLabelType=0" required="" ng-change="getControlBind()">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in labelTypeList" value="{{list.labelType}}">
+                                                {{list.labelType}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Table Name</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlTable" ng-init="ddlTable=0" required="" ng-change="getOtherParameters(ddlTable)">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in tableList" value="{{list.tableName}}" ng-selected="{{list.tableName == ddlTable}}">
+                                                {{list.tableName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Select Parameter</div>
+                                    <div class="col-md-9">
+                                        {{list.parameterName}}
+
+                                        <select select2 class="form-control" ng-model="ddlParameter" ng-init="ddlParameter=0" required="" style="width:100%">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in otherParametersList" value="{{list.parameterID}}" ng-selected="{{list.parameterID == ddlParameter}}">
+                                                {{list.parameterName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Control Type</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" ng-model="ddlControlType" ng-init="ddlControlType=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in controlTypeList" value="{{list.controlText}}">
+                                                {{list.controlText}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12" ng-if="ddlControlType=='dropdown'">
+                                <div class="row">
+                                    <div class="col-md-3">Values:</div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" ng-model="txtValueForDD" id="txtValueForDD" ng-required="" placeholder="Values For Drop Down" />
+                                    </div>
+                                    <div class="col-md-1"><button class="btn btn-xs btn-info" ng-click="addValueForDD()"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="addedValueList.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Value</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in addedValueList" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.values}}</td>
+
+                                                    <td><a href="" ng-click="deleteValueList($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="SaveCalculatorParameter()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Calculator Parameter List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                        <input type="text" class="form-control col-md-12" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Label To Display</th>
+                                            <th>Control Name</th>
+                                            <th>Label Type</th>
+                                            <th>Control Bind Table</th>
+                                            <th>Parameter</th>
+                                            <th>Control Type</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in calculatorParameterMasterList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{list.labelDisplay}}</td>
+                                            <td>{{list.controlName}}</td>
+                                            <td>{{list.labelType}}</td>
+                                            <td>{{list.tableName}}</td>
+                                            <td>{{list.parameterName}}</td>
+                                            <td>{{list.controlType}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deleteCalculatorParameterMaster(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <!--<td><i class="fa fa-eye" style="color:deepskyblue" tooltip="View" ng-click="viewHistoryDetails(history)">&nbsp;View</i></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

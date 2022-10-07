@@ -1,0 +1,210 @@
+﻿
+<div class="container-fluid">
+    <h2>Differential Diagnosis</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Diagnosis
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="warning">
+                                            <p><strong>Note:</strong> Add differential diagnosis</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Disease</div>
+                                    <div class="col-md-9">
+                                        <!--<select class="form-control" ng-model="ddlDisease" required="" ng-change="GetdifferentialDiagnosisList(ddlDisease.disease)">-->
+                                            <select class="form-control" ng-model="ddlDisease" required="" ng-change="GetdifferentialDiagnosisList(ddlDisease)" ng-options="disease as disease.disease for disease in loadDiseaseList">
+                                            <option value="">--Select--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for disease..." aria-describedby="basic-addon2" ng-model="searchDiseaseList">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Disease List</label>
+                                        <select multiple="multiple" size="23" class="form-control" ng-model="listDisease" id="listDisease" ng-options="disease as disease.disease for disease in listBindDisease | filter : searchDiseaseList | uppercase">
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <br /><br />
+                                                <button ng-click="moveItemToCommon(listDisease,selectedDiseaseCommon)" class="btn btn-default btn-sm move-left">
+                                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                                </button>
+                                                <br />
+                                                <button ng-click="moveItembackToDiseasefromCommon(listDiseaseCommon,listBindDisease)" class="btn btn-default btn-sm move-left">
+                                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                                </button>
+                                                <br />
+                                                <button class="btn btn-default btn-sm move-left" data-toggle="modal" data-target="#myModal">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <label>Differential Diagnosis (Most Common)</label>
+                                                <select multiple="multiple" size="10" class="form-control" ng-model="listDiseaseCommon" id="listDiseaseCommon" ng-options="disease as disease.disease for disease in selectedDiseaseCommon">
+                                                </select>
+                                            </div>
+                                   
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <br /><br />
+                                                <button ng-click="moveItemToCommon(listDisease,selectedDiseaseRare)" class="btn btn-default btn-sm move-left">
+                                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                                </button>
+                                                <br />
+                                                <button ng-click="moveItembackToDiseasefromRare(listDiseaseRare,listBindDisease)" class="btn btn-default btn-sm move-left">
+                                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                                </button>
+                                                <br />
+                                                <button class="btn btn-default btn-sm move-left" data-toggle="modal" data-target="#myModal">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <label>Differential Diagnosis (Rare)</label>
+                                                <select multiple="multiple" size="10" class="form-control" ng-model="listDiseaseRare" id="listDiseaseRare" ng-options="disease as disease.disease for disease in selectedDiseaseRare">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Reference</div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" placeholder="Reference" ng-model="txtReference" />
+                                    </div>
+                                    <div class="col-md-3">URL</div>
+                                    <div class="col-md-3">
+
+                                        <input type="text" class="form-control" placeholder="URL" ng-model="txtURL" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="saveDifferentialDiagnosis()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal popup-->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Disease</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">Disease</div>
+                            <div class="col-md-6">
+                                <input list="datalistDisease" class="form-control" placeholder="Disease" ng-model="txtDisease" />
+                                <datalist id="datalistDisease" ng-model="datalistDisease">
+                                    <option ng-repeat="disease in loadDiseaseList" value="{{disease.disease}}">{{disease.diseaseID}}</option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-success" value="Save" ng-click="saveDiseaseMaster()" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal popup-->
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Differential Diagnosis List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableRDA" class="table table-bordered">
+                                    <thead>
+                                        <tr class="table-sm">
+                                            <th>Differential Diagnosis for-</th>
+                                            <th>{{ddlDisease.disease}}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Action</th>
+                                            <!--<th>Disease</th>-->
+                                            <th>Differential Diagnosis</th>
+                                            <th>Type</th>
+                                            <th>reference</th>
+                                            <th>refURL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in differentialDiagnosisList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="delete(list.ddDiseaseRefID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <!--<td>{{list.disease}}</td>-->
+                                            <td>{{list.differentialDisease}}</td>
+                                            <td>{{list.ddType}}</td>
+                                            <td>{{list.reference}}</td>
+                                            <td>{{list.refURL}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

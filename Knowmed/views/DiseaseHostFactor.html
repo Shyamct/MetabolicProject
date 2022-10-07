@@ -1,0 +1,196 @@
+﻿
+<div class="container-fluid">
+    <h2>Disease Host Factor</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Add Disease Host Factor
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=-1" required="">
+                                            <option value="-1">--Select Problem--</option>
+                                            <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select class="form-control" id="ddlGender" ng-model="ddlGender" ng-init="ddlGender=-1" required="">
+                                            <option value="-1">--Select Gender--</option>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+
+                                        </select>
+                                    </div>                                    
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtAgeFrom" placeholder="Age From" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" class="form-control" ng-model="txtAgeTo" placeholder="Age To" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlUnit" ng-model="ddlUnit" ng-init="ddlUnit=-1">
+                                            <option value="-1">--Select Age Unit--</option>
+                                            <option ng-repeat="list in UnitMasterList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlPopulationType" ng-model="ddlPopulationType" ng-init="ddlPopulationType=-1">
+                                            <option value="-1">--Select Population Type--</option>
+                                            <option ng-repeat="list in PopulationTypeMasterList" value="{{list.id}}">
+                                                {{list.populationName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlOccupation" ng-model="ddlOccupation" ng-init="ddlOccupation=-1">
+                                            <option value="-1">--Select Occupation--</option>
+                                            <option ng-repeat="list in OccupationList" value="{{list.id}}">
+                                                {{list.occupationName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlAddiction" ng-model="ddlAddiction" ng-init="ddlAddiction=-1">
+                                            <option value="-1">--Select Addiction--</option>
+                                            <option ng-repeat="list in AddictionMasterList" value="{{list.id}}">
+                                                {{list.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlAnimal" ng-model="ddlAnimal" ng-init="ddlAnimal=-1">
+                                            <option value="-1">--Select Animal--</option>
+                                            <option ng-repeat="list in AnimalMasterList" value="{{list.id}}">
+                                                {{list.animalName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlHistory" ng-model="ddlHistory" ng-init="ddlHistory=-1">
+                                            <option value="-1">--Select History--</option>
+                                            <option ng-repeat="list in ProblemMasterList" value="{{list.id}}">
+                                                {{list.problemName}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlDrug" ng-model="ddlDrug" ng-init="ddlDrug=-1">
+                                            <option value="-1">--Select Drug--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" ng-model="txtRemark" placeholder="Remark" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveDiseaseHostFactor();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Disease Host Factor List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableTroughValue" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Problem</th>
+                                            <th>Gender</th>
+                                            <th>Age From</th>
+                                            <th>Age To</th>
+                                            <th>Age Unit</th>
+                                            <th>Population Type</th>
+                                            <th>Occupation</th>
+                                            <th>Addiction</th>
+                                            <th>Animal</th>
+                                            <th>History</th>
+                                            <th>Drug</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in DiseaseHostFactorList | filter : search" ng-class-odd="'striped'">
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a>   <a href="" ng-click="DeleteDiseaseHostFactor(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.gender}}</td>
+                                            <td>{{list.ageFrom}}</td>
+                                            <td>{{list.ageTo}}</td>
+                                            <td>{{list.unit}}</td>
+                                            <td>{{list.populationName}}</td>
+                                            <td>{{list.occupationName}}</td>
+                                            <td>{{list.addiction}}</td>
+                                            <td>{{list.animalName}}</td>
+                                            <td>{{list.historyName}}</td>
+                                            <td>{{list.medicineName}}</td>
+                                            <td>{{list.remark}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

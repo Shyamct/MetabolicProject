@@ -1,0 +1,238 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Investigation Result Property Assign</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Investigation Result Property Name
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-md-3">Property Name</div>
+                                    <div class="col-md-6">
+                                        <input type="TEXT" class="form-control" ng-model="propertyName" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="savePropertyName();" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                                <table id="tableRecordCount" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Property Name</th>
+                                            <th>Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in propertyNameList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{list.propertyName}}</td>
+                                            <td><a href="" ng-click="editPropertyName(list.propertyNameID)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deletePropertyName(list.propertyNameID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Property Value Master
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+
+                                    <div class="col-md-3">Property Value</div>
+                                    <div class="col-md-6">
+                                        <input type="TEXT" class="form-control" ng-model="propertyValue" />
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input type="button" class="btn btn-success" value="Save" ng-click="savePropertyValue();" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchPropertyValue">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
+                                <table id="tableRecordCount" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Property Value</th>
+                                            <th>Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in propertyValueList | filter : searchPropertyValue" ng-class-odd="'striped'">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{list.propertyValueName}}</td>
+                                            <td><a href="" ng-click="editPropertyValue(list.propertyValueID)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deletePropertyValue(list.propertyValueID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Property Name Value Assign
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Property Name</div>
+                                    <div class="col-md-8">
+                                        <select class="form-control" id="ddlPropertyName" ng-model="ddlPropertyName" ng-init="ddlPropertyName=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in propertyNameList" value="{{list.propertyNameID}}">
+                                                {{list.propertyName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">Property Value</div>
+                                    <div class="col-md-6">
+                                        <select select2 class="form-control" id="ddlPropertyValue" ng-model="ddlPropertyValue" ng-init="ddlPropertyValue=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in propertyValueList" value="{{list.propertyValueID}}">
+                                                {{list.propertyValueName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-xs btn-info" ng-click="AssignPropertyNameValue()" ng-disabled="isDisabled">
+                                            <span class="glyphicon glyphicon-plus"></span>&nbsp;Add
+                                        </button> 
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <div class="row" ng-if="assignPropertyNameValueList.length>0">
+                                    <div class="col-md-12">
+                                        <table id="tableCalculators" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Property Name</th>
+                                                    <th>Property Value</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="list in assignPropertyNameValueList" ng-class-odd="'striped'">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{list.propertyName}}</td>
+                                                    <td>{{list.propertyValueName}}</td>
+
+                                                    <td><a href="" ng-click="deletePropertyNameValue($index)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="savePropertyNameValue();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Property Name Value Assigned List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="searchUnitFamilyAssign">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Property Name</th>
+                                            <th>Property Value</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in assignedPropertyNameValueList | filter : searchUnitFamilyAssign" ng-class-odd="'striped'">
+                                            <td>{{list.propertyName}}</td>
+                                            <td>{{list.propertyValueName}}</td>
+                                            <td><a href="" ng-click="editPropertyNameValueAssign(list.propertyNameValueID)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="deletePropertyNameValueAssign(list.propertyNameValueID)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

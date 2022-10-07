@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/StyleSheet.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="../../../js/cache.js"></script>
+    <script src="../../../script/global.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default" id="header">
+        <div class="container-fluid noPadding">
+            <div id="navbar" class="navbar-collapse collapse noPadding">
+                <ul class="nav navbar-nav noPadding">
+                    <li>
+                        <select id="ddlSection" class="form-control" onchange="getMarkerRelation(); sectionSubSectionChange();" style="width:25rem;">
+                            <option value="0">-- Select Section --</option>
+                        </select>
+                    </li>
+                    <li>
+                        <input id="txtSearch" class="form-control" style="width:25rem;" placeholder="Search Marker...">
+                    </li>
+                    <li>
+                        <input id="txtSearchFood" class="form-control" style="width:25rem;" placeholder="Search Food...">
+                    </li>
+                    <li>
+                        <input type="button" value=" > " class="btn btn-success" title="Next" onclick="searchNext();" />
+                    </li>
+                    <li class="marginRight1rem">
+                        <label>Count : </label>
+                    </li>
+                    <li>
+                        <label id="lblCount"></label>
+                    </li>
+                    <li class="marginRight1rem">
+                        <input id="txtPID" class="form-control" style="width:10rem;" placeholder="Patient ID...">
+                    </li>
+                    <!--<li>
+                        <input type="button" value="Test" class="btn btn-primary" title="Test" />
+                    </li>-->
+                    <li>
+                        <button id="menu-toggle" class="btn btn-secondary">
+                            <i id="toggleIcon" class="fa fa-angle-double-down"></i> Go <i class="fa fa-filter"></i>
+                        </button>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="noMargin">
+                        <input type="color" id="colorPicker" name="colorPicker" value="#ff0000">
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div id="investigationResultDiv">
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid content">
+                <object id="svgObject" data="svg/FinalChart.svg" type="image/svg+xml"></object>
+                <!-- Menu (Right-Click) -->
+                <ul class='custom-menu'>
+                    <li data-action="getMarkerDetail">Marker Detail</li>
+                    <li data-action="goToDiet">Go To Diet</li>
+                </ul>
+
+                <div class="modal fade" id="modalNav" style="width: 80%; left: 11%; display: none;" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-md-12 bhoechie-tab-container">
+                                    <div class="col-md-2 bhoechie-tab-menu">
+                                        <div class="list-group">
+                                            <a href="#" data-action="study" class="list-group-item active text-center">
+                                                <h5>Research Study</h5>
+                                            </a>
+                                            <a href="#" data-action="rda" class="list-group-item text-center">
+                                                <h5>RDA Detail</h5>
+                                            </a>
+                                            <a href="#" data-action="ecg" class="list-group-item text-center">
+                                                <h5>ECG Comparison</h5>
+                                            </a>
+                                            <a href="#" data-action="machine" class="list-group-item text-center">
+                                                <h5>Machine Details</h5>
+                                            </a>
+                                            <a href="#" data-action="stock" class="list-group-item text-center">
+                                                <h5>Stock Details</h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10 bhoechie-tab">
+                                        <div class="bhoechie-tab-content active">
+                                            <div class="col-md-12 contentDiv noPadding">
+                                                <div class="col-md-12 col-sm-12 noPadding">
+                                                    <label class="boldtext">Research Study</label>
+                                                </div>
+                                                <table class="table table-bordered" id="tblMarkerDetail">
+                                                    <thead>
+                                                        <tr>
+                                                            <td class="td_SerialNo">S No.</td>
+                                                            <td class="td_Phenomenon">Phenomenon</td>
+                                                            <td class="td_Parameter">Parameter</td>
+                                                            <td class="td_StudyLevel">StudyLevel</td>
+                                                            <td class="td_Location">Location</td>
+                                                            <td class="td_Meaning">Meaning</td>
+                                                            <td class="td_CentralCompound">CentralCompound</td>
+                                                            <td class="td_AssociatedProblem">Associated Problem</td>
+                                                            <td class="td_ErasHypotdesis">Era's Hypotdesis</td>
+                                                            <td class="td_StudyTreatment">Study Treatment</td>
+                                                            <td class="td_OtderPatdwayDetails">Otder Patdway Details</td>
+                                                            <td class="td_StudyReferenceDetails">Study Reference Details</td>
+                                                            <td class="td_BloodBrainBarrierDetails">Blood Brain Barrier Details</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="bhoechie-tab-content">
+                                            <div class="col-md-12 contentDiv noPadding">
+                                                <div class="col-md-12 col-sm-12 noPadding">
+                                                    <label class="boldtext">RDA Detail</label>
+                                                </div>
+                                                <table class="table table-bordered table-striped" id="tblMarkerRDADetail">
+                                                    <thead>
+                                                        <tr>
+                                                            <td class="td_peakValue">Peak Value</td>
+                                                            <td class="td_tHalfValue">THalf Value</td>
+                                                            <td class="td_rda">RDA</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="bhoechie-tab-content">
+                                            <div class="col-md-12 contentDiv noPadding">
+                                                <div class="col-md-12 col-sm-12 noPadding">
+                                                    <label class="boldtext">ECG Comparison</label>
+                                                </div>
+                                                <div class="col-md-7 marginBottom2rem marginTop1rem noPadding">
+                                                    <table class="myTable" style="width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th id="td_Name"></th>
+                                                                <th id="td_AgeGender"></th>
+                                                                <th id="td_Ward"></th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-5 marginTop1rem pull-right">
+                                                    <div class="col-md-4"><strong class="pull-right">Lead : </strong></div><div class="col-md-4"><select style="width:100%;" id="ddlLead" onchange="getECGComparison()"></select></div>
+                                                </div>
+                                                <div id="divECGComparison"></div>
+                                            </div>
+                                        </div>
+                                        <div class="bhoechie-tab-content">
+                                            <div class="col-md-12 contentDiv noPadding">
+                                                <div class="col-md-12 col-sm-12 noPadding">
+                                                    <label class="boldtext">Machine Details</label>
+                                                </div>
+                                                <div class="col-md-12 marginBottom2rem marginTop1rem noPadding">
+                                                    <table class="table table-bordered table-striped" id="tblTestMachineDetail">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="td_machineName">Machine Name</td>
+                                                                <td class="td_machineLocation">Machine Location</td>
+                                                                <td class="td_intercomNumber">Intercom Number</td>
+                                                                <td class="td_resultTime">Test Result Time</td>
+                                                                <td class="td_itemCharge">Test Cost</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bhoechie-tab-content">
+                                            <div class="col-md-12 contentDiv noPadding">
+                                                <div class="col-md-12 col-sm-12 noPadding">
+                                                    <label class="boldtext">Stock Details</label>
+                                                </div>
+                                                <div class="col-md-12 marginBottom2rem marginTop1rem noPadding">
+                                                    <table class="table table-bordered table-striped" id="tblItemStock">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="td_Item">Item Name</td>
+                                                                <td class="td_Category">Category</td>
+                                                                <td class="td_Quantity">Quantity</td>
+                                                                <td class="td_StoreName">Store Name</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger marginTop1rem" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    <!-- /#wrapper -->
+
+
+    <script src="js/Variable.js"></script><!--Must be added before Script.js-->
+    <script src="js/Script.js"></script>
+</body>
+</html>

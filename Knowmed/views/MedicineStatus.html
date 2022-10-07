@@ -1,0 +1,273 @@
+﻿
+
+<script src="../js/table2excel.js"></script>
+<div class="container-fluid">
+    <h2>Medicine Report</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Medicine</div>
+                                    <div class="col-md-11">
+                                        <select select2 class="form-control" id="ddlMedicine" ng-model="ddlMedicine" ng-init="ddlMedicine=-1" required="" ng-change="MedicineStatus()">
+                                            <option value="-1">--Select--</option>
+                                            <option ng-repeat="list in medicineList" value="{{list.id}}">
+                                                {{list.medicineName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Medicine Report
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+
+
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-link" ng-click="exportData()">
+                                <span class="glyphicon glyphicon-share"></span>
+                                Export to Excel
+                            </button>
+
+                            <input type="button" class="btn btn-success" value="Print" ng-click="printDiv('divPrint');" />
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh" id="divPrint">
+                                <table id="tableMedicineReport" class="table table-bordered" style="table-layout:fixed; width:100%;">
+                                    <thead>
+
+                                        <tr>
+                                            <th>Medicine</th>
+                                            <th>Group/Brand</th>
+                                            <th>Dosage Form</th>
+                                            <th>Dose</th>
+                                            <th>Route Of Administration</th>
+                                            <th>Pathway</th>
+                                            <th>Mechanism Of Action</th>
+                                            <th>Pharmaco Kinetics</th>
+                                            <th>Indications/Uses</th>
+                                            <th>Side Effects</th>
+                                            <th>Drug Interactions</th>
+                                            <th>Mechanism Of Drug Interaction</th>
+                                            <th>Desired Effect</th>
+                                            <th>Disease</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in MedicineStatusList | filter : search">
+                                            <td ng-bind-html="list.medicineName|trustAsHtml">
+                                                {{list.medicineName}}
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.groupCount == '0' ">
+                                                    <b>Group:</b>  No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineGroup()">{{list.groupCount}}</a>
+                                                </div>
+                                                <div ng-if="list.groupCount != '0'">
+                                                    <b>Group:</b>    Yes:   <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.groupDetails);">{{list.groupCount}}</a>
+                                                </div>
+                                                <div ng-if="list.brandCount == '0' ">
+                                                    <b>Brand:</b>  No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineBrand()">{{list.brandCount}}</a>
+                                                </div>
+                                                <div ng-if="list.brandCount != '0'">
+                                                    <b>Brand:</b>    Yes:   <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.brandDetails);">{{list.brandCount}}</a>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.dosageFormCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineDose()">{{list.dosageFormCount}}</a>
+                                                </div>
+                                                <div ng-if="list.dosageFormCount != '0'">
+                                                    Yes:   <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.dosageFormDetails);">{{list.dosageFormCount}}</a>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                                <div ng-if="list.adultDoseCount == '0' ">
+                                                    <b>Adult Dose:</b>  No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineDose()">{{list.adultDoseCount}}</a>
+                                                </div>
+                                                <div ng-if="list.adultDoseCount != '0'">
+                                                    <b>Adult Dose:</b>    Yes:   <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.adultDoseDetails);">{{list.adultDoseCount}}</a>
+                                                </div>
+                                                <div ng-if="list.pediatricDoseCount == '0' ">
+                                                    <b>Pediatric Dose:</b>  No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineDose()">{{list.pediatricDoseCount}}</a>
+                                                </div>
+                                                <div ng-if="list.pediatricDoseCount != '0'">
+                                                    <b>Pediatric Dose:</b>    Yes:   <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.pediatricDoseDetails);">{{list.pediatricDoseCount}}</a>
+                                                </div>
+
+
+
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.routeAdministrationCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineContraIndication()">{{list.routeAdministrationCount}}</a>
+                                                </div>
+                                                <div ng-if="list.routeAdministrationCount != '0'">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.routeAdministrationDetails);">{{list.routeAdministrationCount}}</a>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.pathwayCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicinePathwayActivator()">{{list.pathwayCount}}</a>
+                                                </div>
+                                                <div ng-if="list.pathwayCount != '0'">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.pathwayDetails);">{{list.pathwayCount}}</a>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.mechanismOfActionCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineMechanismAction()">{{list.mechanismOfActionCount}}</a>
+                                                </div>
+                                                <div ng-if="list.mechanismOfActionCount != '0'">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.mechanismOfActionDetails);">{{list.mechanismOfActionCount}}</a>
+                                                </div>
+
+                                            </td>
+                                            <td>
+
+                                                <div ng-if="list.tHalfCount == '0' ">
+                                                    <b>THalf </b> No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medTHalf()">{{list.tHalfCount}}</a>
+                                                </div>
+                                                <div ng-if="list.tHalfCount != '0'">
+                                                    <b>THalf </b>Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.tHalfDetails);">{{list.tHalfCount}}</a>
+                                                </div>
+                                                <div ng-if="list.peakCount == '0' ">
+                                                    <b>Peak </b> No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medPeakValue()">{{list.peakCount}}</a>
+                                                </div>
+                                                <div ng-if="list.peakCount != '0'">
+                                                    <b>Peak </b>Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.peakDetails);">{{list.peakCount}}</a>
+                                                </div>
+                                                <div ng-if="list.troughCount == '0' ">
+                                                    <b>Trough </b> No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medTroughValue()">{{list.troughCount}}</a>
+                                                </div>
+                                                <div ng-if="list.troughCount != '0'">
+                                                    <b>Trough </b>Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.troughDetails);">{{list.troughCount}}</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.indicationCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineIndication()">{{list.indicationCount}}</a>
+                                                </div>
+                                                <div ng-if="list.indicationCount != '0' ">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.indicationDetails);">{{list.indicationCount}}</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.sideEffectCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="drugSideEffect()">{{list.sideEffectCount}}</a>
+                                                </div>
+                                                <div ng-if="list.sideEffectCount != '0' ">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.sideEffectDetails);">{{list.sideEffectCount}}</a>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.drugInteractionCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medInteraction()">{{list.drugInteractionCount}}</a>
+                                                </div>
+                                                <div ng-if="list.drugInteractionCount != '0' ">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.drugInteractionDetails);">{{list.drugInteractionCount}}</a>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.mechanismOfDrugInteractionCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineMechanismInteraction()">{{list.mechanismOfDrugInteractionCount}}</a>
+                                                </div>
+                                                <div ng-if="list.mechanismOfDrugInteractionCount != '0' ">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.mechanismOfDrugInteractionDetails);">{{list.mechanismOfDrugInteractionCount}}</a>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.desiredEffectCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="medicineAction()">{{list.desiredEffectCount}}</a>
+                                                </div>
+                                                <div ng-if="list.desiredEffectCount != '0' ">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.desiredEffectDetails);">{{list.desiredEffectCount}}</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div ng-if="list.diseaseCount == '0' ">
+                                                    No:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:red; text-align: center; justify-content: center;align-items: center;color:white; " ui-sref="assignMedicineToDisease({id: list.id})">{{list.diseaseCount}}</a>
+                                                </div>
+                                                <div ng-if="list.diseaseCount != '0' ">
+                                                    Yes:  <a class="dot" style="height: 25px; width: 25px;border-radius: 50%;display: inline-block;background-color:green;text-align: center;justify-content: center;align-items: center;color:white; " href="" ng-click="showModel(list.diseaseDetails);">{{list.diseaseCount}}</a>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td align="center" colspan="14   ">
+                                                <span class="form-group pull-left page-size form-inline">
+                                                    <select id="ddlPageSize" class="form-control control-color"
+                                                            ng-model="pageSizeSelected"
+                                                            ng-change="changePageSize()">
+                                                        <option value="5">5</option>
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                    </select>
+                                                </span>
+                                                <div class="pull-right">
+                                                    <pagination total-items="totalCount" ng-change="pageChanged()" items-per-page="pageSizeSelected" direction-links="true" ng-model="pageIndex" max-size="maxSize" class="pagination" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+                                                    <a class="btn btn-primary">Page: {{pageIndex}} / {{numPages}}</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="overlay" ng-show="showEffect">
+        <div class="modal-dialog modal-history">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#bd362f;color:#fff">
+                    <i class="fa fa-times pull-right" style="font-size:2rem;color:#fff" ng-click="showEffect=false"></i>
+                    <h4 class="modal-title">   </h4>
+                </div>
+                <div class="modal-body fullHeight noPadding">
+                    <div class="col-md-12 col-sm-12 padding1rem table-responsive fontSize1p2rem" ng-bind-html="viewEffect| renderHTMLCorrectly">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

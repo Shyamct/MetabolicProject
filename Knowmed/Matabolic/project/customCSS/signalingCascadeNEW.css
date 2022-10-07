@@ -1,0 +1,298 @@
+﻿
+@-webkit-keyframes blink1 {
+    50%
+
+{
+    border-color: #1e8449;
+}
+
+}
+
+.blink1 {
+    border: 2px white dashed;
+    -webkit-animation: blink1 .5s step-end infinite alternate;
+    background-color: chartreuse;
+    font-weight: bold;
+    /*text-transform: uppercase;*/
+    padding: 3px;
+}
+
+@-webkit-keyframes blink2 {
+    50% {
+        border-color: #ff0000;
+    }
+}
+
+.blink2 {
+    border: 2px white dashed;
+    -webkit-animation: blink2 .5s step-end infinite alternate;
+    background-color: chartreuse;
+    font-weight: bold;
+    /*text-transform: uppercase;*/
+    padding: 3px;
+}
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('img/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .6;
+}
+
+
+th {
+    text-align: center !important;
+    font-size: 12px;
+}
+
+.td_CascadeNutrient {
+    text-align: center !important;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#tblSignaling ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#tblSignaling li {
+    padding-left: 10px;
+    line-height: 32px;
+}
+
+.pieChart {
+    width: 10%;
+    float: right;
+    cursor: pointer;
+}
+
+.commonFoodFamily {
+    width: 80%;
+    float: left;
+    color: #1e00f6;
+    cursor: pointer;
+}
+
+.commonFood {
+    width: 90%;
+    float: left;
+    color: #1e00f6;
+    cursor: pointer;
+}
+
+.uncommonFoodFamily {
+    width: 100%;
+    color: #8a5ea5;
+    cursor: pointer;
+}
+
+.foodFamilyPanel {
+    width: 100%;
+    /*max-height: 40rem;
+            overflow-y: auto;*/
+}
+
+.nutrientFunction {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    list-style: disc !important;
+    padding-left: 2rem !important;
+}
+
+    .nutrientFunction li {
+        line-height: 20px !important;
+        text-align: left;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+.process {
+    margin-top: 0.5rem !important;
+    list-style: disc !important;
+    padding-left: 1rem !important;
+}
+
+    .process li {
+        line-height: 20px !important;
+        text-align: left;
+        font-size: 12px;
+        font-weight: normal;
+        padding-left: 0 !important;
+    }
+
+.process-name {
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 1rem !important;
+}
+
+#tblCascadeCount {
+    margin-top: 6%;
+}
+
+    #tblCascadeCount td {
+        text-align: center;
+    }
+
+.btn-group {
+    width: 13%;
+    margin-left: 1%;
+    margin-bottom: 10px;
+}
+
+table thead td {
+    font-size: 1.5rem !important;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+
+    .pagination a:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .pagination a:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+
+.plusSymbol:after {
+    position: absolute;
+    font-size: 20px;
+    text-align: right;
+    right: 35px;
+    top: 3px;
+    content: '\2719';
+}
+
+.icon-info-sign:before {
+    content: "\f05a";
+    position: absolute;
+    font-size: 20px;
+    text-align: right;
+    right: 5px;
+    top: 7px;
+    color: red;
+}
+
+.modal-body.popup-decreption {
+    position: relative;
+    height: 40vh !important;
+    max-height: 9650px;
+    padding: 15px;
+    overflow-y: auto;
+    overflow: auto;
+    text-align: center;
+}
+
+/*#mySidenav a {
+            position: absolute;
+            right: 10px;
+            transition: 0.3s;
+            padding: 10px;
+            width: 0px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            border-radius: 10px 0px 0px 10px;
+        }*/
+
+/* #mySidenav a:hover {
+                right: 10px;
+                width: 30px;
+                writing-mode: vertical-rl;
+                font-size: 15px;
+                text-align: center;
+            }*/
+
+#btnNote {
+    top: 140px;
+    background-color: DarkGoldenRod;
+}
+
+/* #btnNoteShow {
+            top: 230px;
+            background-color: #555;
+        }*/
+
+.modal-xl {
+    width: 1190px;
+    margin: 83px auto;
+}
+
+.txtSearch {
+    margin-right: 94px;
+}
+
+
+
+
+mark {
+    background: yellow;
+}
+
+    mark.current {
+        background: orange;
+    }
+
+headerr {
+    padding: 10px;
+    width: 100%;
+    background: #eee;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.content {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.btnAllb {
+    display: none;
+}
+
+.ft-big {
+    font-size: 16px !important;
+}
+
+#tblSignaling_filter label {
+    margin-top: -28px !important;
+}
+
+#tblSignaling thead > tr > :nth-child(1), #tblSignaling thead > tr > :nth-child(2),
+#tblSignaling thead > tr > :nth-child(4), #tblSignaling thead > tr > :nth-child(5) {
+    width: 21% !important;
+}
+
+

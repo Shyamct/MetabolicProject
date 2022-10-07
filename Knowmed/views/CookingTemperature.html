@@ -1,0 +1,138 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Add Ideal Cooking Temperature</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Cooking Temperature
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Food</div>
+                                    <div class="col-md-4">
+                                        {{list.foodName}}
+
+                                        <select select2 class="form-control" id="ddlFood" ng-model="ddlFood" ng-init="ddlFood=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in foodList" value="{{list.foodID}}">
+                                                {{list.foodName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">Nutrient</div>
+                                    <div class="col-md-4">
+                                        {{list.nutrientName}}
+
+                                        <select select2 class="form-control" ng-model="ddlNutrient" ng-init="ddlNutrient=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in nutrientList" value="{{list.nutrientID}}">
+                                                {{list.nutrientName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Cooking Method</div>
+                                    <div class="col-md-4">
+                                        {{list.cookingMethod}}
+
+                                        <select select2 class="form-control" ng-model="ddlCookingMethod" ng-init="ddlCookingMethod=0" required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in cookingMethodList" value="{{list.cookingMethodID}}">
+                                                {{list.cookingMethod}}
+                                            </option>
+                                        </select>
+                                    </div>                                 
+                                        <div class="col-md-2">Ideal Temperature</div>
+                                        <div class="col-md-4"><input type="text" class="form-control" placeholder="Ideal Temperature" ng-model="txtIdealTemperature"></div> 
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Remark</div>
+                                    <div class="col-md-4"><textarea class="form-control" placeholder="Remark" ng-model="txtRemark" rows="3" /></div>
+                                    <div class="col-md-2">Reference</div>
+                                    <div class="col-md-4"><textarea class="form-control" placeholder="Reference" ng-model="txtReference" rows="3"  /></div>
+                                </div>
+                            </div>                          
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">URL</div>
+                                    <div class="col-md-10"><input type="text" class="form-control" placeholder="Url" ng-model="txtUrl" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveCookingTemperature();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Ideal Cooking Temperature List
+                    </div>
+                    <div class="panel-body">
+                        <form name="form">
+                            <div class="form-row">
+                                <div class=" form-row col-md-12 col-sm-12">
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                    <table id="tableIdealCookingTemperature" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Food</th>
+                                                <th>Nutrient</th>
+                                                <th>Cooking Method</th>
+                                                <th>Ideal Temperature</th>
+                                                <th>Remark</th>
+                                                <th>Reference</th>
+                                                <th>URL</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="list in cookingTemperatureList | filter : search" ng-class-odd="'striped'">
+                                                <td>{{list.foodName}}</td>
+                                                <td>{{list.nutrientName}}</td>
+                                                <td>{{list.cookingMethod}}</td>
+                                                <td>{{list.idealTemperature}}</td>
+                                                <td>{{list.remark}}</td>
+                                                <td>{{list.reference}}</td>
+                                                <td>{{list.url}}</td>
+                                                <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

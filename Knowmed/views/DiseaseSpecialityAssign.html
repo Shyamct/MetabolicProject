@@ -1,0 +1,196 @@
+﻿<style>
+    .wrapper .selected-items-box1 {
+        cursor: pointer;
+        border: solid 1px #ddd;
+        padding: 10px;
+    }
+
+    .selected-items-box1 .items-list {
+        list-style-type: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+        .selected-items-box1 .items-list li {
+            display: inline;
+        }
+
+    .wrapper .list {
+        display: none;
+        height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border-left: solid 1px #C7C6C7;
+        border-right: solid 1px #C7C6C7;
+        border-bottom: solid 1px #C7C6C7;
+        z-index: 100;
+        position: absolute;
+        width: 100%;
+    }
+
+    .list .items-list {
+        list-style-type: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+        .list .items-list li {
+            margin: 0;
+            width: 100%;
+            padding: 0;
+            border-bottom: solid 1px #C7C6C7;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+
+
+
+    div.scroll {
+        margin: 3px, 3px;
+        padding: 4px;
+        width: 200px;
+        height: 50px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        text-align: justify;
+    }
+</style>
+<div class="container-fluid">
+    <h2>Disease Speciality Assign</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assign   Disease Speciality
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                           
+                            <div class="form-group col-md-12">
+                                <div class="panel-body">
+                                    <div class="form-row">
+                                        <div class=" form-row col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh">
+                                            <table id="tbl1" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input type="checkbox" ng-model="selectAll" ng-click="toggleSelect()" /></th>
+                                                        <th colspan="2">Disease Name</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr ng-repeat="list in visibleItems = (problemMasterList | filter : search1) " ng-class-odd="'striped'">
+                                                        <td><input type="checkbox" name="{{list.id}}" value="{{list.problemName}}" ng-model="list.selected" ng-checked="selectAll"></td>
+                                                        <td>{{list.problemName}}</td>
+                                                        <td>
+                                                            <div class="scroll">
+                                                                <ul class="items-list">
+
+                                                                    <li ng-repeat="list2 in specialityMasterList">
+                                                                        <input type="checkbox" id="speciality{{list.id}}{{list2.id}}" />
+                                                                        <span>{{list2.specialityName}}</span>
+                                                                    </li>
+
+                                                                </ul>
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="wrapper">
+                                <div class="selected-items-box1" id="selectdatat">
+                                    --- Select ---
+                                    <span class="dropdown-icon"></span>
+                                </div>
+                                <div class="list">
+                                    <ul class="items-list">
+                                        <li ng-repeat="list in specialityMasterList">
+                                            <input type="checkbox" id="{{list.id}}" />
+                                            <span>{{list.specialityName}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>-->
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="SaveAssignDiseaseSpeciality();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assigned Disease Speciality List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <select select2 class="form-control" id="ddlSpeciality" ng-model="ddlSpeciality" ng-init="ddlSpeciality=-1" required="" ng-change="stateChanged();">
+                                                <option value="-1">--Select Speciality--</option>
+                                                <option ng-repeat="list in specialityMasterList" value="{{list.id}}">
+                                                    {{list.specialityName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tbl2" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No.</th>
+                                            <th>Speciality</th>
+                                            <th>Disease</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in DiseaseSpecialityAssignList| filter : search" ng-class-odd="'striped'">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{list.specialityName}}</td>
+                                            <td>{{list.problemName}}</td>
+                                            <td><a href="" ng-click="DeleteDiseaseSpecialityAssign(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+﻿
+<div class="container-fluid">
+
+    <!--<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="views/dashboard.html/#form1">Recommended Dietary Allowance</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form2">Food Limit</a></li>
+        <li><a data-toggle="tab" href="views/dashboard.html/#form3">Food Family</a></li>
+    </ul>-->
+    <h2>Assign Food Region</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assign Food
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-1">Country</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlCountry" ng-init="ddlCountry=0" required="" ng-change="getRegionAndAssignedFood();">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in countryList" value="{{list.countryID}}">
+                                                {{list.countryName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1">Region</div>
+                                    <div class="col-md-5">
+                                        <select select2 class="form-control" ng-model="ddlRegion" ng-init="ddlRegion=0" required="" ng-change="getRegionAndAssignedFood();">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="list in regionList" value="{{list.regionID}}" ng-selected="{{list.regionID == ddlRegion}}">
+                                                {{list.regionName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="panel-body">
+                                    <div class="form-row">
+                                        <div class=" form-row col-md-12 col-sm-12">
+                                            <div class="row">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search1">
+                                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:50vh">
+                                            <table id="tbl1" class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th><input type="checkbox" ng-model="selectAll" ng-click="toggleSelect()" /></th>
+                                                        <th>Food Name</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="list in visibleItems = (foodList | filter : search1)" ng-class-odd="'striped'">
+                                                        <td><input type="checkbox" name="{{list.foodID}}" value="{{list.foodName}}" ng-model="list.selected"></td>
+                                                        <td>{{list.foodName}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveFoodRegionAssign();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Assigned Food List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableFood" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Food</th>
+                                            <th>Country</th>
+                                            <th>Region</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in foodRegionAssignList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.foodName}}</td>
+                                            <td>{{list.countryName}}</td>
+                                            <td>{{list.regionName}}</td>
+                                            <td><a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

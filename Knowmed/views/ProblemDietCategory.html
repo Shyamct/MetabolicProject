@@ -1,0 +1,93 @@
+﻿
+<div class="container-fluid">
+
+   
+    <h2> Problem Diet Category</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Problem Diet Category
+                </div>
+                <div class="panel-body">
+                    <form name="form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">Problem</div>
+                                    
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="ddlProblem" ng-model="ddlProblem" ng-init="ddlProblem=0" ng-required="">
+                                                <option value="0">--Select--</option>
+                                                <option ng-repeat="problem in problemList" value="{{problem.problemID}}">
+                                                    {{problem.problemName}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    
+                                    <div class="col-md-2">Diet Category</div>
+                                    <div class="col-md-4">
+                                        <select class="form-control" id="ddlCategory" ng-model="ddlCategory" ng-init="ddlCategory=0" ng-required="">
+                                            <option value="0">--Select--</option>
+                                            <option ng-repeat="category in categoryList" value="{{category.categoryID}}">
+                                                {{category.categoryName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3"><input type="button" class="btn btn-success" value="Save" ng-click="saveProblemDietCategory();" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                   Problem Diet Category List
+                </div>
+                <div class="panel-body">
+                    <form name="form">
+                        <div class="form-row">
+                            <div class=" form-row col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search for..." aria-describedby="basic-addon2" ng-model="search">
+                                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 padding1rem table table-sm table-responsive table-border" style="max-height:100vh">
+                                <table id="tableDiseaseMaster" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Problem </th>
+                                            <th>Diet Category</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="list in problemDietCategoryList | filter : search" ng-class-odd="'striped'">
+                                            <td>{{list.problemName}}</td>
+                                            <td>{{list.categoryName}}</td>
+                                            <td><a href="" ng-click="edit(list.id)" title="Edit"><i class="fa fa-edit"></i></a> | <a href="" ng-click="delete(list.id)" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
