@@ -1419,7 +1419,6 @@
                     <div class="modal-body">
                         <table class="table table-bordered" id="tblnutrientDATA">
                         <thead>
-                             
                             <td>Target</td>
                             <td>Achieved Nutrient Value</td>
                             <td>Achieved RDA Percentage</td>

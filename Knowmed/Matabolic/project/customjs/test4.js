@@ -1305,23 +1305,15 @@ function givenDietOnPID() {
             $.each(r.Table1, function () {
                 var isSelected = "";
 
-
                 var today = new Date();
-                var dd = today.getDate();
-
-                var mm = today.getMonth() + 1;
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
                 var yyyy = today.getFullYear();
-                if (dd < 10) {
-                    dd = '0' + dd;
-                }
 
-                if (mm < 10) {
-                    mm = '0' + mm;
-                }
+                currentDate = dd + '/' + mm + '/' + yyyy;
 
+                console.log("currentDate", currentDate)
 
-                var currentDate = dd + '/' + mm + '/' + yyyy;
-                
                 if (currentDate == this.DateDemo) {
                     isSelected = "selected";
                 }
@@ -3966,13 +3958,13 @@ var getNutrientInteck = function () {
             console.log(result);
             $.each(result.Table, function (i, val) {
                 if (val.achievedRDAPercentage > 75) {
-                    text += '<span id="skp" style="padding:5px;background-color:#90EE90;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="aboutNutrientDATA(\'' + val.nutrientID + '\')">' + val.nutrientName + '</span>';
+                    text += '<span id="skp" style="padding:5px;background-color:#90EE90;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="aboutNutrientDATA(\'' + val.markerId + '\')">' + val.nutrientName + '</span>';
                 }
                 else if (val.achievedRDAPercentage < 75 && val.achievedRDAPercentage > 50) {
-                    text += '<span id="skp" style="padding:5px;background-color:#FFFFE0;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="aboutNutrientDATA(\'' + val.nutrientID + '\')">' + val.nutrientName + '</span>';
+                    text += '<span id="skp" style="padding:5px;background-color:#FFFFE0;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="aboutNutrientDATA(\'' + val.markerId + '\')">' + val.nutrientName + '</span>';
                 }
                 else if (val.achievedRDAPercentage < 50 && val.achievedRDAPercentage > 1) {
-                    text += '<span id="skp" style="padding:5px;background-color:#FF7F7F ;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="aboutNutrientDATA(\'' + val.nutrientID + '\')">' + val.nutrientName + '</span>';
+                    text += '<span id="skp" style="padding:5px;background-color:#FF7F7F ;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="aboutNutrientDATA(\'' + val.markerId + '\')">' + val.nutrientName + '</span>';
                 }
                 else {
                     text += '<span id="skp" style="padding:5px;background-color:#b3b39f;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;">' + val.nutrientName + '</span>';
@@ -3993,14 +3985,16 @@ var getNutrientInteck = function () {
 
 
 function aboutNutrientDATA(id) {
+    var diseaseID = $("#ddlpathway").val();
+    var pid = $('#PID').val();
     var ID = id;
     var tr;
     $.ajax({
         type: "POST",
-        url: "WebService/pathwayMain1.asmx/avaiLavelPIDData",
+        url: "WebService/pathwayMain1.asmx/pIDInteckNutrient",
         contentType: 'application/json',
         dataType: 'json',
-        data: "{'empid':'" + userLoginID + "'}",
+        data: "{'DiseaseID':'" + diseaseID + "','PID':'" + pid + "','empid':'" + userLoginID + "'}",
         statusCode: {
             401: function (xhr) {
                 window.location.href = "../../index.html";
@@ -4010,15 +4004,15 @@ function aboutNutrientDATA(id) {
             $('#nutrientDATA').modal('show');
             var result = JSON.parse(data.d).responseValue;
             $("#tblnutrientDATA tbody tr").remove();
-
+            console.log
             $.each(result.Table, function (i, val) {
-                if (ID == val.nutrientID) {
-                    tr = tr + "<tr><td>" + val.target + "</td><td>" + val.achievedNutrientValue + "</td><td>" + val.achievedRDAPercentage + '  %'+"</td></tr>";
+                if (ID == val.markerId) {
+                    console.log("val.target:", val.target)
+                    tr = tr + "<tr><td>" + val.target + "</td><td>" + val.achievedNutrientValue + "</td><td>" + val.achievedRDAPercentage + '  %' + "</td></tr>";
                 }
             });
             $("#tblnutrientDATA tbody").append(tr);
             row = $("#tblnutrientDATA thead tr").clone();
-
         },
         error: function (error) {
 
