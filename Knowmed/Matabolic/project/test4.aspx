@@ -437,7 +437,6 @@
             </li>--%>
             <li>
                 <input type="button" class="btn btn-warning" id="anchTotal" style="width: 100%" value="Total: " onclick="showTotal()" />
-
             </li>
             <li>
                 <input type="button" class="btn btn-warning" id="anchDiteNotInserted" style="width: 100%" value="Diet not Assign: " onclick="showNotDite()" />
@@ -1135,19 +1134,19 @@
                     <table class="table table-bordered" id="tblMarkerDetail">
                         <thead>
                             <tr>
-                                <td class="td_SerialNo">S No.</td>
-                                <td class="td_Phenomenon">Phenomenon</td>
+                                <%--<td class="td_SerialNo">S No.</td>--%>
+                                <td class="td_markerName">MarkerName</td>
                                 <%--<td class="td_Parameter">Parameter</td>--%>
-                                <td class="td_StudyLevel">StudyLevel</td>
+                                <td class="">ProcessName</td>
                                 <%--<td class="td_Location">Location</td>--%>
-                                <td class="td_Meaning">Meaning</td>
+                                <td class="td_Meaning">Lavel</td>
                                 <%--<td class="td_CentralCompound">CentralCompound</td>--%>
-                                <td class="td_AssociatedProblem">Associated Problem</td>
-                                <td class="td_ErasHypotdesis">Era's Hypotdesis</td>
-                                <td class="td_StudyTreatment">Study Treatment</td>
-                                <td class="td_OtderPatdwayDetails">Otder Patdway Details</td>
-                                <td class="td_StudyReferenceDetails">Study Reference Details</td>
-                                <td class="td_BloodBrainBarrierDetails">Blood Brain Barrier Details</td>
+                                <td class="td_AssociatedProblem">Meaning</td>
+                                <td class="td_ErasHypotdesis">Era's Hypothesis</td>
+                                 <td class="td_StudyTreatment">StudyRefrenceDetails URL</td>
+                                <td class="td_OtderPatdwayDetails">OtderPatdwayDetails Medicine</td>
+                                <%--<td class="td_StudyReferenceDetails">Study Reference Details</td>
+                                <td class="td_BloodBrainBarrierDetails">Blood Brain Barrier Details</td>--%>
                             </tr>
                         </thead>
                         <tbody></tbody>

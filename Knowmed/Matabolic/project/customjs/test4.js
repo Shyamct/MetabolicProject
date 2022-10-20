@@ -993,14 +993,14 @@ function changeItemText(obj) {
         $("#createSpecific").html('Remove Specific Molecule');
     }
     if (nodedata.isDoubleMolecule) {
-        $("#createDoubleSub").html('Double Molecule');
+        $("#createDoubleSub").html('Double Sub Central Molecule');
     } else {
-        $("#createDoubleSub").html('Remove Double Molecule');
+        $("#createDoubleSub").html('Remove Double Sub Central Molecule');
     }
     if (nodedata.isTripleMolecule) {
-        $("#createTripleSub").html('Triple Molecule');
+        $("#createTripleSub").html('Triple Sub Central Molecule');
     } else {
-        $("#createTripleSub").html('Remove Triple Molecule');
+        $("#createTripleSub").html('Remove Triple Sub Central Molecule');
     }
 };
 
@@ -3489,7 +3489,7 @@ function getRDADetail(obj) {
 function getMarkerDetail(obj) {
     var contextmenu = obj.part;
     var nodedata = contextmenu.data;
-
+    var tr;
     if (userLoginID != 1 && !UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
@@ -3508,41 +3508,58 @@ function getMarkerDetail(obj) {
         success: function (response) {
             var result = JSON.parse(response.d).responseValue;
 
-            var row = $("#tblMarkerDetail thead tr:first").clone();
-            $("#tblMarkerDetail tbody tr").remove();
-            $.each(result.Table, function (i) {
-                $('.td_SerialNo', row).text((i + 1) + '.');
 
-                var phenomenonName = `${this.phenomenonName == null ? "_" : this.phenomenonName}`;
-                $('.td_Phenomenon', row).text(phenomenonName);
-                //var parameterName = `${this.parameterName == null ? "_" : this.parameterName}`;
-                //$('.td_Parameter', row).text(parameterName);
-                var studyLevel = `${this.studyLevel == null ? "_" : this.studyLevel}`;
-                $('.td_StudyLevel', row).text(studyLevel);
-                //var location = `${this.location == "" ? "_" : this.location}`;
-                //$('.td_Location', row).text(location);
-                var meaning = `${this.meaning == null ? "_" : this.meaning}`;
-                $('.td_Meaning', row).text(meaning);
-                //var centralCompoundName = `${this.centralCompoundName == null ? "_" : this.centralCompoundName}`;
-                //$('.td_CentralCompound', row).text(centralCompoundName);
-                var associatedProblemName = `${this.associatedProblemName == "" ? "_" : this.associatedProblemName}`;
-                $('.td_AssociatedProblem', row).text(associatedProblemName);
-                var erashypothesis = `${this.erashypothesis == "" ? "_" : this.erashypothesis}`;
-                $('.td_ErasHypotdesis', row).text(erashypothesis);
-                var studyTreatmentDetails = `${this.studyTreatmentDetails == null ? "_" : this.studyTreatmentDetails}`;
-                $('.td_StudyTreatment', row).html(studyTreatmentDetails);
-                var otherPathwayDetails = `${this.otherPathwayDetails == null ? "_" : this.otherPathwayDetails}`;
-                $('.td_OtderPatdwayDetails', row).html(otherPathwayDetails);
-                var studyReferenceDetails = `${this.studyReferenceDetails == null ? "_" : this.studyReferenceDetails}`;
-                $('.td_StudyReferenceDetails', row).html(studyReferenceDetails);
-                var transporterDetails = `${this.transporterDetails == "" ? "_" : this.transporterDetails}`;
-                $('.td_BloodBrainBarrierDetails', row).html(transporterDetails);
 
-                $("#tblMarkerDetail tbody").append(row);
-                row = $("#tblMarkerDetail thead tr:first").clone();
-            });
+            $("#modalMarkerDetail").modal('show');
+            //var row = $("#modelPID thead tr").clone();
+            $("#modalMarkerDetail tbody tr").remove();
 
-            $('#modalMarkerDetail').modal('show');
+
+            if (result != null) {
+                if (result.Table.length > 0) {
+                    $.each(result.Table, function (i, val) {
+
+                        tr = tr + "<tr><td>" + val.nutrientName + "</td><td>" + val.processname + "</td><td>" + val.lavel + "</td><td>" + val.meaning + "</td><td>" + val.eraHypothesis + "</td><td>" + val.studyReferenceDetailsURL + "</td><td>" + val.studyTreatmentDetailsMedicine + "</td></tr>";
+                    });
+                }
+            }
+            $("#modalMarkerDetail tbody").append(tr);
+            row = $("#modalMarkerDetail thead tr").clone();
+            //var row = $("#tblMarkerDetail thead tr:first").clone();
+            //$("#tblMarkerDetail tbody tr").remove();
+            //$.each(result.Table, function (i) {
+            //    $('.td_SerialNo', row).text((i + 1) + '.');
+
+            //    var phenomenonName = `${this.phenomenonName == null ? "_" : this.phenomenonName}`;
+            //    $('.td_Phenomenon', row).text(phenomenonName);
+            //    //var parameterName = `${this.parameterName == null ? "_" : this.parameterName}`;
+            //    //$('.td_Parameter', row).text(parameterName);
+            //    var studyLevel = `${this.studyLevel == null ? "_" : this.studyLevel}`;
+            //    $('.td_StudyLevel', row).text(studyLevel);
+            //    //var location = `${this.location == "" ? "_" : this.location}`;
+            //    //$('.td_Location', row).text(location);
+            //    var meaning = `${this.meaning == null ? "_" : this.meaning}`;
+            //    $('.td_Meaning', row).text(meaning);
+            //    //var centralCompoundName = `${this.centralCompoundName == null ? "_" : this.centralCompoundName}`;
+            //    //$('.td_CentralCompound', row).text(centralCompoundName);
+            //    var associatedProblemName = `${this.associatedProblemName == "" ? "_" : this.associatedProblemName}`;
+            //    $('.td_AssociatedProblem', row).text(associatedProblemName);
+            //    var erashypothesis = `${this.erashypothesis == "" ? "_" : this.erashypothesis}`;
+            //    $('.td_ErasHypotdesis', row).text(erashypothesis);
+            //    var studyTreatmentDetails = `${this.studyTreatmentDetails == null ? "_" : this.studyTreatmentDetails}`;
+            //    $('.td_StudyTreatment', row).html(studyTreatmentDetails);
+            //    var otherPathwayDetails = `${this.otherPathwayDetails == null ? "_" : this.otherPathwayDetails}`;
+            //    $('.td_OtderPatdwayDetails', row).html(otherPathwayDetails);
+            //    var studyReferenceDetails = `${this.studyReferenceDetails == null ? "_" : this.studyReferenceDetails}`;
+            //    $('.td_StudyReferenceDetails', row).html(studyReferenceDetails);
+            //    var transporterDetails = `${this.transporterDetails == "" ? "_" : this.transporterDetails}`;
+            //    $('.td_BloodBrainBarrierDetails', row).html(transporterDetails);
+
+            //    $("#tblMarkerDetail tbody").append(row);
+            //    row = $("#tblMarkerDetail thead tr:first").clone();
+            //});
+
+            //$('#modalMarkerDetail').modal('show');
 
         }, error: function (error) {
 
