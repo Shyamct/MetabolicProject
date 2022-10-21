@@ -414,12 +414,17 @@ function init(data, data1) {
                 { portId: "", cursor: "pointer", fromLinkable: true, toLinkable: true },
               //  new go.Binding("fill", "color"),
                 new go.Binding("fill", "", function (node) { return (node.eraHypothesis == 1 ? "#EC6F01" : node.color); }),
+                new go.Binding("stroke", "", function (node) { return (node.paperURL != undefined ? "blue" : "black");}),
+                //.ofObject(),
+                //new go.Binding("stroke", "", function (node) { return (node.paperURL != undefined ? "#FF1493" : "Black"); })
+                  
                 //new go.Binding("fill", "highlight", function (v) { return v ? "pink" : "color"; }),
-                new go.Binding("stroke", "highlight", function (v) { return v ? "red" : "blue"; }),
-                new go.Binding("stroke", "highlight1", function (v) { return v ? "green" : "blue"; }),
-                new go.Binding("stroke", "highlight2", function (v) { return v ? "Green" : "blue"; }),
+
+                new go.Binding("stroke", "highlight", function (v) { return v ? "red" : "black"; }),
+                new go.Binding("stroke", "highlight1", function (v) { return v ? "green" : "black"; }),
+                new go.Binding("stroke", "highlight2", function (v) { return v ? "Green" : "black"; }),
                 new go.Binding("strokeWidth", "highlight", function (v) { return v ? 10 : 1; }),
-                new go.Binding("strokeWidth", "highlight1", function (v) { return v ? 10 : 1; }),
+                new go.Binding("strokeWidth", "highlight1", function (v) { return v ? 10 : 5; }),
 
                 new go.Binding("strokeWidth", "highlight2", function (v) { return v ? 10 : 1; }),
                 new go.Binding("stroke", "isHighlighted", function (h) { return h ? "#39FF14" : "black"; }),
@@ -769,10 +774,15 @@ function init(data, data1) {
             { relinkableFrom: true, relinkableTo: true },
             $(go.Shape,
                 // the Shape.stroke color depends on whether Link.isHighlighted is true
-                new go.Binding("stroke", "isHighlighted", function (h) { return h ? "Black" : "Black"; })
-                    .ofObject(),
+               // new go.Binding("stroke", "isHighlighted", function (h) { return h ? "Black" : "Black"; })
+                   // .ofObject(),
+
+               // new go.Binding("stroke", "isHighlighted", function (node) { return (node.paperURL == node.paperURL ? "Black" : "#FF1493"); })
+                 //  .ofObject(),
+
+                //new go.Binding("stroke", "isHighlighted", function (paperURL) { return  console.log('Complete'); })
                 //new go.Binding("stroke", "isHighlighted", function (highlight) { return (highlight == false ? "green" : "black"); })
-                //    .ofObject(),
+                   // .ofObject(),
 
                
 
@@ -783,6 +793,10 @@ function init(data, data1) {
                 // the Shape.fill color depends on whether Link.isHighlighted is true
                 new go.Binding("fill", "isHighlighted", function (h) { return h ? "black" : "black"; })
                     .ofObject()),
+
+            //new go.Binding("fill", "isHighlighted", function (node) { return (node.paperURL == node.paperURL ? "Black" : "#FF1493"); })
+            //    .ofObject(),
+
             $(go.Panel, "Auto",  // this whole Panel is a link label
                 $(go.Shape, "Diamond", { width: 40, height: 40, fill: "yellow", stroke: "gray" }, new go.Binding("fill", "fillD")),
                 $(go.TextBlock, { margin: 1, font: "bold 20px Helvetica, bold Arial, sans-serif" },
@@ -954,7 +968,7 @@ function changeColor(diagram, color) {
 function changeItemText(obj) {
     var contextmenu = obj.part;
     var nodedata = contextmenu.data;
-    //console.log("nodedata", nodedata);
+    console.log("nodedata", nodedata);
     if (nodedata.isCenterMolecule) {
         $("#createCentral").html('Center Molecule');
         $("#createRegulatory").show();
@@ -1312,7 +1326,6 @@ function givenDietOnPID() {
 
                 currentDate = dd + '/' + mm + '/' + yyyy;
 
-                console.log("currentDate", currentDate)
 
                 if (currentDate == this.DateDemo) {
                     isSelected = "selected";
@@ -1684,7 +1697,7 @@ function getDetails(id) {
 
             relations = allrelation[0].linkNode;
 
-           // console.log("allNode", allNode);
+            console.log("allNode", allNode);
 
             $('#mySearch option:not(:first)').remove();
             var usedNames = [];
@@ -3972,7 +3985,7 @@ var getNutrientInteck = function () {
         success: function (data) {
             $('#nutrientModel').modal('show');
             var result = JSON.parse(data.d).responseValue;
-            console.log(result);
+            //console.log(result);
             $.each(result.Table, function (i, val) {
                 if (val.achievedRDAPercentage > 75) {
                     text += '<span id="skp" style="padding:5px;background-color:#90EE90;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="aboutNutrientDATA(\'' + val.markerId + '\')">' + val.nutrientName + '</span>';
@@ -4021,10 +4034,10 @@ function aboutNutrientDATA(id) {
             $('#nutrientDATA').modal('show');
             var result = JSON.parse(data.d).responseValue;
             $("#tblnutrientDATA tbody tr").remove();
-            console.log
+          
             $.each(result.Table, function (i, val) {
                 if (ID == val.markerId) {
-                    console.log("val.target:", val.target)
+                    
                     tr = tr + "<tr><td>" + val.target + "</td><td>" + val.achievedNutrientValue + "</td><td>" + val.achievedRDAPercentage + '  %' + "</td></tr>";
                 }
             });
