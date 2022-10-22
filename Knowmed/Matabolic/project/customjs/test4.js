@@ -20,6 +20,7 @@ var MINLENGTH = 20;  // this controls the minimum length of any swimlane
 var MINBREADTH = 20;  // this controls the minimum breadth of any non-collapsed swimlane
 var userLoginID = 0;
 var nodeObj = '';
+var froRandomColor ;
 //var pageName = '';
 
 // some shared functions
@@ -27,10 +28,12 @@ var nodeObj = '';
 
 
 $(document).ready(function () {
-
-   
+    setBg();
     var url = window.location.href;
     pageName = getPageName(url);
+
+
+
     pathwayId = getParameterByName('pathwayID', url);
     urlPathwayId = pathwayId;
     moleculeName = getParameterByName('moleculeName', url);
@@ -86,6 +89,12 @@ $(document).ready(function () {
     });
 
 });
+
+const setBg = () => {
+    froRandomColor = Math.floor(Math.random() * 16777215).toString(16);
+    //document.body.style.backgroundColor = "#" + randomColor;
+    //color.innerHTML = "#" + randomColor;
+}
 
 // this may be called to force the lanes to be laid out again
 function relayoutLanes() {
@@ -299,6 +308,9 @@ function closeLoader() {
     $("#loader").hide();
 }
 
+
+
+
 function init(data, data1) {
 
     var count = 1;
@@ -390,19 +402,24 @@ function init(data, data1) {
                 rotatable: true, locationSpot: go.Spot.Center,
                 // when the user clicks on a Node, highlight all Links coming out of the node
                 // and all of the Nodes at the other ends of those Links.
-                click: function (e, node) {
+                click: function (e, node, arrayURL) {
                     // highlight all Links and Nodes coming out of a given Node
                     var diagram = node.diagram;
+                  
                     diagram.startTransaction("highlight");
                     diagram.startTransaction("highlight2");
                     // remove any previous highlighting
                     diagram.clearHighlighteds();
                     // for each Link coming out of the Node, set Link.isHighlighted
                     node.findLinksOutOf().each(function (l) { l.isHighlighted = true; });
+               
                     node.findLinksOutOf().each(function (l) { l.isHighlighted2 = true; });
+                
                     // for each Node destination for the Node, set Node.isHighlighted
                     node.findNodesOutOf().each(function (n) { n.isHighlighted = true; });
+                 
                     node.findNodesOutOf().each(function (n) { n.isHighlighted2 = true; });
+                   
                     diagram.commitTransaction("highlight");
                     diagram.commitTransaction("highlight2");
                 }
@@ -412,12 +429,12 @@ function init(data, data1) {
             new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
             $(go.Shape, "Rectangle",
                 { portId: "", cursor: "pointer", fromLinkable: true, toLinkable: true },
-              //  new go.Binding("fill", "color"),
+                //  new go.Binding("fill", "color"),
                 new go.Binding("fill", "", function (node) { return (node.eraHypothesis == 1 ? "#EC6F01" : node.color); }),
-                new go.Binding("stroke", "", function (node) { return (node.paperURL != undefined ? "blue" : "black");}),
-                //.ofObject(),
-                //new go.Binding("stroke", "", function (node) { return (node.paperURL != undefined ? "#FF1493" : "Black"); })
-                  
+                //new go.Binding("stroke", "", function (node) { return (node.paperURL != undefined ? "#" + froRandomColor : "black"); }),
+
+                new go.Binding("stroke", "", function (node) { return (node.paperURL != undefined ? node.paperColor: "black"); }),
+
                 //new go.Binding("fill", "highlight", function (v) { return v ? "pink" : "color"; }),
 
                 new go.Binding("stroke", "highlight", function (v) { return v ? "red" : "black"; }),
@@ -777,10 +794,9 @@ function init(data, data1) {
                // new go.Binding("stroke", "isHighlighted", function (h) { return h ? "Black" : "Black"; })
                    // .ofObject(),
 
-               // new go.Binding("stroke", "isHighlighted", function (node) { return (node.paperURL == node.paperURL ? "Black" : "#FF1493"); })
-                 //  .ofObject(),
+            
 
-                //new go.Binding("stroke", "isHighlighted", function (paperURL) { return  console.log('Complete'); })
+                //new go.Binding("stroke", "isHighlighted", function (arrayURL) { return console.log(arrayURL[0].URL); })
                 //new go.Binding("stroke", "isHighlighted", function (highlight) { return (highlight == false ? "green" : "black"); })
                    // .ofObject(),
 
@@ -1656,6 +1672,8 @@ var muNodes;
 var selectedPathwayId = 0;
 var relations;
 var node;
+
+
 function getDetails(id) {
     //alert(myPhenomenonID);
     if (id) {
@@ -1697,7 +1715,10 @@ function getDetails(id) {
 
             relations = allrelation[0].linkNode;
 
-            console.log("allNode", allNode);
+
+          
+           
+           
 
             $('#mySearch option:not(:first)').remove();
             var usedNames = [];
