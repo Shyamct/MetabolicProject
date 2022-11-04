@@ -1673,7 +1673,6 @@ var selectedPathwayId = 0;
 var relations;
 var node;
 
-
 function getDetails(id) {
     //alert(myPhenomenonID);
     if (id) {
@@ -4058,8 +4057,9 @@ function aboutNutrientDATA(id) {
           
             $.each(result.Table, function (i, val) {
                 if (ID == val.markerId) {
-                    
+                    if (val.target != null) {
                     tr = tr + "<tr><td>" + val.target + "</td><td>" + val.achievedNutrientValue + "</td><td>" + val.achievedRDAPercentage + '  %' + "</td></tr>";
+                    }
                 }
             });
             $("#tblnutrientDATA tbody").append(tr);
