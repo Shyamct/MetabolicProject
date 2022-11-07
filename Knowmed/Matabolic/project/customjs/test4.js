@@ -1286,7 +1286,7 @@ function aboutPatientAchivement(obj) {
                     });
                     
                     tag += '</ul>'; 
-                    tr = tr + "<tr><td>" + (i + 1) + "</td><td class='' >" + val.foodName + "  " + tag+ "</td><td>" + val.foodQuantity + " " + val.foodUnit + "</td><td>" + val.nutrientValue + " " + val.nutrientUnit + "</td><td>" + val.foodTiming + "</td></tr>";
+                    tr = tr + "<tr><td>" + (i + 1) + "</td><td class='' >" + val.foodName + "  " + tag + "</td><td>" + val.foodQuantity + " " + val.foodUnit + "</td><td>" + val.nutrientValue + " " + val.nutrientUnit + "</td><td>" + val.givenTime + "</td><td>" + val.adviceTime + "</td></tr>";
                 });
             }
 
@@ -1388,10 +1388,11 @@ function getDrugWiseReport() {
         success: function (data) {
 
             var r = JSON.parse(data.d).responseValue;
+           
             $("#abc tbody tr").remove();
             if (r.Table.length > 0) {
                 $.each(r.Table, function (i, val) {
-                    tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.drugName + "</td><td>" + val.dosageForm + "</td><td>" + val.doseStrength + " " + val.doseUnit + "</td><td>" + val.times + "</td></tr>";
+                    tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.drugName + "</td><td>" + val.dosageForm + "</td><td>" + val.doseStrength + " " + val.doseUnit + "</td><td>" + val.GivenTime + "</td><td>" + val.AdviceTime + "</td></tr>";
                 });
             }
 

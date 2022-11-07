@@ -1358,9 +1358,10 @@
                         <thead>
                              <td>S. No</td>
                              <td>Food</td>
-                            <td>Food  Quantity</td>
+                            <td>Food Quantity</td>
                             <td>Nutrient Achieved Qty</td>
-                            <td>Food Time</td>
+                            <td>Given Time</td>
+                            <td>Advice Time</td>
 
                         </thead>
                         <tbody>
@@ -1458,7 +1459,8 @@
                              <td>Drug Name</td>
                             <td>Dosage Form</td>
                             <td>Quantity</td>
-                             <td>Time</td>
+                             <td>Given Time</td>
+                             <td>Advice Time</td>
                         </thead>
                         <tbody>
 
