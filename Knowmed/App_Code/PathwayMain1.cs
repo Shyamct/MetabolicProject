@@ -1209,7 +1209,7 @@ public class PathwayMain1 : System.Web.Services.WebService
     }
 
     [WebMethod(EnableSession = true)]
-    public string aboutPatientAchivement(string empid,string nutrientName, int PID,string intakeDate)
+    public string aboutPatientAchivement(string empid,string nutrientName, int PID,string intakeDate,int DiseaseID)
     {
         if (empid == null)
         {
@@ -1221,6 +1221,7 @@ public class PathwayMain1 : System.Web.Services.WebService
         pobj.nutrientName = nutrientName;
         pobj.PID = PID;
         pobj.intakeDate = intakeDate;
+        pobj.DiseaseID = DiseaseID;
 
         BAL_PathwayMain1.aboutPatientAchivement(pobj);
         string str;
@@ -1272,7 +1273,7 @@ public class PathwayMain1 : System.Web.Services.WebService
     }
 
     [WebMethod(EnableSession = true)]
-    public string givenDrugPID(string empid, int PID)
+    public string givenDrugPID(string empid, int PID, int DiseaseID)
     {
         if (empid == null)
         {
@@ -1281,6 +1282,7 @@ public class PathwayMain1 : System.Web.Services.WebService
         }
         PAL_PathwayMain1 pobj = new PAL_PathwayMain1();
         pobj.PID = PID;
+        pobj.DiseaseID = DiseaseID;
 
         BAL_PathwayMain1.givenDrugPID(pobj);
         string str;
@@ -1301,7 +1303,7 @@ public class PathwayMain1 : System.Web.Services.WebService
         return str;
     }
     [WebMethod(EnableSession = true)]
-    public string getDate(string empid, int PID, string DateDemo)
+    public string getDate(string empid, int PID, string DateDemo,int DiseaseID)
     {
         if (empid == null)
         {
@@ -1311,6 +1313,7 @@ public class PathwayMain1 : System.Web.Services.WebService
         PAL_PathwayMain1 pobj = new PAL_PathwayMain1();
         pobj.PID = PID;
         pobj.DateDemo = DateDemo;
+        pobj.DiseaseID = DiseaseID;
 
         BAL_PathwayMain1.gatdateWiseDrug(pobj);
         string str;

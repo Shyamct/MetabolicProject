@@ -1260,7 +1260,7 @@ function aboutPatientAchivement(obj) {
         contentType: 'application/json',
         dataType: 'json',
       
-        data: "{'empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "','intakeDate': '" + today + "','PID': '" + $('#PID').val() + "','nutrientName': '" + nodedata.text + "'}",
+        data: "{'empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "','DiseaseID': '" + $("#ddlpathway").val() + "','intakeDate': '" + today + "','PID': '" + $('#PID').val() + "','nutrientName': '" + nodedata.text + "'}",
         statusCode: {
             401: function (xhr) {
                 window.location.href = "../../index.html";
@@ -1319,7 +1319,7 @@ function givenDietOnPID() {
         url: "WebService/pathwayMain1.asmx/givenDrugPID",
         contentType: 'application/json',
         dataType: 'json',
-        data: "{'PID': '" + $('#PID').val() + "','empid':'" + userLoginID + "'}",
+        data: "{'PID': '" + $('#PID').val() + "','DiseaseID': '" + $("#ddlpathway").val() + "','empid':'" + userLoginID + "'}",
         statusCode: {
             401: function (xhr) {
                 window.location.href = "../../index.html";
@@ -1378,7 +1378,7 @@ function getDrugWiseReport() {
         url: "WebService/pathwayMain1.asmx/getDate",
         contentType: 'application/json',
         dataType: 'json',
-        data: "{'DateDemo': '" + forDates + "','PID': '" + $('#PID').val() + "','empid':'" + userLoginID + "'}",
+        data: "{'DateDemo': '" + forDates + "','PID': '" + $('#PID').val() + "','DiseaseID': '" + $("#ddlpathway").val() + "','empid':'" + userLoginID + "'}",
         statusCode: {
             401: function (xhr) {
                 window.location.href = "../../index.html";
