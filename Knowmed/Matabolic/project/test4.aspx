@@ -369,6 +369,10 @@
     margin-top: 194px;
     font-size: 66px;
       }
+       .container-fluid .WriteUp{
+           overflow-y: auto;
+       height: 900px;
+       }
 
     </style>
    
@@ -506,7 +510,7 @@
     </div>
 
     <div id="content">
-        <div class="container-fluid" style="padding: 0;">
+        <div class="container-fluid WriteUp" style="padding: 0;">
             <div class="row-fluid" style="margin-top: 0">
                 <div class="span12" id="span10">
                      <%--<input id="levelSlider" type="range" min="0" max="2" value="0" />--%>
