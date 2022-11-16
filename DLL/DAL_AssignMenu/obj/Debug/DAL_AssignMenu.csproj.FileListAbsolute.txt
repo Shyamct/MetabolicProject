@@ -50,3 +50,13 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.cspro
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\bin\Debug\DAL_AssignMenu.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\bin\Debug\DAL_AssignMenu.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\bin\Debug\Newtonsoft.Json.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DAL_AssignMenu\obj\Debug\DAL_AssignMenu.pdb

@@ -7,20 +7,23 @@ using System.Data;
 using System.Data.SqlClient;
 using DLLUtility;
 
-namespace DAL_bestMarkerForDiet
+namespace DAL_scoringSystem
 {
-    public class PAL_bestMarkerForDiet: Utility
+    public class PAL_scoringSystem : Utility
     {
         public int pathwayID { get; set; }
+        public int userID { get; set; }
     }
-    public class DAL_bestMarkerForDiet
+    public class DAL_scoringSystem
     {
-        public static void returnTable(PAL_bestMarkerForDiet pobj)
+        public static void returnTable(PAL_scoringSystem pobj)
         {
             SqlCommand selectCommand = new SqlCommand("bestMarker", new Config().con);
             selectCommand.CommandType = CommandType.StoredProcedure;
 
             selectCommand.Parameters.AddWithValue("@opcode", pobj.opcode);
+            selectCommand.Parameters.AddWithValue("@userID", pobj.userID);
+            selectCommand.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
 
             selectCommand.Parameters.Add("@isException", SqlDbType.Bit);
             selectCommand.Parameters["@isException"].Direction = ParameterDirection.Output;
@@ -35,17 +38,17 @@ namespace DAL_bestMarkerForDiet
             pobj.exceptionMessage = selectCommand.Parameters["@exceptionMessage"].Value.ToString();
         }
     }
-    public class BAL_bestMarkerForDiet 
+    public class BAL_scoringSystem
     {
-        public static void getHeader(PAL_bestMarkerForDiet pobj)
+        public static void getHeader(PAL_scoringSystem pobj)
         {
             pobj.opcode = 41;
-            DAL_bestMarkerForDiet.returnTable(pobj);
+            DAL_scoringSystem.returnTable(pobj);
         }
-        public static void getFinalReport(PAL_bestMarkerForDiet pobj)
+        public static void getFinalReport(PAL_scoringSystem pobj)
         {
             pobj.opcode = 42;
-            DAL_bestMarkerForDiet.returnTable(pobj);
+            DAL_scoringSystem.returnTable(pobj);
         }
     }
 }

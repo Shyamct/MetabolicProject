@@ -38,6 +38,6 @@
     </div>
 
 
-    <script src="customjs/bestMaekerForDiet.js"></script>
+    <script src="customjs/scoringSystem.js"></script>
 </asp:Content>
 

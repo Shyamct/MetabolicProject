@@ -73,7 +73,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_AssignMenu", "DLL\DAL_A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL_DiseaseTimeline", "DLL\DLL_DiseaseTimeline\DLL_DiseaseTimeline.csproj", "{A2051064-94E3-4E22-A32E-FF956CA18431}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_bestMarkerForDiet", "bestMarkerForDiet\DAL_bestMarkerForDiet.csproj", "{7CA6F11E-7E7E-4AD2-81C5-FB6C849565DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_scoringSystem", "bestMarkerForDiet\DAL_scoringSystem.csproj", "{7CA6F11E-7E7E-4AD2-81C5-FB6C849565DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

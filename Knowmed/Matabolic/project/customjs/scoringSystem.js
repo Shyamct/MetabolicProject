@@ -13,7 +13,7 @@ function getPathway() {
     }
     $.ajax({
         type: "POST",
-        url: "WebService/bestMarkerForDiet.asmx/getPathway",
+        url: "WebService/scoringSystem.asmx/getPathway",
         contentType: 'application/json',
         dataType: 'json',
         data: JSON.stringify(obj),
@@ -39,16 +39,24 @@ function getPathway() {
 
 
 function getReport() {
+    var pathwayID = $("#ddlPathway").val();
+    var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
+
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
+    //console.log(userID);
     obj = {
-        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        empid: userID ,
+        pathwayID: pathwayID
     }
+    console.log(obj);
+        //{ 'pathwayID': '" + pathwayID + "', 'empid': '" + userID + "' },
+    
     $.ajax({
         type: "POST",
-        url: "WebService/bestMarkerForDiet.asmx/getReport",
+        url: "WebService/scoringSystem.asmx/getReport",
         contentType: 'application/json',
         dataType: 'json',
         data: JSON.stringify(obj),
@@ -82,7 +90,6 @@ function getReport() {
 
                                 if (scoreType != undefined || scoreType != null) {
                                     var scoreTypeName = scoreType;
-                                    console.log(scoreTypeName);
                                 }
 
                                 nutrientCentral += '<li>' + nutrientName + roleType + scoreTypeName+ '</li>';
@@ -103,7 +110,6 @@ function getReport() {
 
                                 if (scoreType != undefined || scoreType != null)  {
                                     var scoreTypeName = scoreType;
-                                    console.log(scoreTypeName);
 
                                 }
                                 nutrientSubCentral += '<li>' + nutrientName + roleType + scoreTypeName+ '</li>';
@@ -125,7 +131,6 @@ function getReport() {
 
                                 if (scoreType != undefined || scoreType != null) {
                                     var scoreTypeName = scoreType;
-                                    console.log(scoreTypeName);
 
                                 }
                                 nutrientSpecific += '<li>' + nutrientName + roleType + scoreTypeName+'</li>';

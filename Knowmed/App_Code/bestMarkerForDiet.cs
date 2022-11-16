@@ -6,7 +6,7 @@ using System.Web;
 using System.Data;
 using System.Web.Services;
 using System.Web.Script.Serialization;
-using DAL_bestMarkerForDiet;
+using DAL_scoringSystem;
 
 
 
@@ -23,7 +23,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
 {
 
     [WebMethod(EnableSession = true)]
-    public string getPathway(string empid)
+    public string getPathway(int empid)
     {
         if (empid == null)
         {
@@ -31,10 +31,10 @@ public class bestMarkerForDiet : System.Web.Services.WebService
             return "Invalid user";
         }
 
-        PAL_bestMarkerForDiet pobj = new PAL_bestMarkerForDiet();
-        pobj.who = empid;
+        PAL_scoringSystem pobj = new PAL_scoringSystem();
+        pobj.userID = empid;
 
-        BAL_bestMarkerForDiet.getHeader(pobj);
+        BAL_scoringSystem.getHeader(pobj);
         string str;
         if (!pobj.isException)
         {
@@ -54,7 +54,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
     }
 
     [WebMethod(EnableSession = true)]
-    public string getReport(string empid)
+    public string getReport(int empid,int pathwayID)
     {
         if (empid == null)
         {
@@ -62,10 +62,12 @@ public class bestMarkerForDiet : System.Web.Services.WebService
             return "Invalid user";
         }
 
-        PAL_bestMarkerForDiet pobj = new PAL_bestMarkerForDiet();
-        pobj.who = empid;
+        PAL_scoringSystem pobj = new PAL_scoringSystem();
+       
+        pobj.userID = empid;
+        pobj.pathwayID = pathwayID;
 
-        BAL_bestMarkerForDiet.getFinalReport(pobj);
+        BAL_scoringSystem.getFinalReport(pobj);
         string str;
         if (!pobj.isException)
         {
