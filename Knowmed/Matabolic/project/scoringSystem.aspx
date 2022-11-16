@@ -12,8 +12,12 @@
                     <div class="widget-box">
                         <div class="widget-title">
 
-                            <select id="ddlPathway" style="width: 12%;">
+                            <select id="ddlPathway" onchange="getProcess()" style="width: 12%;">
                                 <option value="" selected>Select Pathway</option>
+                            </select>
+
+                            <select id="ddlProcess" style="width: 12%;">
+                                <option value="" selected>Select Process</option>
                             </select>
 
                             <input type="button" onclick="getReport()" value="SHOW" />

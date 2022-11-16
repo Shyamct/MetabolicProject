@@ -13,6 +13,7 @@ namespace DAL_scoringSystem
     {
         public int pathwayID { get; set; }
         public int userID { get; set; }
+        public string processID { get; set; }
     }
     public class DAL_scoringSystem
     {
@@ -24,6 +25,7 @@ namespace DAL_scoringSystem
             selectCommand.Parameters.AddWithValue("@opcode", pobj.opcode);
             selectCommand.Parameters.AddWithValue("@userID", pobj.userID);
             selectCommand.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
+            selectCommand.Parameters.AddWithValue("@processID", pobj.processID);
 
             selectCommand.Parameters.Add("@isException", SqlDbType.Bit);
             selectCommand.Parameters["@isException"].Direction = ParameterDirection.Output;
@@ -45,9 +47,14 @@ namespace DAL_scoringSystem
             pobj.opcode = 41;
             DAL_scoringSystem.returnTable(pobj);
         }
-        public static void getFinalReport(PAL_scoringSystem pobj)
+        public static void getAllProcess(PAL_scoringSystem pobj)
         {
             pobj.opcode = 42;
+            DAL_scoringSystem.returnTable(pobj);
+        }
+        public static void getFinalReport(PAL_scoringSystem pobj)
+        {
+            pobj.opcode = 43;
             DAL_scoringSystem.returnTable(pobj);
         }
     }

@@ -3,6 +3,8 @@ $(document).ready(function () {
     getPathway();
 });
 
+var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
+
 function getPathway() {
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -37,23 +39,60 @@ function getPathway() {
     });
 }
 
-
-function getReport() {
-    var pathwayID = $("#ddlPathway").val();
-    var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
-
+function getProcess() {
+    pathwayID = $("#ddlPathway").val();
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
-    //console.log(userID);
+   
+        obj = {
+            empid: userID,
+            pathwayID: pathwayID
+        }
+    $.ajax({
+        type: "POST",
+        url: "WebService/scoringSystem.asmx/getProcess",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+            $("#ddlProcess option:not(:first)").remove();
+            $.each(result.Table, function () {
+                $("#ddlProcess").append('<option value="' + this.processID + '">' + this.rankName + '</option>');
+            });
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+
+
+function getReport() {
+    pathwayID = $("#ddlPathway").val();
+    processID = $("#ddlProcess").val();
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    if (processID == "") {
+        processID = null;
+    }
     obj = {
         empid: userID ,
-        pathwayID: pathwayID
+        pathwayID: pathwayID,
+        processID: processID
     }
     console.log(obj);
-        //{ 'pathwayID': '" + pathwayID + "', 'empid': '" + userID + "' },
-    
     $.ajax({
         type: "POST",
         url: "WebService/scoringSystem.asmx/getReport",
@@ -70,11 +109,22 @@ function getReport() {
             var result = JSON.parse(data.d).responseValue;
             $("#tblReport tbody tr").remove();
 
-            //console.log(result);
+           
             var tr;
             var nutrientCentral;
             var nutrientSubCentral;
             var nutrientSpecific;
+
+            var secificCount = 5;
+            var centralCount = 4;
+            var subCentralCount = 3;
+            var sub2CentralCount = 2;
+            var sub3CentralCount = 1;
+
+            var mild = 1;
+            var moderate = 2;
+            var severe = 3;
+
             if (result.Table.length > 0) {
                 $.each(result.Table, function (i, val) {
 
@@ -87,12 +137,25 @@ function getReport() {
                                 var nutrientName = mainData[i].nutrientName;
                                 var roleType = mainData[i].problemWaitage;
                                 var scoreType = mainData[i].scoreType;
+                                var HighLow = mainData[i].HighLow;
+                                var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var MMSScoree = mainData[i].MMSScoree;
 
-                                if (scoreType != undefined || scoreType != null) {
-                                    var scoreTypeName = scoreType;
-                                }
+                                //if (scoreType == 'Mild') {
+                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + mild + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else if (scoreType == 'Moderate') {
+                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + moderate + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else if (scoreType == 'Severe') {
+                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + severe + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else {
+                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType  + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                nutrientCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
 
-                                nutrientCentral += '<li>' + nutrientName + roleType + scoreTypeName+ '</li>';
+
                             }
                         }
                     }
@@ -107,12 +170,24 @@ function getReport() {
                                 var nutrientName = mainData[i].nutrientName;
                                 var roleType = mainData[i].problemWaitage;
                                 var scoreType = mainData[i].scoreType;
+                                var HighLow = mainData[i].HighLow;
+                                var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var MMSScoree = mainData[i].MMSScoree;
+                               
+                                //if (scoreType == 'Mild') {
+                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + mild + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else if (scoreType == 'Moderate') {
+                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + moderate + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else if (scoreType == 'Severe') {
+                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + severe + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else {
+                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                nutrientSubCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
 
-                                if (scoreType != undefined || scoreType != null)  {
-                                    var scoreTypeName = scoreType;
-
-                                }
-                                nutrientSubCentral += '<li>' + nutrientName + roleType + scoreTypeName+ '</li>';
                             }
                         }
                     }
@@ -128,19 +203,29 @@ function getReport() {
                               var nutrientName = mainData[i].nutrientName;
                                 var roleType = mainData[i].problemWaitage;
                                 var scoreType = mainData[i].scoreType;
-
-                                if (scoreType != undefined || scoreType != null) {
-                                    var scoreTypeName = scoreType;
-
-                                }
-                                nutrientSpecific += '<li>' + nutrientName + roleType + scoreTypeName+'</li>';
+                                var HighLow = mainData[i].HighLow;
+                                var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var MMSScoree = mainData[i].MMSScoree;
+                                console.log(roleType);
+                                //if (scoreType == 'Mild') {
+                                //    nutrientSpecific += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 5 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + mild + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else if (scoreType == 'Moderate') {
+                                //    nutrientSpecific += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 5 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + moderate + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else if (scoreType == 'Severe') {
+                                //    nutrientSpecific += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 5 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + severe + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
+                                //else {
+                                nutrientSpecific += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + "("+ MMSScoree +")" + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                //}
                             }
                         }
                     }
                     nutrientSpecific += '</ul>';
 
 
-                    tr = tr + "<tr><td>" + val.rankName + "</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
+                    tr = tr + "<tr><td>" + val.rankName +  "(" + val.processScore+")" +"</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
                 });
             }
             $("#tblReport tbody").append(tr);

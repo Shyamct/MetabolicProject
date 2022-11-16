@@ -52,9 +52,40 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         }
         return str;
     }
-
     [WebMethod(EnableSession = true)]
-    public string getReport(int empid,int pathwayID)
+    public string getProcess(int empid, int pathwayID)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_scoringSystem pobj = new PAL_scoringSystem();
+
+        pobj.userID = empid;
+        pobj.pathwayID = pathwayID;
+
+        BAL_scoringSystem.getAllProcess(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+    [WebMethod(EnableSession = true)]
+    public string getReport(int empid,int pathwayID,string processID)
     {
         if (empid == null)
         {
@@ -66,6 +97,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
        
         pobj.userID = empid;
         pobj.pathwayID = pathwayID;
+        pobj.processID = processID;
 
         BAL_scoringSystem.getFinalReport(pobj);
         string str;
