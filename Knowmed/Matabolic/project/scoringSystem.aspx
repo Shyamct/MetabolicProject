@@ -34,6 +34,7 @@
                     <td class="commons Central">Central</td>
                     <td class="commons SCentral">Sub Central</td>
                     <td class="commons Specfic">Specfic</td>
+                    <td class="commons Score">Final Score</td>
                 </thead>
                 <tbody>
                 </tbody>

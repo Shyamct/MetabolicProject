@@ -129,6 +129,7 @@ function getReport() {
                 $.each(result.Table, function (i, val) {
 
                     var mainData = JSON.parse(result.Table[i].MarkerLIST);
+                    var count = 0;
                     nutrientCentral = '';
                     nutrientCentral += '<ul>';
                     if (mainData != undefined || mainData != null || mainData != 0) {
@@ -138,30 +139,23 @@ function getReport() {
                                 var roleType = mainData[i].problemWaitage;
                                 var scoreType = mainData[i].scoreType;
                                 var HighLow = mainData[i].HighLow;
+
                                 var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var problemWaitageScore = mainData[i].problemWaitageScore;
                                 var MMSScoree = mainData[i].MMSScoree;
+                                var HighLowScore = mainData[i].HighLowScore;
+                                count++;
 
-                                //if (scoreType == 'Mild') {
-                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + mild + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else if (scoreType == 'Moderate') {
-                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + moderate + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else if (scoreType == 'Severe') {
-                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + severe + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else {
-                                //    nutrientCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 4 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType  + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                nutrientCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                nutrientCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")"+ '</span>' + '</li>';
 
-
+                                console.log("C", count)
                             }
                         }
                     }
                     nutrientCentral += '</ul>';
 
 
+                    var count = 0;
                     nutrientSubCentral = '';
                     nutrientSubCentral += '<ul>';
                     if (mainData != undefined || mainData != null || mainData != 0) {
@@ -172,21 +166,13 @@ function getReport() {
                                 var scoreType = mainData[i].scoreType;
                                 var HighLow = mainData[i].HighLow;
                                 var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var problemWaitageScore = mainData[i].problemWaitageScore;
                                 var MMSScoree = mainData[i].MMSScoree;
-                               
-                                //if (scoreType == 'Mild') {
-                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + mild + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else if (scoreType == 'Moderate') {
-                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + moderate + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else if (scoreType == 'Severe') {
-                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + severe + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else {
-                                //    nutrientSubCentral += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 3 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                nutrientSubCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
+                                var HighLowScore = mainData[i].HighLowScore;
+                                count++;
+
+                                nutrientSubCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                console.log("SC", count)
 
                             }
                         }
@@ -194,7 +180,7 @@ function getReport() {
                     nutrientSubCentral += '</ul>';
 
 
-
+                    var count = 0;
                     nutrientSpecific = '';
                     nutrientSpecific += '<ul>';
                     if (mainData != undefined || mainData != null || mainData != 0) {
@@ -205,20 +191,15 @@ function getReport() {
                                 var scoreType = mainData[i].scoreType;
                                 var HighLow = mainData[i].HighLow;
                                 var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var problemWaitageScore = mainData[i].problemWaitageScore;
                                 var MMSScoree = mainData[i].MMSScoree;
-                                console.log(roleType);
-                                //if (scoreType == 'Mild') {
-                                //    nutrientSpecific += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 5 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + mild + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else if (scoreType == 'Moderate') {
-                                //    nutrientSpecific += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 5 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + moderate + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else if (scoreType == 'Severe') {
-                                //    nutrientSpecific += '<li>' + nutrientName + '<span style="font-size: 20px;">' + 5 + '</span>' + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + severe + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
-                                //else {
-                                nutrientSpecific += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + '</span>' + scoreType + "("+ MMSScoree +")" + '<span style="font-size: large;">' + HighLow + '</span>' + '</li>';
-                                //}
+                                var HighLowScore = mainData[i].HighLowScore;
+                                count++;
+                                console.log("SPC", count)
+
+                                nutrientSpecific += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+
+
                             }
                         }
                     }
