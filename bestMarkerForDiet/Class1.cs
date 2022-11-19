@@ -15,6 +15,7 @@ namespace DAL_scoringSystem
         public int userID { get; set; }
         public int nutrientID { get; set; }
         public string processID { get; set; }
+        public int processIDINT { get; set; }
     }
     public class DAL_scoringSystem
     {
@@ -27,6 +28,7 @@ namespace DAL_scoringSystem
             selectCommand.Parameters.AddWithValue("@userID", pobj.userID);
             selectCommand.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
             selectCommand.Parameters.AddWithValue("@processID", pobj.processID);
+            selectCommand.Parameters.AddWithValue("@processIDINT", pobj.processIDINT);
             selectCommand.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
 
             selectCommand.Parameters.Add("@isException", SqlDbType.Bit);

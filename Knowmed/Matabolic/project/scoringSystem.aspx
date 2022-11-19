@@ -51,14 +51,14 @@
                     <button type="button" class="close btnClos"  data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"> Diet </h4>
                 </div>
-                <div class="modal-body popup-decreption" style="color: black;">
+                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;">
                    
                  <table class="table" id="tblDiet">
                 <thead >
                     <tr>
                          <td class="comn">Sr. No.</td> 
                          <td class="comn">Nutrient Interacted Name</td> 
-                         <td class="comn">Nutrient Interacted Type</td> 
+                         <td class="comn">Food List</td> 
                     </tr>
                 </thead>
                   <tbody >

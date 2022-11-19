@@ -385,10 +385,10 @@ function myReport() {
                                     }
                                      centralCount = centralCount + 1
                                     if (markerLists[j].dockingScore == undefined) {
-                                        central += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>'+'</li>';
+                                        central += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS+")" +'</span>'+'</li>';
                                     }
                                     else {
-                                        central += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>'+ '</li>';
+                                        central += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" +'</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>'+ '</li>';
                                     }
                                 }
 
@@ -402,10 +402,10 @@ function myReport() {
                                     }
                                     centralCount = centralCount + 1
                                     if (markerLists[j].dockingScore == undefined) {
-                                        Ncentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '</li>';
+                                        Ncentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" + '</span>' + '</li>';
                                     }
                                     else {
-                                        Ncentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>' + '</li>';
+                                        Ncentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" + '</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>' + '</li>';
                                     }
                                 }
 
@@ -418,10 +418,10 @@ function myReport() {
                                         subcentral = subcentral.substring(0, lastIndex) + replacement + subcentral.substring(lastIndex+4);
                                     }
                                     if (markerLists[j].dockingScore == undefined) {
-                                        subcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '</li>';
+                                        subcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" +'</span>' + '</li>';
                                     }
                                     else {
-                                        subcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')'+'</span>' +'</li>';
+                                        subcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')'+'</span>' +'</li>';
                                     }
                                 }
 
@@ -434,10 +434,10 @@ function myReport() {
                                         Nsubcentral = Nsubcentral.substring(0, lastIndex) + replacement + Nsubcentral.substring(lastIndex + 4);
                                     }
                                     if (markerLists[j].dockingScore == undefined) {
-                                        Nsubcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '</li>';
+                                        Nsubcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" +'</span>' + '</li>';
                                     }
                                     else {
-                                        Nsubcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>' + '</li>';
+                                        Nsubcentral += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>' + '</li>';
                                     }
                                 }
 
@@ -452,10 +452,10 @@ function myReport() {
                                         specific = specific.substring(0, lastIndex) + replacement + specific.substring(lastIndex + 4);
                                     }
                                     if (markerLists[j].dockingScore == undefined) {
-                                        specific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' +'</li>';
+                                        specific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" +'</span>' +'</li>';
                                     }
                                     else {
-                                        specific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' +'</span>'+'</li>';
+                                        specific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' +'</span>'+'</li>';
                                     }
                                 }
                                 else if (markerLists[j].statusFor == "Specific" && markerLists[j].INIVATORS == "INIVATOR") {
@@ -468,10 +468,10 @@ function myReport() {
                                         Nspecific = Nspecific.substring(0, lastIndex) + replacement + Nspecific.substring(lastIndex + 4);
                                     }
                                     if (markerLists[j].dockingScore == undefined) {
-                                        Nspecific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '</li>';
+                                        Nspecific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" +'</span>' + '</li>';
                                     }
                                     else {
-                                        Nspecific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + '</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>' + '</li>';
+                                        Nspecific += '<li>' + '<span style="cursor: pointer;" onClick="skp(' + subTestID + ')">' + markerLists[j].markerName + "   (" + markerLists[j].INIVATORS + ")" +'</span>' + '<span style="font-size: 25px;color:white">' + '(' + markerLists[j].dockingScore + ')' + '</span>' + '</li>';
                                     }
                                 }
                             }

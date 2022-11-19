@@ -119,7 +119,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
     }
 
     [WebMethod(EnableSession = true)]
-    public string getReportDiet(int empid, int nutrientID)
+    public string getReportDiet(int empid, int nutrientID,int processIDINT,int pathwayID)
     {
         if (empid == null)
         {
@@ -129,6 +129,8 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         PAL_scoringSystem pobj = new PAL_scoringSystem();
         pobj.userID = empid;
         pobj.nutrientID = nutrientID;
+        pobj.processIDINT = processIDINT;
+        pobj.pathwayID = pathwayID;
 
         BAL_scoringSystem.getDiet(pobj);
         string str;
