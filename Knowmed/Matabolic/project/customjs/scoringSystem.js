@@ -1,6 +1,9 @@
 ﻿
 $(document).ready(function () {
     getPathway();
+    $(".btnClos").click(function () {
+        $("#modelDiet").hide();
+    })
 });
 
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
@@ -115,15 +118,7 @@ function getReport() {
             var nutrientSubCentral;
             var nutrientSpecific;
 
-            var secificCount = 5;
-            var centralCount = 4;
-            var subCentralCount = 3;
-            var sub2CentralCount = 2;
-            var sub3CentralCount = 1;
-
-            var mild = 1;
-            var moderate = 2;
-            var severe = 3;
+           
 
             if (result.Table.length > 0) {
                 $.each(result.Table, function (i, val) {
@@ -135,6 +130,9 @@ function getReport() {
                     if (mainData != undefined || mainData != null || mainData != 0) {
                         for (var i = 0; i < mainData.length; i++) {
                             if (mainData[i].compoundType == 'Central') {
+
+                                var nutrientID = mainData[i].nutrientID;
+
                                 var nutrientName = mainData[i].nutrientName;
                                 var roleType = mainData[i].problemWaitage;
                                 var scoreType = mainData[i].scoreType;
@@ -144,11 +142,18 @@ function getReport() {
                                 var problemWaitageScore = mainData[i].problemWaitageScore;
                                 var MMSScoree = mainData[i].MMSScoree;
                                 var HighLowScore = mainData[i].HighLowScore;
-                                count++;
+                               
 
-                                nutrientCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")"+ '</span>' + '</li>';
 
-                                console.log("C", count)
+                                var compoundTypeScoreCount = parseInt(compoundTypeScore);
+                                var problemWaitageScoreCount = parseInt(problemWaitageScore);
+                                var MMSScoreeCount = parseInt(MMSScoree);
+                                var HighLowScoreCount = parseInt(HighLowScore);
+                                var finalScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
+
+                                nutrientCentral += '<li>' + '<span style="font-size: x-large;color:black" onclick="showDiet(' + nutrientID + ')">' + nutrientName + "( Marker Score=" + finalScore + ")"+'</span>'+ '<br>' +'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")"+ '</span>' + '</li>';
+
+                                 
                             }
                         }
                     }
@@ -161,6 +166,8 @@ function getReport() {
                     if (mainData != undefined || mainData != null || mainData != 0) {
                         for (var i = 0; i < mainData.length; i++) {
                             if (mainData[i].compoundType == 'Sub Central') {
+                                var nutrientID = mainData[i].nutrientID;
+
                                 var nutrientName = mainData[i].nutrientName;
                                 var roleType = mainData[i].problemWaitage;
                                 var scoreType = mainData[i].scoreType;
@@ -171,9 +178,17 @@ function getReport() {
                                 var HighLowScore = mainData[i].HighLowScore;
                                 count++;
 
-                                nutrientSubCentral += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
-                                console.log("SC", count)
+                                var compoundTypeScoreCount = parseInt(compoundTypeScore);
+                                var problemWaitageScoreCount = parseInt(problemWaitageScore);
+                                var MMSScoreeCount = parseInt(MMSScoree);
+                                var HighLowScoreCount = parseInt(HighLowScore);
 
+                                var finalScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
+
+                              
+
+                                nutrientSubCentral += '<li>' + '<span style="font-size: x-large;color:black" onclick="showDiet(' + nutrientID + ')">' + nutrientName + "(  Marker Score=" + finalScore + ")" + '</span>' +'<br>'+'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                              
                             }
                         }
                     }
@@ -186,6 +201,8 @@ function getReport() {
                     if (mainData != undefined || mainData != null || mainData != 0) {
                         for (var i = 0; i < mainData.length; i++) {
                             if (mainData[i].compoundType == 'Specific') {
+                                var nutrientID = mainData[i].nutrientID;
+
                               var nutrientName = mainData[i].nutrientName;
                                 var roleType = mainData[i].problemWaitage;
                                 var scoreType = mainData[i].scoreType;
@@ -195,11 +212,14 @@ function getReport() {
                                 var MMSScoree = mainData[i].MMSScoree;
                                 var HighLowScore = mainData[i].HighLowScore;
                                 count++;
-                                console.log("SPC", count)
 
-                                nutrientSpecific += '<li>' + nutrientName + "(" + compoundTypeScore + ")" + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                var compoundTypeScoreCount = parseInt(compoundTypeScore);
+                                var problemWaitageScoreCount = parseInt(problemWaitageScore);
+                                var MMSScoreeCount = parseInt(MMSScoree);
+                                var HighLowScoreCount = parseInt(HighLowScore);
+                                var finalScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
 
-
+                                nutrientSpecific += '<li>' + '<span style="font-size: x-large;color:black" onclick="showDiet(' + nutrientID + ')">' + nutrientName + "(  Marker Score=" + finalScore + ")"+'</span>'+ '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
                             }
                         }
                     }
@@ -212,6 +232,46 @@ function getReport() {
             $("#tblReport tbody").append(tr);
             row = $("#tblReport thead tr").clone();
 
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+function showDiet(nutrientID) {
+
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    obj = {
+        empid: userID,
+        nutrientID: nutrientID
+    }
+    $.ajax({
+        type: "POST",
+        url: "WebService/scoringSystem.asmx/getReportDiet",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+            var tr;
+            $("#tblDiet tbody tr").remove();
+
+            $.each(result.Table, function (i, val) {
+                tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.interactedNutrientName + "</td><td>" + val.interactionType + "</td></tr>";
+            });
+
+            $('#tblDiet tbody').append(tr);
+            $("#modelDiet").show();
         },
         error: function (error) {
 

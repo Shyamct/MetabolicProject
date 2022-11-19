@@ -118,4 +118,34 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         return str;
     }
 
+    [WebMethod(EnableSession = true)]
+    public string getReportDiet(int empid, int nutrientID)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+        PAL_scoringSystem pobj = new PAL_scoringSystem();
+        pobj.userID = empid;
+        pobj.nutrientID = nutrientID;
+
+        BAL_scoringSystem.getDiet(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
 }

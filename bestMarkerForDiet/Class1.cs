@@ -13,6 +13,7 @@ namespace DAL_scoringSystem
     {
         public int pathwayID { get; set; }
         public int userID { get; set; }
+        public int nutrientID { get; set; }
         public string processID { get; set; }
     }
     public class DAL_scoringSystem
@@ -26,6 +27,7 @@ namespace DAL_scoringSystem
             selectCommand.Parameters.AddWithValue("@userID", pobj.userID);
             selectCommand.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
             selectCommand.Parameters.AddWithValue("@processID", pobj.processID);
+            selectCommand.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
 
             selectCommand.Parameters.Add("@isException", SqlDbType.Bit);
             selectCommand.Parameters["@isException"].Direction = ParameterDirection.Output;
@@ -57,5 +59,11 @@ namespace DAL_scoringSystem
             pobj.opcode = 43;
             DAL_scoringSystem.returnTable(pobj);
         }
+        public static void getDiet(PAL_scoringSystem pobj)
+        {
+            pobj.opcode = 44;
+            DAL_scoringSystem.returnTable(pobj);
+        }
+
     }
 }
