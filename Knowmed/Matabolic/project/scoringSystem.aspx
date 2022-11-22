@@ -1,10 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Matabolic/project/MasterPage.master" AutoEventWireup="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+     <style>
+        span#NutrientInruction {
+    padding: 4px 5px !important;
+    border: 1px solid #ddd;
+    background: #f1ebeb;
+    border-radius: 5px;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+         span.foodName {
+             padding: 3px !important;
+             border: 5px solid #ddd;
+             background: #f1ebeb;
+             border-radius: 5px;
+             font-size:15px;
+         }
+         div#foodBody {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(5, 1fr);
+}
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-
+   
     <div id="content" style="margin-left: 0px;">
         <div class="container-fluid">
             <div class="row-fluid">
@@ -43,28 +66,16 @@
 
 
 
-    <div class="modal bd-example-modal-lg" id="modelDiet" role="dialog" >
+    <div class="modal bd-example-modal-lg" id="modelIntaretednutrient" role="dialog" >
         <div class="modal-dialog modal-xl ">
             <!-- Modal content-->
             <div class="modal-content ">
                 <div class="modal-header">
                     <button type="button" class="close btnClos"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"> Diet </h4>
+                    <h4 class="modal-title"> Interacted Nutrient Name </h4>
                 </div>
                 <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;">
-                   
-                 <table class="table" id="tblDiet">
-                <thead >
-                    <tr>
-                         <td class="comn">Sr. No.</td> 
-                         <td class="comn">Nutrient Interacted Name</td> 
-                         <td class="comn">Food List</td> 
-                    </tr>
-                </thead>
-                  <tbody >
-                    
-                  </tbody>
-                 </table>
+                  <div id="Interactednutrient"></div> 
                    
                 </div>
                 <div class="modal-footer">
@@ -76,6 +87,38 @@
     </div>
 
 
+
+     <div class="modal bd-example-modal-lg" id="modelFoodList" role="dialog">
+        <div class="modal-dialog modal-xl" style="max-width: 1000px ; margin: 30px auto;width: 100% !important;">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close btnClosfood"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Food Name </h4>
+                </div>
+                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
+                  <div id="foodBody"></div> 
+                <%-- <table class="table" id="tblDiet">
+                <thead >
+                    <tr>
+                         <td class="comn">Sr. No.</td> 
+                         <td class="comn">Interacted Nutrient Activator</td> 
+                         <td class="comn">Interacted Nutrient Inhivator</td> 
+                    </tr>
+                </thead>
+                  <tbody >
+                    
+                  </tbody>
+                 </table>--%>
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnClosfood">Close</button>
+                </div>
+            </div>
+        </div>
+         
+    </div>
     <script src="customjs/scoringSystem.js"></script>
 </asp:Content>
 

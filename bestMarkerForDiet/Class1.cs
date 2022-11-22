@@ -16,6 +16,8 @@ namespace DAL_scoringSystem
         public int nutrientID { get; set; }
         public string processID { get; set; }
         public int processIDINT { get; set; }
+        public int finalMarkerScore { get; set; }
+        public int interactedNutrientID { get; set; }
     }
     public class DAL_scoringSystem
     {
@@ -30,6 +32,8 @@ namespace DAL_scoringSystem
             selectCommand.Parameters.AddWithValue("@processID", pobj.processID);
             selectCommand.Parameters.AddWithValue("@processIDINT", pobj.processIDINT);
             selectCommand.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
+            selectCommand.Parameters.AddWithValue("@markerScore", pobj.finalMarkerScore);
+            selectCommand.Parameters.AddWithValue("@interactedNutrientID", pobj.interactedNutrientID);
 
             selectCommand.Parameters.Add("@isException", SqlDbType.Bit);
             selectCommand.Parameters["@isException"].Direction = ParameterDirection.Output;
@@ -61,9 +65,14 @@ namespace DAL_scoringSystem
             pobj.opcode = 43;
             DAL_scoringSystem.returnTable(pobj);
         }
-        public static void getDiet(PAL_scoringSystem pobj)
+        public static void getIntructionNutrient(PAL_scoringSystem pobj)
         {
             pobj.opcode = 44;
+            DAL_scoringSystem.returnTable(pobj);
+        }
+        public static void getFood(PAL_scoringSystem pobj)
+        {
+            pobj.opcode = 45;
             DAL_scoringSystem.returnTable(pobj);
         }
 

@@ -119,7 +119,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
     }
 
     [WebMethod(EnableSession = true)]
-    public string getReportDiet(int empid, int nutrientID,int processIDINT,int pathwayID)
+    public string getNurientIntruction(int empid, int nutrientID,int processIDINT,int pathwayID,int finalMarkerScore)
     {
         if (empid == null)
         {
@@ -131,8 +131,40 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         pobj.nutrientID = nutrientID;
         pobj.processIDINT = processIDINT;
         pobj.pathwayID = pathwayID;
+        pobj.finalMarkerScore = finalMarkerScore;
 
-        BAL_scoringSystem.getDiet(pobj);
+        BAL_scoringSystem.getIntructionNutrient(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+    [WebMethod(EnableSession = true)]
+    public string getFoodlist(int empid, int interactedNutrientID)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+        PAL_scoringSystem pobj = new PAL_scoringSystem();
+        pobj.userID = empid;
+        pobj.interactedNutrientID = interactedNutrientID;
+        
+
+        BAL_scoringSystem.getFood(pobj);
         string str;
         if (!pobj.isException)
         {

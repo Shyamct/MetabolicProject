@@ -2,12 +2,16 @@
 $(document).ready(function () {
     getPathway();
     $(".btnClos").click(function () {
-        $("#modelDiet").hide();
+        $("#modelIntaretednutrient").hide();
+        $("#modelFoodList").hide();
+    })
+    $(".btnClosfood").click(function () {
+        $("#modelFoodList").hide();
     })
 });
 
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
-
+var finalMarkerScore = 0;
 function getPathway() {
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -144,17 +148,16 @@ function getReport() {
                                 var HighLowScore = mainData[i].HighLowScore;
                                
                                 var compoundTypeScoreCount = parseInt(compoundTypeScore);
-
                                 var problemWaitageScoreCount = parseInt(problemWaitageScore);
                                 var MMSScoreeCount = parseInt(MMSScoree);
                                 var HighLowScoreCount = parseInt(HighLowScore);
 
-                                console.log("compoundTypeScoreCount");
-                                console.log(compoundTypeScoreCount+1);
+                                //console.log("compoundTypeScoreCount");
+                                //console.log(nutrientName+compoundTypeScoreCount);
 
 
-                                var finalScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
-                                nutrientCentral += '<li>' + '<span style="font-size: x-large;color:black" onclick="showDiet(' + nutrientID + ',' + currentProcessID +')">' + nutrientName + "( Marker Score=" + finalScore + ")"+'</span>'+ '<br>' +'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")"+ '</span>' + '</li>';
+                                finalMarkerScore = (compoundTypeScoreCount+1) + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
+                                nutrientCentral += '<li>' + '<span style="font-size: x-large;color:black" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "( Marker Score=" + finalMarkerScore + ")"+'</span>'+ '<br>' +'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")"+ '</span>' + '</li>';
 
                                  
                             }
@@ -186,11 +189,11 @@ function getReport() {
                                 var MMSScoreeCount = parseInt(MMSScoree);
                                 var HighLowScoreCount = parseInt(HighLowScore);
 
-                                var finalScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
+                                finalMarkerScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
 
                               
 
-                                nutrientSubCentral += '<li>' + '<span style="font-size: x-large;color:black" onclick="showDiet(' + nutrientID + ',' + currentProcessID +')">' + nutrientName + "(  Marker Score=" + finalScore + ")" + '</span>' +'<br>'+'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                nutrientSubCentral += '<li>' + '<span style="font-size: x-large;color:black" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' +'<br>'+'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
                               
                             }
                         }
@@ -217,13 +220,13 @@ function getReport() {
                                 count++;
 
                                 var compoundTypeScoreCount = parseInt(compoundTypeScore);
-                               
                                 var problemWaitageScoreCount = parseInt(problemWaitageScore);
                                 var MMSScoreeCount = parseInt(MMSScoree);
                                 var HighLowScoreCount = parseInt(HighLowScore);
-                                var finalScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
 
-                                nutrientSpecific += '<li>' + '<span style="font-size: x-large;color:black" onclick="showDiet(' + nutrientID + ',' + currentProcessID + ')">' + nutrientName + "(  Marker Score=" + finalScore + ")" + '</span>' + '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                finalMarkerScore = compoundTypeScoreCount + problemWaitageScoreCount + MMSScoreeCount + HighLowScoreCount;
+
+                                nutrientSpecific += '<li>' + '<span style="font-size: x-large;color:black" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
                             }
                         }
                     }
@@ -243,21 +246,23 @@ function getReport() {
     });
 }
 
-function showDiet(nutrientID, currentProcessID) {
+function getInteractionNutrient(nutrientID, currentProcessID, finalMarkerScore) {
     
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
     obj = {
-        empid: userID,
-        nutrientID: nutrientID,
+         empid: userID,
+         nutrientID: nutrientID,
          processIDINT: currentProcessID,
          pathwayID: pathwayID,
+        finalMarkerScore: finalMarkerScore,
     }
+    console.log("finalMarkerScore", finalMarkerScore);
     $.ajax({
         type: "POST",
-        url: "WebService/scoringSystem.asmx/getReportDiet",
+        url: "WebService/scoringSystem.asmx/getNurientIntruction",
         contentType: 'application/json',
         dataType: 'json',
         data: JSON.stringify(obj),
@@ -269,16 +274,66 @@ function showDiet(nutrientID, currentProcessID) {
         },
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
-            var tr;
-            $("#tblDiet tbody tr").remove();
-
-
+         
+            var text = '';
+            $("#Interactednutrient").html('');
 
             $.each(result.Table, function (i, val) {
+               
+                if (val.interactionTypeforCONDITION =="Inhibitor") {
+                    text += '<span id="NutrientInruction" style="padding:5px;font-size: x-large;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;"  onclick="getFoodlist(' + val.interactedNutrientID + ')">' + val.interactedNutrientName + val.interactionType + val.markerScore+ '</span>';
+                }
+                else (val.interactionTypeforCONDITION == "Enhancer")
+                {
+                    text += '<span id="NutrientInruction" style="padding:5px;font-size: x-large;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;"  onclick="getFoodlist(' + val.interactedNutrientID + ')">' + val.interactedNutrientName + val.interactionType + val.markerScore+'</span>';
+                }
+            });
+            $("#Interactednutrient").html(text);
+            $("#modelIntaretednutrient").show();
+        },
+        error: function (error) {
 
+        }
+    });
+}
 
-                var foodList = JSON.parse(result.Table[i].foodList);
-                var foodName;
+function getFoodlist(interactedNutrientID) {
+
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    obj = {
+        empid: userID,
+        interactedNutrientID: interactedNutrientID,
+    }
+    console.log(obj);
+    $.ajax({
+        type: "POST",
+        url: "WebService/scoringSystem.asmx/getFoodlist",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+           
+            $("#foodBody").html('');
+          
+           // 
+            var text='';
+            $.each(result.Table, function (i, val) {
+               
+                //STRT
+              //  var foodList = JSON.parse(result.Table[i].foodList);
+                
+
+                //var foodName;
 
                 //var foodNameList = '';
                 //foodNameList += '<ul>';
@@ -289,14 +344,17 @@ function showDiet(nutrientID, currentProcessID) {
                 //    }
                 // }
                 //foodNameList += '</ul>';
-                //console.log(foodNameList);
+                //console.log(foodNameList); 
+                // tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.interactedNutrientName + "   " + val.interactionType + "</td></tr>";
+                   // text += '<span id="skp" style="padding:5px;font-size: x-large;color:black;font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;cursor: pointer;" onclick="getFoodlist(\'' + val.interactedNutrientID + '\')">' + val.interactedNutrientName + val.interactionType+ '</span>';
+                //end
+                text += '<span class="foodName">' + val.foodName + '</span>';
 
 
-                tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.interactedNutrientName + "   " + val.interactionType + "</td></tr>";
             });
+            $("#foodBody").html(text);
 
-            $('#tblDiet tbody').append(tr);
-            $("#modelDiet").show();
+            $("#modelFoodList").show();
         },
         error: function (error) {
 
