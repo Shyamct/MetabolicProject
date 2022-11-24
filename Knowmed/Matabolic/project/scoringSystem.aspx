@@ -22,6 +22,14 @@
     grid-gap: 1px;
     grid-template-columns: repeat(5, 1fr);
 }
+         td.commons{
+             font-size: large !important;
+             color: black !important;
+         }
+       td.commons Process{
+             font-size: medium;
+              color: black;
+         }
     </style>
 
 </asp:Content>
@@ -98,18 +106,6 @@
                 </div>
                 <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
                   <div id="foodBody"></div> 
-                <%-- <table class="table" id="tblDiet">
-                <thead >
-                    <tr>
-                         <td class="comn">Sr. No.</td> 
-                         <td class="comn">Interacted Nutrient Activator</td> 
-                         <td class="comn">Interacted Nutrient Inhivator</td> 
-                    </tr>
-                </thead>
-                  <tbody >
-                    
-                  </tbody>
-                 </table>--%>
                    
                 </div>
                 <div class="modal-footer">
