@@ -1,0 +1,9 @@
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\bin\Debug\DAL_assignAttribute.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\bin\Debug\DAL_assignAttribute.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.csproj.AssemblyReference.cache

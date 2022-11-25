@@ -83,6 +83,7 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\bin\Debug\System.Numeric
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\bin\Debug\System.ValueTuple.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\bin\Debug\DLLUtility.pdb
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\obj\Debug\DLLMainPathway.csproj.AssemblyReference.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\obj\Debug\DLLMainPathway.csproj.CoreCompileInputs.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\obj\Debug\DLLMainPathway.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMainPathway\obj\Debug\DLLMainPathway.dll

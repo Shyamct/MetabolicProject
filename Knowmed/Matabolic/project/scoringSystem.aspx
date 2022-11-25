@@ -22,14 +22,26 @@
     grid-gap: 1px;
     grid-template-columns: repeat(5, 1fr);
 }
-         td.commons{
+         th.commons{
              font-size: large !important;
              color: black !important;
          }
-       td.commons Process{
-             font-size: medium;
-              color: black;
-         }
+     /*..............*/
+     .my-div td {
+    color: black;
+    font-size: 16px;
+}
+     .my-div {
+    box-sizing: border-box;
+    width: 100%;
+    margin: auto;
+    height: 811px;
+    overflow: auto;
+}
+     .my-div table, th {
+    position: sticky;
+    top: 0;
+}
     </style>
 
 </asp:Content>
@@ -58,13 +70,13 @@
             </div>
         </div>
 
-        <div class="tblDiv">
+        <div class="tblDiv my-div">
             <table class="table table-bordered table-responsive" id="tblReport">
                 <thead>
-                    <td class="commons Process">Process</td>
-                    <td class="commons Central">Central (Score=4)</td>
-                    <td class="commons SCentral">Sub Central (Score=3)</td>
-                    <td class="commons Specfic">Specfic (Score=5)</td>
+                    <th class="commons Process">Process</th>
+                    <th class="commons Central">Central (Score=4)</th>
+                    <th class="commons SCentral">Sub Central (Score=3)</th>
+                    <th class="commons Specfic">Specfic (Score=5)</th>
                 </thead>
                 <tbody>
                 </tbody>
@@ -82,7 +94,7 @@
                     <button type="button" class="close btnClos"  data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"> Interacted Nutrient Name </h4>
                 </div>
-                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;">
+                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
                   <div id="Interactednutrient"></div> 
                    
                 </div>

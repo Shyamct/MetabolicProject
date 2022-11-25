@@ -544,7 +544,7 @@ div.content {
                         </li>
                         <li id="coFactors" class="menu-item" onclick="cxcommand(event)">Get Co-Factors</li>
                         <li id="endProduct" class="menu-item" onclick="cxcommand(event)">Get End Product</li>
-                        <li id="breakLoop" class="menu-item" onclick="cxcommand(event)">Break Loop</li>
+                        <%--<li id="breakLoop" class="menu-item" onclick="cxcommand(event)">Break Loop</li>--%>
                     </ul>
                 </div>
             </div>

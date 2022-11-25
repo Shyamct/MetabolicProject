@@ -518,27 +518,28 @@
                         
                     </div>
 
-                    
+                  <%--  
                     <ul id="contextMenu" class="menu">
                         <li id="diet" class="menu-item">Diet <i class="icon-circle-arrow-right pull-right"></i>
                             <ul class="menu">
                                 <li id="dietAdvice" class="menu-item" onclick="cxcommand(event)">Diet Advice</li>
-                                <%--<li id="dietNotRequired" class="menu-item" onclick="cxcommand(event)">Diet Not Required</li>--%>
-                              <%--  <li id="processDietNotRequired" class="menu-item" onclick="cxcommand(event)">Process Diet Not Required</li>--%>
                             </ul>
                         </li>
+
+
                         <li id="role" class="menu-item">Role <i class="icon-circle-arrow-right pull-right"></i>
                             <ul class="menu">
                                 <li id="harmful" class="menu-item" onclick="cxcommand(event)">Harmful</li>
                                 <li id="beneficial" class="menu-item" onclick="cxcommand(event)">Beneficial</li>
                             </ul>
                         </li>
+
+
+
                         <li id="fateFeeder" class="menu-item" onclick="cxcommand(event)">Fate & Feeder</li>
                         <li id="clinicalFeature" class="menu-item" onclick="cxcommand(event)">Clinical Feature</li>
-                       <%-- <li id="addEnzyme" class="menu-item" onclick="cxcommand(event)">Add Enzyme</li>--%>
                         <li id="goToPathway" class="menu-item" onclick="cxcommand(event)">Go To Pathway</li>
                         <li id="checkMedicine" class="menu-item" onclick="cxcommand(event)">Check Medicine</li>
-                        <%-- <li id="checkStock" class="menu-item" onclick="cxcommand(event)">Check Stock</li>--%>
                         <li id="goToDiet" class="menu-item" onclick="cxcommand(event)">Go To Diet</li>
                         <li id="details" class="menu-item">Details <i class="icon-circle-arrow-right pull-right"></i>
                             <ul class="menu">
@@ -556,17 +557,24 @@
                                 <li id="createDoubleSub" class="menu-item" onclick="cxcommand(event)">Sub Sub Central Molecule</li>
                                 <li id="createTripleSub" class="menu-item" onclick="cxcommand(event)">Sub Sub Sub Central Molecule</li>
 
-                              <%--  <li id="createRegulatory" class="menu-item" onclick="cxcommand(event)">Regulatory Molecule</li>
-                                <li id="createReported" class="menu-item" onclick="cxcommand(event)">Reported Molecule</li>
-                                <li id="availableInEra" class="menu-item" onclick="cxcommand(event)">Available In Era</li>--%>
                             </ul>
                         </li>
                         <li id="coFactors" class="menu-item" onclick="cxcommand(event)">Get Co-Factors</li>
                         <li id="endProduct" class="menu-item" onclick="cxcommand(event)">Get End Product</li>
                         <li id="aboutPatient" class="menu-item" onclick="cxcommand(event)">Patient Diet Intake</li>
                         <li id="addNew" class="menu-item" onclick="cxcommand(event)">Add New</li>
+                    </ul>--%>
 
-                    </ul>
+
+                    <ul id="contextMenu" class="menu">
+                        <%-- <li id="role" class="menu-item">Role <i class="icon-circle-arrow-right pull-right"></i>
+                            <ul class="menu">
+                                <li id="harmful" >Harmful</li>
+                                <li id="beneficial" >Beneficial</li>
+                            </ul>
+                        </li>--%>
+                        </ul>
+
                 </div>
                 
             </div>
@@ -1490,5 +1498,71 @@
     <script src="customjs/RescalingTool.js"></script>
     
      <script src="customjs/pageDescription.js"></script>
+   <script>
+        $(function ($) {
+            var obj = {
+                "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "WebService/assignAttribute.asmx/getAttributeWITHuser",
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(obj),
+
+                statusCode: {
+                    401: function (xhr) {
+                        window.location.href = "../../index.html";
+                    }
+                },
+
+                success: function (data) {
+                    var result = JSON.parse(data.d).responseValue;
+
+                    var allData = result.Table;
+                    var parentTable = result.Table1;
+
+                    var htm = '';
+                    var IDS;
+                 
+
+                    $.each(parentTable, function (i, val) {
+
+                        var parentAttributeID = val.parentAttributeID;                        
+
+                        if (IDS == 0) {
+                            htm += "<li id=" + val.attributesName + " class='menu-item' onclick='aa()'>" + val.attributesName + " <i class='icon-circle-arrow-right pull-right'></i>";
+                        }
+                        else  {
+                            htm += "<li id=" + val.attributesName + " class='menu-item'>" + val.attributesName + " <i class='icon-circle-arrow-right pull-right'></i>";
+                        }
+                         
+                        htm += "<ul class='menu'>";
+                        $.each(allData, function (i, val) {
+                            IDS = val.parentAttributeID;
+                           
+                            if (parentAttributeID == val.parentAttributeID) {                                   
+                                htm += "<li id=" + val.attributesName + " class='menu-item' onclick='aa()'>" + val.attributesName + "</li>";                                
+                            }                            
+                        });
+                        htm += "</ul></li>";
+
+
+                    });
+                    $('#contextMenu').append(htm);
+                },
+                error: function (error) {
+
+                }
+            });
+        });
+    
+
+       
+       function aa() {
+           console.log("ffffff");
+       }
+   </script>
 </asp:Content>
 

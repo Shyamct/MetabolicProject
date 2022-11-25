@@ -853,21 +853,22 @@ function init(data, data1) {
         nodeObj = obj;
         changeItemText(nodeObj);
 
-        maybeShowItem(document.getElementById("diet"), obj !== null);
-        maybeShowItem(document.getElementById("role"), obj !== null);
-        maybeShowItem(document.getElementById("fateFeeder"), obj !== null);
-        maybeShowItem(document.getElementById("clinicalFeature"), obj !== null);
-        //maybeShowItem(document.getElementById("addEnzyme"), obj !== null);
-        maybeShowItem(document.getElementById("goToPathway"), obj !== null);
-        maybeShowItem(document.getElementById("checkMedicine"), obj !== null);
-        //maybeShowItem(document.getElementById("checkStock"), obj !== null);
-        maybeShowItem(document.getElementById("goToDiet"), obj !== null);
-        maybeShowItem(document.getElementById("details"), obj !== null);
-        maybeShowItem(document.getElementById("markerType"), obj !== null);
-        maybeShowItem(document.getElementById("coFactors"), obj !== null);
-        maybeShowItem(document.getElementById("endProduct"), obj !== null);
-        maybeShowItem(document.getElementById("aboutPatient"), obj !== null);
-        maybeShowItem(document.getElementById("addNew"), obj !== null);
+        //maybeShowItem(document.getElementById("diet"), obj !== null);
+        maybeShowItem(document.getElementById("Role"), obj !== null);
+       // maybeShowItem(document.getElementById("role"), obj !== null);
+        //maybeShowItem(document.getElementById("fateFeeder"), obj !== null);
+        //maybeShowItem(document.getElementById("clinicalFeature"), obj !== null);
+        //// not use    maybeShowItem(document.getElementById("addEnzyme"), obj !== null);
+        //maybeShowItem(document.getElementById("goToPathway"), obj !== null);
+        //maybeShowItem(document.getElementById("checkMedicine"), obj !== null);
+        //// not use     maybeShowItem(document.getElementById("checkStock"), obj !== null);
+        //maybeShowItem(document.getElementById("goToDiet"), obj !== null);
+        //maybeShowItem(document.getElementById("details"), obj !== null);
+        //maybeShowItem(document.getElementById("markerType"), obj !== null);
+        //maybeShowItem(document.getElementById("coFactors"), obj !== null);
+        //maybeShowItem(document.getElementById("endProduct"), obj !== null);
+        //maybeShowItem(document.getElementById("aboutPatient"), obj !== null);
+        //maybeShowItem(document.getElementById("addNew"), obj !== null);
 
 
         // Now show the whole context menu element
@@ -926,8 +927,8 @@ function cxcommand(event, val) {
         case "dietAdvice": getEat(nodeObj); break;
         case "dietNotRequired": setDietRequired(nodeObj, innerText); break;
         case "processDietNotRequired": setDietRequired(nodeObj, innerText); break;
-        case "harmful": setDietRequired(nodeObj, innerText); break;
-        case "beneficial": setDietRequired(nodeObj, innerText); break;
+        case "Harmful": setDietRequired(nodeObj, innerText); break;
+        case "Beneficial": setDietRequired(nodeObj, innerText); break;
         case "fateFeeder": getkeywordRelation(nodeObj); break;
         case "clinicalFeature": getClinicalFeatures(nodeObj); break;
         //case "addEnzyme": SetEnzyme(nodeObj); break;
@@ -984,7 +985,6 @@ function changeColor(diagram, color) {
 function changeItemText(obj) {
     var contextmenu = obj.part;
     var nodedata = contextmenu.data;
-    console.log("nodedata", nodedata);
     if (nodedata.isCenterMolecule) {
         $("#createCentral").html('Center Molecule');
         $("#createRegulatory").show();

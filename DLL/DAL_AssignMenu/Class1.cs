@@ -12,7 +12,7 @@ namespace DAL_AssignMenu
 
     public class PAL_assignMenu : Utility
     {
-       public int parentID { get; set; }
+        public int parentID { get; set; }
         public int userID { get; set; }
         public int subMenuID { get; set; }
         public string FinalArray { get; set; }
