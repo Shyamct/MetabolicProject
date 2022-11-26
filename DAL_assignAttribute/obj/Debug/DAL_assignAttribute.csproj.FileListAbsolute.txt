@@ -6,4 +6,3 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAtt
 D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_assignAttribute\obj\Debug\DAL_assignAttribute.csproj.AssemblyReference.cache

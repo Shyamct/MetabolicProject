@@ -1532,7 +1532,8 @@
                         var parentAttributeID = val.parentAttributeID;                        
 
                         if (IDS == 0) {
-                            htm += "<li id=" + val.attributesName + " class='menu-item' onclick='aa()'>" + val.attributesName + " <i class='icon-circle-arrow-right pull-right'></i>";
+                            var cxcommandID = val.attributesName.replace(/\s+/g, '').trim();
+                            htm += "<li id=" + cxcommandID + " class='menu-item' onclick='cxcommand(event)'>" + val.attributesName;
                         }
                         else  {
                             htm += "<li id=" + val.attributesName + " class='menu-item'>" + val.attributesName + " <i class='icon-circle-arrow-right pull-right'></i>";
@@ -1542,8 +1543,9 @@
                         $.each(allData, function (i, val) {
                             IDS = val.parentAttributeID;
                            
-                            if (parentAttributeID == val.parentAttributeID) {                                   
-                                htm += "<li id=" + val.attributesName + " class='menu-item' onclick='aa()'>" + val.attributesName + "</li>";                                
+                            if (parentAttributeID == val.parentAttributeID) {
+                                var cxcommandID = val.attributesName.replace(/\s+/g, '').trim();
+                                htm += "<li id=" + cxcommandID + " class='menu-item' onclick='cxcommand(event)'>" + val.attributesName + "</li>";
                             }                            
                         });
                         htm += "</ul></li>";
@@ -1559,10 +1561,7 @@
         });
     
 
-       
-       function aa() {
-           console.log("ffffff");
-       }
+      
    </script>
 </asp:Content>
 

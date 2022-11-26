@@ -839,12 +839,13 @@ function init(data, data1) {
     }
 
     function showContextMenu(obj, diagram, tool) {
+       
         // Show only the relevant buttons given the current state.
         var cmd = diagram.commandHandler;
         var hasMenuItem = false;
         function maybeShowItem(elt, pred) {
             if (pred) {
-                elt.style.display = "block";
+               // elt.style.display = "block";
                 hasMenuItem = true;
             } else {
                 elt.style.display = "none";
@@ -853,8 +854,15 @@ function init(data, data1) {
         nodeObj = obj;
         changeItemText(nodeObj);
 
-        //maybeShowItem(document.getElementById("diet"), obj !== null);
+       
+
+
+        maybeShowItem(document.getElementById("Diet"), obj !== null);
         maybeShowItem(document.getElementById("Role"), obj !== null);
+        maybeShowItem(document.getElementById("Details"), obj !== null);
+        maybeShowItem(document.getElementById("MarkerType"), obj !== null);
+
+        //maybeShowItem(document.getElementById("PatientDietInteke"), obj !== null);
        // maybeShowItem(document.getElementById("role"), obj !== null);
         //maybeShowItem(document.getElementById("fateFeeder"), obj !== null);
         //maybeShowItem(document.getElementById("clinicalFeature"), obj !== null);
@@ -863,7 +871,7 @@ function init(data, data1) {
         //maybeShowItem(document.getElementById("checkMedicine"), obj !== null);
         //// not use     maybeShowItem(document.getElementById("checkStock"), obj !== null);
         //maybeShowItem(document.getElementById("goToDiet"), obj !== null);
-        //maybeShowItem(document.getElementById("details"), obj !== null);
+       // maybeShowItem(document.getElementById("details"), obj !== null);
         //maybeShowItem(document.getElementById("markerType"), obj !== null);
         //maybeShowItem(document.getElementById("coFactors"), obj !== null);
         //maybeShowItem(document.getElementById("endProduct"), obj !== null);
@@ -919,26 +927,32 @@ function init(data, data1) {
 
 // This is the general menu command handler, parameterized by the name of the command.
 function cxcommand(event, val) {
+    
     if (val === undefined) val = event.currentTarget.id;
     var diagram = myDiagram;
     var innerText = event.currentTarget.innerHTML;
-
+  
     switch (val) {
-        case "dietAdvice": getEat(nodeObj); break;
+        case "DietAdvice": getEat(nodeObj); break;
         case "dietNotRequired": setDietRequired(nodeObj, innerText); break;
         case "processDietNotRequired": setDietRequired(nodeObj, innerText); break;
         case "Harmful": setDietRequired(nodeObj, innerText); break;
         case "Beneficial": setDietRequired(nodeObj, innerText); break;
-        case "fateFeeder": getkeywordRelation(nodeObj); break;
-        case "clinicalFeature": getClinicalFeatures(nodeObj); break;
+        case "PatientDietInteke": setDietRequired(nodeObj, innerText); break;
+        case "FateFeeder": getkeywordRelation(nodeObj); break;
+        case "ClinicalFeature": getClinicalFeatures(nodeObj); break;
         //case "addEnzyme": SetEnzyme(nodeObj); break;
-        case "goToPathway": GoToPathway(nodeObj); break;
-        case "checkMedicine": chkMedicine(nodeObj); break;
-        case "goToDiet": goToDiet(nodeObj); break;
-        case "markerDetails": getMarkerDetail(nodeObj); break;
-        case "rdaDetails": getRDADetail(nodeObj); break;
-        case "stockDetails": getItemStock(nodeObj); break;
-        case "machineDetails": getTestMachineDetail(nodeObj); break;
+        case "GoToPathway": GoToPathway(nodeObj); break;
+        case "CheckMedicine": chkMedicine(nodeObj); break;
+        case "GoToDiet": goToDiet(nodeObj); break;
+        case "GetCoFactor": getCoFactors(nodeObj); break;
+
+        case "MarkerDetails": getMarkerDetail(nodeObj); break;
+        case "RDADetails": getRDADetail(nodeObj); break;
+        case "GetEndProduct": getMyGraphData(nodeObj); break;
+
+        case "StoreDetails": getItemStock(nodeObj); break;
+        case "MachineDetails": getTestMachineDetail(nodeObj); break;
         case "createCentral": SetCenterMolecule(nodeObj, innerText); break;
         case "removeCentral": SetCenterMolecule(nodeObj, innerText); break;
         case "createSubCentral": SetCenterMolecule(nodeObj, innerText); break;
@@ -957,10 +971,8 @@ function cxcommand(event, val) {
         case "removeReported": SetCenterMolecule(nodeObj, innerText); break;
         case "availableInEra": SetCenterMolecule(nodeObj, innerText); break;
         case "notAvailableInEra": SetCenterMolecule(nodeObj, innerText); break;
-        case "coFactors": getCoFactors(nodeObj); break;
-        case "endProduct": getMyGraphData(nodeObj); break;
-        case "aboutPatient": aboutPatientAchivement(nodeObj); break;
-        case "addNew": Final(nodeObj); break;
+        case "PatientDietInteke": aboutPatientAchivement(nodeObj); break;
+        case "AddNew": Final(nodeObj); break;
 
     }
     diagram.currentTool.stopTool();

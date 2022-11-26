@@ -42,6 +42,70 @@
     position: sticky;
     top: 0;
 }
+
+     .my-div th {
+    letter-spacing: 0px;
+    color: #343434;
+    opacity: 1;
+}
+     .my-div td {
+    letter-spacing: 0px;
+    color: #2D2D2D;
+    opacity: 1;
+}
+
+ td#TDprocess {
+    letter-spacing: 0px;
+    color: #2D2D2D;
+    opacity: 1;
+    font-size: 17px;
+}
+ .span12 input {
+    background: #FA9600 0% 0% no-repeat padding-box;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    border: 1px solid #fff;
+    padding: 5px 15px;
+    
+}
+  span#tdMarker {
+    letter-spacing: 0px;
+    color: #2D2D2D;
+    opacity: 1;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer; 
+}
+ .my-div span {
+    margin: 0 3px;
+    
+}
+ span#SPNroleType {
+background: #ECECEC 0% 0% no-repeat padding-box;
+border-radius: 5px;
+opacity: 1;
+    color: #9D9D9D;  
+    font-size: 13px;
+      
+}
+
+ span#SPNscoreType {
+     background: #D9E8DA 0% 0% no-repeat padding-box;
+border-radius: 5px;
+opacity: 1;
+    letter-spacing: 0px;
+    color: #228126;   
+    font-size: 13px;
+}
+ span#SPNhighLow {
+     background: #FCE1DE 0% 0% no-repeat padding-box;
+border-radius: 5px; 
+    opacity: 1;
+    color: #CB1E1E;  
+    font-size: 13px;
+}
     </style>
 
 </asp:Content>

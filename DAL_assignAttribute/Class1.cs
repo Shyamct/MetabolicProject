@@ -13,6 +13,7 @@ namespace DAL_assignAttribute
     {
         public int userID { get; set; }
         public int status { get; set; }
+        public int parentID { get; set; }
        
     }
     public class DAL_assignAttribute
@@ -25,6 +26,7 @@ namespace DAL_assignAttribute
 
             cmd.Parameters.AddWithValue("@who", pobj.who);
             cmd.Parameters.AddWithValue("@opCode", pobj.opcode);
+            cmd.Parameters.AddWithValue("@parentID", pobj.parentID);
 
             cmd.Parameters.Add("@isException", SqlDbType.Bit);
             cmd.Parameters["@isException"].Direction = ParameterDirection.Output;
@@ -42,11 +44,22 @@ namespace DAL_assignAttribute
     public class BAL_assignAttribute
     {
        
+       
+        public static void getAttributeList(PAL_assignAttribute pobj)
+        {
+            pobj.opcode = 41;
+            DAL_assignAttribute.returnTable(pobj);
+        }
+        public static void getAttributeListChild(PAL_assignAttribute pobj)
+        {
+            pobj.opcode = 42;
+            DAL_assignAttribute.returnTable(pobj);
+        }
         public static void getAttributeWITHuser(PAL_assignAttribute pobj)
         {
             pobj.opcode = 43;
             DAL_assignAttribute.returnTable(pobj);
         }
-        
+
     }
 }

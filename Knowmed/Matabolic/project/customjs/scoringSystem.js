@@ -12,6 +12,8 @@ $(document).ready(function () {
 
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
 var finalMarkerScore = 0;
+
+
 function getPathway() {
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -156,8 +158,8 @@ function getReport() {
                                 //console.log(nutrientName+compoundTypeScoreCount);
 
                                 finalMarkerScore = compoundTypeScoreCount + Number(Number.isNaN(problemWaitageScoreCount) ? 0 : problemWaitageScoreCount) + Number(Number.isNaN(MMSScoreeCount) ? 0 : MMSScoreeCount) + Number(Number.isNaN(HighLowScoreCount) ? 0 : HighLowScoreCount);
-                                //nutrientCentral += '<li>' + '<span style="font-size: x-large;color:black;cursor: pointer;" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "( Marker Score=" + finalMarkerScore + ")"+'</span>'+ '<br>' +'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")"+ '</span>' + '</li>';
-                                nutrientCentral += '<li>' + '<span style="font-size: x-large;color:black;cursor: pointer;" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span style="font-size: large;">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                //nutrientCentral += '<li>' + '<span style="font-size: x-large;color:black;cursor: pointer;" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span style="font-size: large;">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
 
                                  
                             }
@@ -194,7 +196,8 @@ function getReport() {
                               
 
                               //  nutrientSubCentral += '<li>' + '<span style="font-size: x-large;color:black;cursor: pointer;" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' +'<br>'+'<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + scoreType + "(" + MMSScoree + ")" + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
-                                nutrientSubCentral += '<li>' + '<span style="font-size: x-large;color:black;cursor: pointer;" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span style="font-size: large;">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                               // nutrientSubCentral += '<li>' + '<span style="font-size: x-large;color:black;cursor: pointer;" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span style="font-size: large;">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
 
                             }
                         }
@@ -228,14 +231,14 @@ function getReport() {
                                 finalMarkerScore = compoundTypeScoreCount + Number(Number.isNaN(problemWaitageScoreCount) ? 0 : problemWaitageScoreCount) + Number(Number.isNaN(MMSScoreeCount) ? 0 : MMSScoreeCount) + Number(Number.isNaN(HighLowScoreCount) ? 0 : HighLowScoreCount);
                                 console.log("compoundTypeScoreCount");
                                 console.log( compoundTypeScoreCount);
-                                nutrientSpecific += '<li>' + '<span style="font-size: x-large;color:black;cursor: pointer;" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(  Marker Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span style="font-size: large;">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span style="font-size: large;">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span style="font-size: large;">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
                             }
                         }
                     }
                     nutrientSpecific += '</ul>';
 
 
-                    tr = tr + "<tr><td>" + val.rankName +  "(" + val.processScore+")" +"</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
+                    tr = tr + "<tr><td id='TDprocess'>" + val.rankName +  "(" + val.processScore+")" +"</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
                 });
             }
             $("#tblReport tbody").append(tr);

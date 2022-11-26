@@ -17,6 +17,71 @@ public class assignAttribute : System.Web.Services.WebService
 {
 
     [WebMethod(EnableSession = true)]
+    public string getAttributeList(string empid)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_assignAttribute pobj = new PAL_assignAttribute();
+        pobj.who = empid;
+
+        BAL_assignAttribute.getAttributeList(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+
+
+    [WebMethod(EnableSession = true)]
+    public string getAttributeChild(string empid, int parentID)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_assignAttribute pobj = new PAL_assignAttribute();
+        pobj.who = empid;
+        pobj.parentID = parentID;
+
+        BAL_assignAttribute.getAttributeListChild(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+
+
+    [WebMethod(EnableSession = true)]
     public string getAttributeWITHuser(string empid)
     {
         if (empid == null)
