@@ -48,42 +48,6 @@ function getUser() {
 }
 
 
-//function getDisease() {
-//    var disease = '';
-//    var obj = {
-//        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-//    };
-
-//    $.ajax({
-//        type: "POST",
-//        url: "WebService/assignUser.asmx/getDisease",
-//        contentType: 'application/json',
-//        dataType: 'json',
-//        data: JSON.stringify(obj),
-
-//        statusCode: {
-//            401: function (xhr) {
-//                window.location.href = "../../index.html";
-//            }
-//        },
-
-//        success: function (data) {
-          
-//            var result = JSON.parse(data.d).responseValue;
-           
-//            var row = $("#tblDisease thead tr").clone();
-//            $("#tblDisease tbody tr").remove();
-
-//            $.each(result.Table1, function (i) {
-//                disease = disease + "<tr><td>" + (i + 1) + "</td><td> <input type='checkbox' id='chk' value="+this.id+"/></td><td>" + this.DiseaseName + "</td></tr>";
-//            });
-//            $('#tblDisease tbody').append(disease);
-//        },
-//        error: function (error) {
-
-//        }
-//    });
-//}
 
 
 function saveDiseaseUser() {
@@ -104,11 +68,9 @@ function saveDiseaseUser() {
         var checked = $(this).val();
         myString += checked + ',';
     });
-    console.log("mystring",myString);
 
     var FinalArray = myString.replace(/\//g, "");
 
-    console.log("FinalArray", FinalArray);
 
 
 

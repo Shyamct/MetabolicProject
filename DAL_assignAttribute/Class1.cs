@@ -12,8 +12,10 @@ namespace DAL_assignAttribute
     public class PAL_assignAttribute : Utility
     {
         public int userID { get; set; }
+        public int ID { get; set; }
         public int status { get; set; }
         public int parentID { get; set; }
+        public string FinalArray { get; set; }
        
     }
     public class DAL_assignAttribute
@@ -25,8 +27,12 @@ namespace DAL_assignAttribute
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@who", pobj.who);
+            cmd.Parameters.AddWithValue("@ID", pobj.ID);
             cmd.Parameters.AddWithValue("@opCode", pobj.opcode);
             cmd.Parameters.AddWithValue("@parentID", pobj.parentID);
+            cmd.Parameters.AddWithValue("@userID", pobj.userID);
+            cmd.Parameters.AddWithValue("@FinalArray", pobj.FinalArray);
+
 
             cmd.Parameters.Add("@isException", SqlDbType.Bit);
             cmd.Parameters["@isException"].Direction = ParameterDirection.Output;
@@ -60,6 +66,20 @@ namespace DAL_assignAttribute
             pobj.opcode = 43;
             DAL_assignAttribute.returnTable(pobj);
         }
-
+        public static void saveAttributeWITHuser(PAL_assignAttribute pobj)
+        {
+            pobj.opcode = 11;
+            DAL_assignAttribute.returnTable(pobj);
+        }
+        public static void getAttributeAssignList(PAL_assignAttribute pobj)
+        {
+            pobj.opcode = 44;
+            DAL_assignAttribute.returnTable(pobj);
+        }
+        public static void deleteAssignUser(PAL_assignAttribute pobj)
+        {
+            pobj.opcode = 31;
+            DAL_assignAttribute.returnTable(pobj);
+        }
     }
 }

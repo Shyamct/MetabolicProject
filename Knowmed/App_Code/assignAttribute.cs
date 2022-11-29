@@ -111,4 +111,101 @@ public class assignAttribute : System.Web.Services.WebService
         }
         return str;
     }
+
+    [WebMethod(EnableSession = true)]
+    public string saveAttributeWITHuser(string empid, int userID, int parentID,string FinalArray)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_assignAttribute pobj = new PAL_assignAttribute();
+        pobj.who = empid;
+        pobj.userID = userID;
+        pobj.parentID = parentID;
+        pobj.FinalArray = FinalArray;
+
+        BAL_assignAttribute.saveAttributeWITHuser(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+    [WebMethod(EnableSession = true)]
+    public string getAssignList(string empid)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_assignAttribute pobj = new PAL_assignAttribute();
+        pobj.who = empid;
+
+        BAL_assignAttribute.getAttributeAssignList(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+
+
+    [WebMethod(EnableSession = true)]
+    public string deleteAssignUser(string empid,int ID)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_assignAttribute pobj = new PAL_assignAttribute();
+        pobj.who = empid;
+        pobj.ID = ID;
+
+        BAL_assignAttribute.deleteAssignUser(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
 }

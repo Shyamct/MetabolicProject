@@ -36,7 +36,7 @@
                 <br>
                 <div class="row1">
                 <div class="col-sm-2">
-                    <label>Parent Menu</label>
+                    <label>Parent Attribute</label>
                 </div>
                 <div class="col-sm-10">
                     <select class="form-control" id="ddlParent"  onchange="getChildAttributeList()">
@@ -74,7 +74,7 @@
     </div>
     <div class="col-sm-6">
         <div class="asn-menu-lt">
-            <p>Assigned Menu List</p>
+            <p>Assigned Attribute List</p>
                 <div class="asign-inner">
 
                 <div class="tbl-menu">
@@ -83,8 +83,8 @@
                             <tr>
                             <th class="thSr">#</th>
                             <th class="thUser">User Name</th>
-                            <th class="thMenu">Menu Name</th>
-                            <th class="thSubMenu">Sub Menu Name</th>
+                            <th class="thMenu">Attribute Name</th>
+                            <th class="thSubMenu">Sub Attribute Name</th>
                             <th class="thAction">Action</th>
                         </tr>
                         </thead>

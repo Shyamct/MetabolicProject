@@ -2,6 +2,7 @@
 $(document).ready(function () {
     getUserList();
     getAttributeList();
+    showAssignattributeList();
 });
 
 function getUserList() {
@@ -149,25 +150,99 @@ function saveMenuData() {
 
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        "userID": userID,
         "parentID": Number(parentID),
         "FinalArray": FinalArray,
     };
 
     console.log("obj", obj);
-    //$.ajax({
-    //    type: "POST",
-    //    url: "WebService/assignMenu.asmx/assignMenuDate",
-    //    data: JSON.stringify(obj),
-    //    contentType: "application/json;",
-    //    dataType: "json",
-    //    success: function (data) {
-    //        var result = JSON.parse(data.d);
-    //        if (result.responseCode == 1) {
-    //            $("#ddlUsers").val('-- Select User --');
-    //            $("#ddlParent").val('-- Parent Menu --');
-    //        }
-    //    },
-    //    error: function (data) {
-    //    }
-    //});
+    $.ajax({
+        type: "POST",
+        url: "WebService/assignAttribute.asmx/saveAttributeWITHuser",
+        data: JSON.stringify(obj),
+        contentType: "application/json;",
+        dataType: "json",
+        success: function (data) {
+            var result = JSON.parse(data.d);
+            if (result.responseCode == 1) {
+                $("#ddlUsers").val('-- Select User --');
+                $("#ddlParent").val('-- Parent Attribute --');
+            }
+        },
+        error: function (data) {
+        }
+    });
+}
+
+
+function showAssignattributeList() {
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+
+    obj = {
+        empid: Number(UtilsCache.getSession('USERDETAILS').userid),
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "WebService/assignAttribute.asmx/getAssignList",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+            var tr;
+            $("#tblUser tbody tr").remove();
+            $.each(result.Table, function (i) {
+
+                //console.log("result", result);
+                tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + this.userName + "</td><td>" + this.parentAttributesName + "</td><td>" + this.attributesName + "</td><td><i class='icon-trash' style='cursor:pointer;' onclick='deleteAssignUser(" + this.ID + ")'></i></td></tr>";
+            });
+            $('#tblUser tbody').append(tr);
+
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+function deleteAssignUser(rowID) {
+    
+    var ID = rowID;
+
+    var obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        "ID": ID,
+        
+
+    };
+    $.ajax({
+        type: "POST",
+        url: "WebService/assignAttribute.asmx/deleteAssignUser",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            alert("Delete Sucessfull...");
+
+        },
+        error: function (error) {
+
+        }
+    });
 }
