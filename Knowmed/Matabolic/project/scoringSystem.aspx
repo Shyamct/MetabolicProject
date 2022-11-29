@@ -128,6 +128,7 @@ border-radius: 5px;
                             </select>
 
                             <input type="button" onclick="getReport()" value="SHOW" />
+                            <input type="button" onclick="abc()" value="test" />
                         </div>
                     </div>
                 </div>
@@ -189,7 +190,26 @@ border-radius: 5px;
                 </div>
             </div>
         </div>
-         
+    </div>
+
+
+    <div class="modal bd-example-modal-lg" id="modelMarkerList" role="dialog">
+        <div class="modal-dialog modal-xl" style="max-width: 1000px ; margin: 30px auto;width: 100% !important;">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close btnClosfood"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Best Marker </h4>
+                </div>
+                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
+                  <div id="modelBody"></div> 
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnClosfood">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="customjs/scoringSystem.js"></script>
 </asp:Content>
