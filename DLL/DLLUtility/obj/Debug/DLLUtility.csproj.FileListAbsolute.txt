@@ -75,4 +75,3 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.AssemblyReference.cache

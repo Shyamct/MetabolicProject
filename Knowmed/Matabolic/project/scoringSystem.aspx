@@ -106,6 +106,40 @@ border-radius: 5px;
     color: #CB1E1E;  
     font-size: 13px;
 }
+
+.tblhed {
+    display: flex;
+    gap: 15px;
+}
+.tblhedin {
+    border: 1px solid #cdcdcd;
+    padding: 10px;
+}
+h3.tblheh3 {
+    font-size: large;
+    text-align: center;
+    background: #fff;
+    padding: 10px 58px !important;
+    margin-top: 2px;
+    border: 1px solid #ddd;
+    color: black;
+    font-weight: 600;
+}
+div#markerDIV span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d2d2d;
+    padding: 4px 4px;
+    border: 1px solid #cdcdcd;
+    margin: 3px;
+    display: inline-block;
+    box-shadow: 0px 2px 10px #ccc;
+    width: 97%;
+}
+div#markerDIV {
+    max-height: 78vh;
+    overflow: auto;
+}
     </style>
 
 </asp:Content>
@@ -128,14 +162,13 @@ border-radius: 5px;
                             </select>
 
                             <input type="button" onclick="getReport()" value="SHOW" />
-                            <input type="button" onclick="abc()" value="test" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="tblDiv my-div">
+        <div class="tblhed">
+            <div class="tblhedin" style="width:70%"> <div class="tblDiv my-div">
             <table class="table table-bordered table-responsive" id="tblReport">
                 <thead>
                     <th class="commons Process">Process</th>
@@ -146,7 +179,16 @@ border-radius: 5px;
                 <tbody>
                 </tbody>
             </table>
+        </div></div>
+            <div class="tblhedin"  style="width:30%">
+                <h3 class="tblheh3">Marker</h3>
+                <div id="markerDIV">
+
+                </div>
+            </div>
         </div>
+       
+       
     </div>
 
 
@@ -193,24 +235,6 @@ border-radius: 5px;
     </div>
 
 
-    <div class="modal bd-example-modal-lg" id="modelMarkerList" role="dialog">
-        <div class="modal-dialog modal-xl" style="max-width: 1000px ; margin: 30px auto;width: 100% !important;">
-            <!-- Modal content-->
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <button type="button" class="close btnClosfood"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"> Best Marker </h4>
-                </div>
-                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
-                  <div id="modelBody"></div> 
-                   
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default btnClosfood">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <script src="customjs/scoringSystem.js"></script>
 </asp:Content>
 

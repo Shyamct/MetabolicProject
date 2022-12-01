@@ -87,4 +87,3 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.csp
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.csproj.AssemblyReference.cache

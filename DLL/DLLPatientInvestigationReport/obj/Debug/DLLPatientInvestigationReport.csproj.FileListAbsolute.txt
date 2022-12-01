@@ -61,4 +61,3 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.csproj.AssemblyReference.cache
