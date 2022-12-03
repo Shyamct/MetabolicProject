@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Knowmed", "Knowmed\", "{D364A818-1E7F-462E-A40F-7DAFD9BFDBEC}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
-		ProjectReferences = "{4221756b-8cce-4a0b-be9a-fefa0c06a9c2}|DAL_AssignMenu.dll;{c94ecafd-a60b-4fd5-9c7f-50abc7a78070}|DLL_AssignUser.dll;{a2051064-94e3-4e22-a32e-ff956ca18431}|DLL_DiseaseTimeline.dll;{6e7573b0-3027-4788-aa4d-0074a4ffc1d1}|DLL_MarkerPhenomenon.dll;{44f4eead-9fdf-451e-a15f-504af1047107}|DLLActivitiesApproval.dll;{d9d7d0f6-40b6-465f-9a47-96f38c307bdd}|DLLCascade.dll;{06e01ff7-4390-4791-b951-1b3a52e7411e}|DDLDiseaseNutrientCascade.dll;{18ad268a-0f15-4945-b822-8588f0043cb4}|DLLFlowchart.dll;{ef176914-52bc-4dc4-8996-555a4ee78ec3}|DLLFlowDiagram.dll;{C181AC02-D94A-45C5-9634-4755A3E2427A}|DLLUtility.dll;{770ae4a9-6524-4669-b72c-28de9437a67d}|DLLHeadMaster.dll;{0ad2168a-3da5-44f9-a7c7-afff9e2f571f}|DLLLogin.dll;{d2d20203-b67c-4be6-8549-7a7fdb85061d}|DLLMainPathway.dll;{de6349b2-2bd2-4bc3-b390-66722494bbda}|DLLMainPathway1.dll;{18bb6628-c8a2-4006-aab5-5ada00c53c60}|DLLMarkerDietActivator.dll;{ddb40fac-1be7-474e-b741-b800a0e628ec}|DLLMarkerRoleMatrix.dll;{14288728-dec6-4236-8940-91e83b182d9c}|DLLPageDescription.dll;{7de31a18-8beb-440a-a643-317afcfba367}|DLLPageModule.dll;{7df9bb54-a8ce-4933-bf84-d1d24c7679ec}|DLLPatientInvestigationReport.dll;{1224b0b0-4c39-4403-a8ba-bd5087a98ac6}|DLLSignalingCascade.dll;{b3c66575-0912-47e9-920d-bb41cb5b96d4}|DLLSignalingCascade1.dll;{389d4924-b32e-4775-994b-027cc7b08aa2}|DLLSVGLibrary.dll;{24ee5cea-bdb7-4e20-81d6-58f515b56de1}|DLLUserRegistration.dll;{6acd007f-46ca-46c9-bc3c-fe6b9768c54e}|DLLWriteUpMaster.dll;{7ca6f11e-7e7e-4ad2-81c5-fb6c849565dc}|bestMarkerForDiet.dll;{4ea56d80-04e4-4b0d-9fe2-a7d54ed51365}|DAL_assignAttribute.dll;"
+		ProjectReferences = "{4221756b-8cce-4a0b-be9a-fefa0c06a9c2}|DAL_AssignMenu.dll;{c94ecafd-a60b-4fd5-9c7f-50abc7a78070}|DLL_AssignUser.dll;{a2051064-94e3-4e22-a32e-ff956ca18431}|DLL_DiseaseTimeline.dll;{6e7573b0-3027-4788-aa4d-0074a4ffc1d1}|DLL_MarkerPhenomenon.dll;{44f4eead-9fdf-451e-a15f-504af1047107}|DLLActivitiesApproval.dll;{d9d7d0f6-40b6-465f-9a47-96f38c307bdd}|DLLCascade.dll;{06e01ff7-4390-4791-b951-1b3a52e7411e}|DDLDiseaseNutrientCascade.dll;{18ad268a-0f15-4945-b822-8588f0043cb4}|DLLFlowchart.dll;{ef176914-52bc-4dc4-8996-555a4ee78ec3}|DLLFlowDiagram.dll;{C181AC02-D94A-45C5-9634-4755A3E2427A}|DLLUtility.dll;{770ae4a9-6524-4669-b72c-28de9437a67d}|DLLHeadMaster.dll;{0ad2168a-3da5-44f9-a7c7-afff9e2f571f}|DLLLogin.dll;{d2d20203-b67c-4be6-8549-7a7fdb85061d}|DLLMainPathway.dll;{de6349b2-2bd2-4bc3-b390-66722494bbda}|DLLMainPathway1.dll;{18bb6628-c8a2-4006-aab5-5ada00c53c60}|DLLMarkerDietActivator.dll;{ddb40fac-1be7-474e-b741-b800a0e628ec}|DLLMarkerRoleMatrix.dll;{14288728-dec6-4236-8940-91e83b182d9c}|DLLPageDescription.dll;{7de31a18-8beb-440a-a643-317afcfba367}|DLLPageModule.dll;{7df9bb54-a8ce-4933-bf84-d1d24c7679ec}|DLLPatientInvestigationReport.dll;{1224b0b0-4c39-4403-a8ba-bd5087a98ac6}|DLLSignalingCascade.dll;{b3c66575-0912-47e9-920d-bb41cb5b96d4}|DLLSignalingCascade1.dll;{389d4924-b32e-4775-994b-027cc7b08aa2}|DLLSVGLibrary.dll;{24ee5cea-bdb7-4e20-81d6-58f515b56de1}|DLLUserRegistration.dll;{6acd007f-46ca-46c9-bc3c-fe6b9768c54e}|DLLWriteUpMaster.dll;{7ca6f11e-7e7e-4ad2-81c5-fb6c849565dc}|bestMarkerForDiet.dll;{4ea56d80-04e4-4b0d-9fe2-a7d54ed51365}|DAL_assignAttribute.dll;{ada6de15-1135-429c-b1c7-3dfa9d22875f}|DLL_principalDiet.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_53693"
 		Debug.AspNetCompiler.PhysicalPath = "Knowmed\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53693\"
@@ -76,6 +76,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_scoringSystem", "bestMarkerForDiet\DAL_scoringSystem.csproj", "{7CA6F11E-7E7E-4AD2-81C5-FB6C849565DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL_assignAttribute", "DAL_assignAttribute\DAL_assignAttribute.csproj", "{4EA56D80-04E4-4B0D-9FE2-A7D54ED51365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL_principalDiet", "DLL_principalDiet\DLL_principalDiet.csproj", "{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -301,6 +303,14 @@ Global
 		{4EA56D80-04E4-4B0D-9FE2-A7D54ED51365}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4EA56D80-04E4-4B0D-9FE2-A7D54ED51365}.Release|x64.ActiveCfg = Release|Any CPU
 		{4EA56D80-04E4-4B0D-9FE2-A7D54ED51365}.Release|x64.Build.0 = Release|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Debug|x64.Build.0 = Debug|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Release|x64.ActiveCfg = Release|Any CPU
+		{ADA6DE15-1135-429C-B1C7-3DFA9D22875F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

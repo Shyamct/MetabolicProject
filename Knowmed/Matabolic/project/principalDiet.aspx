@@ -1,7 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Matabolic/project/MasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script src="css/patientDiet.js"></script>
+    <%--<script src="css/patientDiet.js"></script>--%>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <style>
    .contnt {
     float: left;
@@ -48,6 +54,6 @@
         </div>
         </div>
 
-    <script src="customjs/patientDiet.js"></script>
+    <script src="customjs/principalDiet.js"></script>
 </asp:Content>
 
