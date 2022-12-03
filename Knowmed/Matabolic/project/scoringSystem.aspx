@@ -2,6 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
      <style>
+           #loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+}
+
         span#NutrientInruction {
     padding: 4px 5px !important;
     border: 1px solid #ddd;
@@ -21,6 +28,12 @@
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(5, 1fr);
+}  div#scoreBody {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(5, 1fr);
+    color:black;
+    font-weight:600;
 }
          th.commons{
              font-size: large !important;
@@ -145,7 +158,9 @@ div#markerDIV {
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-   
+    <div id='loader' style='display: none;'>
+        <img src='img/spinner.gif'>
+    </div>
     <div id="content" style="margin-left: 0px;">
         <div class="container-fluid">
             <div class="row-fluid">
@@ -162,6 +177,7 @@ div#markerDIV {
                             </select>
 
                             <input type="button" onclick="getReport()" value="SHOW" />
+                            <input type="button" onclick="getScore()" value="SHOW SCORE" />
                         </div>
                     </div>
                 </div>
@@ -234,6 +250,27 @@ div#markerDIV {
         </div>
     </div>
 
+     <div class="modal bd-example-modal-lg" id="modelScore" role="dialog">
+        <div class="modal-dialog modal-xl" style="max-width: 1000px ; margin: 30px auto;width: 100% !important;">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close btnClosfood"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Score Description  </h4>
+                </div>
+                <div class="modal-body">
+                  <div id="scoreBody"></div> 
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnClosfood">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
 
     <script src="customjs/scoringSystem.js"></script>
 </asp:Content>

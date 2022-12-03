@@ -1542,7 +1542,6 @@
                         htm += "<ul class='menu'>";
                         $.each(allData, function (i, val) {
                             IDS = val.parentAttributeID;
-                           
                             if (parentAttributeID == val.parentAttributeID) {
                                 var cxcommandID = val.attributesName.replace(/\s+/g, '').trim();
                                 htm += "<li id=" + cxcommandID + " class='menu-item' onclick='cxcommand(event)'>" + val.attributesName + "</li>";

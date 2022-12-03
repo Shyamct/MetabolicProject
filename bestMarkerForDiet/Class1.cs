@@ -23,7 +23,7 @@ namespace DAL_scoringSystem
     {
         public static void returnTable(PAL_scoringSystem pobj)
         {
-            SqlCommand selectCommand = new SqlCommand("bestMarker", new Config().con);
+            SqlCommand selectCommand = new SqlCommand("scoringSystem", new Config().con);
             selectCommand.CommandType = CommandType.StoredProcedure;
 
             selectCommand.Parameters.AddWithValue("@opcode", pobj.opcode);
@@ -73,6 +73,11 @@ namespace DAL_scoringSystem
         public static void getFood(PAL_scoringSystem pobj)
         {
             pobj.opcode = 45;
+            DAL_scoringSystem.returnTable(pobj);
+        }
+        public static void getOnlyScore(PAL_scoringSystem pobj)
+        {
+            pobj.opcode = 46;
             DAL_scoringSystem.returnTable(pobj);
         }
 

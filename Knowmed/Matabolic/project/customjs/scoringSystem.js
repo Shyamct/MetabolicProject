@@ -8,6 +8,7 @@ $(document).ready(function () {
     })
     $(".btnClosfood").click(function () {
         $("#modelFoodList").hide();
+        $("#modelScore").hide();
     })
     $(".btnClosfood").click(function () {
         $("#modelMarkerList").hide();
@@ -92,10 +93,15 @@ var arrList = [];
 
 function getReport() {
     
-    pathwayID = $("#ddlPathway").val();
-    processID = $("#ddlProcess").val();
+   var  pathwayID = $("#ddlPathway").val();
+    
+   var  processID = $("#ddlProcess").val();
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
+        return;
+    }
+    if (pathwayID == "" || pathwayID == 0) {
+        alert("PlZ select pathway");
         return;
     }
     if (processID == "") {
@@ -106,6 +112,7 @@ function getReport() {
         pathwayID: pathwayID,
         processID: processID
     }
+    $("#loader").show();
     $.ajax({
         type: "POST",
         url: "WebService/scoringSystem.asmx/getReport",
@@ -118,7 +125,10 @@ function getReport() {
                 window.location.href = "../../index.html";
             }
         },
+
         success: function (data) {
+            $("#loader").hide();
+
             var result = JSON.parse(data.d).responseValue;
             $("#tblReport tbody tr").remove();
 
@@ -327,13 +337,6 @@ var arrDublicateCHK = [];
 
     })
 
-      // console.log("orderScore", orderScore);
-
-
-      // console.log("orderScore", orderScore);
-
-
-
     $("#markerDIV").html(text);
 }
 
@@ -413,6 +416,46 @@ function getFoodlist(interactedNutrientID) {
             $("#foodBody").html(text);
 
             $("#modelFoodList").show();
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+
+function getScore() {
+
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    obj = {
+        empid: userID,
+    }
+    $.ajax({
+        type: "POST",
+        url: "WebService/scoringSystem.asmx/getOnlyScore",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+            var text = '';
+
+            $("#scoreBody").html('');
+            $.each(result.Table, function (i, val) {
+                text += '<span class="scoreName">' + val.statusFor + "   " + "(" + val.score + ")" + '</span>';
+            });
+            $("#scoreBody").html(text);
+
+            $("#modelScore").show();
         },
         error: function (error) {
 

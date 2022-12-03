@@ -48,7 +48,7 @@ function selectHeader() {
         window.location.href = "../../index.html";
         return;
     }
-    $("#divloader").show();
+   // $("#divloader").show();
     $.ajax({
         type: "POST",
         url: "WebService/diseaseTimeline.asmx/getDropdownHeader",
