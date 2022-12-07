@@ -17,7 +17,6 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <style>
-        
         .contnt {
             float: left;
             width: 100%;
@@ -77,16 +76,22 @@
             color: #fff;
             position: sticky;
             top: 0px;
+            z-index: 1;
         }
 
         .heding-div {
-            padding: 0px 10px;
             max-height: 82vh;
-            overflow: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 83vh;
         }
 
         .heading-act {
             width: 100%;
+            position: sticky;
+            top: 42px;
+            z-index: 1;
+            background: #c7c7bd;
         }
 
             .heading-act h3 {
@@ -95,18 +100,22 @@
                 margin: 0;
                 padding: 10px;
             }
-             #loader {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 11;
+
+        #loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 11;
+        }
+        .contnt {
+    padding-left: 15px;
 }
     </style>
 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-     <div id='loader' style='display: none;'>
+    <div id='loader' style='display: none;'>
         <img src='img/spinner.gif'>
     </div>
 
@@ -182,12 +191,12 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
-  <script>
-   
-  </script>
+    <script>
+
+</script>
     <script src="customjs/principalDiet.js"></script>
 </asp:Content>
 

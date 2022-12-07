@@ -112,25 +112,26 @@ function getDiet() {
             $("#loader").hide();
 
            
-            var ActivatorB;
-            var InhibitorB;
-            var ActivatorH;
-            var InhibitorH;
+            var ActivatorB='';
+            var InhibitorB='';
+            var ActivatorH='';
+            var InhibitorH='';
            
             var result = JSON.parse(data.d).responseValue;
-        
+            console.log("result", result);
+
             $.each(result.Table, function (i, val) {
 
                 if (val.roleType == 'B') {
 
                     if (val.INAVtype == 'Enhancer') {
                         ActivatorB = ActivatorB + "<span>" + val.interactedNutrientName + "</span>";
-                    }
-                    
+                    }                    
                     if (val.INAVtype == 'Inhibitor')
                     {
                             InhibitorB = InhibitorB + "<span>" + val.interactedNutrientName + "</span>";
                     }
+
                 }
 
 
@@ -155,10 +156,13 @@ function getDiet() {
                 //    }
                 //}
             });
-            $("#Activator").append(ActivatorB);
-            $("#Inhivator").append(InhibitorB);
-            $("#Activator1").append(ActivatorH);
-            $("#Inhivator1").append(InhibitorH);
+            if (ActivatorB != null || ActivatorH != undefined || InhibitorB != null || InhibitorH != undefined) {
+                $("#Activator").append(ActivatorB);
+                $("#Inhivator").append(InhibitorB);
+                $("#Activator1").append(ActivatorH);
+                $("#Inhivator1").append(InhibitorH);
+            }
+            
 
 
         },
