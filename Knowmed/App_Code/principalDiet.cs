@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 public class principalDiet : System.Web.Services.WebService
 {
     [WebMethod(EnableSession = true)]
-    public string getBestDiet(string empid)
+    public string getDiet(string empid)
     {
         if (empid == null)
         {
@@ -48,5 +48,4 @@ public class principalDiet : System.Web.Services.WebService
         }
         return str;
     }
-
 }

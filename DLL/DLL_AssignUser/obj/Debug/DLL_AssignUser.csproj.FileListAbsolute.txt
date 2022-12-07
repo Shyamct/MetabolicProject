@@ -49,13 +49,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.cspro
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\bin\Debug\DLL_AssignUser.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\bin\Debug\DLL_AssignUser.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_AssignUser\obj\Debug\DLL_AssignUser.pdb

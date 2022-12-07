@@ -49,13 +49,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix
 D:\TFS\METABOLICLIVE\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\bin\Debug\DLLMarkerRoleMatrix.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\bin\Debug\DLLMarkerRoleMatrix.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLLMarkerRoleMatrix\obj\Debug\DLLMarkerRoleMatrix.pdb

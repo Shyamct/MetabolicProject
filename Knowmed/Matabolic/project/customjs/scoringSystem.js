@@ -245,7 +245,9 @@ function getReport() {
                                     nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) +")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
                                 }
                             }
-                        }
+                    }
+                        nutrientSpecific += '<ul>';/// ME optional
+
                       
                     tr = tr + "<tr><td id='TDprocess'>" + val.rankName + "(" + val.processScore + ")" + "</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
 

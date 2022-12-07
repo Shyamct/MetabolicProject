@@ -69,17 +69,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.c
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\DLLWriteUpMaster.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\DLLWriteUpMaster.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\System.Buffers.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\System.Memory.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\System.Numerics.Vectors.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\System.ValueTuple.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLWriteUpMaster\obj\Debug\DLLWriteUpMaster.pdb

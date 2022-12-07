@@ -50,13 +50,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistra
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistration.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistration.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistration.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\bin\Debug\DLLUserRegistration.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\bin\Debug\DLLUserRegistration.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistration.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistration.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistration.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUserRegistration\obj\Debug\DLLUserRegistration.pdb

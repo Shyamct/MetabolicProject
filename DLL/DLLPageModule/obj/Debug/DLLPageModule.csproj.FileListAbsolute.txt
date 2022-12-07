@@ -49,13 +49,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.csproj.
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\bin\Debug\DLLPageModule.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\bin\Debug\DLLPageModule.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageModule\obj\Debug\DLLPageModule.pdb
