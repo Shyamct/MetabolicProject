@@ -49,3 +49,13 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCa
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCascade1.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCascade1.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCascade1.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\bin\Debug\DLLSignalingCascade1.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\bin\Debug\DLLSignalingCascade1.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\bin\Debug\Newtonsoft.Json.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCascade1.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCascade1.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCascade1.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade1\obj\Debug\DLLSignalingCascade1.pdb

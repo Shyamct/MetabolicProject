@@ -53,3 +53,14 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivities
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\bin\Debug\DLLActivitiesApproval.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\bin\Debug\DLLActivitiesApproval.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\bin\Debug\Newtonsoft.Json.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.csproj.AssemblyReference.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLActivitiesApproval\obj\Debug\DLLActivitiesApproval.pdb

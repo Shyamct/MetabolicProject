@@ -1,14 +1,90 @@
 ﻿
+var availableTags = [];
+var selectedNutrientName = '';
 
 $(document).ready(function () {
-    getDiet();
+    getPathway();
+    getNutrientList();
+   
+    $("#tags").autocomplete({
+            source: availableTags
+    });
+    
+    $('#tags').on('autocompleteselect', function (i, val) {
+        selectedNutrientName = val.item.value;
+    });
 });
 
-//var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
+function getPathway() {
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+    }
+    $.ajax({
+        type: "POST",
+        url: "WebService/scoringSystem.asmx/getPathway",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+
+            $("#ddlPathway option:not(:first)").remove();
+            $.each(result.Table, function () {
+                $("#ddlPathway").append('<option value="' + this.id + '">' + this.headName + '</option>');
+            });
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+function getNutrientList() {
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+    }
+    $.ajax({
+        type: "POST",
+        url: "WebService/principalDiet.asmx/getNutrientList",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+            $.each(result.Table, function (i, val) {
+                availableTags.push(val.nutrientName);
+            });
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+
+
 
 function getDiet() {
-
-    
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
@@ -16,9 +92,10 @@ function getDiet() {
 
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        pathwayID: $("#ddlPathway").val(),
+        nutrientName: selectedNutrientName
     }
-
-
+    $("#loader").show();
     $.ajax({
         type: "POST",
         url: "WebService/principalDiet.asmx/getDiet",
@@ -32,10 +109,9 @@ function getDiet() {
             }
         },
         success: function (data) {
+            $("#loader").hide();
 
-            var tr;
-            var HARMFUL;
-            var BENEFICIAL;
+           
             var ActivatorB;
             var InhibitorB;
             var ActivatorH;
@@ -53,7 +129,6 @@ function getDiet() {
                     
                     if (val.INAVtype == 'Inhibitor')
                     {
-                            console.log("yyyyy", val.interactedNutrientName);
                             InhibitorB = InhibitorB + "<span>" + val.interactedNutrientName + "</span>";
                     }
                 }
@@ -66,7 +141,6 @@ function getDiet() {
                     }
 
                     if (val.INAVtype == 'Inhibitor') {
-                        console.log("yyyyy", val.interactedNutrientName);
                         InhibitorH = InhibitorH + "<span>" + val.interactedNutrientName + "</span>";
                     }
                 }

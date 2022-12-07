@@ -63,3 +63,16 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.CoreCo
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\Newtonsoft.Json.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\System.Buffers.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\System.Memory.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\System.Numerics.Vectors.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\System.ValueTuple.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.AssemblyReference.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLUtility\obj\Debug\DLLUtility.pdb

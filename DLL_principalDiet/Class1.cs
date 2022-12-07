@@ -9,9 +9,11 @@ using DLLUtility;
 
 namespace DLL_principalDiet
 {
-    public class PAL_principalDiet: Utility
+    public class PAL_principalDiet : Utility
     {
-     
+        public int pathwayID { get; set; }
+
+        public string nutrientName  {get;set;}
        
     }
     public class DAL_principalDiet
@@ -21,10 +23,14 @@ namespace DLL_principalDiet
              Config con = new Config();
             SqlCommand cmd = new SqlCommand("principalDiet", con.con);
             cmd.CommandType = CommandType.StoredProcedure;
-           
-    
-             cmd.Parameters.AddWithValue("@who", pobj.who);
-                                            cmd.Parameters.AddWithValue("@opCode", pobj.opcode);
+
+            cmd.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
+            cmd.Parameters.AddWithValue("@nutrientName", pobj.nutrientName);
+
+
+            cmd.Parameters.AddWithValue("@who", pobj.who);
+            cmd.Parameters.AddWithValue("@opCode", pobj.opcode);
+
             cmd.Parameters.Add("@isException", SqlDbType.Bit);
             cmd.Parameters["@isException"].Direction = ParameterDirection.Output;
             cmd.Parameters.Add("@exceptionMessage", SqlDbType.VarChar, 500);
@@ -39,10 +45,15 @@ namespace DLL_principalDiet
     }
     public class BAL_principalDiet
     {
+        public static void getNutrientList(PAL_principalDiet pobj)
+        {
+            pobj.opcode = 41;
+            DAL_principalDiet.returnTable(pobj);
+        }
         public static void getDiet(PAL_principalDiet pobj)
         {
-                pobj.opcode = 41;
-                DAL_principalDiet.returnTable(pobj);
+            pobj.opcode = 42;
+            DAL_principalDiet.returnTable(pobj);
         }
     }
 }

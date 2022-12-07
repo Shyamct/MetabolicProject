@@ -19,7 +19,7 @@ using Newtonsoft.Json;
 public class principalDiet : System.Web.Services.WebService
 {
     [WebMethod(EnableSession = true)]
-    public string getDiet(string empid)
+    public string getNutrientList(string empid)
     {
         if (empid == null)
         {
@@ -29,6 +29,41 @@ public class principalDiet : System.Web.Services.WebService
 
         PAL_principalDiet pobj = new PAL_principalDiet();
         pobj.who = empid;
+        
+
+        BAL_principalDiet.getNutrientList(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+
+
+    [WebMethod(EnableSession = true)]
+    public string getDiet(string empid, string nutrientName, int pathwayID)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_principalDiet pobj = new PAL_principalDiet();
+        pobj.who = empid;
+        pobj.nutrientName = nutrientName;
+        pobj.pathwayID = pathwayID;
 
         BAL_principalDiet.getDiet(pobj);
         string str;
