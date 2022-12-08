@@ -374,7 +374,7 @@ function generateMenus() {
             if (typeof showModule[i].children == 'undefined' || showModule[i].children.length == 0) {
                 if (showModule[i].label == 'Metabolic') {
                     //htm += "<li><a href='http://localhost:51564/Matabolic/project/Default.aspx'>" + showModule[i].label + "</a></li>";  
-                    htm += "<li><a href='../Matabolic/project/Default.aspx'>" + showModule[i].label + "</a></li>";
+                    htm += "<li><a href='../Matabolic/project/pathways.aspx'>" + showModule[i].label + "</a></li>";
                 }
                 else {
                     htm += "<li><a ui-sref='" + showModule[i].url + "'>" + showModule[i].label + "</a></li>";
