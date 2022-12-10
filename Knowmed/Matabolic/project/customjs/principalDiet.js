@@ -125,11 +125,11 @@ function getDiet() {
                 if (val.roleType == 'B') {
 
                     if (val.INAVtype == 'Enhancer') {
-                        ActivatorB = ActivatorB + "<span>" + val.interactedNutrientName + "</span>";
+                        ActivatorB = ActivatorB + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore + "}") + "</span>";
                     }                    
                     if (val.INAVtype == 'Inhibitor')
                     {
-                            InhibitorB = InhibitorB + "<span>" + val.interactedNutrientName + "</span>";
+                        InhibitorB = InhibitorB + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore + "}")+ "</span>";
                     }
 
                 }
@@ -138,11 +138,11 @@ function getDiet() {
                 if (val.roleType == 'B') {
 
                     if (val.INAVtype == 'Enhancer') {
-                        ActivatorH = ActivatorH + "<span>" + val.interactedNutrientName + "</span>";
+                        ActivatorH = ActivatorH + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore + "}") + "</span>";
                     }
 
                     if (val.INAVtype == 'Inhibitor') {
-                        InhibitorH = InhibitorH + "<span>" + val.interactedNutrientName + "</span>";
+                        InhibitorH = InhibitorH + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore+"}" )+ "</span>";
                     }
                 }
                    

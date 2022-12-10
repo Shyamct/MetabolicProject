@@ -147,7 +147,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="heading-act">
-                                        <h3>Activator</h3>
+                                        <h3>Activators</h3>
                                     </div>
                                     <div id="Activator">
                                     </div>
@@ -155,7 +155,7 @@
 
                                 <div class="col-md-6">
                                     <div class="heading-act">
-                                        <h3>Inhivator</h3>
+                                        <h3>Inhibitor</h3>
                                     </div>
                                     <div id="Inhivator">
                                     </div>
@@ -172,7 +172,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="heading-act">
-                                        <h3>Activator</h3>
+                                        <h3>Activators </h3>
                                     </div>
                                     <div id="Activator1">
                                     </div>
@@ -180,7 +180,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="heading-act">
-                                        <h3>Inhivator</h3>
+                                        <h3>Inhibitor</h3>
                                     </div>
                                     <div id="Inhivator1">
                                     </div>
