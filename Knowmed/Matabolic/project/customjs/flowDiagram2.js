@@ -535,7 +535,7 @@ function getWriteUp(id) {
             $.each(result, function (index) {
                 /*console.log(result);*/
 
-                $(".td_goTo", row).html('<a href = "../project/test4.aspx?pathwayID=' + this.pathwayId + '&groupID=' + this.groupId + '" ><i class="icon-external-link"></i> </a>');
+                $(".td_goTo", row).html('<a href = "../project/proportion.aspx?pathwayID=' + this.pathwayId + '&groupID=' + this.groupId + '" ><i class="icon-external-link"></i> </a>');
                 /* $(".td_Disease", row).text(this.pathwayName);*/
                 $(".td_WriteUp", row).text(this.orginalWriteUp);
                 $(".td_Receptor", row).text(this.keyword);

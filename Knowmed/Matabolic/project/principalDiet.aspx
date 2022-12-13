@@ -71,9 +71,10 @@
         }
 
         .heading-inn {
-            background: #949a9f;
+            border: 1px solid black;
+            background: white;
             padding: 10px 0px;
-            color: #fff;
+            color: Black;
             position: sticky;
             top: 0px;
             z-index: 1;
@@ -87,11 +88,13 @@
         }
 
         .heading-act {
+            border: 1px solid black;
             width: 100%;
             position: sticky;
             top: 42px;
             z-index: 1;
-            background: #c7c7bd;
+            background: #adada7;
+            color: black;
         }
 
             .heading-act h3 {
@@ -107,9 +110,21 @@
             left: 50%;
             z-index: 11;
         }
+
         .contnt {
-    padding-left: 15px;
-}
+            padding-left: 15px;
+        }
+
+        input.btnsrch {
+            background: #FA9600;
+            border: 1px solid #FA9600;
+            padding: 4px 8px;
+            margin-left: 7px;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+        }
     </style>
 
 </asp:Content>
@@ -131,7 +146,7 @@
                             </select>
 
                             <input type="text" id="tags" placeholder="Enter Marker" />
-                            <input type="button" onclick="getDiet()" value="Search..." />
+                            <input type="button" onclick="getDiet()" value="Search..." class="btnsrch" />
 
                         </div>
                     </div>
