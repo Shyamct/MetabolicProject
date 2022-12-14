@@ -111,50 +111,59 @@ function getDiet() {
         success: function (data) {
             $("#loader").hide();
 
-           
-            var ActivatorB='';
-            var InhibitorB='';
-            var ActivatorH='';
-            var InhibitorH='';
+            $("#Activator").empty();
+            $("#Inhivator").empty();
+            $("#Activator1").empty();
+            $("#Inhivator1").empty();
+
+            var ActivatorB="";
+            var InhibitorB="";
+            var ActivatorH="";
+            var InhibitorH = "";
+            
+
+          
            
             var result = JSON.parse(data.d).responseValue;
-            console.log("result", result);
+            
 
-            $.each(result.Table, function (i, val) {
-
-                if (val.roleType == 'B') {
-
-                    if (val.INAVtype == 'Enhancer') {
-                        ActivatorB = ActivatorB + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore + "}") + "</span>";
+            $.each(result.Table1, function (i, val) {
+                var finalData = JSON.parse(val.FinalData);
+         
+                if (val.RoleType == 'B') {
+                   
+                    $.each(finalData, function (i, vals) {
+                        if (vals.statusFor == 'Enhancer                      ') {
+                            ActivatorB = ActivatorB + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
                     }                    
-                    if (val.INAVtype == 'Inhibitor')
-                    {
-                        InhibitorB = InhibitorB + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore + "}")+ "</span>";
+                        if (vals.statusFor == 'Inhibitor                     ')
+                        {
+                            InhibitorB = InhibitorB + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}")+ "</span>";
                     }
-
+                    });
+                    
                 }
 
 
-                if (val.roleType == 'B') {
+                if (val.RoleType == 'H') {
 
-                    if (val.INAVtype == 'Enhancer') {
-                        ActivatorH = ActivatorH + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore + "}") + "</span>";
-                    }
 
-                    if (val.INAVtype == 'Inhibitor') {
-                        InhibitorH = InhibitorH + "<span>" + val.interactedNutrientName + (val.dockingScore == null ? "" : "{" + val.dockingScore+"}" )+ "</span>";
-                    }
+                    $.each(finalData, function (i, vals) {
+                        if (vals.statusFor == 'Enhancer                      ') {
+                            ActivatorH = ActivatorH + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+
+                        }
+                        if (vals.statusFor == 'Inhibitor                     ') {
+
+                            InhibitorH = InhibitorH + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                        }
+                    });
+
                 }
                    
                
 
-                //if (val.roleType == 'H') {
-                //    if (val.interactedNutrientName == null || val.interactedNutrientName == undefined) {
-                //    }
-                //    else {
-                //        HARMFUL = HARMFUL + "<span>" + val.interactedNutrientName + "</span>";
-                //    }
-                //}
+               
             });
             if (ActivatorB != null || ActivatorH != undefined || InhibitorB != null || InhibitorH != undefined) {
                 $("#Activator").append(ActivatorB);
