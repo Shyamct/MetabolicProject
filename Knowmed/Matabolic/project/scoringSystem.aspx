@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Matabolic/project/MasterPage.master" AutoEventWireup="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"    ></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -165,9 +168,13 @@ div#markerDIV {
     top: -16px !important;
 }
 .btnEditIcon {
-    color: #19720e;
+    color: #0e870e;
     padding: 5px;
-    cursor:pointer;
+    cursor: pointer;
+    background: #d8e5d8;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 16px;
 }
 .scoreDiv table tr td {
     font-size: 14px;
@@ -312,16 +319,21 @@ button.btnClosfoodt:hover {
             <div class="modal-content ">
                 <div class="modal-header">
                     <button type="button" class="close btnClosfoodt"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">All Score</h4>
+                    <h4 class="modal-title">All Process Score</h4>
                 </div>
                 <div class="modal-body scoreDiv">
                   <%--<div id="scoreBody"></div>--%> 
                     <table class="table table-bordered table-responsive" id="tblScore">
+                        <thead>
                         <tr>
                             <th>Process Name</th>
                             <th>Score</th>
                             <th>Edit</th>
                         </tr>
+                            </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
                    
                 </div>

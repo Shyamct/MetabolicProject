@@ -310,7 +310,7 @@ var arrDublicateCHK = [];
                 var allScore = parseInt(scores * countScores);
                 var FINALs = Number(Number.isNaN(allScore) ? (5 + totalProcessScore) : (allScore + totalProcessScore))
 
-               orderScore.push(NAME +"(Score="+ " " + FINALs);
+                orderScore.push(NAME + "(Score=" + " " + FINALs);
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
                 );
@@ -321,7 +321,7 @@ var arrDublicateCHK = [];
                 var scores = parseInt(SCORE + 4);
                 var allScore = parseInt(scores * countScores);
                 var FINALs = Number(Number.isNaN(allScore) ? (4 + totalProcessScore) : (allScore + totalProcessScore))
-                orderScore.push(NAME + "(Score=" + " "  + FINALs);
+                orderScore.push(NAME + "(Score=" + " " + FINALs);
 
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
@@ -333,7 +333,7 @@ var arrDublicateCHK = [];
                 var scores = parseInt(SCORE + 3);
                 var allScore = parseInt(scores * countScores);
                 var FINALs = Number(Number.isNaN(allScore) ? (3 + totalProcessScore) : (allScore + totalProcessScore))
-                orderScore.push(NAME +"(Score="+ " " + FINALs);
+                orderScore.push(NAME + "(Score=" + " " + FINALs);
 
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
@@ -342,13 +342,29 @@ var arrDublicateCHK = [];
         }
         });
     });
-    var newskp;
+
     $.each(orderScore, function (i, val) {
-        text += '<span>' + val+")" + '</span>';
+
+        let str = val;
+
+        var onlyMarkerName = str.split("(");
+
+        var Nutrientname = onlyMarkerName[0];
+      
+        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + Nutrientname + "\")' >" + val + ')' + "</span>";
+
+       // text += "<span onclick='goTODietreport("")' >" + val + ')' + "</span>";
     })
 
     $("#markerDIV").html(text);
 }
+
+
+function goTODietreport(Nutrientname)
+{
+    window.location.href = "../project/principalDiet.aspx?pathwayID=" + $("#ddlPathway").val() + "&markerName=" + Nutrientname + "";
+}
+
 
 function getInteractionNutrient(nutrientID, currentProcessID, finalMarkerScore) {
     
@@ -466,7 +482,7 @@ function getScore() {
             
             $.each(result.Table, function (i, val) {  
                  
-                tr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.score + "</td><td>" + '<i class="fas fa-edit btnEditIcon" onClick="scoreEDIT( ' + val.score + ',' +val.id+')"></i>'+"</td></tr>";
+                tr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.score + "</td><td>" + '<i class="fa fa-pencil-square-o btnEditIcon" onClick="scoreEDIT( ' + val.score + ',' +val.id+')"></i>'+"</td></tr>";
 
             });   
             $("#tblScore tbody").append(tr);

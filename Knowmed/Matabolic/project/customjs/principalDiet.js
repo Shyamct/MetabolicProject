@@ -3,16 +3,22 @@ var availableTags = [];
 var selectedNutrientName = '';
 
 $(document).ready(function () {
-    getPathway();
-    getNutrientList();
+
+    var url = window.location.href;
+    pageName = getPageName(url);
+    pathwayID = getParameterByName('pathwayID', url);
+    nutrientName = getParameterByName('markerName', url);
+    getDiet();
+    //getPathway();
+    //getNutrientList();
    
-    $("#tags").autocomplete({
-            source: availableTags
-    });
+    //$("#tags").autocomplete({
+    //        source: availableTags
+    //});
     
-    $('#tags').on('autocompleteselect', function (i, val) {
-        selectedNutrientName = val.item.value;
-    });
+    //$('#tags').on('autocompleteselect', function (i, val) {
+    //    selectedNutrientName = val.item.value;
+    //});
 });
 
 function getPathway() {
@@ -89,11 +95,12 @@ function getDiet() {
         window.location.href = "../../index.html";
         return;
     }
-
+    //pathwayID: $("#ddlPathway").val(),
+    //    nutrientName: selectedNutrientName
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-        pathwayID: $("#ddlPathway").val(),
-        nutrientName: selectedNutrientName
+        pathwayID: Number(pathwayID),
+        nutrientName: nutrientName,
     }
     $("#loader").show();
     $.ajax({
