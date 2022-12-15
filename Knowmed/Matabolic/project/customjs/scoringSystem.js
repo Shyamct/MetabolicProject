@@ -13,6 +13,15 @@ $(document).ready(function () {
     $(".btnClosfood").click(function () {
         $("#modelMarkerList").hide();
     })
+    $(".editBtnCancel").click(function () {
+        $("#modelEdit").hide();
+    })
+    $(".editBtnSave").click(function () {
+        $("#modelEdit").hide();
+    })
+    $(".btnClosfoodt").click(function () {
+        $("#modelScore").hide();
+    })
 });
 
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
@@ -152,8 +161,8 @@ function getReport() {
                                 markerName: mainData[i].nutrientName,
                                 markerScore: mainData[i].calculateMarkerScore,
                                 type: mainData[i].compoundType,
+                                processSCORE: val.processScore,
                             });
-
                         }
                         getBestMarker();
 
@@ -179,7 +188,7 @@ function getReport() {
                                     var MMSScoree = mainData[i].MMSScoree;
                                     var HighLowScore = mainData[i].HighLowScore;
 
-                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? 4 : parseInt(calculateMarkerScore + 4))
+                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (4 + val.processScore) : parseInt((calculateMarkerScore + 4 + val.processScore)))
 
                                     nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
 
@@ -210,7 +219,7 @@ function getReport() {
                                     var HighLowScore = mainData[i].HighLowScore;
 
                                     
-                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? 3 : parseInt(calculateMarkerScore + 3))
+                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (3 + val.processScore) : parseInt((calculateMarkerScore + 3 + val.processScore)))
 
                                     nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + finalMarkerScore +")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
 
@@ -240,7 +249,7 @@ function getReport() {
                                     var HighLowScore = mainData[i].HighLowScore;
 
                                    
-                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? 5 : parseInt(calculateMarkerScore + 5))
+                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (5 + val.processScore) : parseInt((calculateMarkerScore + 5+val.processScore)))
 
                                     nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) +")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
                                 }
@@ -291,12 +300,15 @@ var arrDublicateCHK = [];
         var TYPE = value.type;
         var SCORE = value.markerScore;
         var NAME = value.markerName;
+        var totalProcessScore = value.processSCORE;
+        //console.log("SCR", totalProcessScore);
+
         $.each(counts, function (names, countScores) {
         if (TYPE != null || TYPE != '') {
             if (TYPE == 'Specific' && NAME == names) {
                 var scores = parseInt(SCORE + 5);
                 var allScore = parseInt(scores * countScores);
-                var FINALs = Number(Number.isNaN(allScore) ? 5 : allScore)
+                var FINALs = Number(Number.isNaN(allScore) ? (5 + totalProcessScore) : (allScore + totalProcessScore))
 
                orderScore.push(NAME +"(Score="+ " " + FINALs);
                 orderScore.sort(
@@ -308,35 +320,31 @@ var arrDublicateCHK = [];
             else if (TYPE == 'Central' && NAME == names) {
                 var scores = parseInt(SCORE + 4);
                 var allScore = parseInt(scores * countScores);
-                var FINALs = Number(Number.isNaN(allScore) ? 4 : allScore)
+                var FINALs = Number(Number.isNaN(allScore) ? (4 + totalProcessScore) : (allScore + totalProcessScore))
                 orderScore.push(NAME + "(Score=" + " "  + FINALs);
 
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
                 );
-               // text += '<span>' + NAME + "(Score =" + FINALs + ")" + '</span>';
+              
             }
             else if (TYPE == 'Sub Central' && NAME == names) {
 
                 var scores = parseInt(SCORE + 3);
                 var allScore = parseInt(scores * countScores);
-                var FINALs = Number(Number.isNaN(allScore) ? 3 : allScore)
+                var FINALs = Number(Number.isNaN(allScore) ? (3 + totalProcessScore) : (allScore + totalProcessScore))
                 orderScore.push(NAME +"(Score="+ " " + FINALs);
 
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
                 );
-
-                //text += '<span>' + NAME + "(Score =" + FINALs + ")" + '</span>';
             }
         }
         });
     });
     var newskp;
     $.each(orderScore, function (i, val) {
-       // newskp = val;
         text += '<span>' + val+")" + '</span>';
-
     })
 
     $("#markerDIV").html(text);
@@ -427,11 +435,14 @@ function getFoodlist(interactedNutrientID) {
 
 
 function getScore() {
+    
 
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
+        console.log("returning");
         return;
     }
+
     obj = {
         empid: userID,
     }
@@ -449,18 +460,64 @@ function getScore() {
         },
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
-            var text = '';
+            var tr = '';
+          
+            $("#tblScore tbody tr").empty();
+            
+            $.each(result.Table, function (i, val) {  
+                 
+                tr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.score + "</td><td>" + '<i class="fas fa-edit btnEditIcon" onClick="scoreEDIT( ' + val.score + ',' +val.id+')"></i>'+"</td></tr>";
 
-            $("#scoreBody").html('');
-            $.each(result.Table, function (i, val) {
-                text += '<span class="scoreName">' + val.statusFor + "   " + "(" + val.score + ")" + '</span>';
-            });
-            $("#scoreBody").html(text);
-
+            });   
+            $("#tblScore tbody").append(tr);
             $("#modelScore").show();
         },
         error: function (error) {
 
+        }
+    });
+}
+
+ var  processRowID;
+
+function scoreEDIT(score, id) {
+
+    processRowID = id;
+    $("#txtScore").val(score)
+    $("#modelEdit").show();
+}
+function saveScore(id) {
+
+    var score = $("#txtScore").val();
+    
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    obj = {
+        empid: userID,
+        score: score,
+        processIDINT: processRowID,
+    }
+    $.ajax({
+        type: "POST",
+        url: "WebService/scoringSystem.asmx/updateScore",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+        
+            getScore();
+
+        },
+        error: function (error) {
+            console.log("ERo");
         }
     });
 }

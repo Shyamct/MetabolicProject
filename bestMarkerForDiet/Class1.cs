@@ -16,6 +16,7 @@ namespace DAL_scoringSystem
         public int nutrientID { get; set; }
         public string processID { get; set; }
         public int processIDINT { get; set; }
+        public int score { get; set; }
         public int finalMarkerScore { get; set; }
         public int interactedNutrientID { get; set; }
     }
@@ -31,6 +32,7 @@ namespace DAL_scoringSystem
             selectCommand.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
             selectCommand.Parameters.AddWithValue("@processID", pobj.processID);
             selectCommand.Parameters.AddWithValue("@processIDINT", pobj.processIDINT);
+            selectCommand.Parameters.AddWithValue("@score", pobj.score);
             selectCommand.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
             selectCommand.Parameters.AddWithValue("@markerScore", pobj.finalMarkerScore);
             selectCommand.Parameters.AddWithValue("@interactedNutrientID", pobj.interactedNutrientID);
@@ -78,6 +80,12 @@ namespace DAL_scoringSystem
         public static void getOnlyScore(PAL_scoringSystem pobj)
         {
             pobj.opcode = 46;
+            DAL_scoringSystem.returnTable(pobj);
+        }
+
+        public static void updateScore(PAL_scoringSystem pobj)
+        {
+            pobj.opcode = 21;
             DAL_scoringSystem.returnTable(pobj);
         }
 

@@ -214,4 +214,38 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         }
         return str;
     }
+
+
+    [WebMethod(EnableSession = true)]
+    public string updateScore(int empid,int processIDINT, int score)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_scoringSystem pobj = new PAL_scoringSystem();
+        pobj.userID = empid;
+        pobj.processIDINT = processIDINT;
+        pobj.score = score;
+
+        BAL_scoringSystem.updateScore(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
 }

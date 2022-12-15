@@ -146,7 +146,7 @@
                             </select>
 
                             <input type="text" id="tags" placeholder="Enter Marker" />
-                            <input type="button" onclick="getDiet()" value="Search..." class="btnsrch" />
+                            <input type="button" onclick="getDiet()" value="Search" class="btnsrch" />
 
                         </div>
                     </div>

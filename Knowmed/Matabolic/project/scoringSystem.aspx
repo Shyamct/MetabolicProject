@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Matabolic/project/MasterPage.master" AutoEventWireup="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"    ></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
      <style>
            #loader {
     position: fixed;
@@ -153,6 +156,59 @@ div#markerDIV {
     max-height: 78vh;
     overflow: auto;
 }
+.scoreDiv table tr th {
+   background: #eeeeee!important;
+    font-size: 18px;
+    color: #000;
+    position: sticky;
+    z-index: 1111;
+    top: -16px !important;
+}
+.btnEditIcon {
+    color: #19720e;
+    padding: 5px;
+    cursor:pointer;
+}
+.scoreDiv table tr td {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+.scoreDiv {
+    max-height: 83vh;
+    overflow-y: auto;
+}
+button.btnClosscore {
+    background: red;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid red;
+}
+button.btnClosscore:hover {
+    background: #fff;
+    color: #eb0909;
+    border: 1px solid #eb0909;
+    font-weight: 600;
+}
+
+button.btnClosfoodt {
+     background: red;
+    color: #fff;
+    border-radius: 50%;
+    border: 1px solid red;
+    height: 27px;
+    width: 27px;
+    line-height: 13px;
+    padding: 5px;
+    font-size: 22px;
+    opacity: 1;
+}
+button.btnClosfoodt:hover {
+    background: #fff;
+    color: #eb0909;
+    border: 1px solid #eb0909;
+    font-weight: 600;
+}
     </style>
 
 </asp:Content>
@@ -255,21 +311,40 @@ div#markerDIV {
             <!-- Modal content-->
             <div class="modal-content ">
                 <div class="modal-header">
-                    <button type="button" class="close btnClosfood"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Score Description  </h4>
+                    <button type="button" class="close btnClosfoodt"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">All Score</h4>
                 </div>
-                <div class="modal-body">
-                  <div id="scoreBody"></div> 
+                <div class="modal-body scoreDiv">
+                  <%--<div id="scoreBody"></div>--%> 
+                    <table class="table table-bordered table-responsive" id="tblScore">
+                        <tr>
+                            <th>Process Name</th>
+                            <th>Score</th>
+                            <th>Edit</th>
+                        </tr>
+                    </table>
                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btnClosfood">Close</button>
+                    <button type="button" class="btn btn-default btnClosfood btnClosscore">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-
+    <div class="modal" id="modelEdit" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+         <input type="number"  id="txtScore" class="form-control"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default editBtnCancel" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default editBtnSave" onclick="saveScore()" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
     
 
     <script src="customjs/scoringSystem.js"></script>
