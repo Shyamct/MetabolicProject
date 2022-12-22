@@ -451,20 +451,26 @@ function getFoodlist(interactedNutrientID) {
 
 
 function getScore() {
-    
+    var pathwayID = $("#ddlPathway").val();
 
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         console.log("returning");
         return;
     }
-
+    if (pathwayID == "" || pathwayID == 0) {
+        alert("PlZ select pathway");
+        return;
+    }
     obj = {
+        //empid: userID,
         empid: userID,
+        pathwayID: pathwayID
     }
     $.ajax({
         type: "POST",
-        url: "WebService/scoringSystem.asmx/getOnlyScore",
+       // url: "WebService/scoringSystem.asmx/getOnlyScore",
+        url: "WebService/scoringSystem.asmx/getProcess",
         contentType: 'application/json',
         dataType: 'json',
         data: JSON.stringify(obj),
@@ -482,7 +488,7 @@ function getScore() {
             
             $.each(result.Table, function (i, val) {  
                  
-                tr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.score + "</td><td>" + '<i class="fa fa-pencil-square-o btnEditIcon" onClick="scoreEDIT( ' + val.score + ',' +val.id+')"></i>'+"</td></tr>";
+                tr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.processScore + "</td><td>" + '<i class="fa fa-pencil-square-o btnEditIcon" onClick="scoreEDIT( ' + val.processScore + ',' + val.processID+')"></i>'+"</td></tr>";
 
             });   
             $("#tblScore tbody").append(tr);

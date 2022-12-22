@@ -232,7 +232,7 @@ button.btnClosfoodt:hover {
                         <div class="widget-title">
 
                             <select id="ddlPathway" onchange="getProcess()" style="width: 12%;">
-                                <option value="" selected>Select Pathway</option>
+                                <option value="" selected>Select Disease</option>
                             </select>
 
                             <select id="ddlProcess" style="width: 12%;">
@@ -319,7 +319,7 @@ button.btnClosfoodt:hover {
             <div class="modal-content ">
                 <div class="modal-header">
                     <button type="button" class="close btnClosfoodt"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">All Process Score</h4>
+                    <h4 class="modal-title"> Process Score</h4>
                 </div>
                 <div class="modal-body scoreDiv">
                   <%--<div id="scoreBody"></div>--%> 
