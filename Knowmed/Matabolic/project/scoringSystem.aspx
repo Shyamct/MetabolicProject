@@ -241,13 +241,16 @@ button.btnClosfoodt:hover {
 
                             <input type="button" onclick="getReport()" value="SHOW" />
                             <input type="button" onclick="getScore()" value="SHOW SCORE" />
+                            <input type="button" onclick="print()" value="PRINT" />
+                            <input type="button" onclick="printMerker()" value="PRINT MARKER" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tblhed">
-            <div class="tblhedin" style="width:70%"> <div class="tblDiv my-div">
+        <div class="tblhed" id="GFG">
+            <div class="tblhedin" style="width:70%"> 
+                <div class="tblDiv my-div">
             <table class="table table-bordered table-responsive" id="tblReport">
                 <thead>
                     <th class="commons Process">Process</th>
@@ -259,7 +262,8 @@ button.btnClosfoodt:hover {
                 </tbody>
             </table>
         </div></div>
-            <div class="tblhedin"  style="width:30%">
+            
+            <div class="tblhedin"  style="width:30%" id="markerTbls">
                 <h3 class="tblheh3">Marker</h3>
                 <div id="markerDIV">
 
@@ -358,7 +362,52 @@ button.btnClosfoodt:hover {
     </div>
   </div>
     
-
+    <script>
+        function print() {
+            var divContents = document.getElementById("GFG").innerHTML;
+            var frame1 = document.createElement('iframe');
+            frame1.name = "frame1";
+            frame1.style.position = "absolute";
+            frame1.style.top = "-1000000px";
+            document.body.appendChild(frame1);
+            var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
+            frameDoc.document.open();
+            frameDoc.document.write('<html><head><title>ERP Software</title>');
+            frameDoc.document.write('</head><body>');
+            frameDoc.document.write(divContents);
+            frameDoc.document.write('<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />')
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                document.body.removeChild(frame1);
+            }, 500);
+            return false;
+        }
+        function printMerker() {
+            var divContents = document.getElementById("markerTbls").innerHTML;
+            var frame1 = document.createElement('iframe');
+            frame1.name = "frame1";
+            frame1.style.position = "absolute";
+            frame1.style.top = "-1000000px";
+            document.body.appendChild(frame1);
+            var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
+            frameDoc.document.open();
+            frameDoc.document.write('<html><head><title>ERP Software</title>');
+            frameDoc.document.write('</head><body>');
+            frameDoc.document.write(divContents +'<br/>');
+            frameDoc.document.write('<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />')
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                document.body.removeChild(frame1);
+            }, 500);
+            return false;
+        }
+    </script>
     <script src="customjs/scoringSystem.js"></script>
 </asp:Content>
 

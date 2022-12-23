@@ -86,11 +86,18 @@ function getHypothesisReport() {
             }
 
             $("#tblReport tbody").append(tr);
-            row = $("#tblReport thead tr").clone();
+            row = $("#tblReport tbody tr").clone();
            
         },
         error: function (error) {
 
         }
     });
+}
+
+function ABC() {
+    $("#tblReport thead tr").remove();
+    $(".abc").show();
+
+    window.print();
 }
