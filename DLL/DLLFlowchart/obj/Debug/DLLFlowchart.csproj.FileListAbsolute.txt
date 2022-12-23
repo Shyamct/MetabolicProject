@@ -83,6 +83,7 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\bin\Debug\System.Numerics.
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\bin\Debug\System.ValueTuple.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\bin\Debug\DLLUtility.pdb
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.csproj.AssemblyReference.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.csproj.CoreCompileInputs.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLFlowchart\obj\Debug\DLLFlowchart.dll
