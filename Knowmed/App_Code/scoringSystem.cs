@@ -217,7 +217,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
 
 
     [WebMethod(EnableSession = true)]
-    public string updateScore(int empid,int processIDINT, int score)
+    public string updateScore(int empid,string rankName, int score,int pathwayID)
     {
         if (empid == null)
         {
@@ -227,8 +227,9 @@ public class bestMarkerForDiet : System.Web.Services.WebService
 
         PAL_scoringSystem pobj = new PAL_scoringSystem();
         pobj.userID = empid;
-        pobj.processIDINT = processIDINT;
+        pobj.rankName = rankName;
         pobj.score = score;
+        pobj.pathwayID = pathwayID;
 
         BAL_scoringSystem.updateScore(pobj);
         string str;

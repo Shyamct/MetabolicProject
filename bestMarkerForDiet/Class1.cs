@@ -19,6 +19,7 @@ namespace DAL_scoringSystem
         public int score { get; set; }
         public int finalMarkerScore { get; set; }
         public int interactedNutrientID { get; set; }
+        public string rankName { get; set; }
     }
     public class DAL_scoringSystem
     {
@@ -36,6 +37,7 @@ namespace DAL_scoringSystem
             selectCommand.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
             selectCommand.Parameters.AddWithValue("@markerScore", pobj.finalMarkerScore);
             selectCommand.Parameters.AddWithValue("@interactedNutrientID", pobj.interactedNutrientID);
+            selectCommand.Parameters.AddWithValue("@rankName", pobj.rankName);
 
             selectCommand.Parameters.Add("@isException", SqlDbType.Bit);
             selectCommand.Parameters["@isException"].Direction = ParameterDirection.Output;

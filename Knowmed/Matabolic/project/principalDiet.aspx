@@ -134,18 +134,21 @@
         <img src='img/spinner.gif'>
     </div>
 
-    <div id="content" style="margin-left: 0px;">
-        <div class="container-fluid">
+    <div id="content" style="margin-left: 0px;" >
+        <div class="container-fluid" id="GFG">
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title">
+                            <input type="button" onclick="print()" value="PRINT" />
+                           
 
                            <%-- <select id="ddlPathway" style="width: 12%;">
                                 <option value="" selected>Select Pathway</option>
                             </select>
 
                             <input type="text" id="tags" placeholder="Enter Marker" />
+
                             <input type="button" onclick="getDiet()" value="Search" class="btnsrch" />--%>
 
                         </div>
@@ -153,7 +156,7 @@
                 </div>
             </div>
             <div class="contnt">
-                <div class="row">
+                <div class="row" >
                     <div class="col-md-6 bdr">
                         <div class="heding-div">
                             <div class="heading-inn">
@@ -210,8 +213,29 @@
         </div>
     </div>
     <script>
-
-</script>
+        function print() {
+            var divContents = document.getElementById("GFG").innerHTML;
+            var frame1 = document.createElement('iframe');
+            frame1.name = "frame1";
+            frame1.style.position = "absolute";
+            frame1.style.top = "-1000000px";
+            document.body.appendChild(frame1);
+            var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
+            frameDoc.document.open();
+            frameDoc.document.write('<html><head><title>To Eat not To Eat</title>');
+            frameDoc.document.write('</head><body>');
+            frameDoc.document.write(divContents);
+            frameDoc.document.write('<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />')
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                document.body.removeChild(frame1);
+            }, 500);
+            return false;
+        }
+    </script>
     <script src="customjs/principalDiet.js"></script>
 </asp:Content>
 

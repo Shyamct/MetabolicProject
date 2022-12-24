@@ -242,7 +242,6 @@ button.btnClosfoodt:hover {
                             <input type="button" onclick="getReport()" value="SHOW" />
                             <input type="button" onclick="getScore()" value="SHOW SCORE" />
                             <input type="button" onclick="print()" value="PRINT" />
-                            <input type="button" onclick="printMerker()" value="PRINT MARKER" />
                         </div>
                     </div>
                 </div>
@@ -264,7 +263,9 @@ button.btnClosfoodt:hover {
         </div></div>
             
             <div class="tblhedin"  style="width:30%" id="markerTbls">
-                <h3 class="tblheh3">Marker</h3>
+                <h3 class="tblheh3">Marker 
+                            <input type="button" onclick="printMerker()" value="PRINT" />
+                </h3>
                 <div id="markerDIV">
 
                 </div>
@@ -372,7 +373,7 @@ button.btnClosfoodt:hover {
             document.body.appendChild(frame1);
             var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
             frameDoc.document.open();
-            frameDoc.document.write('<html><head><title>ERP Software</title>');
+            frameDoc.document.write('<html><head><title>Scoring System</title>');
             frameDoc.document.write('</head><body>');
             frameDoc.document.write(divContents);
             frameDoc.document.write('<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />')
@@ -394,7 +395,7 @@ button.btnClosfoodt:hover {
             document.body.appendChild(frame1);
             var frameDoc = (frame1.contentWindow) ? frame1.contentWindow : (frame1.contentDocument.document) ? frame1.contentDocument.document : frame1.contentDocument;
             frameDoc.document.open();
-            frameDoc.document.write('<html><head><title>ERP Software</title>');
+            frameDoc.document.write('<html><head><title>Only Marker</title>');
             frameDoc.document.write('</head><body>');
             frameDoc.document.write(divContents +'<br/>');
             frameDoc.document.write('<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />')

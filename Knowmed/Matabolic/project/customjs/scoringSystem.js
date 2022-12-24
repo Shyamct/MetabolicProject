@@ -487,8 +487,8 @@ function getScore() {
             $("#tblScore tbody tr").empty();
             
             $.each(result.Table, function (i, val) {  
-                 
-                tr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.processScore + "</td><td>" + '<i class="fa fa-pencil-square-o btnEditIcon" onClick="scoreEDIT( ' + val.processScore + ',' + val.processID+')"></i>'+"</td></tr>";
+
+                tr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.processScore + "</td><td>" + '<i class="fa fa-pencil-square-o btnEditIcon" onClick="scoreEDIT( \'' + val.rankName + '\' ,'+ val.processScore + ')"></i>' + "</td></tr>";
 
             });   
             $("#tblScore tbody").append(tr);
@@ -500,17 +500,18 @@ function getScore() {
     });
 }
 
- var  processRowID;
+ var  rankName;
 
-function scoreEDIT(score, id) {
-
-    processRowID = id;
-    $("#txtScore").val(score)
+function scoreEDIT(rank, score) {
+    rankName = rank;
+   $("#txtScore").val(score)
     $("#modelEdit").show();
 }
-function saveScore(id) {
+function saveScore() {
 
     var score = $("#txtScore").val();
+    var pathwayID = $("#ddlPathway").val();
+
     
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -519,7 +520,8 @@ function saveScore(id) {
     obj = {
         empid: userID,
         score: score,
-        processIDINT: processRowID,
+        rankName: rankName,
+        pathwayID: pathwayID,
     }
     $.ajax({
         type: "POST",
@@ -539,7 +541,6 @@ function saveScore(id) {
 
         },
         error: function (error) {
-            console.log("ERo");
         }
     });
 }
