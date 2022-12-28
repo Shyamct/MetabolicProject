@@ -48,7 +48,9 @@ table#tblReport tr th {
                             </select>
 
                             <input type="button" onclick="getHypothesisReport()" value="SHOW"  style="height: 31px; background:#fa9600;color: #fff;font-weight: 600;border: none;padding: 5px 15px;border-radius: 5px;" />
-                            <input type="button" onclick="ABC()" value="PRINT" / style="height: 31px; float: right;background: #d12020;color: #fff;font-weight: 600;border: none;padding: 5px 15px;border-radius: 5px;">
+                            <input type="button" onclick="getAllHypothesisReport()" value="ALL Disease"  style="height: 31px; background:#fa9600;color: #fff;font-weight: 600;border: none;padding: 5px 15px;border-radius: 5px;" />
+
+                            <input type="button" onclick="prints()" value="PRINT" / style="height: 31px; float: right;background: #d12020;color: #fff;font-weight: 600;border: none;padding: 5px 15px;border-radius: 5px;">
 
                            <%--  <div class="col-md-1" runat="server" id="divPrintBtn">
                          <input type="button" value="Print" id="btnPrint"  onclick="PrintDiv();" />
@@ -85,11 +87,54 @@ table#tblReport tr th {
                 <tbody>
                 </tbody>
             </table>
+
+
+
+
+           <table class="table table-bordered table-responsive" id="tblAllReport" style="display:none">
+                <thead>
+                    <tr>
+                     <th style="text-align: left;" width="5%">Sr No.s</th>
+                    <th style="text-align: left;" width="20%">Disease Name</th>
+                    <th style="text-align: left;" width="75%">Process Name</th>
+                    </tr>
+                    
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
         </div>
     
    </div>
 
-    
+        <div class="modal bd-example-modal-lg" id="modelHypothesisMarker" role="dialog">
+        <div class="modal-dialog modal-xl" style="max-width: 1000px ; margin: 30px auto;width: 100% !important;">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close btnClose"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="tdHeader"> </h4>
+                </div>
+                <div class="modal-body scoreDiv">
+                  <%--<div id="scoreBody"></div>--%> 
+                    <table class="table table-bordered table-responsive" id="tblMarker">
+                        <thead>  <tr>
+                            <th>SR No.</th>
+                            <th>Marker Name</th>
+                        </tr>  </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnClose">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="customjs/hypothesis.js"></script>
 </asp:Content>

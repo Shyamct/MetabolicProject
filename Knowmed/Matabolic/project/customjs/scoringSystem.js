@@ -351,7 +351,7 @@ var arrDublicateCHK = [];
 
         var Nutrientname = onlyMarkerName[0];
       
-        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + Nutrientname + "\")' >" + val + ')' + "</span>";
+        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + Nutrientname + "\")' >" + val + ')' + "</span><br/>";
 
        // text += "<span onclick='goTODietreport("")' >" + val + ')' + "</span>";
     })

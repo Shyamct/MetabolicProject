@@ -12,6 +12,7 @@ namespace DAL_eraHypothesisMarker
     public class PAL_eraHypothesisMarker:Utility
     {
         public string diseaseID { get; set; }
+        public int processID { get; set; }
     }
     public class DAL_eraHypothesisMarker
     {
@@ -22,6 +23,7 @@ namespace DAL_eraHypothesisMarker
             cmd.CommandType = CommandType.StoredProcedure;
             
             cmd.Parameters.AddWithValue("@diseaseID", pobj.diseaseID);
+            cmd.Parameters.AddWithValue("@processID", pobj.processID);
 
             
             cmd.Parameters.AddWithValue("@who", pobj.who);
@@ -43,6 +45,11 @@ namespace DAL_eraHypothesisMarker
         public static void getDiseaseWiseHypothesis(PAL_eraHypothesisMarker pobj)
         {
             pobj.opcode = 41;
+            DAL_eraHypothesisMarker.returnTable(pobj);
+        }
+        public static void getALLDiseaseWiseHypothesis(PAL_eraHypothesisMarker pobj)
+        {
+            pobj.opcode = 42;
             DAL_eraHypothesisMarker.returnTable(pobj);
         }
     }
