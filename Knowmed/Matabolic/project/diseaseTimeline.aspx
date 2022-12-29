@@ -93,27 +93,27 @@ td {
     color: black !important;
 }
         td.commons.Central {
-    background-color: #e10dbd;
+    background-color: green;
     color: white !important;
 }
           td.commons.SCentral {
-    background-color: #2d1ed4;
+    background-color: green;
     color: white !important;
 }
              td.commons.Specfic {
-    background-color: #ed9c1a;
+    background-color: green;
     color: white !important;
 }
                  td.commons.NCentral {
-   background: linear-gradient(to left, #ffffff 30%, #ff4d4d 100%);
+   background-color: red;
     color: black !important;
 }
           td.commons.NSCentral {
-    background: linear-gradient(to left, #ffffff 30%, #ff4d4d 100%);
+       background-color: red;
     color: black !important;
 }
              td.commons.NSpecfic {
-   background: linear-gradient(to left, #ffffff 30%, #ff4d4d 100%);
+      background-color: red;
     color: black !important;
 }
         td.interactedNutrient {

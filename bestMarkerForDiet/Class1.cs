@@ -11,7 +11,7 @@ namespace DAL_scoringSystem
 {
     public class PAL_scoringSystem : Utility
     {
-        public int pathwayID { get; set; }
+        public string pathwayID { get; set; }
         public int userID { get; set; }
         public int nutrientID { get; set; }
         public string processID { get; set; }

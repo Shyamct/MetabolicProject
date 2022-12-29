@@ -72,17 +72,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.csproj.CoreCo
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\DLLCascade.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\DLLCascade.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\System.Buffers.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\System.Memory.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\System.Numerics.Vectors.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\System.ValueTuple.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.pdb

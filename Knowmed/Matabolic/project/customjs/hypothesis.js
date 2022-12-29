@@ -152,8 +152,13 @@ function getAllHypothesisReport() {
                     tag += '<ol>';
                    
                     $.each(mainProcess, function (j, val) {
-
-                        var countMarker = val.markerCountList.length;
+                        var countMarker;
+                        if (val.markerCountList == undefined || val.markerCountList == null) {
+                            countMarker = 0;
+                        }
+                        else {
+                            countMarker = val.markerCountList.length;
+                        }
 
                         tag += '<li><span style="cursor: pointer;" onclick="getHypothesisMarker(\'' + val.id + '\' ,' + pathwayID + ',\'' + val.rankName+'\')">' + val.rankName + "  "  +'<span style="font-Size:16;color:black">'+'{'+ countMarker + '}'+'</span>' + '</span></li>';
                         });

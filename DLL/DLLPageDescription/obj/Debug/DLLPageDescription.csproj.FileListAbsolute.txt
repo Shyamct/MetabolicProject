@@ -70,17 +70,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescripti
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescription.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescription.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescription.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\DLLPageDescription.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\DLLPageDescription.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\System.Buffers.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\System.Memory.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\System.Numerics.Vectors.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\System.ValueTuple.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescription.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescription.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescription.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPageDescription\obj\Debug\DLLPageDescription.pdb

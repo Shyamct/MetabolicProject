@@ -49,13 +49,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDie
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDietActivator.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDietActivator.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDietActivator.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\bin\Debug\DLLMarkerDietActivator.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\bin\Debug\DLLMarkerDietActivator.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDietActivator.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDietActivator.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDietActivator.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLMarkerDietActivator\obj\Debug\DLLMarkerDietActivator.pdb

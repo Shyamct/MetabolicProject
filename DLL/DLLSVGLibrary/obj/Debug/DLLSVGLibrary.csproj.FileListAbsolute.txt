@@ -69,17 +69,3 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.csproj.
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\DLLSVGLibrary.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\DLLSVGLibrary.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\Newtonsoft.Json.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\System.Buffers.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\System.Memory.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\System.Numerics.Vectors.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\System.ValueTuple.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSVGLibrary\obj\Debug\DLLSVGLibrary.pdb

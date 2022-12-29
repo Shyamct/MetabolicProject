@@ -7,6 +7,10 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"    ></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+     <link href="css/bootstrap-multiselect.css" rel="stylesheet" />
+    <script src="js/bootstrap-multiselect.js"></script>
+    <script src="../../js/table2excel.js"></script>
      <style>
            #loader {
     position: fixed;

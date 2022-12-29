@@ -53,7 +53,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         return str;
     }
     [WebMethod(EnableSession = true)]
-    public string getProcess(int empid, int pathwayID)
+    public string getProcess(int empid, string pathwayID)
     {
         if (empid == null)
         {
@@ -85,7 +85,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         return str;
     }
     [WebMethod(EnableSession = true)]
-    public string getReport(int empid,int pathwayID,string processID)
+    public string getReport(int empid, string pathwayID,string processID)
     {
         if (empid == null)
         {
@@ -119,7 +119,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
     }
 
     [WebMethod(EnableSession = true)]
-    public string getNurientIntruction(int empid, int nutrientID,int processIDINT,int pathwayID,int finalMarkerScore)
+    public string getNurientIntruction(int empid, int nutrientID,int processIDINT, string pathwayID,int finalMarkerScore)
     {
         if (empid == null)
         {
@@ -217,7 +217,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
 
 
     [WebMethod(EnableSession = true)]
-    public string updateScore(int empid,string rankName, int score,int pathwayID)
+    public string updateScore(int empid,string rankName, int score, string pathwayID)
     {
         if (empid == null)
         {

@@ -1,8 +1,0 @@
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\bin\Debug\DAL_eraHypothesisMarker.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\bin\Debug\DAL_eraHypothesisMarker.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\obj\Debug\DAL_eraHypothesisMarker.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\obj\Debug\DAL_eraHypothesisMarker.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\obj\Debug\DAL_eraHypothesisMarker.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_eraHypothesisMarker\obj\Debug\DAL_eraHypothesisMarker.pdb

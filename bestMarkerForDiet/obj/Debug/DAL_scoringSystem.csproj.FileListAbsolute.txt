@@ -1,8 +1,0 @@
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\bin\Debug\bestMarkerForDiet.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\bin\Debug\bestMarkerForDiet.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\bin\Debug\DLLUtility.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\obj\Debug\DAL_scoringSystem.csproj.CoreCompileInputs.cache
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\obj\Debug\DAL_scoringSystem.csproj.CopyComplete
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\obj\Debug\bestMarkerForDiet.dll
-D:\TFS\MetabolicProjectGIT\METABOLIC\bestMarkerForDiet\obj\Debug\bestMarkerForDiet.pdb

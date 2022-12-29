@@ -27,6 +27,15 @@ $(document).ready(function () {
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
 var finalMarkerScore = 0;
 
+function multiSelectDisease() {
+    $('#ddlPathway').multiselect({
+        includeSelectAllOption: true,
+        nonSelectedText: 'Select Disease',
+        enableCaseInsensitiveFiltering: true,
+        filterPlaceholder: 'Search Here...',
+        maxHeight: 300
+    });
+}
 
 function getPathway() {
     if (!UtilsCache.getSession('USERDETAILS')) {
@@ -51,10 +60,21 @@ function getPathway() {
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
            
+            //$("#ddlPathway option:not(:first)").remove();
+            //$.each(result.Table, function () {
+            //    $("#ddlPathway").append('<option value="' + this.id + '">' + this.headName + '</option>');
+            //});
+            
             $("#ddlPathway option:not(:first)").remove();
-            $.each(result.Table, function () {
-                $("#ddlPathway").append('<option value="' + this.id + '">' + this.headName + '</option>');
-            });
+
+              $.each(result.Table, function () {
+                    $("#ddlPathway").append('<option value="' + this.id + '">' + this.headName + '</option>');
+              });
+
+                $('#ddlPathway').prop("multiple", "multiple");
+                multiSelectDisease();
+                $("#ddlPathway").multiselect("clearSelection");
+           
         },
         error: function (error) {
 
@@ -68,11 +88,18 @@ function getProcess() {
         window.location.href = "../../index.html";
         return;
     }
-   
+    var diseaseID = pathwayID.toString();
+    
         obj = {
             empid: userID,
-            pathwayID: pathwayID
-        }
+            pathwayID: diseaseID,
+    }
+
+
+
+   
+
+
     $.ajax({
         type: "POST",
         url: "WebService/scoringSystem.asmx/getProcess",
@@ -109,7 +136,8 @@ function getReport() {
         window.location.href = "../../index.html";
         return;
     }
-    if (pathwayID == "" || pathwayID == 0) {
+    var diseaseID = pathwayID.toString();
+    if (diseaseID == "" || diseaseID == 0) {
         alert("PlZ select pathway");
         return;
     }
@@ -118,7 +146,7 @@ function getReport() {
     }
     obj = {
         empid: userID ,
-        pathwayID: pathwayID,
+        pathwayID: diseaseID,
         processID: processID
     }
     $("#loader").show();
@@ -271,6 +299,10 @@ function getReport() {
         }
     });
 }
+
+
+
+
 
 function getBestMarker() {
 var arrDublicateCHK = [];
@@ -458,14 +490,15 @@ function getScore() {
         console.log("returning");
         return;
     }
-    if (pathwayID == "" || pathwayID == 0) {
+    var diseaseID = pathwayID.toString();
+    if (diseaseID == "" || diseaseID == 0) {
         alert("PlZ select pathway");
         return;
     }
     obj = {
         //empid: userID,
         empid: userID,
-        pathwayID: pathwayID
+        pathwayID: diseaseID
     }
     $.ajax({
         type: "POST",
@@ -512,7 +545,7 @@ function saveScore() {
     var score = $("#txtScore").val();
     var pathwayID = $("#ddlPathway").val();
 
-    
+    var diseaseID = pathwayID.toString();
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
@@ -521,7 +554,7 @@ function saveScore() {
         empid: userID,
         score: score,
         rankName: rankName,
-        pathwayID: pathwayID,
+        pathwayID: diseaseID,
     }
     $.ajax({
         type: "POST",
