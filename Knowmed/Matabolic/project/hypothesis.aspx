@@ -27,6 +27,38 @@ table#tblReport tr th {
  .abc tr th {
     font-size: 15px;
 }
+ table#tblAllReport tr th {
+    font-size: 16px;
+    color: #000;
+}
+ table#tblAllReport tr td {
+    font-size: 14px;
+    padding: 5px 0px;
+    line-height: 25px;
+}
+ table#tblMarker tr td {
+    font-size: 14px;
+    padding: 5px 10px;
+    line-height: 25px;
+}  
+ .scoreDiv table tr th {
+    position: sticky;
+    z-index: 111;
+    top: 0px;
+    background: #b8bbbb !important;
+    color: #000;
+}
+.scoreDiv {
+    max-height: 78vh;
+    overflow: auto;
+    padding: 0 15px;
+}
+.tblallmrk {
+    float: left;
+    width: 100%;
+}
+
+
 
 </style>
 </asp:Content>
@@ -60,7 +92,7 @@ table#tblReport tr th {
                 </div>
             </div>
         </div>
-       <div class="container-fluid">
+       <div class="container-fluid ">
            
  <table class="table table-bordered table-responsive abc" style="display:none">
                 <thead>
@@ -73,7 +105,7 @@ table#tblReport tr th {
                 </thead>
 
             </table>
-
+           <div class="tblallmrk">
             <table class="table table-bordered table-responsive" id="tblReport">
                 <thead>
                     <tr>
@@ -87,10 +119,10 @@ table#tblReport tr th {
                 <tbody>
                 </tbody>
             </table>
+</div>
 
 
-
-
+               <div class="tblallmrk">
            <table class="table table-bordered table-responsive" id="tblAllReport" style="display:none">
                 <thead>
                     <tr>
@@ -105,7 +137,7 @@ table#tblReport tr th {
                 </tbody>
             </table>
         </div>
-    
+    </div>
    </div>
 
         <div class="modal bd-example-modal-lg" id="modelHypothesisMarker" role="dialog">
@@ -114,14 +146,13 @@ table#tblReport tr th {
             <div class="modal-content ">
                 <div class="modal-header">
                     <button type="button" class="close btnClose"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title" id="tdHeader"> </h4>
+                    <h4 class="modal-title" id="tdHeader" style="color: black"> </h4>
                 </div>
                 <div class="modal-body scoreDiv">
                   <%--<div id="scoreBody"></div>--%> 
                     <table class="table table-bordered table-responsive" id="tblMarker">
                         <thead>  <tr>
-                            <th>SR No.</th>
-                            <th>Marker Name</th>
+                            <th style="font-size:18px;text-align:left"> Marker Name</th>
                         </tr>  </thead>
                         <tbody>
 

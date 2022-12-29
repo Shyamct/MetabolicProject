@@ -44,8 +44,15 @@ function getDisease() {
 
 function getHypothesisReport() {
     var diseaseID = $("#ddlDisease").val();
+
+
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
+        return;
+    }
+
+    if (diseaseID == "" || diseaseID == 0) {
+        alert("PlZ select Disease");
         return;
     }
     obj = {
@@ -148,7 +155,7 @@ function getAllHypothesisReport() {
 
                         var countMarker = val.markerCountList.length;
 
-                        tag += '<li><span style="cursor: pointer;" onclick="getHypothesisMarker(\'' + val.id + '\' ,' + pathwayID + ',\'' + val.rankName+'\')">' + val.rankName + '(' + countMarker + ')' + '</span></li>';
+                        tag += '<li><span style="cursor: pointer;" onclick="getHypothesisMarker(\'' + val.id + '\' ,' + pathwayID + ',\'' + val.rankName+'\')">' + val.rankName + "  "  +'<span style="font-Size:16;color:black">'+'{'+ countMarker + '}'+'</span>' + '</span></li>';
                         });
                         tag += '</ol>';
                     
@@ -195,18 +202,21 @@ function getHypothesisMarker(processID, diseaseID,rankName) {
             var result = JSON.parse(data.d).responseValue;
         
             var tr = '';
-            var markerNames = '';
+            var markerNames ;
 
             $("#tblMarker tbody tr").empty();
 
             $.each(result.Table, function (i, val) {
 
                 var finalData = JSON.parse(result.Table[i].markerList);
+                markerNames = '';
+                markerNames += '<ol>';
 
                 $.each(finalData, function (i, val) {
                     markerNames += '<li><span>' + val.nutrientName + '</span></li>';
                 });
-                tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + markerNames + "</td></tr>";
+                tr = tr + "<tr><td>" + markerNames + "</td></tr>";
+                markerNames += '</ol>';
 
             });
             $("#tblMarker tbody").append(tr);
