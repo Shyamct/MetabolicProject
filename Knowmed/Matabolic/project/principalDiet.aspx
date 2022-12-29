@@ -72,7 +72,7 @@
 
         .heading-inn {
             border: 1px solid black;
-            background: white;
+            background: #e7e6e6;
             padding: 10px 0px;
             color: Black;
             position: sticky;
@@ -86,14 +86,14 @@
             overflow-x: hidden;
             min-height: 83vh;
         }
-
+     
         .heading-act {
             border: 1px solid black;
             width: 100%;
             position: sticky;
             top: 42px;
             z-index: 1;
-            background: #adada7;
+            background: #e7e6e6;
             color: black;
         }
 
@@ -125,6 +125,41 @@
             font-size: 13px;
             font-weight: 600;
         }
+
+           .toeat span {
+    border: 1px solid black;
+    background: white;
+    color: Black;
+     width: 100%; 
+    text-align: center;
+    float: left;
+    font-size: 15px;
+    margin:1px 0px;
+}
+         .nottoeat span {
+    border: 1px solid black;
+    background: white;
+    color: Black;
+     width: 100%; 
+    text-align: center;
+    float: left;
+    font-size: 15px;
+      margin:1px 0px;
+}
+      /*  #toEAT{
+            border: 1px solid black;
+            background: white;
+            color: Black;
+        }*/
+        /*#notTOEAT{
+            border: 1px solid black;
+            background: white;
+            color: Black;
+        }*/
+        #txtNutrientName{
+            color: black;
+    font-weight: 700;
+        }
     </style>
 
 </asp:Content>
@@ -140,8 +175,10 @@
                 <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title">
-                            <input type="button" onclick="print()" value="PRINT" />
-                           
+                      <h3 id="txtNutrientName"></h3>
+
+                            <%--<input type="button" onclick="print()" value="PRINT" />--%>
+                         
 
                            <%-- <select id="ddlPathway" style="width: 12%;">
                                 <option value="" selected>Select Pathway</option>
@@ -156,14 +193,15 @@
                 </div>
             </div>
             <div class="contnt">
-                <div class="row" >
+                <div class="row">
                     <div class="col-md-6 bdr">
                         <div class="heding-div">
                             <div class="heading-inn">
                                 <h2>What To Eat</h2>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
+                            <div class="row toeat">
+                             <span id="toEAT"></span>
+                               <%-- <div class="col-md-6">
                                     <div class="heading-act">
                                         <h3>Activators</h3>
                                     </div>
@@ -177,7 +215,7 @@
                                     </div>
                                     <div id="Inhivator">
                                     </div>
-                                </div>
+                                </div>--%>
                             </div>
 
                         </div>
@@ -187,7 +225,10 @@
                             <div class="heading-inn">
                                 <h2>Not To Eat</h2>
                             </div>
-                            <div class="row">
+                              <div class="row nottoeat">
+                            <span id="notTOEAT"></span>
+
+                           <%-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="heading-act">
                                         <h3>Activators </h3>
@@ -203,8 +244,8 @@
                                     <div id="Inhivator1">
                                     </div>
                                 </div>
-                            </div>
-
+                            </div>--%>
+                                  </div>
                         </div>
                     </div>
                 </div>

@@ -57,6 +57,7 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\bin\Debug
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\bin\Debug\Newtonsoft.Json.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\bin\Debug\DLLUtility.pdb
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.csproj.AssemblyReference.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.csproj.CoreCompileInputs.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLPatientInvestigationReport\obj\Debug\DLLPatientInvestigationReport.dll
