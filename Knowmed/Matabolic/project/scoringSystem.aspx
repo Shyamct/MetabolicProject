@@ -288,7 +288,7 @@ button.btnClosfoodt:hover {
             <div class="modal-content ">
                 <div class="modal-header">
                     <button type="button" class="close btnClos"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"> Interacted Nutrient Name </h4>
+                    <h4 class="modal-title" id="intretectedHeader">  </h4>
                 </div>
                 <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
                   <div id="Interactednutrient"></div> 

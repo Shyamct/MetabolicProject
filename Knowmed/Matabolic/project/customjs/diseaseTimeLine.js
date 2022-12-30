@@ -84,6 +84,7 @@ function selectHeader() {
 
 function RANKNAME() {
     var pathwayID = $("#ddlPathway").val();
+    var diseaseID = pathwayID.toString();
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
@@ -94,7 +95,7 @@ function RANKNAME() {
         url: "WebService/diseaseTimeline.asmx/getPROCESS",
         contentType: 'application/json',
         dataType: 'json',
-        data: "{'pathwayIdList':'" + pathwayID + "','empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "'}",
+        data: "{'pathwayIdList':'" + diseaseID + "','empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "'}",
 
 
         statusCode: {
@@ -166,6 +167,8 @@ function myReport() {
     var interactionType = '';
     var tr;
     var pathwayID = $("#ddlPathway").val();
+    var diseaseID = pathwayID.toString();
+
     var process = ($('#ddlRank').val()) ? $('#ddlRank').val().toString() : '';
     $("#loader").show();
     function countForMolecule(list, moleculeType,process) {
@@ -208,7 +211,7 @@ function myReport() {
         url: "WebService/diseaseTimeline.asmx/getReport",
         contentType: 'application/json',
         dataType: 'json',
-        data: "{'pathwayIdList':'" + pathwayID + "', 'rankList':'" + process + "', 'gender':'" + $('#ddlGender option:selected').val() + "', 'age':'" + $('#ddlAge option:selected').val() + "', 'ageUnit':'" + $('#ddlAgeUnit option:selected').val() + "', 'empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "'}",
+        data: "{'pathwayIdList':'" + diseaseID + "', 'rankList':'" + process + "', 'gender':'" + $('#ddlGender option:selected').val() + "', 'age':'" + $('#ddlAge option:selected').val() + "', 'ageUnit':'" + $('#ddlAgeUnit option:selected').val() + "', 'empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "'}",
 
         statusCode: {
             401: function (xhr) {
@@ -508,7 +511,7 @@ function myReport() {
 
                     }
 
-                    tr = tr + "<tr class='abc'><td  rowspan=" + count + ">" + '<span class="food-cell"  style="cursor: pointer;" onClick="topFood(' + interactedNutrientID + ')">'
+                    tr = tr + "<tr class='abc'><td rowspan=" + count + ">" + val.pathwayName+"</td><td  rowspan=" + count + ">" + '<span class="food-cell"  style="cursor: pointer;" onClick="topFood(' + interactedNutrientID + ')">'
                         + interactedNutrientName + ' ' + finalCountNum + '<br />' + interactionType + '</span>' + "</td><td  rowspan=" + count + ">" + rda + "</td><td rowspan=" + count + ">" +
                         tHALF + "</td><td rowspan=" + count + ">" + dose1 + "</td><td rowspan=" + count + ">" + dose2 + "</td><td rowspan=" + count + ">"
                         + dose3 + "</td><td rowspan=" + count + ">" + dose4 + "</td><td rowspan=" + count + ">" + dose5 + "</td><td rowspan=" + count + ">" + dose6 + "</td>" +

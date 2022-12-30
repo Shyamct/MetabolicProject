@@ -72,6 +72,7 @@ td.commons.NSpecfic {
     width: 100%;
     overflow-x: scroll;
     height: 788px;
+    background: #eeeeee;
 }
 td {
   /* Not required only for visualizing */
@@ -356,7 +357,7 @@ td.comn {
     <div class="tblDiv">
   <table class="table table-bordered table-responsive" id="tblReport">
                         <thead>
-                            <td>Disease Name</td>
+                            <td class="commons" >Disease Name</td>
                             <td id="td_PathwayID" style="display:none">interactedNutrientID</td>
                              <td class="commons" >Active Compound</td>
                              <td class="commons RDA">RDA</td>
