@@ -21,8 +21,7 @@ $(document).ready(function () {
 
 
 function multiSelectProblem() {
-    $('#ddlHeader').multiselect({
-        buttonWidth: '100%',
+    $('#ddlPathway').multiselect({
         includeSelectAllOption: true,
         nonSelectedText: 'Select Pathway',
         enableCaseInsensitiveFiltering: true,
@@ -31,19 +30,9 @@ function multiSelectProblem() {
     });
 }
 
-function multiSelectProcess() {
-    $('#ddlRank').multiselect({
-        buttonWidth: '100%',
-        includeSelectAllOption: true,
-        nonSelectedText: 'Select Process',
-        enableCaseInsensitiveFiltering: true,
-        filterPlaceholder: 'Search Here...',
-        maxHeight: 300
-    });
-}
+
 
 function selectHeader() {
-
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
@@ -63,19 +52,25 @@ function selectHeader() {
             }
         },
         success: function (data) {
-            var r = JSON.parse(data.d).responseValue;
+            var result = JSON.parse(data.d).responseValue;
 
 
+
+            //$("#ddlPathway option:not(:first)").remove();
+            //$.each(r.Table, function (i, val) {
+            //    $("#ddlPathway").append('<option value="' + val.id + '">' + val.headName + '</option>');
+            //});
 
             $("#ddlPathway option:not(:first)").remove();
-            $.each(r.Table, function (i, val) {
-                $("#ddlPathway").append('<option value="' + val.id + '">' + val.headName + '</option>');
+
+            $.each(result.Table, function () {
+
+                $("#ddlPathway").append('<option value="' + this.id + '">' + this.headName + '</option>');
             });
 
-            //$("#ddlRank option:not(:first)").remove();
-            //$.each(r.Table1, function (i, val) {
-            //    $("#ddlRank").append('<option value="' + val.rankName + '">' + val.rankName + '</option>');
-            //});
+            $('#ddlPathway').prop("multiple", "multiple");
+            multiSelectProblem();
+            $("#ddlPathway").multiselect("clearSelection");
 
             bindYear('YEAR');
         },

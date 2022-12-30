@@ -256,6 +256,7 @@ button.btnClosfoodt:hover {
                 <div class="tblDiv my-div">
             <table class="table table-bordered table-responsive" id="tblReport">
                 <thead>
+                    <th class="commons Diease">Disease Name</th>
                     <th class="commons Process">Process</th>
                     <th class="commons Central">Central (Score=4)</th>
                     <th class="commons SCentral">Sub Central (Score=3)</th>

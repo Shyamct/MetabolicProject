@@ -17,6 +17,8 @@
 
 
 
+
+
     <style>
         table#tblReport thead tr td {
     position: STICKY;
@@ -233,9 +235,7 @@ td.comn {
                 <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title">
-                           <%-- <div class="span2">
-                                <select id="ddlPathway"></select>
-                            </div>--%>
+                           
                             <select id="ddlPathway" onchange="RANKNAME()" style="width: 12%;" >
                                 <option value="" selected>Select pathway</option>
                             </select>
@@ -356,6 +356,7 @@ td.comn {
     <div class="tblDiv">
   <table class="table table-bordered table-responsive" id="tblReport">
                         <thead>
+                            <td>Disease Name</td>
                             <td id="td_PathwayID" style="display:none">interactedNutrientID</td>
                              <td class="commons" >Active Compound</td>
                              <td class="commons RDA">RDA</td>

@@ -50,3 +50,13 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhen
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhenomenon.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhenomenon.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhenomenon.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\bin\Debug\DLL_MarkerPhenomenon.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\bin\Debug\DLL_MarkerPhenomenon.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\bin\Debug\Newtonsoft.Json.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhenomenon.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhenomenon.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhenomenon.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_MarkerPhenomenon\obj\Debug\DLL_MarkerPhenomenon.pdb

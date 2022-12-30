@@ -36,7 +36,7 @@ function multiSelectDisease() {
         maxHeight: 300
     });
 }
-
+var DiseaseNAme =[];
 function getPathway() {
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -67,10 +67,11 @@ function getPathway() {
             
             $("#ddlPathway option:not(:first)").remove();
 
-              $.each(result.Table, function () {
+            $.each(result.Table, function () {
+                
                     $("#ddlPathway").append('<option value="' + this.id + '">' + this.headName + '</option>');
               });
-
+           
                 $('#ddlPathway').prop("multiple", "multiple");
                 multiSelectDisease();
                 $("#ddlPathway").multiselect("clearSelection");
@@ -129,7 +130,7 @@ var arrList = [];
 
 function getReport() {
     
-   var  pathwayID = $("#ddlPathway").val();
+    var pathwayID = $("#ddlPathway").val();
     
    var  processID = $("#ddlProcess").val();
     if (!UtilsCache.getSession('USERDETAILS')) {
@@ -174,28 +175,29 @@ function getReport() {
             var nutrientCentral;
             var nutrientSubCentral;
             var nutrientSpecific;
-           
-           
+                if (result.Table.length > 0) {
+                    $.each(result.Table, function (i, val) {
 
-            if (result.Table.length > 0) {
-                $.each(result.Table, function (i, val) {
-                    var currentProcessID = val.processID;
+                      
+                           
+                     
+                        var currentProcessID = val.processID;
 
-                    var mainData = JSON.parse(result.Table[i].MarkerLIST);
-                   
-                    if (mainData != undefined || mainData != null || mainData != 0) {
-                        for (var i = 0; i < mainData.length; i++) {
-                            arrList.push({
-                                markerName: mainData[i].nutrientName,
-                                markerScore: mainData[i].calculateMarkerScore,
-                                type: mainData[i].compoundType,
-                                processSCORE: val.processScore,
-                            });
+                        var mainData = JSON.parse(result.Table[i].MarkerLIST);
+
+                        if (mainData != undefined || mainData != null || mainData != 0) {
+                            for (var i = 0; i < mainData.length; i++) {
+                                arrList.push({
+                                    markerName: mainData[i].nutrientName,
+                                    markerScore: mainData[i].calculateMarkerScore,
+                                    type: mainData[i].compoundType,
+                                    processSCORE: val.processScore,
+                                });
+                            }
+                            getBestMarker();
+
                         }
-                        getBestMarker();
 
-                    }
-                   
 
                         nutrientCentral = '';
                         nutrientCentral += '<ul>';
@@ -246,10 +248,10 @@ function getReport() {
                                     var MMSScoree = mainData[i].MMSScoree;
                                     var HighLowScore = mainData[i].HighLowScore;
 
-                                    
+
                                     finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (3 + val.processScore) : parseInt((calculateMarkerScore + 3 + val.processScore)))
 
-                                    nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + finalMarkerScore +")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                    nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
 
                                 }
                             }
@@ -276,22 +278,23 @@ function getReport() {
                                     var MMSScoree = mainData[i].MMSScoree;
                                     var HighLowScore = mainData[i].HighLowScore;
 
-                                   
-                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (5 + val.processScore) : parseInt((calculateMarkerScore + 5+val.processScore)))
 
-                                    nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) +")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (5 + val.processScore) : parseInt((calculateMarkerScore + 5 + val.processScore)))
+
+                                    nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
                                 }
                             }
-                    }
+                        }
                         nutrientSpecific += '<ul>';/// ME optional
 
-                      
-                    tr = tr + "<tr><td id='TDprocess'>" + val.rankName + "(" + val.processScore + ")" + "</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
-
+                        tr = tr + "<tr><td style='color:black !important;font-size: large !important;'>" + val.pathwayName + "</td><td id='TDprocess'>" + val.rankName + "(" + val.processScore + ")" + "</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
                     });
-            }
-            $("#tblReport tbody").append(tr);
-            row = $("#tblReport thead tr").clone();
+                }
+                $("#tblReport tbody").append(tr);
+                row = $("#tblReport thead tr").clone();
+           
+
+          
 
         },
         error: function (error) {

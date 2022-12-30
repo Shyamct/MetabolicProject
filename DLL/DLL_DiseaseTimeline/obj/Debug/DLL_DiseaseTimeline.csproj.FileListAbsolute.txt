@@ -49,3 +49,13 @@ D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTime
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTimeline.csproj.CopyComplete
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTimeline.dll
 D:\TFS\METABOLICLIVE\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTimeline.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\bin\Debug\DLL_DiseaseTimeline.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\bin\Debug\DLL_DiseaseTimeline.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\bin\Debug\Newtonsoft.Json.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTimeline.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTimeline.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTimeline.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLL_DiseaseTimeline\obj\Debug\DLL_DiseaseTimeline.pdb
