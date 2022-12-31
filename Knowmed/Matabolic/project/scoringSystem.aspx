@@ -336,6 +336,7 @@ button.btnClosfoodt:hover {
                     <table class="table table-bordered table-responsive" id="tblScore">
                         <thead>
                         <tr>
+                            <th>Disease Name</th>
                             <th>Process Name</th>
                             <th>Score</th>
                             <th>Edit</th>

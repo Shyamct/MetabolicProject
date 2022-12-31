@@ -22,6 +22,10 @@ $(document).ready(function () {
     $(".btnClosfoodt").click(function () {
         $("#modelScore").hide();
     })
+
+
+    
+
 });
 
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
@@ -192,9 +196,11 @@ function getReport() {
                                     markerScore: mainData[i].calculateMarkerScore,
                                     type: mainData[i].compoundType,
                                     processSCORE: val.processScore,
+                                    pathwayNAME: val.pathwayName,
                                 });
                             }
-                            getBestMarker();
+                          //getBestMarker();
+                            getMarkerWithScore();
 
                         }
 
@@ -303,7 +309,32 @@ function getReport() {
     });
 }
 
+function getMarkerWithScore() {
+    var finalMarkerList = [];
+    var finalArrayList = [];
 
+    $.each(arrList, function (i, val) {
+
+        finalMarkerList.push(val.markerName);
+
+        finalArrayList.push({
+            distinctMarker: val.markerName,
+            markerType: val.type,
+            finalMarkerScore: val.markerScore,
+            finalProcessScore: val.processSCORE,
+            diseaseName: val.pathwayNAME
+        });
+    })
+    var distinctmarkerName = new Set(finalMarkerList);
+    var distinctNutrent= ([...distinctmarkerName]);
+
+    var txt = '';
+    $.each(distinctNutrent, function (idx, values) {
+        txt += "<span style='cursor: pointer;'>" + idx+values  + "</span><br/>";
+    });
+    $("#markerDIV").html(txt);
+
+}
 
 
 
@@ -386,7 +417,7 @@ var arrDublicateCHK = [];
 
         var Nutrientname = onlyMarkerName[0];
       
-        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + Nutrientname + "\")' >" + val + ')' + "</span><br/>";
+        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + Nutrientname + "\")' >"+i + val + ')' + "</span><br/>";
 
        // text += "<span onclick='goTODietreport("")' >" + val + ')' + "</span>";
     })
@@ -415,7 +446,7 @@ function getInteractionNutrient(nutrientID, currentProcessID, finalMarkerScore, 
          empid: userID,
          nutrientID: nutrientID,
          processIDINT: currentProcessID,
-        pathwayID: diseaseID,
+        pathwayID: diseaseID[0],
         finalMarkerScore: finalMarkerScore,
     }
     $.ajax({
@@ -527,7 +558,7 @@ function getScore() {
             $("#tblScore tbody tr").empty();
             
             $.each(result.Table, function (i, val) {  
-                qtr = tr + "<tr><td>" + val.rankName + "</td><td>" + val.processScore + "</td><td>" + '<i class="fa fa-pencil-square-o btnEditIcon" onClick="scoreEDIT( \'' + val.rankName + '\' ,'+ val.processScore + ')"></i>' + "</td></tr>";
+                tr = tr + "<tr><td>" + val.headName + "</td><td>" + val.rankName + "</td><td>" + val.processScore + "</td><td>" + '<i class="fa fa-pencil-square-o btnEditIcon" onClick="scoreEDIT( \'' + val.rankName + '\' ,'+ val.processScore + ')"></i>' + "</td></tr>";
             });   
             $("#tblScore tbody").append(tr);
             $("#modelScore").show();
