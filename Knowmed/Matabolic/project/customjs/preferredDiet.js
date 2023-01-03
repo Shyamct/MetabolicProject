@@ -1,25 +1,25 @@
 ﻿
 var availableTags = [];
 var selectedNutrientName = '';
-
+var nutrientName = '';
 $(document).ready(function () {
 
-    var url = window.location.href;
-    pageName = getPageName(url);
-    pathwayID = getParameterByName('pathwayID', url);
-    nutrientName = getParameterByName('markerName', url);
-    getDietMain();
-    //getDiet();
-    //getPathway();
-    //getNutrientList();
+    //var url = window.location.href;
+    //pageName = getPageName(url);
+    //pathwayID = getParameterByName('pathwayID', url);
+    //nutrientName = getParameterByName('markerName', url);
 
-    //$("#tags").autocomplete({
-    //        source: availableTags
-    //});
+    getPathway();
+   
+    getNutrientList();
 
-    //$('#tags').on('autocompleteselect', function (i, val) {
-    //    selectedNutrientName = val.item.value;
-    //});
+    $("#tags").autocomplete({
+            source: availableTags
+    });
+
+    $('#tags').on('autocompleteselect', function (i, val) {
+        selectedNutrientName = val.item.value;
+    });
 });
 
 function getPathway() {
@@ -89,74 +89,19 @@ function getNutrientList() {
 }
 
 
-function getDietMain() {
-    if (!UtilsCache.getSession('USERDETAILS')) {
-        window.location.href = "../../index.html";
-        return;
-    }
-    $("#txtNutrientName").append(nutrientName);
-
-    obj = {
-        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-        pathwayID: Number(pathwayID),
-        nutrientName: nutrientName,
-    }
-    $("#loader").show();
-    $.ajax({
-        type: "POST",
-        url: "WebService/principalDiet.asmx/getDiet",
-        contentType: 'application/json',
-        dataType: 'json',
-        data: JSON.stringify(obj),
-
-        statusCode: {
-            401: function (xhr) {
-                window.location.href = "../../index.html";
-            }
-        },
-        success: function (data) {
-            $("#loader").hide();
-
-            $("#toEAT").empty();
-            $("#notTOEAT").empty();
-
-            var toEat = '';
-            var notToEat = '';
-            var result = JSON.parse(data.d).responseValue;
-
-            $.each(result.Table2, function (i, val) {
-                if (val.isFoodTobeGiven == 1) {
-                    toEat = toEat + "<span>" + val.foodName + "</span><br/>";
-                }
-                if (val.isFoodTobeGiven == 0) {
-                    notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
-                }
-            });
-            if (toEat != null || toEat != undefined) {
-
-                $("#toEAT").append(toEat);
-                $("#notTOEAT").append(notToEat);
-            }
-
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-}
 
 function getDiet() {
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
-    //pathwayID: $("#ddlPathway").val(),
-    //    nutrientName: selectedNutrientName
+   var diseaseID= $("#ddlPathway").val()
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-        pathwayID: Number(pathwayID),
-        nutrientName: nutrientName,
+        pathwayID: Number(diseaseID),
+        nutrientName: selectedNutrientName,
     }
+    console.log("obj", obj);
     $("#loader").show();
     $.ajax({
         type: "POST",

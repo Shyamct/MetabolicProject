@@ -66,7 +66,7 @@
 
         .heading-inn {
             border: 1px solid black;
-            background: #e7e6e6;
+            background: #747070;
             padding: 10px 0px;
             color: Black;
             position: sticky;
@@ -89,6 +89,7 @@
             z-index: 1;
             background: #e7e6e6;
             color: black;
+            
         }
 
             .heading-act h3 {
@@ -96,6 +97,7 @@
                 text-align: center;
                 margin: 0;
                 padding: 10px;
+                font-weight:800 !important;
             }
 
         #loader {
@@ -160,18 +162,19 @@
                 <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title">
-                      <h3 id="txtNutrientName"></h3>
+                     
+                            <%--<input type="button" onclick="print()" value="PRINT" />--%>
+                            <input type="text" id="tags" placeholder="Search Marker" />
 
-                            <input type="button" onclick="print()" value="PRINT" />
 
                             <select id="ddlPathway" style="width: 12%;">
                                 <option value="" selected>Select Pathway</option>
                             </select>
 
-                            <input type="text" id="tags" placeholder="Enter Marker" />
 
-                            <input type="button" onclick="getDiet()" value="Search" class="btnsrch" />
+                            <input type="button" onclick="getDiet()" value="SHOW" class="btnsrch" />
 
+                             <h3>New What To Eat/Not To Eat</h3>
                         </div>
                     </div>
                 </div>
