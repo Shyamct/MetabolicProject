@@ -100,11 +100,6 @@ function getProcess() {
             pathwayID: diseaseID,
     }
 
-
-
-   
-
-
     $.ajax({
         type: "POST",
         url: "WebService/scoringSystem.asmx/getProcess",
@@ -199,8 +194,8 @@ function getReport() {
                                     pathwayNAME: val.pathwayName,
                                 });
                             }
-                          //getBestMarker();
-                            getMarkerWithScore();
+                          getBestMarker();
+                            //getMarkerWithScore();
 
                         }
 
@@ -367,7 +362,9 @@ var arrDublicateCHK = [];
         var SCORE = value.markerScore;
         var NAME = value.markerName;
         var totalProcessScore = value.processSCORE;
-        //console.log("SCR", totalProcessScore);
+        var diesaseNAME = value.pathwayNAME;
+
+       
 
         $.each(counts, function (names, countScores) {
         if (TYPE != null || TYPE != '') {
@@ -376,7 +373,7 @@ var arrDublicateCHK = [];
                 var allScore = parseInt(scores * countScores);
                 var FINALs = Number(Number.isNaN(allScore) ? (5 + totalProcessScore) : (allScore + totalProcessScore))
 
-                orderScore.push(NAME + "(Score=" + " " + FINALs);
+                orderScore.push("[" +diesaseNAME +"]   "+ NAME + "(Score=" + " " + FINALs);
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
                 );
@@ -387,7 +384,7 @@ var arrDublicateCHK = [];
                 var scores = parseInt(SCORE + 4);
                 var allScore = parseInt(scores * countScores);
                 var FINALs = Number(Number.isNaN(allScore) ? (4 + totalProcessScore) : (allScore + totalProcessScore))
-                orderScore.push(NAME + "(Score=" + " " + FINALs);
+                orderScore.push("[" + diesaseNAME + "]   " + NAME + "(Score=" + " " + FINALs);
 
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
@@ -399,7 +396,7 @@ var arrDublicateCHK = [];
                 var scores = parseInt(SCORE + 3);
                 var allScore = parseInt(scores * countScores);
                 var FINALs = Number(Number.isNaN(allScore) ? (3 + totalProcessScore) : (allScore + totalProcessScore))
-                orderScore.push(NAME + "(Score=" + " " + FINALs);
+                orderScore.push("[" + diesaseNAME + "]   " + NAME + "(Score=" + " " + FINALs);
 
                 orderScore.sort(
                     function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
@@ -407,17 +404,27 @@ var arrDublicateCHK = [];
             }
         }
         });
+
+
     });
 
     $.each(orderScore, function (i, val) {
 
+       // console.log("Nutrientname", val);
+
         let str = val;
 
         var onlyMarkerName = str.split("(");
+        var onlyDiseasName = str.split("]");
 
         var Nutrientname = onlyMarkerName[0];
+        
+        
+        var splitScore = onlyDiseasName[1];
+      var   finalMarkerName = splitScore.split("(");
+        console.log("finalMarkerName", finalMarkerName);
       
-        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + Nutrientname + "\")' >"+i + val + ')' + "</span><br/>";
+        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + finalMarkerName[0] + "\")' >"+ val + ')' + "</span><br/>";
 
        // text += "<span onclick='goTODietreport("")' >" + val + ')' + "</span>";
     })
@@ -428,9 +435,10 @@ var arrDublicateCHK = [];
 
 function goTODietreport(Nutrientname)
 {
+    console.log("N", Nutrientname);
     var pathID = $("#ddlPathway").val();
 
-    window.location.href = "../project/principalDiet.aspx?pathwayID=" + pathID[0] + "&markerName=" + Nutrientname + "";
+    window.location.href = "../project/principalDiet.aspx?pathwayID=" + pathID[0] + "&markerName=" + (Nutrientname.trim()) + "";
 }
 
 

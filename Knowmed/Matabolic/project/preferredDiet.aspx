@@ -164,8 +164,11 @@
                         <div class="widget-title">
                      
                             <%--<input type="button" onclick="print()" value="PRINT" />--%>
-                            <input type="text" id="tags" placeholder="Search Marker" />
+                            <%--<input type="text" id="tags" placeholder="Search Marker" />--%>
 
+                            <select id="ddlMarker" style="width: 12%;">
+                                <option value="" selected>Select Marker</option>
+                            </select>
 
                             <select id="ddlPathway" style="width: 12%;">
                                 <option value="" selected>Select Pathway</option>

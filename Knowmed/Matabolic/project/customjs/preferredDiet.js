@@ -78,8 +78,12 @@ function getNutrientList() {
         },
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
-            $.each(result.Table, function (i, val) {
-                availableTags.push(val.nutrientName);
+            //$.each(result.Table, function (i, val) {
+            //    availableTags.push(val.nutrientName);
+            //});
+            $("#ddlMarker option:not(:first)").remove();
+            $.each(result.Table, function () {
+                $("#ddlMarker").append('<option value="' + this.nutrientName + '">' + this.nutrientName + '</option>');
             });
         },
         error: function (error) {
@@ -96,10 +100,12 @@ function getDiet() {
         return;
     }
    var diseaseID= $("#ddlPathway").val()
+    var markerNAMES = $("#ddlMarker").val()
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
         pathwayID: Number(diseaseID),
-        nutrientName: selectedNutrientName,
+        nutrientName: markerNAMES,
+        //nutrientName: selectedNutrientName,
     }
     console.log("obj", obj);
     $("#loader").show();
