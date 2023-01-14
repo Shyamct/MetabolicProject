@@ -220,6 +220,10 @@ button.btnClosfoodt:hover {
     border: 1px solid #eb0909;
     font-weight: 600;
 }
+input#txtPID {
+    width: 102px;
+    font-size: 12px;
+}
     </style>
 
 </asp:Content>
@@ -268,7 +272,10 @@ button.btnClosfoodt:hover {
         </div></div>
             
             <div class="tblhedin"  style="width:30%" id="markerTbls">
-                <h3 class="tblheh3">Marker 
+               
+                <h3 class="tblheh3">
+                      <input type="text" maxlength="10" id="txtPID" placeholder="Enter PID"/>
+                    Marker 
                             <input type="button" onclick="printMerker()" value="PRINT" />
                 </h3>
                 <div id="markerDIV">

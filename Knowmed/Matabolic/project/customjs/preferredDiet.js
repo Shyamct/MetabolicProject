@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     getPathway();
    
-    getNutrientList();
+    //getNutrientList();
 
     $("#tags").autocomplete({
             source: availableTags
@@ -57,13 +57,16 @@ function getPathway() {
 }
 
 function getNutrientList() {
+    let diseaseIDs = $("#ddlPathway").val();
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        pathwayID: diseaseIDs
     }
+    console.log("D", obj);
     $.ajax({
         type: "POST",
         url: "WebService/principalDiet.asmx/getNutrientList",
@@ -78,13 +81,14 @@ function getNutrientList() {
         },
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
-            //$.each(result.Table, function (i, val) {
-            //    availableTags.push(val.nutrientName);
-            //});
-            $("#ddlMarker option:not(:first)").remove();
-            $.each(result.Table, function () {
-                $("#ddlMarker").append('<option value="' + this.nutrientName + '">' + this.nutrientName + '</option>');
+            $.each(result.Table, function (i, val) {
+                availableTags.push(val.nutrientName);
             });
+
+            //$("#ddlMarker option:not(:first)").remove();
+            //$.each(result.Table, function () {
+            //    $("#ddlMarker").append('<option value="' + this.nutrientName + '">' + this.nutrientName + '</option>');
+            //});
         },
         error: function (error) {
 
@@ -99,15 +103,12 @@ function getDiet() {
         window.location.href = "../../index.html";
         return;
     }
-   var diseaseID= $("#ddlPathway").val()
-    var markerNAMES = $("#ddlMarker").val()
+    var diseaseID = $("#ddlPathway").val();
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
         pathwayID: Number(diseaseID),
-        nutrientName: markerNAMES,
-        //nutrientName: selectedNutrientName,
+        nutrientName: selectedNutrientName,
     }
-    console.log("obj", obj);
     $("#loader").show();
     $.ajax({
         type: "POST",
@@ -138,7 +139,7 @@ function getDiet() {
 
 
             var result = JSON.parse(data.d).responseValue;
-
+            console.log("result", result);
 
             $.each(result.Table1, function (i, val) {
                 var finalData = JSON.parse(val.FinalData);
@@ -170,12 +171,7 @@ function getDiet() {
                             InhibitorH = InhibitorH + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
                         }
                     });
-
                 }
-
-
-
-
             });
             if (ActivatorB != null || ActivatorH != undefined || InhibitorB != null || InhibitorH != undefined) {
                 $("#Activator").append(ActivatorB);
@@ -183,9 +179,6 @@ function getDiet() {
                 $("#Activator1").append(ActivatorH);
                 $("#Inhivator1").append(InhibitorH);
             }
-
-
-
         },
         error: function (error) {
             console.log(error);

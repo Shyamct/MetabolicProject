@@ -6,7 +6,8 @@ $(document).ready(function () {
 
     var url = window.location.href;
     pageName = getPageName(url);
-    pathwayID = getParameterByName('pathwayID', url);
+    //pathwayID = getParameterByName('pathwayID', url);
+    PID = getParameterByName('PID', url);
     nutrientName = getParameterByName('markerName', url);
     getDietMain();
  
@@ -88,13 +89,13 @@ function getDietMain() {
 
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-        pathwayID: Number(pathwayID),
         nutrientName: nutrientName,
+        PID: PID,
     }
     $("#loader").show();
     $.ajax({
         type: "POST",
-        url: "WebService/principalDiet.asmx/getDiet",
+        url: "WebService/principalDiet.asmx/getPIDDiet",
         contentType: 'application/json',
         dataType: 'json',
         data: JSON.stringify(obj),
@@ -113,8 +114,8 @@ function getDietMain() {
             var toEat = '';
             var notToEat = '';
             var result = JSON.parse(data.d).responseValue;
-            
-            $.each(result.Table2, function (i, val) {
+
+            $.each(result.Table, function (i, val) {
                 if (val.isFoodTobeGiven == 1) {
                     toEat = toEat + "<span>" + val.foodName + "</span><br/>";
                 }
@@ -131,7 +132,7 @@ function getDietMain() {
 
         },
         error: function (error) {
-            console.log(error);
+            //console.log(error);
         }
     });
 }

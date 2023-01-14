@@ -12,6 +12,7 @@ namespace DLL_principalDiet
     public class PAL_principalDiet : Utility
     {
         public int pathwayID { get; set; }
+        public int PID { get; set; }
 
         public string nutrientName  {get;set;}
        
@@ -25,6 +26,7 @@ namespace DLL_principalDiet
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
+            cmd.Parameters.AddWithValue("@PID", pobj.PID);
             cmd.Parameters.AddWithValue("@nutrientName", pobj.nutrientName);
 
 
@@ -53,6 +55,11 @@ namespace DLL_principalDiet
         public static void getDiet(PAL_principalDiet pobj)
         {
             pobj.opcode = 42;
+            DAL_principalDiet.returnTable(pobj);
+        }
+        public static void getDietByPID(PAL_principalDiet pobj)
+        {
+            pobj.opcode = 43;
             DAL_principalDiet.returnTable(pobj);
         }
     }

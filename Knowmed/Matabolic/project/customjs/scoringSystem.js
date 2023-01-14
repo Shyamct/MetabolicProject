@@ -422,7 +422,6 @@ var arrDublicateCHK = [];
         
         var splitScore = onlyDiseasName[1];
       var   finalMarkerName = splitScore.split("(");
-        console.log("finalMarkerName", finalMarkerName);
       
         text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + finalMarkerName[0] + "\")' >"+ val + ')' + "</span><br/>";
 
@@ -435,10 +434,14 @@ var arrDublicateCHK = [];
 
 function goTODietreport(Nutrientname)
 {
-    console.log("N", Nutrientname);
-    var pathID = $("#ddlPathway").val();
+    var PID = $("#txtPID").val();
+    if (PID == null || PID == undefined || PID=="") {
+        alert("ENTER PID");
+        return;
+    }
+    //var pathID = $("#ddlPathway").val();
 
-    window.location.href = "../project/principalDiet.aspx?pathwayID=" + pathID[0] + "&markerName=" + (Nutrientname.trim()) + "";
+    window.location.href = "../project/principalDiet.aspx?PID=" + PID + "&markerName=" + (Nutrientname.trim()) + "";
 }
 
 
@@ -480,6 +483,45 @@ function getInteractionNutrient(nutrientID, currentProcessID, finalMarkerScore, 
             });
             $("#Interactednutrient").html(text);
             $("#modelIntaretednutrient").show();
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+
+
+
+function forPUSHAviable() {
+
+    obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        nutrientName: nutrientName,
+        PID: PID,
+    }
+    $.ajax({
+        type: "POST",
+        url: "WebService/principalDiet.asmx/getPIDDiet",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+        data: "{'empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "'}",
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+
+            var r = JSON.parse(data.d).responseValue;
+
+            $.each(r.Table2, function (i) {
+                arryList.push({
+                    id: this.id,
+                    myCount: this.myCount
+                })
+            });
         },
         error: function (error) {
 
@@ -533,7 +575,6 @@ function getScore() {
 
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
-        console.log("returning");
         return;
     }
     var diseaseID = pathwayID.toString();
