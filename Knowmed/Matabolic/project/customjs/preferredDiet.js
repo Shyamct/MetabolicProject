@@ -66,7 +66,6 @@ function getNutrientList() {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
         pathwayID: diseaseIDs
     }
-    console.log("D", obj);
     $.ajax({
         type: "POST",
         url: "WebService/principalDiet.asmx/getNutrientList",
@@ -97,7 +96,7 @@ function getNutrientList() {
 }
 
 
-
+var arrayProcess = [];
 function getDiet() {
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -134,24 +133,23 @@ function getDiet() {
             var InhibitorB = "";
             var ActivatorH = "";
             var InhibitorH = "";
-
+           
 
 
 
             var result = JSON.parse(data.d).responseValue;
-            console.log("result", result);
 
             $.each(result.Table1, function (i, val) {
                 var finalData = JSON.parse(val.FinalData);
 
                 if (val.RoleType == 'B') {
-
                     $.each(finalData, function (i, vals) {
+                        //arrayProcess.push(vals.rankName);
                         if (vals.statusFor == 'Enhancer                      ') {
-                            ActivatorB = ActivatorB + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                            ActivatorB = ActivatorB + "<span title="+vals.rankName+">" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
                         }
                         if (vals.statusFor == 'Inhibitor                     ') {
-                            InhibitorB = InhibitorB + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                            InhibitorB = InhibitorB + "<span title=" + vals.rankName +">" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
                         }
                     });
 
@@ -162,13 +160,14 @@ function getDiet() {
 
 
                     $.each(finalData, function (i, vals) {
+                        arrayProcess.push(vals.rankName);
                         if (vals.statusFor == 'Enhancer                      ') {
-                            ActivatorH = ActivatorH + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                            ActivatorH = ActivatorH + "<span title=" + vals.rankName +">" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
 
                         }
                         if (vals.statusFor == 'Inhibitor                     ') {
 
-                            InhibitorH = InhibitorH + "<span>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                            InhibitorH = InhibitorH + "<span title=" + vals.rankName +">" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
                         }
                     });
                 }
@@ -178,7 +177,15 @@ function getDiet() {
                 $("#Inhivator").append(InhibitorB);
                 $("#Activator1").append(ActivatorH);
                 $("#Inhivator1").append(InhibitorH);
+               // 
             }
+
+
+            //var procesName = '';
+            //$.each(arrayProcess, function (i, val) {
+            //    procesName += "<p>" + val + "</p>";
+            //});
+            //$(".rankNM").append(procesName);
         },
         error: function (error) {
             console.log(error);

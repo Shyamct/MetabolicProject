@@ -19,11 +19,11 @@ $(document).ready(function () {
     $(".editBtnSave").click(function () {
         $("#modelEdit").hide();
     })
-    $(".btnClosfoodt").click(function () {
-        $("#modelScore").hide();
+   
+
+    $(".btnmodelCommonMarker").click(function () {
+        $("#modelCommonMarker").hide();
     })
-
-
     
 
 });
@@ -126,6 +126,7 @@ function getProcess() {
 }
 
 var arrList = [];
+var arrCommonMarkerList = [];
 
 function getReport() {
     
@@ -194,7 +195,7 @@ function getReport() {
                                     pathwayNAME: val.pathwayName,
                                 });
                             }
-                          getBestMarker();
+                         // getBestMarker();
                             //getMarkerWithScore();
 
                         }
@@ -293,16 +294,57 @@ function getReport() {
                 }
                 $("#tblReport tbody").append(tr);
                 row = $("#tblReport thead tr").clone();
-           
 
-          
 
+
+            var bindMarker = '';
+        
+            $.each(result.Table1, function (i, val) {
+                bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientName + '[' +val.FinalNutrientSCORE+']'+"</p>";
+            });
+            $("#markerDIV").html(bindMarker);
+
+
+            $.each(result.Table2, function (i, val) {
+                arrCommonMarkerList.push({
+                    markerName: val.nutrientName,
+                    score: val.Score
+                })
+            });
         },
         error: function (error) {
 
         }
     });
 }
+
+
+
+
+
+
+
+function getCommonMarker() {
+    $("#modelCommonMarker").show();
+
+    let commonNutrient = '';
+    $.each(arrCommonMarkerList, function (i, val) {
+        commonNutrient += "<p>" + val.markerName + '[' + val.score + ']' + "</p>";
+    });
+    $("#commonmarker").html(commonNutrient);
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 function getMarkerWithScore() {
     var finalMarkerList = [];

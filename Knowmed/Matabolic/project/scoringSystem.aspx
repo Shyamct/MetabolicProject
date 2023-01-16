@@ -277,6 +277,7 @@ input#txtPID {
                       <input type="text" maxlength="10" id="txtPID" placeholder="Enter PID"/>
                     Marker 
                             <input type="button" onclick="printMerker()" value="PRINT" />
+                    <input type="button" onclick="getCommonMarker()" value="Common" />
                 </h3>
                 <div id="markerDIV">
 
@@ -376,6 +377,29 @@ input#txtPID {
     </div>
   </div>
     
+
+
+
+
+       <div class="modal bd-example-modal-lg" id="modelCommonMarker" role="dialog">
+        <div class="modal-dialog modal-xl" style="max-width: 1000px ; margin: 30px auto;width: 80% !important;">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close btnmodelCommonMarker"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Common Marker </h4>
+                </div>
+                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
+                  <div id="commonmarker"></div> 
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnmodelCommonMarker">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function print() {
             var divContents = document.getElementById("GFG").innerHTML;
