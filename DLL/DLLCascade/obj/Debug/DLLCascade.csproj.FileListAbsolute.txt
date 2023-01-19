@@ -86,4 +86,3 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.csproj.
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLCascade\obj\Debug\DLLCascade.csproj.AssemblyReference.cache

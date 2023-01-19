@@ -9,6 +9,44 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <style>
+        .WBheader {
+    background: #efefef;
+    margin-top: 0;
+    padding-top: 0;
+    border: 1px solid #cdcdcd;
+        margin-bottom: 15px;
+}
+        .WTheader {
+    border: none;
+    height: auto;
+    padding: 0px 10px;
+}
+        .WTheader h3 {
+    font-size: 22px;
+    margin: 0;
+    padding: 10px 2px;
+    font-weight: 600;
+    color: #000;
+}
+        table#tblProcess tr td {
+    border: 1px solid #cdcdcd;
+    padding: 2px 4px;
+    text-align: center;
+    font-size: 14px;
+}
+         table#tblProcess thead th {
+       border: 1px solid #cdcdcd;
+    padding: 10px 4px;
+    text-align: center;
+    font-size: 16px;
+}
+         .span12 {
+    padding: 3px 16px;
+}
+
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -16,8 +54,8 @@
         <div class="container-fluid" id="containterMAIN">
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="widget-box WBheader">
-                        <div class="widget-title WTheader">
+                    <div class="widget-box1 WBheader">
+                        <div class="widget-title1 WTheader">
                              <h3> Process Color Master</h3>
                         </div>
                     </div>
@@ -26,7 +64,8 @@
 
             <div class="contnt">
                <div class="col-md-12">
-                   <table id="tblProcess" style="width: 100%;">
+                   <div class="tblitem">
+                         <table id="tblProcess" style="width: 100%;">
                        <thead>
                            <th>SR NO.</th>
                            <th>Process Name</th>
@@ -37,6 +76,8 @@
 
                        </tbody>
                    </table>
+                   </div>
+                 
                 </div>
                 </div>
             </div>

@@ -63,7 +63,6 @@ function updateColors() {
         processID: ProcessID,
         colors: $('#txtColor').val()
     }
-    console.log(obj);
     $.ajax({
         type: "POST",
         url: "WebService/processColor.asmx/updateProcessColor",

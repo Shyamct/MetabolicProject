@@ -297,12 +297,13 @@ function getReport() {
 
 
 
+
             var bindMarker = '';
-        
             $.each(result.Table1, function (i, val) {
                 bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientName + '[' +val.FinalNutrientSCORE+']'+"</p>";
             });
             $("#markerDIV").html(bindMarker);
+
 
 
             $.each(result.Table2, function (i, val) {
@@ -336,142 +337,6 @@ function getCommonMarker() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-function getMarkerWithScore() {
-    var finalMarkerList = [];
-    var finalArrayList = [];
-
-    $.each(arrList, function (i, val) {
-
-        finalMarkerList.push(val.markerName);
-
-        finalArrayList.push({
-            distinctMarker: val.markerName,
-            markerType: val.type,
-            finalMarkerScore: val.markerScore,
-            finalProcessScore: val.processSCORE,
-            diseaseName: val.pathwayNAME
-        });
-    })
-    var distinctmarkerName = new Set(finalMarkerList);
-    var distinctNutrent= ([...distinctmarkerName]);
-
-    var txt = '';
-    $.each(distinctNutrent, function (idx, values) {
-        txt += "<span style='cursor: pointer;'>" + idx+values  + "</span><br/>";
-    });
-    $("#markerDIV").html(txt);
-
-}
-
-
-
-function getBestMarker() {
-var arrDublicateCHK = [];
-
-    var text = '';
-
-    $.each(arrList, function (i, value) {
-        arrDublicateCHK.push(value.markerName);
-
-
-        arrList2 = [];
-        arrList3 = [];
-
-        for (var i = 0; i < arrList.length; i++) {
-            if (!arrList3[arrList[i].markerName]) {
-                arrList2.push(arrList[i]);
-                arrList3[arrList[i].markerName] = 1;
-            }
-        }
-    });
-
-    var counts = {};
-    arrDublicateCHK.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
-
-    var orderScore = [];
-    $.each(arrList2, function (i, value) {
-        var TYPE = value.type;
-        var SCORE = value.markerScore;
-        var NAME = value.markerName;
-        var totalProcessScore = value.processSCORE;
-        var diesaseNAME = value.pathwayNAME;
-
-       
-
-        $.each(counts, function (names, countScores) {
-        if (TYPE != null || TYPE != '') {
-            if (TYPE == 'Specific' && NAME == names) {
-                var scores = parseInt(SCORE + 5);
-                var allScore = parseInt(scores * countScores);
-                var FINALs = Number(Number.isNaN(allScore) ? (5 + totalProcessScore) : (allScore + totalProcessScore))
-
-                orderScore.push("[" +diesaseNAME +"]   "+ NAME + "(Score=" + " " + FINALs);
-                orderScore.sort(
-                    function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
-                );
-               
-                //text += '<span>' + NAME + "(Score =" + FINALs + ")" + '</span>';
-            }
-            else if (TYPE == 'Central' && NAME == names) {
-                var scores = parseInt(SCORE + 4);
-                var allScore = parseInt(scores * countScores);
-                var FINALs = Number(Number.isNaN(allScore) ? (4 + totalProcessScore) : (allScore + totalProcessScore))
-                orderScore.push("[" + diesaseNAME + "]   " + NAME + "(Score=" + " " + FINALs);
-
-                orderScore.sort(
-                    function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
-                );
-              
-            }
-            else if (TYPE == 'Sub Central' && NAME == names) {
-
-                var scores = parseInt(SCORE + 3);
-                var allScore = parseInt(scores * countScores);
-                var FINALs = Number(Number.isNaN(allScore) ? (3 + totalProcessScore) : (allScore + totalProcessScore))
-                orderScore.push("[" + diesaseNAME + "]   " + NAME + "(Score=" + " " + FINALs);
-
-                orderScore.sort(
-                    function (a, b) { return b.match(/\d+$/) - a.match(/\d+$/) }
-                );
-            }
-        }
-        });
-
-
-    });
-
-    $.each(orderScore, function (i, val) {
-
-       // console.log("Nutrientname", val);
-
-        let str = val;
-
-        var onlyMarkerName = str.split("(");
-        var onlyDiseasName = str.split("]");
-
-        var Nutrientname = onlyMarkerName[0];
-        
-        
-        var splitScore = onlyDiseasName[1];
-      var   finalMarkerName = splitScore.split("(");
-      
-        text += "<span style='cursor: pointer;' onclick='goTODietreport(\"" + finalMarkerName[0] + "\")' >"+ val + ')' + "</span><br/>";
-
-       // text += "<span onclick='goTODietreport("")' >" + val + ')' + "</span>";
-    })
-
-    $("#markerDIV").html(text);
-}
 
 
 function goTODietreport(Nutrientname)
@@ -534,42 +399,6 @@ function getInteractionNutrient(nutrientID, currentProcessID, finalMarkerScore, 
 
 
 
-
-function forPUSHAviable() {
-
-    obj = {
-        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-        nutrientName: nutrientName,
-        PID: PID,
-    }
-    $.ajax({
-        type: "POST",
-        url: "WebService/principalDiet.asmx/getPIDDiet",
-        contentType: 'application/json',
-        dataType: 'json',
-        data: JSON.stringify(obj),
-        data: "{'empid':'" + Number(UtilsCache.getSession('USERDETAILS').userid) + "'}",
-        statusCode: {
-            401: function (xhr) {
-                window.location.href = "../../index.html";
-            }
-        },
-        success: function (data) {
-
-            var r = JSON.parse(data.d).responseValue;
-
-            $.each(r.Table2, function (i) {
-                arryList.push({
-                    id: this.id,
-                    myCount: this.myCount
-                })
-            });
-        },
-        error: function (error) {
-
-        }
-    });
-}
 
 function getFoodlist(interactedNutrientID) {
 

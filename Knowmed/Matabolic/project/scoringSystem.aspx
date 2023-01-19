@@ -148,7 +148,7 @@ h3.tblheh3 {
     color: black;
     font-weight: 600;
 }
-div#markerDIV span {
+/*div#markerDIV span {
     font-size: 14px;
     font-weight: 600;
     color: #2d2d2d;
@@ -162,7 +162,7 @@ div#markerDIV span {
 div#markerDIV {
     max-height: 78vh;
     overflow: auto;
-}
+}*/
 .scoreDiv table tr th {
    background: #eeeeee!important;
     font-size: 18px;
@@ -277,7 +277,7 @@ input#txtPID {
                       <input type="text" maxlength="10" id="txtPID" placeholder="Enter PID"/>
                     Marker 
                             <input type="button" onclick="printMerker()" value="PRINT" />
-                    <input type="button" onclick="getCommonMarker()" value="Common" />
+                    <%--<input type="button" onclick="getCommonMarker()" value="Common" />--%>
                 </h3>
                 <div id="markerDIV">
 
