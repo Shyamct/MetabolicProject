@@ -1,0 +1,8 @@
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\bin\Debug\DAL_nutrientChart.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\bin\Debug\DAL_nutrientChart.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\obj\Debug\DAL_nutrientChart.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\obj\Debug\DAL_nutrientChart.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\obj\Debug\DAL_nutrientChart.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_nutrientChart\obj\Debug\DAL_nutrientChart.pdb

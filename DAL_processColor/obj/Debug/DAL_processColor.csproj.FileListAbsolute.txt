@@ -1,0 +1,9 @@
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\bin\Debug\DAL_processColor.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\bin\Debug\DAL_processColor.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\bin\Debug\DLLUtility.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\bin\Debug\DLLUtility.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\obj\Debug\DAL_processColor.csproj.CoreCompileInputs.cache
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\obj\Debug\DAL_processColor.csproj.CopyComplete
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\obj\Debug\DAL_processColor.dll
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\obj\Debug\DAL_processColor.pdb
+D:\TFS\MetabolicProjectGIT\METABOLIC\DAL_processColor\obj\Debug\DAL_processColor.csproj.AssemblyReference.cache
