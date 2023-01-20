@@ -20,7 +20,7 @@
         .bdr {
             border-right: 1px solid #813939;
         }
-
+        .red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
         div#Activator span {
             width: 100%;
             display: block;

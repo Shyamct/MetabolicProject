@@ -8,7 +8,7 @@ $(document).ready(function () {
     //pageName = getPageName(url);
     //pathwayID = getParameterByName('pathwayID', url);
     //nutrientName = getParameterByName('markerName', url);
-
+    $("span").tooltip();
     getPathway();
    
     //getNutrientList();
@@ -146,10 +146,12 @@ function getDiet() {
                     $.each(finalData, function (i, vals) {
                         //arrayProcess.push(vals.rankName);
                         if (vals.statusFor == 'Enhancer                      ') {
-                            ActivatorB = ActivatorB + "<span title="+vals.rankName+">" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                            //ActivatorB = ActivatorB + "<span tooltip="+vals.rankName+">" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                            ActivatorB = ActivatorB + "<span  data-toggle='tooltip' data-placement='bottom' title=" + vals.rankName+"  class='red-tooltip'>" +vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>"
+
                         }
                         if (vals.statusFor == 'Inhibitor                     ') {
-                            InhibitorB = InhibitorB + "<span title=" + vals.rankName +">" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
+                            InhibitorB = InhibitorB + "<span data-toggle='tooltip' data-placement='bottom' title=" + vals.rankName +"  class='red-tooltip'>" + vals.interactedNutrientName + (vals.affinityScore == null ? "" : "{" + vals.affinityScore + "}") + "</span>";
                         }
                     });
 

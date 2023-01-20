@@ -19,10 +19,8 @@ $(document).ready(function () {
     $(".editBtnSave").click(function () {
         $("#modelEdit").hide();
     })
-   
-
-    $(".btnmodelCommonMarker").click(function () {
-        $("#modelCommonMarker").hide();
+    $(".btnCloseTest").click(function () {
+        $("#modelTestMarker").hide();
     })
     
 
@@ -126,7 +124,7 @@ function getProcess() {
 }
 
 var arrList = [];
-var arrCommonMarkerList = [];
+var arrTestMarkerList = [];
 
 function getReport() {
     
@@ -299,17 +297,28 @@ function getReport() {
 
 
             var bindMarker = '';
+            //var TT = [];
             $.each(result.Table1, function (i, val) {
+
+            //    TT.push(val.nutrientName);
+            //    var map = TT.reduce(function (obj, b) {
+            //        obj[b] = ++obj[b] || 1;
+            //        return obj;
+            //    }, {});
+            //    console.log(map);
+               
                 bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientName + '[' +val.FinalNutrientSCORE+']'+"</p>";
             });
             $("#markerDIV").html(bindMarker);
 
-
-
             $.each(result.Table2, function (i, val) {
-                arrCommonMarkerList.push({
+             
+                arrTestMarkerList.push({
+                    pathwayName: val.pathwayName,
                     markerName: val.nutrientName,
-                    score: val.Score
+                    categoryName: val.categoryName,
+                    testName: val.displayName
+                    
                 })
             });
         },
@@ -325,14 +334,17 @@ function getReport() {
 
 
 
-function getCommonMarker() {
-    $("#modelCommonMarker").show();
+function getTestMarker() {
+    $("#modelTestMarker").show();
 
-    let commonNutrient = '';
-    $.each(arrCommonMarkerList, function (i, val) {
-        commonNutrient += "<p>" + val.markerName + '[' + val.score + ']' + "</p>";
+    $("#testMarker tbody tr").remove();
+    let testNutrient = '';
+    $.each(arrTestMarkerList, function (i, val) {
+        testNutrient += "<tr><td>" + val.pathwayName + "</td><td>" + val.markerName + "</td><td>" + val.categoryName + "</td><td>" + val.testName + "</td></tr>"
     });
-    $("#commonmarker").html(commonNutrient);
+   
+    $("#testMarker tbody").append(testNutrient);
+    row = $("#testMarker thead tr").clone();
 
 }
 
