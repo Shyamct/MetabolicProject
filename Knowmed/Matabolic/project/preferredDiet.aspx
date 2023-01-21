@@ -219,7 +219,6 @@
                                 <div class="col-md-6">
                                     <div class="heading-act">
                                         <h3>Activators </h3>
-                                        <p class="rankNM"></p>
 
                                     </div>
                                     <div id="Activator1">

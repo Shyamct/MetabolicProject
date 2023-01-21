@@ -83,11 +83,6 @@ function getNutrientList() {
             $.each(result.Table, function (i, val) {
                 availableTags.push(val.nutrientName);
             });
-
-            //$("#ddlMarker option:not(:first)").remove();
-            //$.each(result.Table, function () {
-            //    $("#ddlMarker").append('<option value="' + this.nutrientName + '">' + this.nutrientName + '</option>');
-            //});
         },
         error: function (error) {
 
@@ -146,7 +141,7 @@ function getDiet() {
 
 
             var result = JSON.parse(data.d).responseValue;
-
+            console.log("result", result);
             //$.each(result.Table1, function (i, val) {
             //    var finalData = JSON.parse(val.FinalData);
 
@@ -278,7 +273,7 @@ function getProcessName(nutrientID, statusFor, roleType)
                 var processList = JSON.parse(value.processLIST);
 
                 $.each(processList, function (i, val) {
-                    processName = '<span style="padding:5px;font-size: x-large;color:black;background-color:' + val.colors + ';font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;" >' + val.rankName + '</span>';
+                    processName = '<span style="padding:5px;font-size: x-large;color:black;background-color:' + val.colors + ';font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;border:1px solid black" >' + val.rankName + '</span>';
                     $("#processModelDiv").append(processName);
                 });
                 $("#processHeader").append(clickNutrientName);
