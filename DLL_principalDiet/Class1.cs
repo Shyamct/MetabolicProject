@@ -12,9 +12,12 @@ namespace DLL_principalDiet
     public class PAL_principalDiet : Utility
     {
         public int pathwayID { get; set; }
+        public int intractedNutrientID { get; set; }
         public int PID { get; set; }
 
         public string nutrientName  {get;set;}
+        public string statusFor { get;set;}
+        public string roleType { get;set;}
        
     }
     public class DAL_principalDiet
@@ -28,6 +31,11 @@ namespace DLL_principalDiet
             cmd.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
             cmd.Parameters.AddWithValue("@PID", pobj.PID);
             cmd.Parameters.AddWithValue("@nutrientName", pobj.nutrientName);
+            cmd.Parameters.AddWithValue("@statusFor", pobj.statusFor);
+            cmd.Parameters.AddWithValue("@roleType", pobj.roleType);
+            cmd.Parameters.AddWithValue("@IntractedNutrientID", pobj.intractedNutrientID);
+
+
 
 
             cmd.Parameters.AddWithValue("@who", pobj.who);
@@ -60,6 +68,12 @@ namespace DLL_principalDiet
         public static void getDietByPID(PAL_principalDiet pobj)
         {
             pobj.opcode = 43;
+            DAL_principalDiet.returnTable(pobj);
+        }
+
+        public static void getProcess(PAL_principalDiet pobj)
+        {
+            pobj.opcode = 44;
             DAL_principalDiet.returnTable(pobj);
         }
     }

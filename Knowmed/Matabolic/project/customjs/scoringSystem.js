@@ -297,17 +297,8 @@ function getReport() {
 
 
             var bindMarker = '';
-            //var TT = [];
             $.each(result.Table1, function (i, val) {
-
-            //    TT.push(val.nutrientName);
-            //    var map = TT.reduce(function (obj, b) {
-            //        obj[b] = ++obj[b] || 1;
-            //        return obj;
-            //    }, {});
-            //    console.log(map);
-               
-                bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientName + '[' +val.FinalNutrientSCORE+']'+"</p>";
+                bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' +val.FinalNutrientSCORE+']'+"</p>";
             });
             $("#markerDIV").html(bindMarker);
 

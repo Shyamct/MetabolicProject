@@ -164,7 +164,7 @@
                         <div class="widget-title">
                      
                              <select id="ddlPathway" style="width: 12%;" onchange="getNutrientList();">
-                                <option value="" selected>Select Pathway</option>
+                                <option value="0" selected>Select Pathway</option>
                             </select>
                             <%--<input type="button" onclick="print()" value="PRINT" />--%>
                             <input type="text" id="tags" placeholder="Search Marker" />
@@ -191,7 +191,6 @@
                                 <div class="col-md-6">
                                     <div class="heading-act">
                                         <h3>Activators</h3>
-                                        <p class="rankNM"></p>
                                     </div>
                                     <div id="Activator">
                                     </div>
@@ -243,6 +242,27 @@
 
         </div>
     </div>
+
+        <div class="modal bd-example-modal-lg" id="processModel" role="dialog" >
+     <div class="modal-dialog modal-xl " >
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close btnClos"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="processHeader">  </h4>
+                </div>
+                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
+                  <div id="processModelDiv">
+
+                  </div> 
+                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnClos">Close</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
     <script>
         function print() {
             var divContents = document.getElementById("GFG").innerHTML;

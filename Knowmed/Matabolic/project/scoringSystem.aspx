@@ -148,21 +148,21 @@ h3.tblheh3 {
     color: black;
     font-weight: 600;
 }
-/*div#markerDIV span {
+div#markerDIV span {
     font-size: 14px;
     font-weight: 600;
     color: #2d2d2d;
     padding: 4px 4px;
     border: 1px solid #cdcdcd;
     margin: 3px;
-    display: inline-block;
+    /*display: inline-block;*/
     box-shadow: 0px 2px 10px #ccc;
     width: 97%;
 }
 div#markerDIV {
     max-height: 78vh;
     overflow: auto;
-}*/
+}
 .scoreDiv table tr th {
    background: #eeeeee!important;
     font-size: 18px;
@@ -223,6 +223,14 @@ button.btnClosfoodt:hover {
 input#txtPID {
     width: 102px;
     font-size: 12px;
+}
+
+.popup-decreption thead tr th {
+    position: sticky;
+    top: -16px;
+    z-index: 1111;
+    font-size: 15px;
+    text-align: left;
 }
     </style>
 
