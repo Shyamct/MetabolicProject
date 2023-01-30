@@ -311,12 +311,11 @@
         </div>
     <div class="modal fade" id="rankModel" style="width: 50%; left: 26%; display: none;" role="dialog">
         <div class="modal-dialog" style="width: 100%;">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Rank Name</h4>
+                    <h4 class="modal-title">Add Rank Name <button type="button" onclick="getPreviousRank()">Previous Rank</button></h4>
                 </div>
                 <div class="modal-body" style="overflow-y:auto; max-height:60rem;">
                     <table class="table table-bordered" id="tblRank">
@@ -486,6 +485,38 @@
         </div>
          
     </div>
+
+
+    <div class="modal" id="previousRankModel" style="width: 50%; left: 26%; display: none;" role="dialog">
+        <div class="modal-dialog" style="width: 100%;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Previous Rank Name </h4>
+                </div>
+                <div class="modal-body" style="overflow-y:auto; max-height:60rem;">
+                    <table class="table table-bordered" id="previousRank">
+                        <thead>
+                            <tr>
+                                <td class="SrNo">SR NO</td>
+                                <td class="td_rankNo">Rank NOo</td>
+                                <td class="td_rankName">Rank Rank</td>
+                                <td class="td_ddd">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="customjs/flowDiagram2.js"></script>
       <script src="customjs/pageDescription.js"></script>

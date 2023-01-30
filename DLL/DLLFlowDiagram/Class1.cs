@@ -214,6 +214,16 @@ namespace DLLFlowDiagram
 			pobj.opcode = 34;
 			DAL_FlowDiagram.returnTable(pobj);
 		}
+		public static void getPreviousRank(PAL_FlowDiagram pobj)
+		{
+			pobj.opcode = 48;
+			DAL_FlowDiagram.returnTable(pobj);
+		}
+		public static void deletePreviousRank(PAL_FlowDiagram pobj)
+		{
+			pobj.opcode = 35;
+			DAL_FlowDiagram.returnTable(pobj);
+		}
 
 	}
 }

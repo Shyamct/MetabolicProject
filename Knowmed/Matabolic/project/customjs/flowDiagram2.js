@@ -257,6 +257,11 @@ $(document).ready(function () {
         $("#showNote").hide();
     });
 
+    $(".close").click(function () {
+        $("#previousRankModel").hide();
+    });
+
+
     var url = window.location.href;
     pathwayId = getParameterByName('pathwayID', url);
     groupID = getParameterByName('groupID', url);
@@ -1106,8 +1111,78 @@ var getMaster = function () {
 };
 
 
+function getPreviousRank() {
 
+    obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        "pathwayID": pathwayId
+    }
 
+    $.ajax({
+        type: "POST",
+        url: "WebService/flowDiagram.asmx/getPreviousRank",
+        contentType: 'application/json',
+        dataType: 'json',
+       data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+            console.log(result);
+            var rows = '';
+            $("#previousRank tbody tr").remove();
+
+            if (result.Table.length > 0) {
+                $.each(result.Table, function (i, val) {
+                    rows = rows + "<tr><td>" + (i + 1) + "</td><td>" + val.rankNo + "</td><td>" + val.rankName + "</td><td <button type='button' class='btn btn-warning' onclick='deletedPreviousrank(" + val.id + ")'>DELETE</button>"+"</td></tr>";
+                });
+            }
+            $("#previousRank tbody").append(rows);
+            row = $("#previousRank tbody tr").clone();
+            $("#previousRankModel").show();
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
+function deletedPreviousrank(id) {
+    obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        "id": id
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "WebService/flowDiagram.asmx/deletePreviousRank",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d);
+
+            if (result.responseCode == 1) {
+                maketoast('success', 'Success', 'Deleted Successfully.');
+            }
+        },
+        error: function (error) {
+            if (result.responseCode != 1) {
+                maketoast('success', 'Success', 'Faild.');
+            }
+        }
+    });
+}
 
 
 

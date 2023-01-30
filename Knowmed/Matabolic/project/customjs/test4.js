@@ -312,6 +312,8 @@ function closeLoader() {
 
 
 function init(data, data1) {
+    console.log(data);
+    console.log(data1);
 
     var count = 1;
     if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
@@ -1988,6 +1990,7 @@ function showTotal() {
 }
 
 var getpathwayId = function (e) {
+    
     $("#sample").empty();
     $("#levelSlider").val(0);
     $("#ddlphenomenon option:not(:first)").remove();

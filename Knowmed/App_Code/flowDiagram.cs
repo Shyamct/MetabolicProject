@@ -570,5 +570,67 @@ public class flowDiagram : System.Web.Services.WebService
         return str;
     }
 
+    [WebMethod(EnableSession = true)]
+    public string getPreviousRank(string empid,int pathwayID)
+    {
+        //if (HttpContext.Current.Session["empid"] == null)
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+        PAL_FlowDiagram pobj = new PAL_FlowDiagram();
+        pobj.who = empid; 
+        pobj.pathwayId = pathwayID; 
 
+        //HttpContext.Current.Session["empid"].ToString();
+        BAL_FlowDiagram.getPreviousRank(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
+
+    [WebMethod(EnableSession = true)]
+    public string deletePreviousRank(string empid, int id)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+        PAL_FlowDiagram pobj = new PAL_FlowDiagram();
+        pobj.who = empid;
+        pobj.id = id;
+
+        BAL_FlowDiagram.deletePreviousRank(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
 }
