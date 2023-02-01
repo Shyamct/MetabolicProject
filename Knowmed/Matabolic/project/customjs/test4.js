@@ -312,8 +312,7 @@ function closeLoader() {
 
 
 function init(data, data1) {
-    console.log(data);
-    console.log(data1);
+
 
     var count = 1;
     if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
@@ -940,7 +939,7 @@ function cxcommand(event, val) {
         case "processDietNotRequired": setDietRequired(nodeObj, innerText); break;
         case "Harmful": setDietRequired(nodeObj, innerText); break;
         case "Beneficial": setDietRequired(nodeObj, innerText); break;
-        case "PatientDietInteke": setDietRequired(nodeObj, innerText); break;
+        //case "PatientDietInteke": setDietRequired(nodeObj, innerText); break;
         case "FateFeeder": getkeywordRelation(nodeObj); break;
         case "ClinicalFeature": getClinicalFeatures(nodeObj); break;
         //case "addEnzyme": SetEnzyme(nodeObj); break;

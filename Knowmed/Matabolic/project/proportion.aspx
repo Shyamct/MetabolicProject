@@ -1533,10 +1533,11 @@
 
                         if (IDS == 0) {
                             var cxcommandID = val.attributesName.replace(/\s+/g, '').trim();
+
                             htm += "<li id=" + cxcommandID + " class='menu-item' onclick='cxcommand(event)'>" + val.attributesName;
                         }
                         else  {
-                            htm += "<li id=" + val.attributesName + " class='menu-item'>" + val.attributesName + " <i class='icon-circle-arrow-right pull-right'></i>";
+                            htm += "<li id=" + val.attributesName + " class='menu-item'>" + val.attributesName ;
                         }
                          
                         htm += "<ul class='menu'>";

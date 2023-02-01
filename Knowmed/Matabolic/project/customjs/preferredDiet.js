@@ -141,7 +141,6 @@ function getDiet() {
 
 
             var result = JSON.parse(data.d).responseValue;
-            console.log("result", result);
             //$.each(result.Table1, function (i, val) {
             //    var finalData = JSON.parse(val.FinalData);
 
@@ -233,7 +232,6 @@ function getDiet() {
 
 function getProcessName(nutrientID, statusFor, roleType)
 {
-    console.log(nutrientID);
     let diseaseID = $("#ddlPathway").val();
    
     if (!UtilsCache.getSession('USERDETAILS')) {
@@ -265,6 +263,7 @@ function getProcessName(nutrientID, statusFor, roleType)
             var result = JSON.parse(data.d).responseValue;
             var processName = '';
             $("#processModelDiv").html('');
+            $("#processModel").show();
 
             $.each(result.Table, function (index, value) {
                 $("#processHeader").text('');
@@ -277,7 +276,6 @@ function getProcessName(nutrientID, statusFor, roleType)
                     $("#processModelDiv").append(processName);
                 });
                 $("#processHeader").append(clickNutrientName);
-                $("#processModel").show();
             });
         },
         error: function (error) {
