@@ -407,7 +407,7 @@ function init(data, data1) {
                     // highlight all Links and Nodes coming out of a given Node
                     var diagram = node.diagram;
                   
-                    diagram.startTransaction("highlight");
+                    diagram.startTransaction("highlightUpcomnColor");
                     diagram.startTransaction("highlight2");
                     // remove any previous highlighting
                     diagram.clearHighlighteds();
@@ -798,13 +798,13 @@ function init(data, data1) {
             
 
                 //new go.Binding("stroke", "isHighlighted", function (arrayURL) { return console.log(arrayURL[0].URL); })
-                //new go.Binding("stroke", "isHighlighted", function (highlight) { return (highlight == false ? "green" : "black"); })
-                   // .ofObject(),
+                new go.Binding("stroke", "isHighlighted", function (highlightUpcomnColor) { return (highlightUpcomnColor == false ? "green" : "red"); })
+                    .ofObject(),
 
                
 
                 // the Shape.strokeWidth depends on whether Link.isHighlighted is true
-                new go.Binding("strokeWidth", "isHighlighted", function (h) { return h ? 5 : 1; })
+                new go.Binding("strokeWidth", "isHighlighted", function (h) { return h ? 5 :5; })
                     .ofObject()),
             $(go.Shape, { toArrow: "Standard", strokeWidth: 0 },
                 // the Shape.fill color depends on whether Link.isHighlighted is true

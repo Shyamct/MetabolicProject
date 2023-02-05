@@ -176,8 +176,6 @@ function getReport() {
                 if (result.Table.length > 0) {
                     $.each(result.Table, function (i, val) {
 
-                      
-                           
                      
                         var currentProcessID = val.processID;
 
@@ -217,10 +215,12 @@ function getReport() {
                                     var problemWaitageScore = mainData[i].problemWaitageScore;
                                     var MMSScoree = mainData[i].MMSScoree;
                                     var HighLowScore = mainData[i].HighLowScore;
+                                    var studyForName = mainData[i].studyForName;
+                                    var studyForScore = mainData[i].studyForScore;
 
                                     finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (4 + val.processScore) : parseInt((calculateMarkerScore + 4 + val.processScore)))
 
-                                    nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' +'\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                    nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '</li>';
 
 
                                 }
@@ -247,11 +247,12 @@ function getReport() {
                                     var problemWaitageScore = mainData[i].problemWaitageScore;
                                     var MMSScoree = mainData[i].MMSScoree;
                                     var HighLowScore = mainData[i].HighLowScore;
-
+                                    var studyForName = mainData[i].studyForName;
+                                    var studyForScore = mainData[i].studyForScore;
 
                                     finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (3 + val.processScore) : parseInt((calculateMarkerScore + 3 + val.processScore)))
 
-                                    nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore +','+ '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                    nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>'+'</li>';
 
                                 }
                             }
@@ -277,11 +278,13 @@ function getReport() {
                                     var problemWaitageScore = mainData[i].problemWaitageScore;
                                     var MMSScoree = mainData[i].MMSScoree;
                                     var HighLowScore = mainData[i].HighLowScore;
+                                    var studyForName  = mainData[i].studyForName ;
+                                    var studyForScore = mainData[i].studyForScore ;
 
 
                                     finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (5 + val.processScore) : parseInt((calculateMarkerScore + 5 + val.processScore)))
 
-                                    nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '</li>';
+                                    nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>'+ '</li>';
                                 }
                             }
                         }
@@ -298,7 +301,13 @@ function getReport() {
 
             var bindMarker = '';
             $.each(result.Table1, function (i, val) {
-                bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' +val.FinalNutrientSCORE+']'+"</p>";
+                if (val.rangeFrom == null && val.rangeTo == null || val.rangeFrom == '' && val.rangeTo == '') {
+                    bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
+                }
+                else {
+                    bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + 'Range=(' + val.rangeFrom + '-' + val.rangeTo + ')' + "</p>";
+                }
+
             });
             $("#markerDIV").html(bindMarker);
 

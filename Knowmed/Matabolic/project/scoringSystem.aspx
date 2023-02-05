@@ -111,7 +111,13 @@ border-radius: 5px;
 opacity: 1;
     color: #9D9D9D;  
     font-size: 13px;
-      
+}
+  span#studyForName {
+background: #05022c0f 0% 0% no-repeat padding-box;
+border-radius: 5px;
+opacity: 1;
+    color: Black;  
+    font-size: 13px;
 }
 
  span#SPNscoreType {
