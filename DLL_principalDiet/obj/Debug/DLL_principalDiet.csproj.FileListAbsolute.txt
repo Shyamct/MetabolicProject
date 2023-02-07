@@ -2,7 +2,6 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\bin\Debug\DLL_principalDi
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\bin\Debug\DLL_principalDiet.pdb
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\bin\Debug\DLLUtility.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\bin\Debug\DLLUtility.pdb
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\obj\Debug\DLL_principalDiet.csproj.AssemblyReference.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\obj\Debug\DLL_principalDiet.csproj.CoreCompileInputs.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\obj\Debug\DLL_principalDiet.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL_principalDiet\obj\Debug\DLL_principalDiet.dll

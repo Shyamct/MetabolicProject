@@ -798,7 +798,7 @@ function init(data, data1) {
             
 
                 //new go.Binding("stroke", "isHighlighted", function (arrayURL) { return console.log(arrayURL[0].URL); })
-                new go.Binding("stroke", "isHighlighted", function (highlightUpcomnColor) { return (highlightUpcomnColor == false ? "green" : "red"); })
+                new go.Binding("stroke", "isHighlighted", function (highlightUpcomnColor) { return (highlightUpcomnColor == false ? "black" : "red"); })
                     .ofObject(),
 
                

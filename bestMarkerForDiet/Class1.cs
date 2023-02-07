@@ -20,6 +20,8 @@ namespace DAL_scoringSystem
         public int finalMarkerScore { get; set; }
         public int interactedNutrientID { get; set; }
         public string rankName { get; set; }
+        public int PID { get; set; }
+
     }
     public class DAL_scoringSystem
     {
@@ -38,6 +40,7 @@ namespace DAL_scoringSystem
             selectCommand.Parameters.AddWithValue("@markerScore", pobj.finalMarkerScore);
             selectCommand.Parameters.AddWithValue("@interactedNutrientID", pobj.interactedNutrientID);
             selectCommand.Parameters.AddWithValue("@rankName", pobj.rankName);
+            selectCommand.Parameters.AddWithValue("@PID", pobj.PID);
 
             selectCommand.Parameters.Add("@isException", SqlDbType.Bit);
             selectCommand.Parameters["@isException"].Direction = ParameterDirection.Output;
@@ -90,6 +93,10 @@ namespace DAL_scoringSystem
             pobj.opcode = 21;
             DAL_scoringSystem.returnTable(pobj);
         }
-
+        public static void getVitalScore(PAL_scoringSystem pobj)
+        {
+            pobj.opcode = 47;
+            DAL_scoringSystem.returnTable(pobj);
+        }
     }
 }

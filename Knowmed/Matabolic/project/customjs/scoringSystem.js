@@ -23,7 +23,9 @@ $(document).ready(function () {
         $("#modelTestMarker").hide();
     })
     
-
+    $(".btnCloseTest").click(function () {
+        $("#vitalScore").hide();
+    })
 });
 
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
@@ -166,6 +168,7 @@ function getReport() {
             $("#loader").hide();
 
             var result = JSON.parse(data.d).responseValue;
+
             $("#tblReport tbody tr").remove();
 
            
@@ -217,10 +220,12 @@ function getReport() {
                                     var HighLowScore = mainData[i].HighLowScore;
                                     var studyForName = mainData[i].studyForName;
                                     var studyForScore = mainData[i].studyForScore;
+                                    var researchYear = mainData[i].researchYear;
+                                    var researchYearScore = mainData[i].researchYearScore;
 
                                     finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (4 + val.processScore) : parseInt((calculateMarkerScore + 4 + val.processScore)))
 
-                                    nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '</li>';
+                                    nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>'+'</li>';
 
 
                                 }
@@ -249,10 +254,12 @@ function getReport() {
                                     var HighLowScore = mainData[i].HighLowScore;
                                     var studyForName = mainData[i].studyForName;
                                     var studyForScore = mainData[i].studyForScore;
+                                    var researchYear = mainData[i].researchYear;
+                                    var researchYearScore = mainData[i].researchYearScore;
 
                                     finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (3 + val.processScore) : parseInt((calculateMarkerScore + 3 + val.processScore)))
 
-                                    nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>'+'</li>';
+                                    nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>'+'</li>';
 
                                 }
                             }
@@ -279,12 +286,14 @@ function getReport() {
                                     var MMSScoree = mainData[i].MMSScoree;
                                     var HighLowScore = mainData[i].HighLowScore;
                                     var studyForName  = mainData[i].studyForName ;
-                                    var studyForScore = mainData[i].studyForScore ;
+                                    var studyForScore = mainData[i].studyForScore;
+                                    var researchYear = mainData[i].researchYear;
+                                    var researchYearScore = mainData[i].researchYearScore;
 
 
                                     finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (5 + val.processScore) : parseInt((calculateMarkerScore + 5 + val.processScore)))
 
-                                    nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>'+ '</li>';
+                                    nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>'+'</li>';
                                 }
                             }
                         }
@@ -301,13 +310,8 @@ function getReport() {
 
             var bindMarker = '';
             $.each(result.Table1, function (i, val) {
-                if (val.rangeFrom == null && val.rangeTo == null || val.rangeFrom == '' && val.rangeTo == '') {
+               
                     bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
-                }
-                else {
-                    bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + 'Range=(' + val.rangeFrom + '-' + val.rangeTo + ')' + "</p>";
-                }
-
             });
             $("#markerDIV").html(bindMarker);
 
@@ -544,4 +548,50 @@ function saveScore() {
         error: function (error) {
         }
     });
+}
+
+function getVitalScore() {
+    let PID = $("#txtPID").val();
+
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
+    if (PID == null || PID == undefined || PID == "") {
+        alert("ENTER PID");
+        return;
+    }
+
+    obj = {
+        empid: userID,
+        PID: PID
+    }
+    $.ajax({
+        type: "POST",
+        url: "WebService/scoringSystem.asmx/getVitalScore",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            var result = JSON.parse(data.d).responseValue;
+            var tr = '';
+            $("#vitalScore tbody tr").empty();
+
+            $.each(result.Table, function (i, val) {
+                tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.vitalName + "</td><td>" + val.vmValue + "</td><td>" + val.score + "</td></tr>";
+            });
+            $("#vitalScore tbody").append(tr);
+            $("#vitalScore").show();
+        },
+        error: function (error) {
+
+        }
+    });
+
 }

@@ -119,6 +119,13 @@ opacity: 1;
     color: Black;  
     font-size: 13px;
 }
+    span#researchYear {
+background: #08a7c121 0% 0% no-repeat padding-box;
+border-radius: 5px;
+opacity: 1;
+    color: Black;  
+    font-size: 13px;
+}
 
  span#SPNscoreType {
      background: #D9E8DA 0% 0% no-repeat padding-box;
@@ -238,6 +245,11 @@ input#txtPID {
     font-size: 15px;
     text-align: left;
 }
+.widget-title {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
     </style>
 
 </asp:Content>
@@ -252,7 +264,7 @@ input#txtPID {
                 <div class="span12">
                     <div class="widget-box">
                         <div class="widget-title">
-
+                            <div class="widget-Header">
                             <select id="ddlPathway" onchange="getProcess()" style="width: 12%;">
                                 <option value="" selected>Select Disease</option>
                             </select>
@@ -260,10 +272,17 @@ input#txtPID {
                             <select id="ddlProcess" style="width: 12%;">
                                 <option value="" selected>Select Process</option>
                             </select>
-
+                               
                             <input type="button" onclick="getReport()" value="SHOW" />
                             <input type="button" onclick="getScore()" value="SHOW SCORE" />
                             <input type="button" onclick="print()" value="PRINT" />
+                                 </div>
+                            <div class="widget-Header">
+                            <input type="button" style="background-color:#ffc966" value="LCMS" />
+                            <input type="button"  style="background-color:#78bd6c" value="ICPMS" />
+                            <input type="button"  style="background-color:#d485bb" value="Pathology" />
+                            <input type="button" style="background-color:#9D9D9D" value="Not Test" />
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -290,6 +309,7 @@ input#txtPID {
                 <h3 class="tblheh3">
                       <input type="text" maxlength="10" id="txtPID" placeholder="Enter PID"/>
                     Marker 
+                            <input type="button" onclick="getVitalScore()" value="GO" />
                             <input type="button" onclick="printMerker()" value="PRINT" />
                     <input type="button" onclick="getTestMarker()" value="Test Name" />
                 </h3>
@@ -412,6 +432,37 @@ input#txtPID {
                             <th>Nutrient Name</th>
                             <th>Category Name</th>
                             <th>Test Name</th>
+                        </tr>
+                            </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnCloseTest">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <div class="modal bd-example-modal-lg" id="vitalScore" role="dialog">
+        <div class="modal-dialog modal-xl" style="max-width: 1000px ; margin: 30px auto;width: 80% !important;">
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close btnCloseTest"  data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Vital Score </h4>
+                </div>
+                <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
+                    <table class="table table-bordered table-responsive" id="tblVitalScore">
+                        <thead>
+                        <tr>
+                            <th>SR No.</th>
+                            <th>Vital</th>
+                            <th>Result</th>
+                            <th>Score</th>
                         </tr>
                             </thead>
                         <tbody>
