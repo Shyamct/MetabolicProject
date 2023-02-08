@@ -581,6 +581,7 @@ function getVitalScore() {
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
             var tr = '';
+            $(".headingVitalScore").append("PID "+PID);
             $("#vitalScore tbody tr").empty();
 
             $.each(result.Table, function (i, val) {

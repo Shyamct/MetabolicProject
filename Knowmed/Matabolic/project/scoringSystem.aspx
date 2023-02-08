@@ -453,7 +453,7 @@ input#txtPID {
             <div class="modal-content ">
                 <div class="modal-header">
                     <button type="button" class="close btnCloseTest"  data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Vital Score </h4>
+                    <h4 class="modal-title headingVitalScore"> </h4>
                 </div>
                 <div class="modal-body popup-decreption" style="color: black;overflow-y: scroll!important;height: 70vh !important;">
                     <table class="table table-bordered table-responsive" id="tblVitalScore">

@@ -85,6 +85,42 @@ function getSubMenuList() {
     });
 }
 
+function showUserAssignMenuList() {
+    var obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "WebService/assignMenu.asmx/getUserMenuList",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+
+        success: function (data) {
+            var disease = '';
+
+            var result = JSON.parse(data.d).responseValue;// class='icon-trash
+            $.each(result.Table, function (i) {
+                disease = disease + "<tr><td style='display:none;'>" + this.Id + "</td><td>" + (i + 1) + "</td><td>" + this.userName + "</td><td>" + this.menuName + "</td><td>" + this.subMenu + "</td><td><i class='icon-trash' style='cursor:pointer;' onclick='deleteAssignUser(" + this.UserID + "," + this.parentMenuID + "," + this.subMenuID + ")'></i></td></tr>";
+
+                // disease = disease + "<tr><td style='display:none;'>" + this.Id + "</td><td>" + (i + 1) + "</td><td>" + this.userName + "</td><td>" + this.menuName + "</td><td>" + this.subMenu + "</td><td><i class='icon-trash' style='cursor:pointer;' onclick='demo(" + this.subMenuID + ")'></i></td></tr>";
+            });
+
+            $('#tblUser tbody').append(disease);
+        },
+        error: function (error) {
+
+        }
+    });
+}
+
 function saveMenuData() {
     var userID = $("#ddlUsers").val();
     var parentID = $("#ddlParent").val();
@@ -128,52 +164,23 @@ function saveMenuData() {
         contentType: "application/json;",
         dataType: "json",
         success: function (data) {
+            showUserAssignMenuList();
+
           var result = JSON.parse(data.d);
-        if(result.responseCode == 1) {
+
+            if (result.responseCode == 1)
+            {
             $("#ddlUsers").val('-- Select User --');
             $("#ddlParent").val('-- Parent Menu --');
-         }
+            }
+
         },
         error: function (data) {
         }
     });
 }
 
-function showUserAssignMenuList() {
-    var disease;
-    var obj = {
-        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-    };
 
-    $.ajax({
-        type: "POST",
-        url: "WebService/assignMenu.asmx/getUserMenuList",
-        contentType: 'application/json',
-        dataType: 'json',
-        data: JSON.stringify(obj),
-
-        statusCode: {
-            401: function (xhr) {
-                window.location.href = "../../index.html";
-            }
-        },
-
-        success: function (data) {
-
-            var result = JSON.parse(data.d).responseValue;// class='icon-trash
-            $.each(result.Table, function (i) {
-               disease = disease + "<tr><td style='display:none;'>" + this.Id + "</td><td>" + (i + 1) + "</td><td>" + this.userName + "</td><td>" + this.menuName + "</td><td>" + this.subMenu + "</td><td><i class='icon-trash' style='cursor:pointer;' onclick='deleteAssignUser(" + this.UserID + "," + this.parentMenuID + "," + this.subMenuID + ")'></i></td></tr>";
-
-                // disease = disease + "<tr><td style='display:none;'>" + this.Id + "</td><td>" + (i + 1) + "</td><td>" + this.userName + "</td><td>" + this.menuName + "</td><td>" + this.subMenu + "</td><td><i class='icon-trash' style='cursor:pointer;' onclick='demo(" + this.subMenuID + ")'></i></td></tr>";
-            });
-
-            $('#tblUser tbody').append(disease);
-        },
-        error: function (error) {
-
-        }
-    });
-}
 
 function deleteAssignUser(UserID, parentMenuID, subMenuID) {
     var UserID = UserID;
@@ -212,8 +219,6 @@ function deleteAssignUser(UserID, parentMenuID, subMenuID) {
 
 function demo( ) {
    
-   
-
     var myString = '';
     $("input[id='chkID']:checked").each(function () {
         var checked = $(this).val();

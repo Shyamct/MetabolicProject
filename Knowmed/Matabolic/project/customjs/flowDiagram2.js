@@ -383,7 +383,7 @@ function multiSelectDisease() {
     $('#ddlDisease').multiselect({
         buttonWidth: '100%',
         includeSelectAllOption: true,
-        nonSelectedText: 'Select Pathway',
+        nonSelectedText: 'Select Disease',
         enableCaseInsensitiveFiltering: true,
         filterPlaceholder: 'Search Here...',
         maxHeight: 300

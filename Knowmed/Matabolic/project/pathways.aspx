@@ -202,7 +202,7 @@
                             <span class="icon"><i class="icon-info-sign"></i></span>
                             <%---------------------- Disease------------------------%>
                                 <%--<div style="float: left;">--%>
-                                <h5>Select Pathway</h5>
+                                <h5>Select Disease</h5>
                                  <select id="ddlDisease" class="topMargin3px" name="ddl_Disease"> 
                                      <option value="0" style="width:100% !important;">Select All</option>
                                 </select>
