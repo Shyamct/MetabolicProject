@@ -552,6 +552,8 @@ function saveScore() {
 
 function getVitalScore() {
     let PID = $("#txtPID").val();
+    let pathwayIDs = $("#ddlPathway").val();
+    let diseaseID = pathwayIDs.toString();
 
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -564,7 +566,8 @@ function getVitalScore() {
 
     obj = {
         empid: userID,
-        PID: PID
+        PID: PID,
+        pathwayID: diseaseID,
     }
     $.ajax({
         type: "POST",
@@ -580,15 +583,25 @@ function getVitalScore() {
         },
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
-            var tr = '';
-            $(".headingVitalScore").append("PID "+PID);
-            $("#vitalScore tbody tr").empty();
 
+            //$("#markerDIV").remove();
+            var bindMarker = '';
             $.each(result.Table, function (i, val) {
-                tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.vitalName + "</td><td>" + val.vmValue + "</td><td>" + val.score + "</td></tr>";
+                console.log(val);
+
+                bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
             });
-            $("#vitalScore tbody").append(tr);
-            $("#vitalScore").show();
+            $("#markerDIV").html(bindMarker);
+            
+            //var tr = '';
+            //$(".headingVitalScore").append("PID "+PID);
+            //$("#vitalScore tbody tr").empty();
+
+            //$.each(result.Table, function (i, val) {
+            //    tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.vitalName + "</td><td>" + val.vmValue + "</td><td>" + val.score + "</td></tr>";
+            //});
+            //$("#vitalScore tbody").append(tr);
+            //$("#vitalScore").show();
         },
         error: function (error) {
 

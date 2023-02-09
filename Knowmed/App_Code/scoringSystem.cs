@@ -251,7 +251,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
     }
 
     [WebMethod(EnableSession = true)]
-    public string getVitalScore(int empid,int PID)
+    public string getVitalScore(int empid,int PID, string pathwayID)
     {
         if (empid == null)
         {
@@ -262,6 +262,7 @@ public class bestMarkerForDiet : System.Web.Services.WebService
         PAL_scoringSystem pobj = new PAL_scoringSystem();
         pobj.userID = empid;
         pobj.PID = PID;
+        pobj.pathwayID = pathwayID;
 
         BAL_scoringSystem.getVitalScore(pobj);
         string str;

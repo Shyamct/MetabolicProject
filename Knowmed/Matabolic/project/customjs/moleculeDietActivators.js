@@ -1223,7 +1223,9 @@ function createPieChart(achievedRDAPercentage) {
 
 
 function compareString(str1, str2) {
-    return str1.toLowerCase().trim() == str2.toLowerCase().trim();
+    if (str2 != undefined) {
+        return str1.toLowerCase().trim() == str2.toLowerCase().trim();
+    }
 }
 
 //$('#txtFromDate').val(getCurrentDateSQL(new Date(), 0));

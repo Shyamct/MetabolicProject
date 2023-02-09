@@ -442,7 +442,7 @@ function init(data, data1) {
                 new go.Binding("stroke", "highlight1", function (v) { return v ? "green" : "black"; }),
                 new go.Binding("stroke", "highlight2", function (v) { return v ? "Green" : "black"; }),
                 new go.Binding("strokeWidth", "highlight", function (v) { return v ? 10 : 1; }),
-                new go.Binding("strokeWidth", "highlight1", function (v) { return v ? 10 : 5; }),
+                new go.Binding("strokeWidth", "highlight1", function (v) { return v ? 10 : 1; }),
 
                 new go.Binding("strokeWidth", "highlight2", function (v) { return v ? 10 : 1; }),
                 new go.Binding("stroke", "isHighlighted", function (h) { return h ? "#39FF14" : "black"; }),
@@ -785,7 +785,7 @@ function init(data, data1) {
                     { row: HORIZONTAL ? 0 : 1, column: HORIZONTAL ? 1 : 0 })
             )
         ));
-
+    shyamReverse(data, data1)
     myDiagram.linkTemplate =
         $(go.Link,
             { routing: go.Link.AvoidsNodes, corner: 5, curve: go.Link.JumpOver },
@@ -795,18 +795,14 @@ function init(data, data1) {
                // new go.Binding("stroke", "isHighlighted", function (h) { return h ? "Black" : "Black"; })
                    // .ofObject(),
 
-            
-
                 //new go.Binding("stroke", "isHighlighted", function (arrayURL) { return console.log(arrayURL[0].URL); })
                 new go.Binding("stroke", "isHighlighted", function (highlightUpcomnColor) { return (highlightUpcomnColor == false ? "black" : "red"); })
                     .ofObject(),
 
-               
-
                 // the Shape.strokeWidth depends on whether Link.isHighlighted is true
-                new go.Binding("strokeWidth", "isHighlighted", function (h) { return h ? 5 :5; })
+                new go.Binding("strokeWidth", "isHighlighted", function (h) { return h ? 5 :2; })
                     .ofObject()),
-            $(go.Shape, { toArrow: "Standard", strokeWidth: 0 },
+            $(go.Shape, { toArrow: "Standard", strokeWidth: 1 },
                 // the Shape.fill color depends on whether Link.isHighlighted is true
                 new go.Binding("fill", "isHighlighted", function (h) { return h ? "black" : "black"; })
                     .ofObject()),
@@ -925,6 +921,14 @@ function init(data, data1) {
     //        { observed: myDiagram });
 
 } // end init
+var arrayFROM = [];
+var arrayTO = [];
+function shyamReverse(dataShyam, data1Shyam) {
+    /*arrayTO("D", linkFromTO);*/
+    $.each(data1Shyam, function (i, val) {
+        console.log("V:", val.from);
+    });
+}
 
 // This is the general menu command handler, parameterized by the name of the command.
 function cxcommand(event, val) {
