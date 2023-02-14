@@ -12,6 +12,9 @@ namespace DAL_nutrientChart
     public class PAL_nutrientChart : Utility
     {
         public int pathwayID { get; set; }
+        public string nutrientID { get; set; }
+
+        public int zoomLevel { get; set; }
         public string images { get; set; }
     }
     public class DAL_nutrientChart
@@ -23,6 +26,8 @@ namespace DAL_nutrientChart
 
             selectCommand.Parameters.AddWithValue("@opcode", pobj.opcode);
             selectCommand.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
+            selectCommand.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
+            selectCommand.Parameters.AddWithValue("@zoomLevel", pobj.zoomLevel);
             selectCommand.Parameters.AddWithValue("@images", pobj.images);
             
 

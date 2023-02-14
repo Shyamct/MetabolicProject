@@ -17,7 +17,7 @@ public class nutrientChart : System.Web.Services.WebService
 {
 
     [WebMethod(EnableSession = true)]
-    public string saveChartData(string empid,int pathwayID,string images)
+    public string saveChartData(string empid,int pathwayID,string images,string nutrientID)
     {
         if (empid == null)
         {
@@ -29,6 +29,7 @@ public class nutrientChart : System.Web.Services.WebService
         pobj.who = empid;
         pobj.pathwayID = pathwayID;
         pobj.images = images;
+        pobj.nutrientID = nutrientID;
 
 
         BAL_nutrientChart.insertChart(pobj);

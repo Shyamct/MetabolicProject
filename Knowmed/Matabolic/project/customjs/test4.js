@@ -312,7 +312,7 @@ function closeLoader() {
 
 
 function init(data, data1) {
-
+   
 
     var count = 1;
     if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
@@ -1731,7 +1731,8 @@ function getDetails(id) {
              node = JSON.parse(allNode[0].mainNode);
 
             relations = allrelation[0].linkNode;
-
+            console.log("ddddddddddddddddddddddddd", node);
+            console.log("eeeeeeeeeeeeeeeeeeeeeeeee", relations);
 
           
            

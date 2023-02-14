@@ -25,7 +25,12 @@ $(document).ready(function () {
     
     $(".btnCloseTest").click(function () {
         $("#vitalScore").hide();
+
     })
+    $(".btnCloseDiet").click(function () {
+        $("#modelToeatNotToEat").hide();
+    })
+
 });
 
 var userID = Number(UtilsCache.getSession('USERDETAILS').userid);
@@ -176,132 +181,136 @@ function getReport() {
             var nutrientCentral;
             var nutrientSubCentral;
             var nutrientSpecific;
-                if (result.Table.length > 0) {
-                    $.each(result.Table, function (i, val) {
+            if (result.Table.length > 0) {
+                $.each(result.Table, function (i, val) {
 
-                     
-                        var currentProcessID = val.processID;
 
-                        var mainData = JSON.parse(result.Table[i].MarkerLIST);
+                    var currentProcessID = val.processID;
 
-                        if (mainData != undefined || mainData != null || mainData != 0) {
-                            for (var i = 0; i < mainData.length; i++) {
-                                arrList.push({
-                                    markerName: mainData[i].nutrientName,
-                                    markerScore: mainData[i].calculateMarkerScore,
-                                    type: mainData[i].compoundType,
-                                    processSCORE: val.processScore,
-                                    pathwayNAME: val.pathwayName,
-                                });
-                            }
-                         // getBestMarker();
-                            //getMarkerWithScore();
+                    var mainData = JSON.parse(result.Table[i].MarkerLIST);
 
+                    if (mainData != undefined || mainData != null || mainData != 0) {
+                        for (var i = 0; i < mainData.length; i++) {
+                            arrList.push({
+                                markerName: mainData[i].nutrientName,
+                                markerScore: mainData[i].calculateMarkerScore,
+                                type: mainData[i].compoundType,
+                                processSCORE: val.processScore,
+                                pathwayNAME: val.pathwayName,
+                            });
                         }
+                        // getBestMarker();
+                        //getMarkerWithScore();
+
+                    }
 
 
-                        nutrientCentral = '';
-                        nutrientCentral += '<ul>';
-                        if (mainData != undefined || mainData != null || mainData != 0) {
-                            for (var i = 0; i < mainData.length; i++) {
-                                if (mainData[i].compoundType == 'Central') {
+                    nutrientCentral = '';
+                    nutrientCentral += '<ul>';
+                    if (mainData != undefined || mainData != null || mainData != 0) {
+                        for (var i = 0; i < mainData.length; i++) {
+                            if (mainData[i].compoundType == 'Central') {
 
-                                    var nutrientID = mainData[i].nutrientID;
+                                var nutrientID = mainData[i].nutrientID;
 
-                                    var nutrientName = mainData[i].nutrientName;
-                                    var roleType = mainData[i].problemWaitage;
-                                    var scoreType = mainData[i].scoreType;
-                                    var HighLow = mainData[i].HighLow;
-                                    var calculateMarkerScore = mainData[i].calculateMarkerScore;
+                                var nutrientName = mainData[i].nutrientName;
+                                var roleType = mainData[i].problemWaitage;
+                                var scoreType = mainData[i].scoreType;
+                                var HighLow = mainData[i].HighLow;
+                                var calculateMarkerScore = mainData[i].calculateMarkerScore;
 
-                                    var compoundTypeScore = mainData[i].compoundTypeScore;
-                                    var problemWaitageScore = mainData[i].problemWaitageScore;
-                                    var MMSScoree = mainData[i].MMSScoree;
-                                    var HighLowScore = mainData[i].HighLowScore;
-                                    var studyForName = mainData[i].studyForName;
-                                    var studyForScore = mainData[i].studyForScore;
-                                    var researchYear = mainData[i].researchYear;
-                                    var researchYearScore = mainData[i].researchYearScore;
+                                var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var problemWaitageScore = mainData[i].problemWaitageScore;
+                                var MMSScoree = mainData[i].MMSScoree;
+                                var HighLowScore = mainData[i].HighLowScore;
+                                var studyForName = mainData[i].studyForName;
+                                var studyForScore = mainData[i].studyForScore;
+                                var researchYear = mainData[i].researchYear;
+                                var researchYearScore = mainData[i].researchYearScore;
 
-                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (4 + val.processScore) : parseInt((calculateMarkerScore + 4 + val.processScore)))
+                                finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (4 + val.processScore) : parseInt((calculateMarkerScore + 4 + val.processScore)))
 
-                                    nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>'+'</li>';
-
-
-                                }
-                            }
-                        }
-                        nutrientCentral += '</ul>';
+                                nutrientCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>' + '</li>';
 
 
-                        nutrientSubCentral = '';
-                        nutrientSubCentral += '<ul>';
-                        if (mainData != undefined || mainData != null || mainData != 0) {
-                            for (var i = 0; i < mainData.length; i++) {
-                                if (mainData[i].compoundType == 'Sub Central') {
-                                    var nutrientID = mainData[i].nutrientID;
-
-                                    var nutrientName = mainData[i].nutrientName;
-                                    var roleType = mainData[i].problemWaitage;
-                                    var scoreType = mainData[i].scoreType;
-                                    var HighLow = mainData[i].HighLow;
-                                    var calculateMarkerScore = mainData[i].calculateMarkerScore;
-
-
-                                    var compoundTypeScore = mainData[i].compoundTypeScore;
-                                    var problemWaitageScore = mainData[i].problemWaitageScore;
-                                    var MMSScoree = mainData[i].MMSScoree;
-                                    var HighLowScore = mainData[i].HighLowScore;
-                                    var studyForName = mainData[i].studyForName;
-                                    var studyForScore = mainData[i].studyForScore;
-                                    var researchYear = mainData[i].researchYear;
-                                    var researchYearScore = mainData[i].researchYearScore;
-
-                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (3 + val.processScore) : parseInt((calculateMarkerScore + 3 + val.processScore)))
-
-                                    nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>'+'</li>';
-
-                                }
                             }
                         }
-                        nutrientSubCentral += '</ul>';
+                    }
+                    nutrientCentral += '</ul>';
 
 
-                        nutrientSpecific = '';
-                        nutrientSpecific += '<ul>';
-                        if (mainData != undefined || mainData != null || mainData != 0) {
-                            for (var i = 0; i < mainData.length; i++) {
-                                if (mainData[i].compoundType == 'Specific') {
-                                    var nutrientID = mainData[i].nutrientID;
+                    nutrientSubCentral = '';
+                    nutrientSubCentral += '<ul>';
+                    if (mainData != undefined || mainData != null || mainData != 0) {
+                        for (var i = 0; i < mainData.length; i++) {
+                            if (mainData[i].compoundType == 'Sub Central') {
+                                var nutrientID = mainData[i].nutrientID;
 
-                                    var nutrientName = mainData[i].nutrientName;
-                                    var roleType = mainData[i].problemWaitage;
-                                    var scoreType = mainData[i].scoreType;
-                                    var HighLow = mainData[i].HighLow;
-                                    var calculateMarkerScore = mainData[i].calculateMarkerScore;
-
-
-                                    var compoundTypeScore = mainData[i].compoundTypeScore;
-                                    var problemWaitageScore = mainData[i].problemWaitageScore;
-                                    var MMSScoree = mainData[i].MMSScoree;
-                                    var HighLowScore = mainData[i].HighLowScore;
-                                    var studyForName  = mainData[i].studyForName ;
-                                    var studyForScore = mainData[i].studyForScore;
-                                    var researchYear = mainData[i].researchYear;
-                                    var researchYearScore = mainData[i].researchYearScore;
+                                var nutrientName = mainData[i].nutrientName;
+                                var roleType = mainData[i].problemWaitage;
+                                var scoreType = mainData[i].scoreType;
+                                var HighLow = mainData[i].HighLow;
+                                var calculateMarkerScore = mainData[i].calculateMarkerScore;
 
 
-                                    finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (5 + val.processScore) : parseInt((calculateMarkerScore + 5 + val.processScore)))
+                                var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var problemWaitageScore = mainData[i].problemWaitageScore;
+                                var MMSScoree = mainData[i].MMSScoree;
+                                var HighLowScore = mainData[i].HighLowScore;
+                                var studyForName = mainData[i].studyForName;
+                                var studyForScore = mainData[i].studyForScore;
+                                var researchYear = mainData[i].researchYear;
+                                var researchYearScore = mainData[i].researchYearScore;
 
-                                    nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>'+'</li>';
-                                }
+                                finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (3 + val.processScore) : parseInt((calculateMarkerScore + 3 + val.processScore)))
+
+                                nutrientSubCentral += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + finalMarkerScore + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>' + '</li>';
+
                             }
                         }
-                        nutrientSpecific += '<ul>';/// ME optional
+                    }
+                    nutrientSubCentral += '</ul>';
 
-                        tr = tr + "<tr><td style='color:black !important;font-size: large !important;'>" + val.pathwayName + "</td><td id='TDprocess'>" + val.rankName + "(" + val.processScore + ")" + "</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
-                    });
-                }
+
+                    nutrientSpecific = '';
+                    nutrientSpecific += '<ul>';
+                    if (mainData != undefined || mainData != null || mainData != 0) {
+                        for (var i = 0; i < mainData.length; i++) {
+                            if (mainData[i].compoundType == 'Specific') {
+                                var nutrientID = mainData[i].nutrientID;
+
+                                var nutrientName = mainData[i].nutrientName;
+                                var roleType = mainData[i].problemWaitage;
+                                var scoreType = mainData[i].scoreType;
+                                var HighLow = mainData[i].HighLow;
+                                var calculateMarkerScore = mainData[i].calculateMarkerScore;
+
+
+                                var compoundTypeScore = mainData[i].compoundTypeScore;
+                                var problemWaitageScore = mainData[i].problemWaitageScore;
+                                var MMSScoree = mainData[i].MMSScoree;
+                                var HighLowScore = mainData[i].HighLowScore;
+                                var studyForName = mainData[i].studyForName;
+                                var studyForScore = mainData[i].studyForScore;
+                                var researchYear = mainData[i].researchYear;
+                                var researchYearScore = mainData[i].researchYearScore;
+
+
+                                finalMarkerScore = Number(Number.isNaN(parseInt(calculateMarkerScore)) ? (5 + val.processScore) : parseInt((calculateMarkerScore + 5 + val.processScore)))
+
+                                nutrientSpecific += '<li>' + '<span id="tdMarker" onclick="getInteractionNutrient(' + nutrientID + ',' + currentProcessID + ',' + finalMarkerScore + ',' + '\'' + nutrientName + '\')">' + nutrientName + "(Score=" + Number(Number.isNaN(finalMarkerScore) ? 5 : finalMarkerScore) + ")" + '</span>' + '<br>' + '<span id="SPNroleType">' + roleType + "(" + problemWaitageScore + ")" + '</span>' + '<span id="SPNscoreType">' + scoreType + "(" + MMSScoree + ")" + '</span>' + '<span id="SPNhighLow">' + HighLow + "(" + HighLowScore + ")" + '</span>' + '<span id="studyForName">' + studyForName + "(" + studyForScore + ")" + '</span>' + '<span id="researchYear">' + researchYear + "(" + researchYearScore + ")" + '</span>' + '</li>';
+                            }
+                        }
+                    }
+                    nutrientSpecific += '<ul>';/// ME optional
+
+                    tr = tr + "<tr><td style='color:black !important;font-size: large !important;'>" + val.pathwayName + "</td><td id='TDprocess'>" + val.rankName + "(" + val.processScore + ")" + "</td><td>" + nutrientCentral + "</td><td>" + nutrientSubCentral + "</td><td>" + nutrientSpecific + "</td></tr>";
+                });
+            }
+            else {
+                var AAAAAAB = "Data not available! ";
+                $("#tblReport tbody").append("<tr><td colspan='5'><div class='elseReopert'>"+AAAAAAB+"</div></td></tr>");
+            }
                 $("#tblReport tbody").append(tr);
                 row = $("#tblReport thead tr").clone();
 
@@ -309,10 +318,16 @@ function getReport() {
 
 
             var bindMarker = '';
-            $.each(result.Table1, function (i, val) {
-               
-                    bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
-            });
+            if (result.Table1.length > 0)
+            {
+                $.each(result.Table1, function (i, val) {
+                    bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
+                });
+             }
+            else
+            {
+
+             }
             $("#markerDIV").html(bindMarker);
 
             $.each(result.Table2, function (i, val) {
@@ -357,14 +372,65 @@ function getTestMarker() {
 
 function goTODietreport(Nutrientname)
 {
+    if (!UtilsCache.getSession('USERDETAILS')) {
+        window.location.href = "../../index.html";
+        return;
+    }
     var PID = $("#txtPID").val();
-    if (PID == null || PID == undefined || PID=="") {
+    if (PID == null || PID == undefined || PID == "")
+    {
         alert("ENTER PID");
         return;
     }
-    //var pathID = $("#ddlPathway").val();
+    
+    obj = {
+        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+        nutrientName: Nutrientname,
+        PID: PID,
+    }
 
-    window.location.href = "../project/principalDiet.aspx?PID=" + PID + "&markerName=" + (Nutrientname.trim()) + "";
+    $.ajax({
+        type: "POST",
+        url: "WebService/principalDiet.asmx/getPIDDiet",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(obj),
+
+        statusCode: {
+            401: function (xhr) {
+                window.location.href = "../../index.html";
+            }
+        },
+        success: function (data) {
+            $("#txtNutrientName").append('');
+            $("#txtNutrientName").append(Nutrientname);
+
+            $("#modelToeatNotToEat").show();
+
+            $("#toEAT").empty();
+            $("#notTOEAT").empty();
+
+            var toEat = '';
+            var notToEat = '';
+            var result = JSON.parse(data.d).responseValue;
+            $.each(result.Table, function (i, val) {
+                if (val.isFoodTobeGiven == 1) {
+                    toEat = toEat + "<span>" + val.foodName + "</span><br/>";
+                }
+                if (val.isFoodTobeGiven == 0) {
+                    notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
+                }
+            });
+            if (toEat != null || toEat != undefined) {
+                $("#toEAT").append(toEat);
+                $("#notTOEAT").append(notToEat);
+            }
+        },
+        error: function (error) {
+        }
+    });
+ 
+    //window.location.href = "../project/principalDiet.aspx?PID=" + PID + "&markerName=" + (Nutrientname.trim()) + "";
 }
 
 
@@ -458,12 +524,11 @@ function getFoodlist(interactedNutrientID) {
 
 
 function getScore() {
-    var pathwayID = $("#ddlPathway").val();
-
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
+    var pathwayID = $("#ddlPathway").val();
     var diseaseID = pathwayID.toString();
     if (diseaseID == "" || diseaseID == 0) {
         alert("PlZ select pathway");
@@ -554,7 +619,6 @@ function getVitalScore() {
     let PID = $("#txtPID").val();
     let pathwayIDs = $("#ddlPathway").val();
     let diseaseID = pathwayIDs.toString();
-
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
@@ -569,6 +633,7 @@ function getVitalScore() {
         PID: PID,
         pathwayID: diseaseID,
     }
+    $("#loaderMarker").show();
     $.ajax({
         type: "POST",
         url: "WebService/scoringSystem.asmx/getVitalScore",
@@ -582,14 +647,13 @@ function getVitalScore() {
             }
         },
         success: function (data) {
+            $("#loaderMarker").hide();
+
             var result = JSON.parse(data.d).responseValue;
 
-            //$("#markerDIV").remove();
             var bindMarker = '';
             $.each(result.Table, function (i, val) {
-                console.log(val);
-
-                bindMarker += "<p style='font-size:larger;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
+                bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + (val.score == null ?+ val.FinalNutrientSCORE +:'<span style="color:blue">'+val.FinalNutrientSCORE+'</span>') + ']' + "</p>";
             });
             $("#markerDIV").html(bindMarker);
             
