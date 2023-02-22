@@ -105,6 +105,7 @@
             top: 50%;
             left: 50%;
             z-index: 11;
+             width: 2%;
         }
 
         .contnt {
@@ -146,6 +147,14 @@
             color: black;
     font-weight: 700;
         }
+        .elseReopert {
+            text-align: center;
+            min-height: 73vh;
+            width: 100%;
+            font-size: 19px;
+            font-weight: 600;
+            padding-top: 36px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -153,7 +162,7 @@
 
 
     <div id='loader' style='display: none;'>
-        <img src='img/spinner.gif'>
+        <img src='img/spinner.gif' style="height: 60%; width: 100%">
     </div>
 
     <div id="content" style="margin-left: 0px;" >

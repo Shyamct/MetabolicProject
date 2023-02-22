@@ -94,10 +94,13 @@ function getHypothesisReport() {
                     });
 
                     tag += '</ol>';
-                    tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.rankName + "</td><td>" + tag +"</td></tr>";
+                    tr = tr + "<tr><td>" + (i + 1) + "</td><td>" + val.rankName + "</td><td>" + tag + "</td></tr>";
                 });
             }
-
+            else {
+                var mSG = "Data not available! ";
+                $("#tblReport tbody").append("<tr><td colspan='3'><div class='elseReopert'>" + mSG + "</div></td></tr>");
+            }
             $("#tblReport tbody").append(tr);
             row = $("#tblReport tbody tr").clone();
            

@@ -308,8 +308,8 @@ function getReport() {
                 });
             }
             else {
-                var AAAAAAB = "Data not available! ";
-                $("#tblReport tbody").append("<tr><td colspan='5'><div class='elseReopert'>"+AAAAAAB+"</div></td></tr>");
+                var mSG = "Data not available! ";
+                $("#tblReport tbody").append("<tr><td colspan='5'><div class='elseReopert'>" + mSG+"</div></td></tr>");
             }
                 $("#tblReport tbody").append(tr);
                 row = $("#tblReport thead tr").clone();
@@ -653,7 +653,13 @@ function getVitalScore() {
 
             var bindMarker = '';
             $.each(result.Table, function (i, val) {
-                bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + (val.score == null ?+ val.FinalNutrientSCORE +:'<span style="color:blue">'+val.FinalNutrientSCORE+'</span>') + ']' + "</p>";
+                //bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + (val.score == null ?+ val.FinalNutrientSCORE :+'<span style="color:blue">'+val.FinalNutrientSCORE+'</span>') + ']' + "</p>";
+                if (val.score == null) {
+                    bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' +  val.FinalNutrientSCORE +  ']' + "</p>";
+                }
+                else {
+                    bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + "<span style='color: blue'>"+val.FinalNutrientSCORE + "</span>" + ']' + "</p>";
+                }
             });
             $("#markerDIV").html(bindMarker);
             

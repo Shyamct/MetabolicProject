@@ -31,6 +31,7 @@ namespace DLLSVGLibrary
         public int nutrientId { get; set; }
         public string foodName { get; set; }
         public int userID { get; set; }
+        public int receptorID { get; set; }
     }
     public class DAL_SVGLibrary
     {
@@ -60,6 +61,7 @@ namespace DLLSVGLibrary
                 selectCommand.Parameters.AddWithValue("@pid", pobj.pid);
                 selectCommand.Parameters.AddWithValue("@nutrientId", pobj.nutrientId);
                 selectCommand.Parameters.AddWithValue("@foodName", pobj.foodName);
+                selectCommand.Parameters.AddWithValue("@groupReceptorID", pobj.receptorID);
                 selectCommand.Parameters.AddWithValue("@userID", pobj.userID);
                 selectCommand.Parameters.Add("@isException", SqlDbType.Bit);
                 selectCommand.Parameters["@isException"].Direction = ParameterDirection.Output;

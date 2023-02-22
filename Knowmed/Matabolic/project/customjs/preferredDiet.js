@@ -104,6 +104,10 @@ function getDiet() {
         alert("PLZ Select Pathway");
         return;
     }
+    if (selectedNutrientName == '' || selectedNutrientName == null) {
+        alert("PLZ Enter Marker");
+        return;
+    }
 
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
@@ -185,39 +189,48 @@ function getDiet() {
             //}
 
 
+            if (result.Table.length > 0) {
+                $.each(result.Table, function (i, vals) {
 
-            $.each(result.Table, function (i, vals) {
-
-                var finalData = JSON.parse(vals.processLIST);
-                //var process = '';
-                //$.each(finalData, function (i, values) {
-                //    process = "<span>"+values.rankName+"</span>";
-                //});
-                //$("#processDiv").append(process);
-
-
-                
+                    var finalData = JSON.parse(vals.processLIST);
+                    //var process = '';
+                    //$.each(finalData, function (i, values) {
+                    //    process = "<span>"+values.rankName+"</span>";
+                    //});
+                    //$("#processDiv").append(process);
 
 
-                if (vals.roleType == 'B') {
-                    if (vals.statusFor == 'Enhancer                      ') {
-                        ActivatorB = ActivatorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
-                         }
-                           
-                    if (vals.statusFor == 'Inhibitor                     ') {
-                        InhibitorB = InhibitorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," +"\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+
+
+
+                    if (vals.roleType == 'B') {
+                        if (vals.statusFor == 'Enhancer                      ') {
+                            ActivatorB = ActivatorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
                         }
-                }
-                if (vals.roleType == 'H') {
-                    if (vals.statusFor == 'Enhancer                      ') {
-                        ActivatorH = ActivatorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
-                    }
-                    if (vals.statusFor == 'Inhibitor                     ') {
-                        InhibitorH = InhibitorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
-                    }
-                }
-            });
 
+                        if (vals.statusFor == 'Inhibitor                     ') {
+                            InhibitorB = InhibitorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                        }
+                    }
+                    if (vals.roleType == 'H') {
+                        if (vals.statusFor == 'Enhancer                      ') {
+                            ActivatorH = ActivatorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                        }
+                        if (vals.statusFor == 'Inhibitor                     ') {
+                            InhibitorH = InhibitorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                        }
+                    }
+                });
+            }
+            else
+            {
+                var mSG = "Data not available! ";
+
+                $("#Activator").append("<div class='elseReopert'>" + mSG + "</div>");
+                $("#Inhivator").append("<div class='elseReopert'>" + mSG + "</div>");
+                $("#Activator1").append("<div class='elseReopert'>" + mSG + "</div>");
+                $("#Inhivator1").append("<div class='elseReopert'>" + mSG + "</div>");
+            }
             $("#Activator").append(ActivatorB);
             $("#Inhivator").append(InhibitorB);
             $("#Activator1").append(ActivatorH);

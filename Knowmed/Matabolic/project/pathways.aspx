@@ -126,6 +126,17 @@
             float: left;
             width: 35rem;
         }
+        .nopadding {
+    max-height: 64vh;
+    overflow-y: scroll;
+}
+        .nopadding table thead tr td {
+    position: sticky;
+    top: 0;
+    z-index: 1111;
+}
+
+
     </style>
   
     <script>

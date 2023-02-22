@@ -1146,19 +1146,17 @@
                     <table class="table table-bordered" id="tblMarkerDetail">
                         <thead>
                             <tr>
-                                <%--<td class="td_SerialNo">S No.</td>--%>
                                 <td class="td_markerName">MarkerName</td>
-                                <%--<td class="td_Parameter">Parameter</td>--%>
                                 <td class="">ProcessName</td>
-                                <%--<td class="td_Location">Location</td>--%>
                                 <td class="td_Meaning">Lavel</td>
-                                <%--<td class="td_CentralCompound">CentralCompound</td>--%>
+                                <td class="td_HL">High Low</td>
+                                <td class="td_HB">Harmful Beneficial</td>
+                                <td class="td_compoundType">Compound Type</td>
+                                <td class="td_compoundType">Rsesearch Year</td>
                                 <td class="td_AssociatedProblem">Meaning</td>
                                 <td class="td_ErasHypotdesis">Era's Hypothesis</td>
                                  <td class="td_StudyTreatment">StudyRefrenceDetails URL</td>
                                 <td class="td_OtderPatdwayDetails">OtderPatdwayDetails Medicine</td>
-                                <%--<td class="td_StudyReferenceDetails">Study Reference Details</td>
-                                <td class="td_BloodBrainBarrierDetails">Blood Brain Barrier Details</td>--%>
                             </tr>
                         </thead>
                         <tbody></tbody>

@@ -796,7 +796,7 @@ function init(data, data1) {
                    // .ofObject(),
 
                 //new go.Binding("stroke", "isHighlighted", function (arrayURL) { return console.log(arrayURL[0].URL); })
-                new go.Binding("stroke", "isHighlighted", function (highlightUpcomnColor) { return (highlightUpcomnColor == false ? "black" : "red"); })
+                new go.Binding("stroke", "isHighlighted", function (highlightUpcomnColor) { return (highlightUpcomnColor == false ? "black" : "black"); })
                     .ofObject(),
 
                 // the Shape.strokeWidth depends on whether Link.isHighlighted is true
@@ -926,7 +926,6 @@ var arrayTO = [];
 function shyamReverse(dataShyam, data1Shyam) {
     /*arrayTO("D", linkFromTO);*/
     $.each(data1Shyam, function (i, val) {
-        console.log("V:", val.from);
     });
 }
 
@@ -1731,13 +1730,7 @@ function getDetails(id) {
              node = JSON.parse(allNode[0].mainNode);
 
             relations = allrelation[0].linkNode;
-            console.log("ddddddddddddddddddddddddd", node);
-            console.log("eeeeeeeeeeeeeeeeeeeeeeeee", relations);
-
           
-           
-           
-
             $('#mySearch option:not(:first)').remove();
             var usedNames = [];
             $.each(node, function () {
@@ -3540,8 +3533,10 @@ function getRDADetail(obj) {
 }
 
 function getMarkerDetail(obj) {
+
     var contextmenu = obj.part;
     var nodedata = contextmenu.data;
+    console.log("G", nodedata);
     var tr;
     if (userLoginID != 1 && !UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
@@ -3551,7 +3546,7 @@ function getMarkerDetail(obj) {
         method: "Post",
         url: 'WebService/SVGWebService.asmx/getMarkerDetails',
         dataType: 'json',
-        data: "{'pathwayId':'" + pathwayId + "','markerName':'" + nodedata.text + "','empid':'" + userLoginID + "'}",
+        data: "{'pathwayId':'" + pathwayId + "','markerName':'" + nodedata.text + "','receptorID':'" + nodedata.group + "','empid':'" + userLoginID + "'}",
         contentType: 'application/json',
         statusCode: {
             401: function (xhr) {
@@ -3572,7 +3567,7 @@ function getMarkerDetail(obj) {
                 if (result.Table.length > 0) {
                     $.each(result.Table, function (i, val) {
 
-                        tr = tr + "<tr><td>" + val.nutrientName + "</td><td>" + val.processname + "</td><td>" + val.lavel + "</td><td>" + val.meaning + "</td><td>" + val.eraHypothesis + "</td><td>" + val.studyReferenceDetailsURL + "</td><td>" + val.studyTreatmentDetailsMedicine + "</td></tr>";
+                        tr = tr + "<tr><td>" + val.nutrientName + "</td><td>" + val.processname + "</td><td>" + val.lavel + "</td><td>" + val.highLow + "</td><td>" + val.harmfulbeneficial + "</td><td>" + val.compoundType + "</td><td>" + val.researchYear + "</td><td>" + val.meaning + "</td><td>" + val.eraHypothesis + "</td><td>" + val.studyReferenceDetailsURL + "</td><td>" + val.studyTreatmentDetailsMedicine + "</td></tr>";
                     });
                 }
             }

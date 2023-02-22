@@ -11,7 +11,9 @@
     top: 50%;
     left: 50%;
     z-index: 11;
+    width: 2%;
 }
+
            table#tblReport tr td {
     font-size: 14px;
     line-height: 26px;
@@ -56,16 +58,29 @@ table#tblReport tr th {
 .tblallmrk {
     float: left;
     width: 100%;
+    overflow-y: scroll;
+    max-height: 80vh;
 }
+.elseReopert {
+            text-align: center;
+            min-height: 75vh;
+            width: 100%;
+            font-size: 30px;
+            font-weight: 600;
+            padding-top: 250px;
+        }
 
-
-
+.tblallmrk table tr th {
+    position: sticky;
+    top: 0;
+    z-index: 111;
+}
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <div id='loader' style='display: none;'>
-        <img src='img/spinner.gif'>
+        <img src='img/spinner.gif' style="height: 60%; width: 100%">
     </div>
 
     <div id="content" style="margin-left: 0px; min-height: 95vh;">
@@ -126,7 +141,7 @@ table#tblReport tr th {
            <table class="table table-bordered table-responsive" id="tblAllReport" style="display:none">
                 <thead>
                     <tr>
-                     <th style="text-align: left;" width="5%">Sr No.s</th>
+                     <th style="text-align: left;" width="5%">Sr No.</th>
                     <th style="text-align: left;" width="20%">Disease Name</th>
                     <th style="text-align: left;" width="75%">Process Name</th>
                     </tr>

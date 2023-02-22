@@ -636,7 +636,7 @@ public class SVGWebService : System.Web.Services.WebService
 
     #region PDF & SVG Events 
     [WebMethod(EnableSession = true)]
-    public string getMarkerDetails(string pathwayId, string markerName, string empid)
+    public string getMarkerDetails(string pathwayId, string markerName, string empid,int receptorID)
     {
         //if (HttpContext.Current.Session["empid"] == null)
         if (empid == null)
@@ -648,6 +648,7 @@ public class SVGWebService : System.Web.Services.WebService
         //pobj.userID = Convert.ToInt32(userID); //Convert.ToInt32(HttpContext.Current.Session["empid"]);
         pobj.pathwayId = Convert.ToInt32(pathwayId); 
         pobj.markerName = markerName;
+        pobj.receptorID = receptorID;
         BAL_SVGLibrary.getMarkerDetails(pobj);
         string str;
         if (!pobj.isException)
