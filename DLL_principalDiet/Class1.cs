@@ -36,6 +36,7 @@ namespace DLL_principalDiet
             cmd.Parameters.AddWithValue("@statusFor", pobj.statusFor);
             cmd.Parameters.AddWithValue("@roleType", pobj.roleType);
             cmd.Parameters.AddWithValue("@IntractedNutrientID", pobj.intractedNutrientID);
+            cmd.Parameters.AddWithValue("@nutrientName", pobj.nutrientName);
             
 
             cmd.Parameters.AddWithValue("@who", pobj.who);
@@ -73,6 +74,11 @@ namespace DLL_principalDiet
         public static void getProcess(PAL_principalDiet pobj)
         {
             pobj.opcode = 44;
+            DAL_principalDiet.returnTable(pobj);
+        }
+        public static void getOnlyProcessName(PAL_principalDiet pobj)
+        {
+            pobj.opcode = 45;
             DAL_principalDiet.returnTable(pobj);
         }
     }

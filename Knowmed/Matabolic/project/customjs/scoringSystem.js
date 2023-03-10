@@ -376,13 +376,13 @@ function getTestMarker() {
 function goTODietreport(Nutrientname, nutrientID, dieaseID)
 {
     $("#txtNutrientName").html('');
+    $("#txtNutrientName").append(Nutrientname);
 
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
-    $("#txtNutrientName").append(Nutrientname);
-    var PID = $("#txtPID").val();
+    let PID = $("#txtPID").val();
     if (PID == '')
     {
         PID = 0
@@ -394,56 +394,103 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
         PID: PID,
         pathwayID: dieaseID,
     }
-    $.ajax({
-        type: "POST",
-        url: "WebService/principalDiet.asmx/getPIDDiet",
-        contentType: 'application/json',
-        dataType: 'json',
-        data: JSON.stringify(obj),
+    if (PID==0) {
+        $.ajax({
+            type: "POST",
+            url: "WebService/principalDiet.asmx/getPIDDiet",
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(obj),
 
-        statusCode: {
-            401: function (xhr) {
-                window.location.href = "../../index.html";
-            }
-        },
-        success: function (data) {
-
-            $("#modelToeatNotToEat").show();
-
-            $("#toEAT").empty();
-            $("#notTOEAT").empty();
-
-            var toEat = '';
-            var notToEat = '';
-            var result = JSON.parse(data.d).responseValue;
-           
-            $.each(result.Table, function (i, val) {
-                if (val.isFoodTobeGiven == 1) {
-                    toEat = toEat + "<span>" + val.foodName + "</span><br/>";
+            statusCode: {
+                401: function (xhr) {
+                    window.location.href = "../../index.html";
                 }
-                if (val.isFoodTobeGiven == 0) {
-                    notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
-                }
-            });
-            if (toEat != null || toEat != undefined) {
-                $("#toEAT").append(toEat);
-                $("#notTOEAT").append(notToEat);
+            },
+            success: function (data) {
+
+                $("#modelToeatNotToEat").show();
+
+                $("#toEAT").empty();
+                $("#notTOEAT").empty();
+
+                var toEat = '';
+                var notToEat = '';
+                var result = JSON.parse(data.d).responseValue;
+
+                $.each(result.Table, function (i, val) {
+                    if (val != null || val != undefined) {
+                        if (val.roleType == 'B') {
+                            toEat = toEat + "<span>" + val.nutrientName + "</span><br/>";
+                        }
+                        if (val.roleType == 'H') {
+                            notToEat = notToEat + "<span>" + val.nutrientName + "</span><br/>";
+                        }
+                    }
+                });
+                    $("#toEAT").append(toEat);
+                    $("#notTOEAT").append(notToEat);
+
+
+                var text = '';
+                $("#rankName").html('');
+                $.each(result.Table1, function (i, val) {
+                    text += '<span>' + val.rankName + '</span>';
+                });
+                $("#rankName").html(text);
+            },
+            error: function (error) {
             }
+        });
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: "WebService/principalDiet.asmx/getPIDDiet",
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(obj),
 
+            statusCode: {
+                401: function (xhr) {
+                    window.location.href = "../../index.html";
+                }
+            },
+            success: function (data) {
 
+                $("#modelToeatNotToEat").show();
 
+                $("#toEAT").empty();
+                $("#notTOEAT").empty();
 
-            var text = '';
-            $("#rankName").html('');
-            $.each(result.Table1, function (i, val) {
-                text += '<span>' + val.rankName + '</span>';
-            });
-            $("#rankName").html(text);
-        },
-        error: function (error) {
-        }
-    });
- 
+                var toEat = '';
+                var notToEat = '';
+                var result = JSON.parse(data.d).responseValue;
+
+                $.each(result.Table, function (i, val) {
+                    if (val.isFoodTobeGiven == 1) {
+                        toEat = toEat + "<span>" + val.foodName + "</span><br/>";
+                    }
+                    if (val.isFoodTobeGiven == 0) {
+                        notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
+                    }
+                });
+                if (toEat != null || toEat != undefined) {
+                    $("#toEAT").append(toEat);
+                    $("#notTOEAT").append(notToEat);
+                }
+
+                var text = '';
+                $("#rankName").html('');
+                $.each(result.Table1, function (i, val) {
+                    text += '<span>' + val.rankName + '</span>';
+                });
+                $("#rankName").html(text);
+            },
+            error: function (error) {
+            }
+        });
+    }
     //window.location.href = "../project/principalDiet.aspx?PID=" + PID + "&markerName=" + (Nutrientname.trim()) + "";
 }
 

@@ -193,33 +193,44 @@ function getDiet() {
                 $.each(result.Table, function (i, vals) {
 
                     var finalData = JSON.parse(vals.processLIST);
-                    //var process = '';
-                    //$.each(finalData, function (i, values) {
-                    //    process = "<span>"+values.rankName+"</span>";
-                    //});
-                    //$("#processDiv").append(process);
+                  
 
+                    //if (vals.roleType == 'B') {
+                    //    if (vals.statusFor == 'Enhancer                      ') {
+                    //        ActivatorB = ActivatorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                    //    }
 
-
-
+                    //    if (vals.statusFor == 'Inhibitor                     ') {
+                    //        InhibitorB = InhibitorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                    //    }
+                    //}
+                    //if (vals.roleType == 'H') {
+                    //    if (vals.statusFor == 'Enhancer                      ') {
+                    //        ActivatorH = ActivatorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                    //    }
+                    //    if (vals.statusFor == 'Inhibitor                     ') {
+                    //        InhibitorH = InhibitorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                    //    }
+                    //}
 
                     if (vals.roleType == 'B') {
                         if (vals.statusFor == 'Enhancer                      ') {
-                            ActivatorB = ActivatorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                            ActivatorB = ActivatorB + "<span style='cursor:pointer' onclick='getProcessNameS(" + vals.IntractedNutrientID + "," + "\"" + vals.IntractedNutrientName+"\")'>" + vals.IntractedNutrientName + "</span>";
                         }
 
                         if (vals.statusFor == 'Inhibitor                     ') {
-                            InhibitorB = InhibitorB + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                            InhibitorB = InhibitorB + "<span style='cursor:pointer' onclick='getProcessNameS(" + vals.IntractedNutrientID + "," + "\"" + vals.IntractedNutrientName +"\")'>" + vals.IntractedNutrientName + "</span>";
                         }
                     }
                     if (vals.roleType == 'H') {
                         if (vals.statusFor == 'Enhancer                      ') {
-                            ActivatorH = ActivatorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                            ActivatorH = ActivatorH + "<span style='cursor:pointer' onclick='getProcessNameS(" + vals.IntractedNutrientID + "," + "\"" + vals.IntractedNutrientName +"\")'>" + vals.IntractedNutrientName + "</span>";
                         }
                         if (vals.statusFor == 'Inhibitor                     ') {
-                            InhibitorH = InhibitorH + "<span style='cursor:pointer' onclick='getProcessName(" + vals.IntractedNutrientID + "," + "\"" + vals.statusFor + "\"," + "\"" + vals.roleType + "\")'>" + vals.IntractedNutrientName + "</span>";
+                            InhibitorH = InhibitorH + "<span style='cursor:pointer' onclick='getProcessNameS(" + vals.IntractedNutrientID + "," + "\"" + vals.IntractedNutrientName +"\")'>" + vals.IntractedNutrientName + "</span>";
                         }
                     }
+
                 });
             }
             else
@@ -238,31 +249,82 @@ function getDiet() {
 
         },
         error: function (error) {
-            console.log(error);
         }
     });
 }
 
-function getProcessName(nutrientID, statusFor, roleType)
-{
-    let diseaseID = $("#ddlPathway").val();
+//function getProcessName(nutrientID, statusFor, roleType)
+//{
+
+//    let diseaseID = $("#ddlPathway").val();
    
+//    if (!UtilsCache.getSession('USERDETAILS')) {
+//        window.location.href = "../../index.html";
+//        return;
+//    }
+//    obj = {
+//        "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
+//        pathwayID: Number(diseaseID),
+//        nutrientName: selectedNutrientName,
+//        intractedNutrientID: nutrientID,
+//        statusFor: statusFor,
+//        roleType: roleType
+//    }
+    
+//    $.ajax({
+//        type: "POST",
+//        url: "WebService/principalDiet.asmx/getProcessList",
+//        contentType: 'application/json',
+//        dataType: 'json',
+//        data: JSON.stringify(obj),
+
+//        statusCode: {
+//            401: function (xhr) {
+//                window.location.href = "../../index.html";
+//            }
+//        },
+//        success: function (data) {
+//            var result = JSON.parse(data.d).responseValue;
+//            var processName = '';
+//            $("#processModelDiv").html('');
+//            $("#processModel").show();
+
+//            $.each(result.Table, function (index, value) {
+//                $("#processHeader").text('');
+
+//                var clickNutrientName = value.IntractedNutrientName;
+//                var processList = JSON.parse(value.processLIST);
+
+//                $.each(processList, function (i, val) {
+//                    processName = '<span style="padding:5px;font-size: x-large;color:black;background-color:' + val.colors + ';font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;border:1px solid black" >' + val.rankName + '</span>';
+//                    $("#processModelDiv").append(processName);
+//                });
+//                $("#processHeader").append(clickNutrientName);
+//            });
+//        },
+//        error: function (error) {
+
+//        }
+//    });
+//}
+
+
+function getProcessNameS(id, nutrientNames) {
+    $("#processHeader").html('');
+    $("#processHeader").append(nutrientNames);
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
+    let diseaseID = $("#ddlPathway").val();
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
         pathwayID: Number(diseaseID),
-        nutrientName: selectedNutrientName,
-        intractedNutrientID: nutrientID,
-        statusFor: statusFor,
-        roleType: roleType
+        nutrientID: id,
     }
-    
     $.ajax({
         type: "POST",
-        url: "WebService/principalDiet.asmx/getProcessList",
+        url: "WebService/principalDiet.asmx/getOnlyProcessName",
         contentType: 'application/json',
         dataType: 'json',
         data: JSON.stringify(obj),
@@ -275,20 +337,14 @@ function getProcessName(nutrientID, statusFor, roleType)
         success: function (data) {
             var result = JSON.parse(data.d).responseValue;
             var processName = '';
-            $("#processModelDiv").html('');
             $("#processModel").show();
+            $("#processModelDiv").html('');
 
-            $.each(result.Table, function (index, value) {
-                $("#processHeader").text('');
-
-                var clickNutrientName = value.IntractedNutrientName;
-                var processList = JSON.parse(value.processLIST);
-
-                $.each(processList, function (i, val) {
-                    processName = '<span style="padding:5px;font-size: x-large;color:black;background-color:' + val.colors + ';font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;border:1px solid black" >' + val.rankName + '</span>';
-                    $("#processModelDiv").append(processName);
-                });
-                $("#processHeader").append(clickNutrientName);
+            $.each(result.Table, function (i, val) {
+                    if (val.rankName != null || val.rankName != undefined) {
+                        processName = '<span style="padding:5px;font-size: x-large;color:black;background-color:' + val.colors + ';font-weight: bold;margin-right:5px;margin-bottom:5px;display: inline-block;border:1px solid black" >' + val.rankName + '</span>';
+                    }
+                $("#processModelDiv").append(processName);
             });
         },
         error: function (error) {
@@ -296,4 +352,3 @@ function getProcessName(nutrientID, statusFor, roleType)
         }
     });
 }
-

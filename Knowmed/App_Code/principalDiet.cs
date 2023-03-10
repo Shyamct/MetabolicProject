@@ -157,4 +157,38 @@ public class principalDiet : System.Web.Services.WebService
         }
         return str;
     }
+
+
+    [WebMethod(EnableSession = true)]
+    public string getOnlyProcessName(string empid, int nutrientID, int pathwayID)
+    {
+        if (empid == null)
+        {
+            HttpContext.Current.Response.StatusCode = 401;
+            return "Invalid user";
+        }
+
+        PAL_principalDiet pobj = new PAL_principalDiet();
+        pobj.who = empid;
+        pobj.nutrientID = nutrientID;
+        pobj.pathwayID = pathwayID;
+
+        BAL_principalDiet.getOnlyProcessName(pobj);
+        string str;
+        if (!pobj.isException)
+        {
+            str = JsonConvert.SerializeObject((object)new
+            {
+                responseCode = 1,
+                responseValue = pobj.DS,
+                responseMessage = "Success"
+            });
+        }
+        else
+        {
+            HttpContext.Current.Response.StatusCode = 404;
+            str = pobj.exceptionMessage;
+        }
+        return str;
+    }
 }
