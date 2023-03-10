@@ -98,5 +98,6 @@ namespace DAL_scoringSystem
             pobj.opcode = 47;
             DAL_scoringSystem.returnTable(pobj);
         }
+       
     }
 }

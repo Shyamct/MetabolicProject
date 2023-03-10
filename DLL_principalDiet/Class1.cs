@@ -16,8 +16,10 @@ namespace DLL_principalDiet
         public int PID { get; set; }
 
         public string nutrientName  {get;set;}
+        public int nutrientID { get;set;}
         public string statusFor { get;set;}
         public string roleType { get;set;}
+        //public string diseaseID { get;set;}
        
     }
     public class DAL_principalDiet
@@ -27,16 +29,14 @@ namespace DLL_principalDiet
              Config con = new Config();
             SqlCommand cmd = new SqlCommand("principalDiet", con.con);
             cmd.CommandType = CommandType.StoredProcedure;
-
+            cmd.CommandTimeout = 120;
             cmd.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
             cmd.Parameters.AddWithValue("@PID", pobj.PID);
-            cmd.Parameters.AddWithValue("@nutrientName", pobj.nutrientName);
+            cmd.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
             cmd.Parameters.AddWithValue("@statusFor", pobj.statusFor);
             cmd.Parameters.AddWithValue("@roleType", pobj.roleType);
             cmd.Parameters.AddWithValue("@IntractedNutrientID", pobj.intractedNutrientID);
-
-
-
+            
 
             cmd.Parameters.AddWithValue("@who", pobj.who);
             cmd.Parameters.AddWithValue("@opCode", pobj.opcode);
@@ -70,7 +70,6 @@ namespace DLL_principalDiet
             pobj.opcode = 43;
             DAL_principalDiet.returnTable(pobj);
         }
-
         public static void getProcess(PAL_principalDiet pobj)
         {
             pobj.opcode = 44;

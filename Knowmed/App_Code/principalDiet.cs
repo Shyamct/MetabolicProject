@@ -85,7 +85,7 @@ public class principalDiet : System.Web.Services.WebService
         return str;
     }
     [WebMethod(EnableSession = true)]
-    public string getPIDDiet(string empid, string nutrientName, int PID)
+    public string getPIDDiet(string empid, int nutrientID, int PID,int pathwayID)
     {
         if (empid == null)
         {
@@ -95,8 +95,9 @@ public class principalDiet : System.Web.Services.WebService
 
         PAL_principalDiet pobj = new PAL_principalDiet();
         pobj.who = empid;
-        pobj.nutrientName = nutrientName;
+        pobj.nutrientID = nutrientID;
         pobj.PID = PID;
+        pobj.pathwayID = pathwayID;
 
         BAL_principalDiet.getDietByPID(pobj);
         string str;

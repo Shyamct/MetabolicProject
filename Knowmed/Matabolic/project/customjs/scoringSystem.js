@@ -209,7 +209,7 @@ function getReport() {
                     nutrientCentral += '<ul>';
                     if (mainData != undefined || mainData != null || mainData != 0) {
                         for (var i = 0; i < mainData.length; i++) {
-                            if (mainData[i].compoundType == 'Central') {
+                            if (mainData[i].compoundType == 'Central' && mainData[i].nutrientName != 'NA' && mainData[i].nutrientID !=0) {
 
                                 var nutrientID = mainData[i].nutrientID;
 
@@ -243,7 +243,7 @@ function getReport() {
                     nutrientSubCentral += '<ul>';
                     if (mainData != undefined || mainData != null || mainData != 0) {
                         for (var i = 0; i < mainData.length; i++) {
-                            if (mainData[i].compoundType == 'Sub Central') {
+                            if (mainData[i].compoundType == 'Sub Central' && mainData[i].nutrientName != 'NA' && mainData[i].nutrientID != 0) {
                                 var nutrientID = mainData[i].nutrientID;
 
                                 var nutrientName = mainData[i].nutrientName;
@@ -276,7 +276,7 @@ function getReport() {
                     nutrientSpecific += '<ul>';
                     if (mainData != undefined || mainData != null || mainData != 0) {
                         for (var i = 0; i < mainData.length; i++) {
-                            if (mainData[i].compoundType == 'Specific') {
+                            if (mainData[i].compoundType == 'Specific' && mainData[i].nutrientName != 'NA' && mainData[i].nutrientID != 0) {
                                 var nutrientID = mainData[i].nutrientID;
 
                                 var nutrientName = mainData[i].nutrientName;
@@ -321,7 +321,9 @@ function getReport() {
             if (result.Table1.length > 0)
             {
                 $.each(result.Table1, function (i, val) {
-                    bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
+                    if (val.nutrientName != 'NA' || val.nutrientID!=0 ) {
+                        bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\"," + val.nutrientID + "," + val.pathwayId + ")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
+                    }
                 });
              }
             else
@@ -355,11 +357,12 @@ function getReport() {
 
 function getTestMarker() {
     $("#modelTestMarker").show();
-
     $("#testMarker tbody tr").remove();
     let testNutrient = '';
     $.each(arrTestMarkerList, function (i, val) {
-        testNutrient += "<tr><td>" + val.pathwayName + "</td><td>" + val.markerName + "</td><td>" + val.categoryName + "</td><td>" + val.testName + "</td></tr>"
+        if (val.markerName != 'NA') {
+            testNutrient += "<tr><td>" + val.pathwayName + "</td><td>" + val.markerName + "</td><td>" + val.categoryName + "</td><td>" + val.testName + "</td></tr>"
+        }
     });
    
     $("#testMarker tbody").append(testNutrient);
@@ -370,25 +373,27 @@ function getTestMarker() {
 
 
 
-function goTODietreport(Nutrientname)
+function goTODietreport(Nutrientname, nutrientID, dieaseID)
 {
+    $("#txtNutrientName").html('');
+
     if (!UtilsCache.getSession('USERDETAILS')) {
         window.location.href = "../../index.html";
         return;
     }
+    $("#txtNutrientName").append(Nutrientname);
     var PID = $("#txtPID").val();
-    if (PID == null || PID == undefined || PID == "")
+    if (PID == '')
     {
-        alert("ENTER PID");
-        return;
+        PID = 0
     }
     
     obj = {
         "empid": Number(UtilsCache.getSession('USERDETAILS').userid),
-        nutrientName: Nutrientname,
+        nutrientID: nutrientID,
         PID: PID,
+        pathwayID: dieaseID,
     }
-
     $.ajax({
         type: "POST",
         url: "WebService/principalDiet.asmx/getPIDDiet",
@@ -402,8 +407,6 @@ function goTODietreport(Nutrientname)
             }
         },
         success: function (data) {
-            $("#txtNutrientName").append('');
-            $("#txtNutrientName").append(Nutrientname);
 
             $("#modelToeatNotToEat").show();
 
@@ -413,6 +416,7 @@ function goTODietreport(Nutrientname)
             var toEat = '';
             var notToEat = '';
             var result = JSON.parse(data.d).responseValue;
+           
             $.each(result.Table, function (i, val) {
                 if (val.isFoodTobeGiven == 1) {
                     toEat = toEat + "<span>" + val.foodName + "</span><br/>";
@@ -425,6 +429,16 @@ function goTODietreport(Nutrientname)
                 $("#toEAT").append(toEat);
                 $("#notTOEAT").append(notToEat);
             }
+
+
+
+
+            var text = '';
+            $("#rankName").html('');
+            $.each(result.Table1, function (i, val) {
+                text += '<span>' + val.rankName + '</span>';
+            });
+            $("#rankName").html(text);
         },
         error: function (error) {
         }
@@ -435,6 +449,8 @@ function goTODietreport(Nutrientname)
 
 
 function getInteractionNutrient(nutrientID, currentProcessID, finalMarkerScore, nutrientName) {
+
+    $("#intretectedHeader").html('');
 
     var diseaseID = pathwayID.toString();
     if (!UtilsCache.getSession('USERDETAILS')) {
@@ -653,12 +669,14 @@ function getVitalScore() {
 
             var bindMarker = '';
             $.each(result.Table, function (i, val) {
-                //bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + (val.score == null ?+ val.FinalNutrientSCORE :+'<span style="color:blue">'+val.FinalNutrientSCORE+'</span>') + ']' + "</p>";
-                if (val.score == null) {
-                    bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' +  val.FinalNutrientSCORE +  ']' + "</p>";
-                }
-                else {
-                    bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + "<span style='color: blue'>"+val.FinalNutrientSCORE + "</span>" + ']' + "</p>";
+                if (val.nutrientName != 'NA' || val.nutrientID != 0) {
+                    //bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + (val.score == null ?+ val.FinalNutrientSCORE :+'<span style="color:blue">'+val.FinalNutrientSCORE+'</span>') + ']' + "</p>";
+                    if (val.score == null) {
+                        bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\"," + val.nutrientID + "," + val.pathwayId + ")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + val.FinalNutrientSCORE + ']' + "</p>";
+                    }
+                    else {
+                        bindMarker += "<p style='font-size:larger;cursor: pointer;' onclick='goTODietreport(\"" + val.nutrientName + "\"," + val.nutrientID + "," + val.pathwayId + ")'>" + val.pathwayName + ']' + val.nutrientNameColor + '[' + "<span style='color: blue'>" + val.FinalNutrientSCORE + "</span>" + ']' + "</p>";
+                    }
                 }
             });
             $("#markerDIV").html(bindMarker);

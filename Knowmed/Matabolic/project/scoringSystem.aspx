@@ -368,10 +368,10 @@
         }
 
         .heding-div {
-            max-height: 82vh;
+            max-height: 65vh;
             overflow-y: auto;
             overflow-x: hidden;
-            min-height: 83vh;
+            min-height: 65vh;
         }
      
         .heading-act {
@@ -484,6 +484,23 @@ input.inptnum {
     font-size: 14px !important;
     padding: 5px 6px;
     border: 1px solid #bdb9b9;
+    border-radius: 3px;
+}
+div#rankName {
+    padding: 5px 5px;
+    border: 1px solid #ddd;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    font-weight: 600;
+    justify-content: left;
+}
+div#rankName span {
+    padding: 2px 7px;
+    background: #eee;
     border-radius: 3px;
 }
     </style>
@@ -724,6 +741,13 @@ input.inptnum {
                     <h4 class="modal-title" id="txtNutrientName"> </h4>
                 </div>
                 <div class="modal-body popup-decreption" style="color: black;  height: 70vh !important;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div  id="rankName">
+                                
+                            </div>
+                        </div>
+                    </div>
 
                     <table class="table table-bordered table-responsive" id="tblToeatNotToEat">
                         <thead>
