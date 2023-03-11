@@ -435,7 +435,7 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
                 var text = '';
                 $("#rankName").html('');
                 $.each(result.Table1, function (i, val) {
-                    text += '<span>' + val.rankName + '</span>';
+                    text += '<span>' + val.colorRankName + '</span>';
                 });
                 $("#rankName").html(text);
             },
@@ -479,11 +479,10 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
                     $("#toEAT").append(toEat);
                     $("#notTOEAT").append(notToEat);
                 }
-
                 var text = '';
                 $("#rankName").html('');
                 $.each(result.Table1, function (i, val) {
-                    text += '<span>' + val.rankName + '</span>';
+                    text += '<span>' + val.colorRankName + '</span>';
                 });
                 $("#rankName").html(text);
             },

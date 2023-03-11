@@ -37,7 +37,6 @@ namespace DLL_principalDiet
             cmd.Parameters.AddWithValue("@roleType", pobj.roleType);
             cmd.Parameters.AddWithValue("@IntractedNutrientID", pobj.intractedNutrientID);
             cmd.Parameters.AddWithValue("@nutrientName", pobj.nutrientName);
-            
 
             cmd.Parameters.AddWithValue("@who", pobj.who);
             cmd.Parameters.AddWithValue("@opCode", pobj.opcode);
