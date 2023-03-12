@@ -190,14 +190,17 @@ function getReport() {
                     var mainData = JSON.parse(result.Table[i].MarkerLIST);
 
                     if (mainData != undefined || mainData != null || mainData != 0) {
+                      
                         for (var i = 0; i < mainData.length; i++) {
-                            arrList.push({
+                            if (mainData[i].nutrientName != 'NA' && mainData[i].nutrientID != 0) {
+                             arrList.push({
                                 markerName: mainData[i].nutrientName,
                                 markerScore: mainData[i].calculateMarkerScore,
                                 type: mainData[i].compoundType,
                                 processSCORE: val.processScore,
                                 pathwayNAME: val.pathwayName,
-                            });
+                             });
+                            }
                         }
                         // getBestMarker();
                         //getMarkerWithScore();
@@ -333,14 +336,14 @@ function getReport() {
             $("#markerDIV").html(bindMarker);
 
             $.each(result.Table2, function (i, val) {
-             
-                arrTestMarkerList.push({
-                    pathwayName: val.pathwayName,
-                    markerName: val.nutrientName,
-                    categoryName: val.categoryName,
-                    testName: val.displayName
-                    
-                })
+                if (val.nutrientName != 'NA' && val.nutrientID != 0) {
+                    arrTestMarkerList.push({
+                        pathwayName: val.pathwayName,
+                        markerName: val.nutrientName,
+                        categoryName: val.categoryName,
+                        testName: val.displayName
+                    })
+                }
             });
         },
         error: function (error) {
@@ -367,7 +370,6 @@ function getTestMarker() {
    
     $("#testMarker tbody").append(testNutrient);
     row = $("#testMarker thead tr").clone();
-
 }
 
 
@@ -394,7 +396,8 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
         PID: PID,
         pathwayID: dieaseID,
     }
-    if (PID==0) {
+    if (PID == 0) {
+        $("#loader").show();
         $.ajax({
             type: "POST",
             url: "WebService/principalDiet.asmx/getPIDDiet",
@@ -408,6 +411,7 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
                 }
             },
             success: function (data) {
+                $("#loader").hide();
 
                 $("#modelToeatNotToEat").show();
 
@@ -444,6 +448,7 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
         });
     }
     else {
+        $("#loader").show();
         $.ajax({
             type: "POST",
             url: "WebService/principalDiet.asmx/getPIDDiet",
@@ -457,6 +462,7 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
                 }
             },
             success: function (data) {
+                $("#loader").hide();
 
                 $("#modelToeatNotToEat").show();
 
@@ -466,14 +472,28 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
                 var toEat = '';
                 var notToEat = '';
                 var result = JSON.parse(data.d).responseValue;
+                var foodIDs = '';
+                $.each(result.Table2, function (i, values) {
+                    foodIDs = values.foodID;
+                });
 
                 $.each(result.Table, function (i, val) {
-                    if (val.isFoodTobeGiven == 1) {
-                        toEat = toEat + "<span>" + val.foodName + "</span><br/>";
+                    if (foodIDs == val.foodID) {
+                        if (val.isFoodTobeGiven == 1) {
+                            toEat = toEat + "<span style='background-color:red'>" + val.foodName + "</span><br/>";
+                        }
+                        if (val.isFoodTobeGiven == 0) {
+                            notToEat = notToEat +"<span style='background-color:red'>" + val.foodName + "</span><br/>";
+                        }
+                    } else {
+                        if (val.isFoodTobeGiven == 1) {
+                            toEat = toEat + "<span>" + val.foodName + "</span><br/>";
+                        }
+                        if (val.isFoodTobeGiven == 0) {
+                            notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
+                        }
                     }
-                    if (val.isFoodTobeGiven == 0) {
-                        notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
-                    }
+                    
                 });
                 if (toEat != null || toEat != undefined) {
                     $("#toEAT").append(toEat);

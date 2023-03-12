@@ -29,7 +29,7 @@ namespace DLL_principalDiet
              Config con = new Config();
             SqlCommand cmd = new SqlCommand("principalDiet", con.con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 120;
+            cmd.CommandTimeout = 240;
             cmd.Parameters.AddWithValue("@pathwayID", pobj.pathwayID);
             cmd.Parameters.AddWithValue("@PID", pobj.PID);
             cmd.Parameters.AddWithValue("@nutrientID", pobj.nutrientID);
@@ -37,7 +37,6 @@ namespace DLL_principalDiet
             cmd.Parameters.AddWithValue("@roleType", pobj.roleType);
             cmd.Parameters.AddWithValue("@IntractedNutrientID", pobj.intractedNutrientID);
             cmd.Parameters.AddWithValue("@nutrientName", pobj.nutrientName);
-
             cmd.Parameters.AddWithValue("@who", pobj.who);
             cmd.Parameters.AddWithValue("@opCode", pobj.opcode);
 

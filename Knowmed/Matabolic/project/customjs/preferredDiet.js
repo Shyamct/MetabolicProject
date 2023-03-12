@@ -322,6 +322,8 @@ function getProcessNameS(id, nutrientNames) {
         pathwayID: Number(diseaseID),
         nutrientID: id,
     }
+
+    $("#loader").show();
     $.ajax({
         type: "POST",
         url: "WebService/principalDiet.asmx/getOnlyProcessName",
@@ -335,6 +337,8 @@ function getProcessNameS(id, nutrientNames) {
             }
         },
         success: function (data) {
+            $("#loader").hide();
+
             var result = JSON.parse(data.d).responseValue;
             var processName = '';
             $("#processModel").show();
