@@ -55,7 +55,6 @@ D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\bin\Debug\DLLUtilit
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\bin\Debug\Newtonsoft.Json.dll
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\bin\Debug\DLLUtility.pdb
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\bin\Debug\Newtonsoft.Json.xml
-D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\obj\Debug\DLLSignalingCascade.csproj.AssemblyReference.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\obj\Debug\DLLSignalingCascade.csproj.CoreCompileInputs.cache
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\obj\Debug\DLLSignalingCascade.csproj.CopyComplete
 D:\TFS\MetabolicProjectGIT\METABOLIC\DLL\DLLSignalingCascade\obj\Debug\DLLSignalingCascade.dll

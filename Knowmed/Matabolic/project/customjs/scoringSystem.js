@@ -472,29 +472,29 @@ function goTODietreport(Nutrientname, nutrientID, dieaseID)
                 var toEat = '';
                 var notToEat = '';
                 var result = JSON.parse(data.d).responseValue;
-                var foodIDs = '';
                 $.each(result.Table2, function (i, values) {
-                    foodIDs = values.foodID;
+                    $.each(result.Table, function (j, val) {
+                        if (values.foodID == val.foodID) {
+                            if (val.isFoodTobeGiven == 1) {
+                                toEat = toEat + "<span style='background-color:#94bf84'>" + val.foodName + "</span><br/>";
+                            }
+                            if (val.isFoodTobeGiven == 0) {
+                                notToEat = notToEat + "<span style='background-color:#94bf84'>" + val.foodName + "</span><br/>";
+                            }
+                        } else {
+                            if (val.isFoodTobeGiven == 1) {
+                                toEat = toEat + "<span>" + val.foodName + "</span><br/>";
+                            }
+                            if (val.isFoodTobeGiven == 0) {
+                                notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
+                            }
+                        }
+
+                    });
+                   // foodIDs = values.foodID;
                 });
 
-                $.each(result.Table, function (i, val) {
-                    if (foodIDs == val.foodID) {
-                        if (val.isFoodTobeGiven == 1) {
-                            toEat = toEat + "<span style='background-color:red'>" + val.foodName + "</span><br/>";
-                        }
-                        if (val.isFoodTobeGiven == 0) {
-                            notToEat = notToEat +"<span style='background-color:red'>" + val.foodName + "</span><br/>";
-                        }
-                    } else {
-                        if (val.isFoodTobeGiven == 1) {
-                            toEat = toEat + "<span>" + val.foodName + "</span><br/>";
-                        }
-                        if (val.isFoodTobeGiven == 0) {
-                            notToEat = notToEat + "<span>" + val.foodName + "</span><br/>";
-                        }
-                    }
-                    
-                });
+                
                 if (toEat != null || toEat != undefined) {
                     $("#toEAT").append(toEat);
                     $("#notTOEAT").append(notToEat);
